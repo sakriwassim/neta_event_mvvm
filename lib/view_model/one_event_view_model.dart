@@ -10,4 +10,5 @@ class OneEventViewModel {
   get prix => eventModel?.prix;
   get adresse => eventModel?.adresse;
   get image => eventModel?.image;
+
 }

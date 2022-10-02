@@ -6,12 +6,19 @@ import 'one_event_view_model.dart';
 
 class EventsViewModel {
   String title = "Event Page ";
+
   EventsRepository? eventsRepository;
   EventsViewModel({this.eventsRepository});
+
   Future<List<OneEventViewModel>> FetchAllEvents() async {
     List<EventModel> list = await eventsRepository!.getAllEvents();
     return list
         .map((listEvent) => OneEventViewModel(eventModel: listEvent))
         .toList();
+  }
+
+  Future<OneEventViewModel> GetEventByID(int id) async {
+    var eventModel = await eventsRepository!.getEventByID(id);
+    return OneEventViewModel(eventModel: eventModel);
   }
 }

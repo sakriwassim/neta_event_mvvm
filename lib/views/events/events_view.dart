@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
 import 'package:neta_event_mvvm/repositories/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/view_model/events_view_model.dart';
 import 'package:neta_event_mvvm/view_model/one_event_view_model.dart';

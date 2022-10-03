@@ -3,6 +3,8 @@ import 'package:neta_event_mvvm/repositories/evants_repositories/events_api.dart
 import 'package:neta_event_mvvm/view_model/events_view_model.dart';
 import 'package:neta_event_mvvm/view_model/one_event_view_model.dart';
 
+import 'update_event_view.dart';
+
 class EventView extends StatefulWidget {
   const EventView({super.key});
 
@@ -29,6 +31,13 @@ class _EventViewState extends State<EventView> {
                   itemCount: events?.length,
                   itemBuilder: (context, index) => ListTile(
                         title: Text(events![index].id.toString()),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UpdateEventView(
+                                      eventObj: events![index])));
+                        },
                       ));
             }
           }),

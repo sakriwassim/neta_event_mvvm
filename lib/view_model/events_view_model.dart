@@ -21,4 +21,9 @@ class EventsViewModel {
     var eventModel = await eventsRepository!.getEventByID(id);
     return OneEventViewModel(eventModel: eventModel);
   }
+
+  Future<bool> UpdateEventByID(EventModel eventModel) async {
+    var event = await eventsRepository!.updateEventByID(eventModel);
+    return true;
+  }
 }

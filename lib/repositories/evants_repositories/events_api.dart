@@ -110,25 +110,7 @@ class EventsApi extends EventsRepository {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$TOKEN'
       };
-      // headers:
-      // <String, String>{
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      // };
 
-      //final body = jsonEncode(eventModelJson);
-
-      // final body2 = {
-      //   "category_id": "1",
-      //   "observation_id": "8888",
-      //   "libelle": "Libelle",
-      //   "description": "Description",
-      //   "prix": "silketttt",
-      //   "date_heure": "2020-01-27 17:50:45",
-      //   "adresse": "Stade du 26 Mars",
-      //   "nbre_tichet": "1000",
-      //   "status": "statut",
-      //   "image": "image"
-      // };
       final body = jsonEncode(eventModelJson);
 
       String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
@@ -146,5 +128,33 @@ class EventsApi extends EventsRepository {
 
     return addEventModel;
     //throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteEventByID(int id) async {
+    var TOKEN =
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
+    // try {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'authorization': 'Basic +$TOKEN'
+    };
+    String link =
+        'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/' + "${id}";
+    var url = Uri.parse(link);
+
+    http.Response response = await http.delete(url, headers: headers);
+
+    //var responsebody = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      // print(eventData);
+      //EventModel.fromJson(json.decode(response.body));
+      //var eventDate = EventModel.fromJson(json.decode(response.body));
+      //return eventDate;
+      return true;
+    } else {
+      throw Exception('can not load event data');
+    }
   }
 }

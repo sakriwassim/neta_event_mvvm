@@ -111,16 +111,11 @@ class _EventViewState extends State<EventView> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: ElevatedButton(
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      data.DeleteEventByID(
+                                                          events![index].id);
+                                                    },
                                                     child: Text("delete"),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: ElevatedButton(
-                                                    onPressed: () {},
-                                                    child: Text("add"),
                                                   ),
                                                 ),
                                               ],
@@ -158,30 +153,3 @@ class _EventViewState extends State<EventView> {
     );
   }
 }
-
-
-// bottomNavigationBar: SizedBox(
-//         height: 50,
-//         width: double.infinity,
-//         child: TextButton(
-//           onPressed: () {
-//             String counterfromgetcouter = widget.counterfromgetcouter;
-//             Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                   builder: (context) => Addmesure(
-//                     counterfromgetcouter: counterfromgetcouter,
-//                   ),
-//                 ));
-//           },
-//           style: ButtonStyle(
-//               backgroundColor:
-//                   MaterialStateProperty.all(const Color(0xFFFF8000))),
-//           child: const Text(
-//             'Add mesure',
-//             style: TextStyle(
-//               color: Color.fromARGB(255, 255, 255, 255),
-//             ),
-//           ),
-//         ),
-//       ),

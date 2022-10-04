@@ -32,4 +32,9 @@ class EventsViewModel {
     var event = await eventsRepository!.addEvent(addEventModel);
     return true;
   }
+
+  Future<bool> DeleteEventByID(int id) async {
+    var eventModel = await eventsRepository!.deleteEventByID(id);
+    return true;
+  }
 }

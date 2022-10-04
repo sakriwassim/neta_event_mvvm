@@ -7,4 +7,5 @@ abstract class EventsRepository {
   Future<EventModel> getEventByID(int id);
   Future<EventModel> updateEventByID(EventModel eventModel);
   Future<AddEventModel> addEvent(AddEventModel addEventModel);
+  Future<bool> deleteEventByID(int id);
 }

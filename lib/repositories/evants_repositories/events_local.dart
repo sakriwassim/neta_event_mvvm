@@ -13,10 +13,15 @@ class EventsLocal extends EventsRepository {
     // TODO: implement getEventByID
     throw UnimplementedError();
   }
-  
+
   @override
   Future<EventModel> updateEventByID(EventModel eventModel) {
-    
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<EventModel> addEvent(EventModel eventModel) {
+    // TODO: implement addEvent
     throw UnimplementedError();
   }
 }

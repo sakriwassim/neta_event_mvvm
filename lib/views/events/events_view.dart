@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/repositories/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/view_model/events_view_model.dart';
 import 'package:neta_event_mvvm/view_model/one_event_view_model.dart';
+import 'package:neta_event_mvvm/views/events/add_event_view.dart';
 
 import 'update_event_view.dart';
 
@@ -129,23 +130,58 @@ class _EventViewState extends State<EventView> {
                                       ),
                                     ),
                                   ])),
-                        )
-                    // ListTile(
-                    //       title: Text(events![index].id.toString()),
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => UpdateEventView(
-                    //                     eventObj: events[index])));
-                    //       },
-                    //     )
-                    );
+                        ));
               }
             }),
+          ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        width: double.infinity,
+        child: TextButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddEventView()));
+          },
+          style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(const Color(0xFFFF8000))),
+          child: const Text(
+            'Add mesure',
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+
+// bottomNavigationBar: SizedBox(
+//         height: 50,
+//         width: double.infinity,
+//         child: TextButton(
+//           onPressed: () {
+//             String counterfromgetcouter = widget.counterfromgetcouter;
+//             Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (context) => Addmesure(
+//                     counterfromgetcouter: counterfromgetcouter,
+//                   ),
+//                 ));
+//           },
+//           style: ButtonStyle(
+//               backgroundColor:
+//                   MaterialStateProperty.all(const Color(0xFFFF8000))),
+//           child: const Text(
+//             'Add mesure',
+//             style: TextStyle(
+//               color: Color.fromARGB(255, 255, 255, 255),
+//             ),
+//           ),
+//         ),
+//       ),

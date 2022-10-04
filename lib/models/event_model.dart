@@ -1,13 +1,13 @@
 class EventModel {
   int? id;
-  String? categoryId;
+  int? categoryId;
   String? observationId;
   String? libelle;
   String? description;
-  String? prix;
+  int? prix;
   String? dateHeure;
   String? adresse;
-  String? nbreTichet;
+  int? nbreTichet;
   String? status;
   String? image;
   String? createdAt;

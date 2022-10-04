@@ -19,28 +19,131 @@ class _EventViewState extends State<EventView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(data.title)),
-      body: Center(
-        child: FutureBuilder<List<OneEventViewModel>>(
-          future: data.FetchAllEvents(),
-          builder: ((context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else {
-              var events = snapshot.data;
-              return ListView.builder(
-                  itemCount: events?.length,
-                  itemBuilder: (context, index) => ListTile(
-                        title: Text(events![index].id.toString()),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => UpdateEventView(
-                                      eventObj: events![index])));
-                        },
-                      ));
-            }
-          }),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EventView(),
+              ));
+          return Future.delayed(Duration(seconds: 2));
+        },
+        child: Center(
+          child: FutureBuilder<List<OneEventViewModel>>(
+            future: data.FetchAllEvents(),
+            builder: ((context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else {
+                var events = snapshot.data;
+                return ListView.builder(
+                    itemCount: events?.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UpdateEventView(
+                                        eventObj: events![index])));
+                          },
+                          child: Container(
+                              height: 190,
+                              child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    Container(
+                                      height: 166,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(22),
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            const BoxShadow(
+                                                offset: Offset(0, 15),
+                                                blurRadius: 25,
+                                                color: Colors.black12),
+                                          ]),
+                                    ),
+                                    Positioned(
+                                      top: 40.0,
+                                      right: 10,
+                                      child: SizedBox(
+                                        height: 136,
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 50.0,
+                                                child: Text(
+                                                  events![index]
+                                                      .libelle
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 20,
+                                                child: Text(
+                                                  events![index]
+                                                      .prix
+                                                      .toString(),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 100.0,
+                                                child: Text(
+                                                  events![index]
+                                                      .description
+                                                      .toString(),
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    child: Text("delete"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    child: Text("add"),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ])),
+                        )
+                    // ListTile(
+                    //       title: Text(events![index].id.toString()),
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (context) => UpdateEventView(
+                    //                     eventObj: events[index])));
+                    //       },
+                    //     )
+                    );
+              }
+            }),
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:neta_event_mvvm/models/event_model.dart';
 import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
@@ -47,6 +48,7 @@ class EventsApi extends EventsRepository {
       String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
 
       var url = Uri.parse(link);
+
       var response = await http.get(url, headers: headersa);
       var responsebody = jsonDecode(response.body);
 
@@ -62,26 +64,35 @@ class EventsApi extends EventsRepository {
 
   @override
   Future<EventModel> updateEventByID(EventModel eventModel) async {
-    final eventId = eventModel.id;
-    var TOKEN =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
+    try {
+      final eventId = eventModel.id;
+      final eventModelJson = eventModel.toJSON();
+      var TOKEN =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
 
-    var headersa = {'Authorization': 'Bearer ' + TOKEN};
-    final body = {
-      "libelle": eventModel.libelle,
-      "description": eventModel.description,
-      "prix": eventModel.prix,
-      "adresse": eventModel.adresse,
-    };
+      var headers = {
+        'Content-type': 'application/json',
+        "Accept": "application/json",
+        'authorization': 'Bearer $TOKEN',
+      };
 
-    String link =
-        'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/${eventId}';
+      final body = eventModelJson;
 
-    var url = Uri.parse(link);
-    var response = await http.put(url, headers: headersa, body: body);
-    var responsebody = jsonDecode(response.body);
+      String link =
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$eventId';
+
+      var url = Uri.parse(link);
+
+      http.Response response = await http.put(url,
+          headers: headers, body: json.encode(eventModelJson));
+      var responsebody = jsonDecode(response.body);
+      // print(eventModelJson);
+      print(responsebody);
+    } catch (e) {
+      print(e);
+    }
 
     return eventModel;
-    throw UnimplementedError();
+    //throw UnimplementedError();
   }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/view_model/one_event_view_model.dart';
 
+import '../../models/add_event_model.dart';
 import '../../models/event_model.dart';
 import '../../repositories/evants_repositories/events_api.dart';
 import '../../view_model/events_view_model.dart';
@@ -20,7 +21,7 @@ class AddEventView extends StatefulWidget {
 class _AddEventViewState extends State<AddEventView> {
   final formkey = GlobalKey<FormState>();
   late String libellefield;
-  late String prixfield;
+  late int prixfield;
   late String descriptionfield;
 
   late String Libellefield;
@@ -105,7 +106,7 @@ class _AddEventViewState extends State<AddEventView> {
                   }
                 },
                 onChanged: (text) {
-                  prixfield = text;
+                  prixfield = 7;
                 },
               ),
             ),
@@ -152,7 +153,7 @@ class _AddEventViewState extends State<AddEventView> {
                   if (formkey.currentState!.validate()) {
                     var event = {
                       "category_id": 1,
-                      "observation_id": 71,
+                      "observation_id": 21,
                       "libelle": libellefield,
                       "description": descriptionfield,
                       "prix": prixfield,
@@ -163,7 +164,7 @@ class _AddEventViewState extends State<AddEventView> {
                       "image": "image"
                     };
 
-                    EventModel eventformJson = EventModel.fromJson(event);
+                    AddEventModel eventformJson = AddEventModel.fromJson(event);
                     print(eventformJson);
                     // data.AddEventByID(eventformJson);
                     data.AddEvent(eventformJson);

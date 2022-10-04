@@ -4,6 +4,8 @@ import 'package:neta_event_mvvm/models/event_model.dart';
 import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
 
+import '../../models/add_event_model.dart';
+
 class EventsApi extends EventsRepository {
   // Future<EventModel> eventData;
   //eventData = getEventByID(int id)
@@ -97,35 +99,52 @@ class EventsApi extends EventsRepository {
   }
 
   @override
-  Future<EventModel> addEvent(EventModel eventModel) async {
+  Future<AddEventModel> addEvent(AddEventModel addEventModel) async {
     try {
       // final eventId = eventModel.id;
-      final eventModelJson = eventModel.toJSON();
+      final eventModelJson = addEventModel.toJson();
       var TOKEN =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
 
-      var headers = {
-        'Content-type': 'application/json',
-        "Accept": "application/json",
-        'authorization': 'Bearer $TOKEN',
+      Map<String, String> headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'authorization': 'Basic +$TOKEN'
       };
+      // headers:
+      // <String, String>{
+      //   'Content-Type': 'application/json; charset=UTF-8',
+      // };
 
-      final body = eventModelJson;
+      //final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/';
+      // final body2 = {
+      //   "category_id": "1",
+      //   "observation_id": "8888",
+      //   "libelle": "Libelle",
+      //   "description": "Description",
+      //   "prix": "silketttt",
+      //   "date_heure": "2020-01-27 17:50:45",
+      //   "adresse": "Stade du 26 Mars",
+      //   "nbre_tichet": "1000",
+      //   "status": "statut",
+      //   "image": "image"
+      // };
+      final body = jsonEncode(eventModelJson);
+
+      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
 
       var url = Uri.parse(link);
 
-      http.Response response = await http.post(url,
-          headers: headers, body: json.encode(eventModelJson));
-      var responsebody = jsonDecode(response.body);
+      http.Response response =
+          await http.post(url, headers: headers, body: body);
+      var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
       print(responsebody);
     } catch (e) {
       print(e);
     }
 
-    return eventModel;
+    return addEventModel;
     //throw UnimplementedError();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:neta_event_mvvm/models/add_event_model.dart';
 import 'package:neta_event_mvvm/models/event_model.dart';
 import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
 
@@ -20,7 +21,7 @@ class EventsLocal extends EventsRepository {
   }
 
   @override
-  Future<EventModel> addEvent(EventModel eventModel) {
+  Future<AddEventModel> addEvent(AddEventModel addEventModel) {
     // TODO: implement addEvent
     throw UnimplementedError();
   }

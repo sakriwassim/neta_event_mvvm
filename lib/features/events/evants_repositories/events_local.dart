@@ -1,6 +1,7 @@
-import 'package:neta_event_mvvm/models/add_event_model.dart';
-import 'package:neta_event_mvvm/models/event_model.dart';
-import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
+import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
+import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 
 class EventsLocal extends EventsRepository {
   @override
@@ -21,7 +22,7 @@ class EventsLocal extends EventsRepository {
   }
 
   @override
-  Future<AddEventModel> addEvent(AddEventModel addEventModel) {
+  Future<bool> addEvent(AddEventModel addEventModel) {
     // TODO: implement addEvent
     throw UnimplementedError();
   }

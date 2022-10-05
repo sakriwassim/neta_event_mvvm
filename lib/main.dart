@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/views/events/events_view.dart';
-import 'package:neta_event_mvvm/views/events/one_event_view.dart';
+import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
+import 'package:neta_event_mvvm/features/events/views_events/one_event_view.dart';
 
 void main() {
   runApp(const MyApp());

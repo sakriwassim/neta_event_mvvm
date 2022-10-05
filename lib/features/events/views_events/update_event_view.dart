@@ -1,27 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/view_model/one_event_view_model.dart';
+import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
-import '../../models/add_event_model.dart';
-import '../../models/event_model.dart';
-import '../../repositories/evants_repositories/events_api.dart';
-import '../../view_model/events_view_model.dart';
+import '../models_events/event_model.dart';
+import '../evants_repositories/events_api.dart';
+import '../view_model_events/events_view_model.dart';
 
-class AddEventView extends StatefulWidget {
-  //final OneEventViewModel eventObj;
-  AddEventView({
-    super.key,
-  });
+class UpdateEventView extends StatefulWidget {
+  final OneEventViewModel eventObj;
+  UpdateEventView({super.key, required this.eventObj});
 
   @override
-  State<AddEventView> createState() => _AddEventViewState();
+  State<UpdateEventView> createState() => _UpdateEventViewState();
 }
 
-class _AddEventViewState extends State<AddEventView> {
+class _UpdateEventViewState extends State<UpdateEventView> {
   final formkey = GlobalKey<FormState>();
   late String libellefield;
-  late int prixfield;
+  late String prixfield;
   late String descriptionfield;
 
   late String Libellefield;
@@ -106,7 +103,7 @@ class _AddEventViewState extends State<AddEventView> {
                   }
                 },
                 onChanged: (text) {
-                  prixfield = 7;
+                  prixfield = text;
                 },
               ),
             ),
@@ -152,25 +149,30 @@ class _AddEventViewState extends State<AddEventView> {
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
                     var event = {
-                      "category_id": 1,
-                      "observation_id": 21,
-                      "libelle": libellefield,
-                      "description": descriptionfield,
-                      "prix": prixfield,
+                      "id": widget.eventObj.id,
+                      "category_id": "1",
+                      "observation_id": "21",
+                      "libelle": libellefield.toString(),
+                      "description": descriptionfield.toString(),
+                      "prix": prixfield.toString(),
                       "date_heure": "2020-01-27 17:50:45",
                       "adresse": "Stade du 26 Mars",
-                      "nbre_tichet": 1000,
+                      "nbre_tichet": "1000",
                       "status": "statut",
-                      "image": "image"
+                      "image": "image8888888888888888888",
+                      "created_at": "2022-09-30T15:11:08.000000Z",
+                      "updated_at": "2022-09-30T15:11:08.000000Z"
                     };
 
-                    AddEventModel eventformJson = AddEventModel.fromJson(event);
+                    EventModel eventformJson = EventModel.fromJson(event);
                     print(eventformJson);
-                    // data.AddEventByID(eventformJson);
-                    data.AddEvent(eventformJson);
+
+                    setState(() {
+                      data.UpdateEventByID(eventformJson);
+                    });
                   }
                 },
-                child: Text("Add"),
+                child: Text("Update"),
               ),
             ),
           ],

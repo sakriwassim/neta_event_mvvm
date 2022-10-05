@@ -1,15 +1,16 @@
 import 'dart:convert';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:neta_event_mvvm/models/event_model.dart';
-import 'package:neta_event_mvvm/repositories/evants_repositories/event_repository.dart';
+import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
+import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
 
-import '../../models/add_event_model.dart';
+import '../../../core/widgets/network/network_info.dart';
+import '../models_events/add_event_model.dart';
 
 class EventsApi extends EventsRepository {
-  // Future<EventModel> eventData;
-  //eventData = getEventByID(int id)
-
+  late final NetworkInfo networkInfo;
   @override
   Future<EventModel> getEventByID(int id) async {
     var TOKEN =
@@ -99,7 +100,7 @@ class EventsApi extends EventsRepository {
   }
 
   @override
-  Future<AddEventModel> addEvent(AddEventModel addEventModel) async {
+  Future<bool> addEvent(AddEventModel addEventModel) async {
     try {
       // final eventId = eventModel.id;
       final eventModelJson = addEventModel.toJson();
@@ -126,7 +127,8 @@ class EventsApi extends EventsRepository {
       print(e);
     }
 
-    return addEventModel;
+    return true;
+
     //throw UnimplementedError();
   }
 

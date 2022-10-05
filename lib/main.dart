@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/one_event_view.dart';
 
+import 'home_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const EventView(),
+      home: MyHomePage(),
     );
   }
 }

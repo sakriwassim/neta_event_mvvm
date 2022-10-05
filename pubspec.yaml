@@ -21,6 +21,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_bloc: ^8.1.1
   flutter_offline: "^2.1.0"
+  bottom_navy_bar: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +34,10 @@ dev_dependencies:
 flutter:
 
 
+
   uses-material-design: true
+  assets:
+    - assets/
 
 
  

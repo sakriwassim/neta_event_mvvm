@@ -8,14 +8,14 @@ import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart
 
 import 'update_event_view.dart';
 
-class EventView extends StatefulWidget {
-  const EventView({super.key});
+class GetAllEventView extends StatefulWidget {
+  const GetAllEventView({super.key});
 
   @override
-  State<EventView> createState() => _EventViewState();
+  State<GetAllEventView> createState() => _GetAllEventViewState();
 }
 
-class _EventViewState extends State<EventView> {
+class _GetAllEventViewState extends State<GetAllEventView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override

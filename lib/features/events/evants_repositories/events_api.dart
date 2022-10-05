@@ -6,11 +6,9 @@ import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../core/widgets/network/network_info.dart';
 import '../models_events/add_event_model.dart';
 
 class EventsApi extends EventsRepository {
-  late final NetworkInfo networkInfo;
   @override
   Future<EventModel> getEventByID(int id) async {
     var TOKEN =

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
+import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
+
+import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -10,12 +14,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  List listOfColors = [
+  List Screen = [
+    HomeView(),
     GetAllEventView(),
-    // Getcommand(),
-    Container(
-      color: Color.fromARGB(255, 255, 137, 68),
-    ),
     Container(
       color: Color.fromARGB(255, 241, 18, 167),
     ),
@@ -24,45 +25,131 @@ class _MyHomePageState extends State<MyHomePage> {
     )
   ];
 
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = HomeView();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //body: Customerdetails(),
-      body: listOfColors[_currentIndex],
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        showElevation: true,
-        itemCornerRadius: 24,
-        curve: Curves.easeIn,
-        onItemSelected: (index) => setState(() => _currentIndex = index),
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: Icon(Icons.train_outlined),
-            title: Text('Trips'),
-            activeColor: Colors.red,
-            textAlign: TextAlign.center,
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen = Screen[0];
+                    _currentIndex = 0;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      _currentIndex == 0
+                          ? "assets/discover_icon.png"
+                          : "assets/discover_icon_not_filled.png",
+                      width: 28,
+                    ),
+                    Text(
+                      'Découvrir ',
+                      style: TextStyle(
+                        color: _currentIndex == 0
+                            ? Color(0xffD2286A)
+                            : Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen = Screen[1];
+                    _currentIndex = 1;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.event_outlined, color: Colors.grey),
+                    Text(
+                      'Events',
+                      style: TextStyle(
+                        color: _currentIndex == 1
+                            ? Color(0xffD2286A)
+                            : Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen = Screen[2];
+                    _currentIndex = 2;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add_location_outlined, color: Colors.grey),
+                    Text(
+                      'Tickets',
+                      style: TextStyle(
+                        color: _currentIndex == 2
+                            ? Color(0xffD2286A)
+                            : Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen = Screen[3];
+                    _currentIndex = 3;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.logout_outlined,
+                      color: Colors.grey,
+                    ),
+                    Text(
+                      'Déconnecter',
+                      style: TextStyle(
+                          color: _currentIndex == 3
+                              ? Color(0xffD2286A)
+                              : Colors.grey),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.shop),
-            title: Text('Commands'),
-            activeColor: Colors.purpleAccent,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.message),
-            title: Text(
-              'Messages test for mes teset test test ',
-            ),
-            activeColor: Colors.pink,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
-            activeColor: Colors.blue,
-            textAlign: TextAlign.center,
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -33,7 +33,20 @@ class _AddEventViewState extends State<AddEventView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Update Screen")),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          shadowColor: Colors.white,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Text(
+            "Add event",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          )),
       body: Form(
         key: formkey,
         child: Column(

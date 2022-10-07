@@ -9,4 +9,6 @@ abstract class EventsRepository {
   Future<EventModel> updateEventByID(EventModel eventModel);
   Future<bool> addEvent(AddEventModel addEventModel);
   Future<bool> deleteEventByID(int id);
+  Future<bool> cleanpref();
+  Future<String> gettokenformpref();
 }

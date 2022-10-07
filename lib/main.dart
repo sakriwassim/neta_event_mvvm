@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/entry.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/one_event_view.dart';
 import 'package:neta_event_mvvm/home_view.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginView(),
+      home: SplashScreen(),
     );
   }
 }

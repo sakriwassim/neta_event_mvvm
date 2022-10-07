@@ -37,4 +37,9 @@ class EventsViewModel {
     var eventModel = await eventsRepository!.deleteEventByID(id);
     return true;
   }
+
+  Future<bool> CleanPref() async {
+    var eventModel = await eventsRepository!.cleanpref();
+    return true;
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/widgets/alert_dialo_widget.dart';
 import '../../../home_view.dart';
@@ -12,12 +13,12 @@ import 'authentification_repository.dart';
 class AuthentificationApi extends AuthentificationRepository {
   //List tonken = [];
   String? verif;
-  String? authentificationtoken;
   int? code;
+  String? token;
+
   @override
   Future<bool> login(AuthentificationModel registerModel) async {
     try {
-      // final eventId = eventModel.id;
       final eventModelJson = registerModel.toJSON();
 
       Map<String, String> headers = {
@@ -41,10 +42,14 @@ class AuthentificationApi extends AuthentificationRepository {
       var token = authentificationResponseModel.data.token;
       var code = authentificationResponseModel.code;
 
-      // print(eventModelJson);
-      //print(responsebody);
       print(token);
       print(code);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      prefs.setString("token", token.toString());
+      print("Seccess");
+
       return true;
     } catch (e) {
       print(e);
@@ -80,18 +85,3 @@ class AuthentificationApi extends AuthentificationRepository {
     }
   }
 }
-
-
-
- // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.clear();
-    // prefs.setString("token", authentificationtoken.toString());
-    // print("Seccess");
-
-    //   if (responsebody != null) {}
-    // } else if (response.statusCode == 401) {
-
-    //     authentificationModel authentification =
-    //     authentificationModel.toObject(responsebody);
-
-    // var authentificationtoken = authentification.access_token;

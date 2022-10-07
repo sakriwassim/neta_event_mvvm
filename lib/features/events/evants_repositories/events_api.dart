@@ -5,16 +5,41 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models_events/add_event_model.dart';
 
 class EventsApi extends EventsRepository {
+  String? token;
+
+  cleanpref() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<String> gettokenformpref() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+
+      return token.toString();
+    } catch (e) {
+      //return token;
+      print(e);
+      return token.toString();
+    }
+  }
+
   @override
   Future<EventModel> getEventByID(int id) async {
-    var TOKEN =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
     // try {
-    var headersa = {'Authorization': 'Bearer ' + TOKEN};
+    var headersa = {'Authorization': 'Bearer ' + token!};
     String link =
         'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/' + "${id}";
     var url = Uri.parse(link);
@@ -31,20 +56,14 @@ class EventsApi extends EventsRepository {
     } else {
       throw Exception('can not load event data');
     }
-    //return eventData;
-    // } catch (e) {
-    //   print(e);
-    // }
   }
 
   @override
   Future<List<EventModel>> getAllEvents() async {
     List<EventModel> eventsList = [];
-    var TOKEN =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
 
     try {
-      var headersa = {'Authorization': 'Bearer ' + TOKEN};
+      var headersa = {'Authorization': 'Bearer ' + token!};
 
       String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
 
@@ -68,13 +87,11 @@ class EventsApi extends EventsRepository {
     try {
       final eventId = eventModel.id;
       final eventModelJson = eventModel.toJSON();
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
 
       var headers = {
         'Content-type': 'application/json',
         "Accept": "application/json",
-        'authorization': 'Bearer $TOKEN',
+        'authorization': 'Bearer $token',
       };
 
       final body = eventModelJson;
@@ -94,7 +111,6 @@ class EventsApi extends EventsRepository {
     }
 
     return eventModel;
-    //throw UnimplementedError();
   }
 
   @override
@@ -102,12 +118,10 @@ class EventsApi extends EventsRepository {
     try {
       // final eventId = eventModel.id;
       final eventModelJson = addEventModel.toJson();
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Basic +$TOKEN'
+        'authorization': 'Basic +$token'
       };
 
       final body = jsonEncode(eventModelJson);

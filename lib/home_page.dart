@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 
+import 'features/events/evants_repositories/events_api.dart';
+import 'features/events/view_model_events/events_view_model.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var data = EventsViewModel(eventsRepository: EventsApi());
   int _currentIndex = 0;
 
   List Screen = [
@@ -30,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //body: Customerdetails(),
+      backgroundColor: Colors.white,
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
@@ -126,8 +130,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = Screen[3];
-                    _currentIndex = 3;
+                    data.CleanPref();
+                    // if (verif == true) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginView()));
+                    //}
                   });
                 },
                 child: Column(

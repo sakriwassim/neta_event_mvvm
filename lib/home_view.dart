@@ -48,6 +48,149 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        shadowColor: Color.fromARGB(255, 255, 255, 255),
+        elevation: 0.0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        toolbarHeight:
+            MediaQuery.of(context).size.height * 0.15, //set your height
+        flexibleSpace: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25),
+              ),
+              gradient: LinearGradient(
+                colors: [Colors.purple, Colors.pink],
+                begin: FractionalOffset.centerLeft,
+                end: FractionalOffset.centerRight,
+              ),
+            ), // set your color
+            child: Column(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Image.asset(
+                            "assets/SlashScreen/menus.png",
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: const [
+                            Text(
+                              "Hey Bienvenue..",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "Saidou Sawadogo",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {},
+                          child: const Icon(Icons.notifications_none,
+                              color: Colors.white, size: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.03,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const Icon(Icons.search,
+                            color: Colors.white, size: 30),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.03,
+                      ),
+                      Container(
+                        height: 22,
+                        child: Text(""),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.03,
+                      ),
+                      const SizedBox(
+                        width: 150,
+                        height: 30,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Recherche...',
+                            hintStyle:
+                                TextStyle(fontSize: 15.0, color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.10,
+                      ),
+                      Container(
+                          height: 40,
+                          padding: const EdgeInsets.only(
+                            left: 20.0,
+                            right: 20.0,
+                            top: 10,
+                            bottom: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Color(0xFF701D53),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/SlashScreen/sort.png",
+                                width: 20,
+                                height: 20,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              Text(
+                                "Filtres",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
           child: Column(
         children: [

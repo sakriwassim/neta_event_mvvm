@@ -32,4 +32,16 @@ class EventsLocal extends EventsRepository {
     // TODO: implement deleteEventByID
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> cleanpref() {
+    // TODO: implement deleteEventByID
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<String> gettokenformpref() {
+    // TODO: implement gettokenformpref
+    throw UnimplementedError();
+  }
 }

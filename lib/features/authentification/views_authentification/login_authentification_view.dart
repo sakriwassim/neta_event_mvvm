@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Register")),
+      appBar: AppBar(title: Text("Login")),
       body: Form(
         key: formkey,
         child: Column(
@@ -106,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             Container(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     var event = {
                       "role_id": 1,
@@ -122,16 +122,14 @@ class _LoginViewState extends State<LoginView> {
                     AuthentificationModel authentificationModel =
                         AuthentificationModel.fromJson(event);
 
-                    setState(() {
-                      data.Login(authentificationModel);
-                      if (data.authentification == true) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyHomePage(),
-                            ));
-                      }
-                    });
+                    bool verif = await data.Login(authentificationModel);
+                    if (verif == true) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ));
+                    }
                   }
                 },
                 child: Text("Login"),

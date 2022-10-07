@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
 import '../../events/evants_repositories/events_api.dart';
@@ -141,7 +142,7 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             Container(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     var event = {
                       "role_id": 1,
@@ -157,9 +158,14 @@ class _RegisterViewState extends State<RegisterView> {
                     AuthentificationModel authentificationModel =
                         AuthentificationModel.fromJson(event);
 
-                    setState(() {
-                      data.Register(authentificationModel);
-                    });
+                    bool verif = await data.Register(authentificationModel);
+                    if (verif == true) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginView(),
+                          ));
+                    }
                   }
                 },
                 child: Text("Register"),
@@ -169,8 +175,5 @@ class _RegisterViewState extends State<RegisterView> {
         ),
       ),
     );
-  
-  
-  
   }
 }

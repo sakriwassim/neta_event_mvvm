@@ -73,11 +73,11 @@ class AuthentificationApi extends AuthentificationRepository {
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
       print(responsebody);
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
-
-    return true;
   }
 }
 

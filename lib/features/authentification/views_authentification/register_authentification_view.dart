@@ -3,34 +3,29 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
-import '../models_events/event_model.dart';
-import '../evants_repositories/events_api.dart';
-import '../view_model_events/events_view_model.dart';
+import '../../events/evants_repositories/events_api.dart';
+import '../authentification_repositories/authentification_api.dart';
+import '../models_authentification/login_authentification_model.dart';
+import '../view_model_authentification/authentification_view_model.dart';
 
-class UpdateEventView extends StatefulWidget {
-  final OneEventViewModel eventObj;
-  UpdateEventView({super.key, required this.eventObj});
-
+class RegisterView extends StatefulWidget {
   @override
-  State<UpdateEventView> createState() => _UpdateEventViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _UpdateEventViewState extends State<UpdateEventView> {
+class _RegisterViewState extends State<RegisterView> {
   final formkey = GlobalKey<FormState>();
-  late String libellefield;
-  late String prixfield;
-  late String descriptionfield;
+  late String nomcompletfield;
+  late String emailfield;
+  late String passwordfield;
 
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
-
-  var data = EventsViewModel(eventsRepository: EventsApi());
+  var data = AuthentificationViewModel(
+      authentificationRepository: AuthentificationApi());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Update Screen")),
+      appBar: AppBar(title: Text("Register")),
       body: Form(
         key: formkey,
         child: Column(
@@ -53,22 +48,22 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                       borderSide: BorderSide(
                         width: 1,
                       )),
-                  labelText: 'date de mesure',
+                  labelText: 'nom_complet',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
                   ),
-                  hintText: 'entre le date de mesure',
+                  hintText: 'entre le nom_complet',
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "entre le date de mesure";
+                    return "entre le nom_complet";
                   } else {
                     // libellefield = widget.eventObj.libelle;
                     return null;
                   }
                 },
                 onChanged: (text) {
-                  libellefield = text;
+                  nomcompletfield = text;
                 },
               ),
             ),
@@ -88,21 +83,22 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                       borderSide: BorderSide(
                         width: 1,
                       )),
-                  labelText: 'date de mesure',
+                  labelText: 'email',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
                   ),
-                  hintText: 'entre le date de mesure',
+                  hintText: 'entre le email',
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "entre le date de mesure";
+                    return "entre le email";
                   } else {
+                    // prixfield = widget.eventObj.prix;
                     return null;
                   }
                 },
                 onChanged: (text) {
-                  prixfield = text;
+                  emailfield = text;
                 },
               ),
             ),
@@ -123,15 +119,15 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                       borderSide: BorderSide(
                         width: 1,
                       )),
-                  labelText: 'date de mesure',
+                  labelText: ' password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
                   ),
-                  hintText: 'entre le date de mesure',
+                  hintText: 'entre le password',
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "entre le date de mesure";
+                    return "entre le password";
                   } else {
                     //dateMesurefield = datenow.toString();
                     //descriptionfield = widget.eventObj.description.toString();
@@ -139,7 +135,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                   }
                 },
                 onChanged: (text) {
-                  descriptionfield = text;
+                  passwordfield = text;
                 },
               ),
             ),
@@ -148,35 +144,33 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
                     var event = {
-                      "id": widget.eventObj.id,
-                      "category_id": "1",
-                      "observation_id": "21",
-                      "libelle": libellefield.toString(),
-                      "description": descriptionfield.toString(),
-                      "prix": prixfield.toString(),
-                      "date_heure": "2020-01-27 17:50:45",
-                      "adresse": "Stade du 26 Mars",
-                      "nbre_tichet": "1000",
-                      "status": "statut",
-                      "image": "image8888888888888888888",
-                      "created_at": "2022-09-30T15:11:08.000000Z",
-                      "updated_at": "2022-09-30T15:11:08.000000Z"
+                      "role_id": 1,
+                      "packs_id": 1,
+                      "nom_complet": nomcompletfield.toString(),
+                      "email": emailfield.toString(),
+                      "telephone": 70213645,
+                      "adresse": "Faladiè",
+                      "image": "https://cheminverslimage",
+                      "password": passwordfield.toString()
                     };
 
-                    EventModel eventformJson = EventModel.fromJson(event);
-                    print(eventformJson);
+                    AuthentificationModel authentificationModel =
+                        AuthentificationModel.fromJson(event);
 
                     setState(() {
-                      data.UpdateEventByID(eventformJson);
+                      data.Register(authentificationModel);
                     });
                   }
                 },
-                child: Text("Update"),
+                child: Text("Register"),
               ),
             ),
           ],
         ),
       ),
     );
+  
+  
+  
   }
 }

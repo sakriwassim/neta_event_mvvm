@@ -24,10 +24,6 @@ class _AddEventViewState extends State<AddEventView> {
   late int prixfield;
   late String descriptionfield;
 
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
-
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override
@@ -79,7 +75,6 @@ class _AddEventViewState extends State<AddEventView> {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
                   } else {
-                    // libellefield = widget.eventObj.libelle;
                     return null;
                   }
                 },

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
 import '../../../home_page.dart';
@@ -20,6 +21,7 @@ class _LoginViewState extends State<LoginView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
+  bool _isObscure = true;
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -27,115 +29,360 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
-      body: Form(
-        key: formkey,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                //controller: TextEditingController(text: widget.eventObj.prix),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0xFFF2F2F2),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(
-                        width: 1,
-                      )),
-                  labelText: 'email',
-                  labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                  ),
-                  hintText: 'entre le email',
+      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   shadowColor: Colors.white,
+      //   elevation: 0.0,
+      //   backgroundColor: Colors.white,
+      // ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Form(
+            key: formkey,
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/SlashScreen/netaLogo.png',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "entre le email";
-                  } else {
-                    // prixfield = widget.eventObj.prix;
-                    return null;
-                  }
-                },
-                onChanged: (text) {
-                  emailfield = text;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                //    controller:
-                //      TextEditingController(text: widget.eventObj.description),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0xFFF2F2F2),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(
-                        width: 1,
-                      )),
-                  labelText: ' password',
-                  labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                  ),
-                  hintText: 'entre le password',
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                        left: 25.0,
+                        right: 5.0,
+                        top: 10,
+                        bottom: 16,
+                      ),
+                      child: Text(
+                        "Se connecter",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                    )
+                  ],
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "entre le password";
-                  } else {
-                    //dateMesurefield = datenow.toString();
-                    //descriptionfield = widget.eventObj.description.toString();
-                    return null;
-                  }
-                },
-                onChanged: (text) {
-                  passwordfield = text;
-                },
-              ),
-            ),
-            Container(
-              child: ElevatedButton(
-                onPressed: () async {
-                  if (formkey.currentState!.validate()) {
-                    var event = {
-                      "role_id": 1,
-                      "packs_id": 1,
-                      "nom_complet": "Mousa Keita",
-                      "email": emailfield.toString(),
-                      "telephone": 70213645,
-                      "adresse": "Faladiè",
-                      "image": "https://cheminverslimage",
-                      "password": passwordfield.toString()
-                    };
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: TextFormField(
+                    //controller: TextEditingController(text: widget.eventObj.prix),
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFF2F2F2),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(
+                            width: 1,
+                          )),
+                      labelText: 'Adresse e-mail',
+                      prefixIcon: Icon(
+                        Icons.mail_outline_outlined,
+                        color: Colors.grey,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
+                      ),
+                      hintText: 'entre le email',
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "entre le email";
+                      } else {
+                        // prixfield = widget.eventObj.prix;
+                        return null;
+                      }
+                    },
+                    onChanged: (text) {
+                      emailfield = text;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: TextFormField(
+                    //    controller:
+                    //      TextEditingController(text: widget.eventObj.description),
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFF2F2F2),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(
+                            width: 1,
+                          )),
+                      labelText: ' Mot de passe',
 
-                    AuthentificationModel authentificationModel =
-                        AuthentificationModel.fromJson(event);
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: Colors.grey,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
+                      ),
+                      hintText: 'entre le password',
 
-                    bool verif = await data.Login(authentificationModel);
-                    if (verif == true) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MyHomePage(),
-                          ));
+                      //  suffixIcon: IconButton(
+                      //           icon: Icon(_isObscure
+                      //               ? Icons.visibility
+                      //               : Icons.visibility_off),
+                      //           onPressed: () {
+                      //             setState(() {
+                      //               _isObscure = !_isObscure;
+                      //             });
+                      //           })
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "entre le password";
+                      } else {
+                        //dateMesurefield = datenow.toString();
+                        //descriptionfield = widget.eventObj.description.toString();
+                        return null;
+                      }
+                    },
+                    onChanged: (text) {
+                      passwordfield = text;
+                    },
+                  ),
+                ),
+                Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Row(
+                      children: [
+                        // FlutterSwitch(
+                        // activeColor: Colors.purple,
+                        // width: 55.0,
+                        // height: 25.0,
+                        // valueFontSize: 20.0,
+                        // toggleSize: 30.0,
+                        // value: trSwitch,
+                        // borderRadius: 30.0,
+                        // padding: 4.0,
+                        // showOnOff: false,
+                        // onToggle: (val) {
+                        //   setState(() {
+                        //     trSwitch = val;
+                        //   });
+                        // },
+                        // ),
+                        Text(
+                          " Se rappeler",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            "mot de passe oublié?",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () async {
+                    if (formkey.currentState!.validate()) {
+                      var event = {
+                        "role_id": 1,
+                        "packs_id": 1,
+                        "nom_complet": "Mousa Keita",
+                        "email": emailfield.toString(),
+                        "telephone": 70213645,
+                        "adresse": "Faladiè",
+                        "image": "https://cheminverslimage",
+                        "password": passwordfield.toString()
+                      };
+
+                      AuthentificationModel authentificationModel =
+                          AuthentificationModel.fromJson(event);
+
+                      bool verif = await data.Login(authentificationModel);
+                      if (verif == true) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyHomePage(),
+                            ));
+                      }
                     }
-                  }
-                },
-                child: Text("Login"),
-              ),
+                  },
+                  child: Container(
+                    height: 60,
+                    padding: EdgeInsets.only(
+                      left: 70.0,
+                      right: 70.0,
+                      top: 16,
+                      bottom: 5,
+                    ),
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(13.0),
+                      gradient: new LinearGradient(
+                        colors: [Colors.purple, Colors.pink],
+                        begin: FractionalOffset.centerLeft,
+                        end: FractionalOffset.centerRight,
+                      ),
+                    ),
+                    child: Text(
+                      "SE CONNECTER",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                          height: 60,
+                          padding: EdgeInsets.only(
+                            left: 10.0,
+                            right: 10.0,
+                            top: 10,
+                            bottom: 5,
+                          ),
+                          decoration: new BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(13.0),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/SlashScreen/google.png',
+                                width: MediaQuery.of(context).size.width * 0.1,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.1,
+                                //scale: 0.1,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "Se conncter avec Google",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.72,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                          height: 60,
+                          padding: EdgeInsets.only(
+                            left: 10.0,
+                            right: 10.0,
+                            top: 10,
+                            bottom: 5,
+                          ),
+                          decoration: new BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(13.0),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/SlashScreen/Facebook.png',
+                                width: MediaQuery.of(context).size.width * 0.1,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.1,
+                                //scale: 0.1,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  " Se conncter avec Facebook",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, //Center Row contents horizontally,
+                    crossAxisAlignment: CrossAxisAlignment
+                        .center, //Center Row contents vertically,
+                    children: [
+                      Text(
+                        " Vous n'avez pas un compte",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegisterView(),
+                              ));
+                        },
+                        child: Text(
+                          " S'inscrire",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pink,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

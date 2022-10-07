@@ -42,7 +42,8 @@ class _RegisterViewState extends State<RegisterView> {
                   fillColor: Color(0xFFF2F2F2),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
+                    borderSide: BorderSide(
+                        width: 1, color: Color.fromARGB(255, 255, 0, 208)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -77,7 +78,8 @@ class _RegisterViewState extends State<RegisterView> {
                   fillColor: Color(0xFFF2F2F2),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
+                    borderSide: BorderSide(
+                        width: 1, color: Color.fromARGB(255, 255, 0, 208)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -86,7 +88,7 @@ class _RegisterViewState extends State<RegisterView> {
                       )),
                   labelText: 'email',
                   labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
+                    color: Color.fromARGB(255, 116, 3, 95), //<-- SEE HERE
                   ),
                   hintText: 'entre le email',
                 ),
@@ -113,7 +115,8 @@ class _RegisterViewState extends State<RegisterView> {
                   fillColor: Color(0xFFF2F2F2),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
+                    borderSide: BorderSide(
+                        width: 1, color: Color.fromARGB(255, 255, 0, 208)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(4)),

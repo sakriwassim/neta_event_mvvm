@@ -148,6 +148,9 @@ class _LoginViewState extends State<LoginView> {
                       //             });
                       //           })
                     ),
+                    
+                    
+                    
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "entre le password";

@@ -22,4 +22,13 @@ class AuthentificationViewModel {
         await authentificationRepository!.register(authentificationModel);
     return authentification;
   }
+
+  Future<bool> Cleanpref() async {
+    try {
+      var token = await authentificationRepository!.cleanpref();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

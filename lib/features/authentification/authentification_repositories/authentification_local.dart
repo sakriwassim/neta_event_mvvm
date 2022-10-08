@@ -18,4 +18,10 @@ class EventsLocal extends AuthentificationRepository {
     // TODO: implement register
     throw UnimplementedError();
   }
+  
+  @override
+  Future<bool> cleanpref() {
+    // TODO: implement cleanpref
+    throw UnimplementedError();
+  }
 }

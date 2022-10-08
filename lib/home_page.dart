@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:neta_event_mvvm/features/authentification/authentification_repositories/authentification_api.dart';
+import 'package:neta_event_mvvm/features/authentification/view_model_authentification/authentification_view_model.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
@@ -16,6 +18,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var data = EventsViewModel(eventsRepository: EventsApi());
+  var data2 = AuthentificationViewModel(
+      authentificationRepository: AuthentificationApi());
   int _currentIndex = 0;
 
   List Screen = [
@@ -130,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    data.CleanPref();
+                    data2.Cleanpref();
                     // if (verif == true) {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginView()));

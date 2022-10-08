@@ -4,6 +4,9 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 import 'package:neta_event_mvvm/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../entry_repositories/events_local.dart';
+import '../view_model_entry/events_view_model.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -14,29 +17,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   String? token;
   static bool _isSet = false;
-
-  gettokenformpref() async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      token = prefs.getString("token");
-      // print(token);
-      return token;
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  @override
-  void initState() {
-    gettokenformpref();
-    _navigatettohomepage();
-    super.initState();
-  }
+  var data = EntryViewModel(entryRepository: EntryLocal());
 
   _navigatettohomepage() async {
-    //await Future.delayed(const Duration(milliseconds: 1500), () {});
+    print("tokennnnnnn entry virw");
+
     Timer(Duration(seconds: 5), () async {
-      if (token != null) {
+      if (_isSet = true) {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(

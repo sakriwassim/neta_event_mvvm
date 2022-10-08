@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_local.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
@@ -64,17 +65,13 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                 color: Colors.black,
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  backgroundColor: Color.fromARGB(214, 229, 11, 218)),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddEventView()));
-              },
-              child: Text("ADD EVENT"),
-            ),
+            InkWell(
+              
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddEventView()));
+                },
+                child: SmallButton(text: "ADD EVENT")),
           ],
         ),
       ),

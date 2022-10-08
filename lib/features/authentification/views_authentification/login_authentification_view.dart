@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/colors.dart';
+import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
 import '../../../home_page.dart';
-import '../../../home_view.dart';
-import '../../events/evants_repositories/events_api.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -72,35 +72,16 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: TextFormField(
-                    //controller: TextEditingController(text: widget.eventObj.prix),
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: 'Adresse e-mail',
-                      prefixIcon: Icon(
-                        Icons.mail_outline_outlined,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le email',
+                    decoration: textFieldDecorationWithicon(
+                      "entre le email",
+                      "Adresse e-mail",
+                      Icons.mail,
+                      Colors.grey,
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "entre le email";
                       } else {
-                        // prixfield = widget.eventObj.prix;
                         return null;
                       }
                     },
@@ -112,51 +93,16 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: TextFormField(
-                    //    controller:
-                    //      TextEditingController(text: widget.eventObj.description),
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: ' Mot de passe',
-
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le password',
-
-                      //  suffixIcon: IconButton(
-                      //           icon: Icon(_isObscure
-                      //               ? Icons.visibility
-                      //               : Icons.visibility_off),
-                      //           onPressed: () {
-                      //             setState(() {
-                      //               _isObscure = !_isObscure;
-                      //             });
-                      //           })
+                    decoration: textFieldDecorationWithicon(
+                      "Mot de passe",
+                      "entre le password",
+                      Icons.lock_outline,
+                      Colors.grey,
                     ),
-                    
-                    
-                    
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "entre le password";
                       } else {
-                        //dateMesurefield = datenow.toString();
-                        //descriptionfield = widget.eventObj.description.toString();
                         return null;
                       }
                     },
@@ -216,57 +162,35 @@ class _LoginViewState extends State<LoginView> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () async {
-                    if (formkey.currentState!.validate()) {
-                      var event = {
-                        "role_id": 1,
-                        "packs_id": 1,
-                        "nom_complet": "Mousa Keita",
-                        "email": emailfield.toString(),
-                        "telephone": 70213645,
-                        "adresse": "Faladiè",
-                        "image": "https://cheminverslimage",
-                        "password": passwordfield.toString()
-                      };
+                    onTap: () async {
+                      if (formkey.currentState!.validate()) {
+                        var event = {
+                          "role_id": 1,
+                          "packs_id": 1,
+                          "nom_complet": "Mousa Keita",
+                          "email": emailfield.toString(),
+                          "telephone": 70213645,
+                          "adresse": "Faladiè",
+                          "image": "https://cheminverslimage",
+                          "password": passwordfield.toString()
+                        };
 
-                      AuthentificationModel authentificationModel =
-                          AuthentificationModel.fromJson(event);
+                        AuthentificationModel authentificationModel =
+                            AuthentificationModel.fromJson(event);
 
-                      bool verif = await data.Login(authentificationModel);
-                      if (verif == true) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyHomePage(),
-                            ));
+                        bool verif = await data.Login(authentificationModel);
+                        if (verif == true) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyHomePage(),
+                              ));
+                        }
                       }
-                    }
-                  },
-                  child: Container(
-                    height: 60,
-                    padding: EdgeInsets.only(
-                      left: 70.0,
-                      right: 70.0,
-                      top: 16,
-                      bottom: 5,
-                    ),
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(13.0),
-                      gradient: new LinearGradient(
-                        colors: [Colors.purple, Colors.pink],
-                        begin: FractionalOffset.centerLeft,
-                        end: FractionalOffset.centerRight,
-                      ),
-                    ),
-                    child: Text(
-                      "SE CONNECTER",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                    },
+                    child: BigButton(
+                      text: "SE CONNECTER",
+                    )),
                 Center(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.7,
@@ -390,4 +314,31 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
+
+  // InputDecoration textFieldDecoration() {
+  //   return const InputDecoration(
+  //                   filled: true,
+  //                   fillColor: Color(0xFFF2F2F2),
+  //                   focusedBorder: OutlineInputBorder(
+  //                     borderRadius: BorderRadius.all(Radius.circular(4)),
+  //                     borderSide: BorderSide(
+  //                         width: 1, color: Color.fromARGB(255, 255, 0, 208)),
+  //                   ),
+  //                   border: OutlineInputBorder(
+  //                       borderRadius: BorderRadius.all(Radius.circular(4)),
+  //                       borderSide: BorderSide(
+  //                         width: 1,
+  //                       )),
+  //                   labelText: 'Adresse e-mail',
+  //                   prefixIcon: Icon(
+  //                     Icons.mail_outline_outlined,
+  //                     color: Colors.grey,
+  //                   ),
+  //                   labelStyle: TextStyle(
+  //                     color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
+  //                   ),
+  //                   hintText: 'entre le email',
+  //                 );
+  // }
+
 }

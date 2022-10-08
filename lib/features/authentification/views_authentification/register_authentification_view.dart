@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
-import '../../events/evants_repositories/events_api.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -239,57 +238,35 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
                 InkWell(
-                  onTap: () async {
-                    if (formkey.currentState!.validate()) {
-                      var event = {
-                        "role_id": 1,
-                        "packs_id": 1,
-                        "nom_complet": nomcompletfield.toString(),
-                        "email": emailfield.toString(),
-                        "telephone": 70213645,
-                        "adresse": "Faladiè",
-                        "image": "https://cheminverslimage",
-                        "password": passwordfield.toString()
-                      };
+                    onTap: () async {
+                      if (formkey.currentState!.validate()) {
+                        var event = {
+                          "role_id": 1,
+                          "packs_id": 1,
+                          "nom_complet": nomcompletfield.toString(),
+                          "email": emailfield.toString(),
+                          "telephone": 70213645,
+                          "adresse": "Faladiè",
+                          "image": "https://cheminverslimage",
+                          "password": passwordfield.toString()
+                        };
 
-                      AuthentificationModel authentificationModel =
-                          AuthentificationModel.fromJson(event);
+                        AuthentificationModel authentificationModel =
+                            AuthentificationModel.fromJson(event);
 
-                      bool verif = await data.Register(authentificationModel);
-                      if (verif == true) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginView(),
-                            ));
+                        bool verif = await data.Register(authentificationModel);
+                        if (verif == true) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginView(),
+                              ));
+                        }
                       }
-                    }
-                  },
-                  child: Container(
-                    height: 60,
-                    padding: EdgeInsets.only(
-                      left: 70.0,
-                      right: 70.0,
-                      top: 16,
-                      bottom: 5,
-                    ),
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(13.0),
-                      gradient: new LinearGradient(
-                        colors: [Colors.purple, Colors.pink],
-                        begin: FractionalOffset.centerLeft,
-                        end: FractionalOffset.centerRight,
-                      ),
-                    ),
-                    child: Text(
-                      "SE CONNECTER",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                    },
+                    child: BigButton(
+                      text: "S'INSCRIRE",
+                    )),
                 Center(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.7,

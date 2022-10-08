@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 
 import 'features/events/evants_repositories/events_api.dart';
@@ -62,11 +63,7 @@ class _HomeViewState extends State<HomeView> {
                 bottomLeft: Radius.circular(25),
                 bottomRight: Radius.circular(25),
               ),
-              gradient: LinearGradient(
-                colors: [Colors.purple, Colors.pink],
-                begin: FractionalOffset.centerLeft,
-                end: FractionalOffset.centerRight,
-              ),
+              gradient: gradientbackground,
             ), // set your color
             child: Column(
               children: [
@@ -825,10 +822,7 @@ class _HomeViewState extends State<HomeView> {
                                     clipper: TriangleClipper(),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: [
-                                        Color(0xff8301BC),
-                                        Color(0xffD2286A)
-                                      ])),
+                                          gradient: gradientbackground),
                                       height: 220,
                                       width: 220,
                                     )),

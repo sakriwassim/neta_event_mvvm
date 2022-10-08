@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:neta_event_mvvm/features/authentification/authentification_repositories/authentification_api.dart';
 import 'package:neta_event_mvvm/features/authentification/view_model_authentification/authentification_view_model.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
-import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
-import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
+
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 
 import 'features/events/evants_repositories/events_api.dart';

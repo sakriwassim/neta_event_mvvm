@@ -20,8 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
   var data = EntryViewModel(entryRepository: EntryLocal());
 
   _navigatettohomepage() async {
-    print("tokennnnnnn entry virw");
-
     Timer(Duration(seconds: 5), () async {
       if (_isSet = true) {
         Navigator.pushReplacement(

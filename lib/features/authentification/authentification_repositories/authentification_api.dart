@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/widgets/alert_dialo_widget.dart';
 import '../../../home_view.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
@@ -99,18 +98,3 @@ class AuthentificationApi extends AuthentificationRepository {
     }
   }
 }
-
-
-
- // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.clear();
-    // prefs.setString("token", authentificationtoken.toString());
-    // print("Seccess");
-
-    //   if (responsebody != null) {}
-    // } else if (response.statusCode == 401) {
-
-    //     authentificationModel authentification =
-    //     authentificationModel.toObject(responsebody);
-
-    // var authentificationtoken = authentification.access_token;

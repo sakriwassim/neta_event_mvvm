@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
 import '../models_events/event_model.dart';
@@ -30,7 +32,20 @@ class _UpdateEventViewState extends State<UpdateEventView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Update Screen")),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          shadowColor: Colors.white,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Text(
+            "MODIFIER",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          )),
       body: Form(
         key: formkey,
         child: Column(
@@ -38,32 +53,14 @@ class _UpdateEventViewState extends State<UpdateEventView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
-                // controller: TextEditingController(
-                //   text: widget.eventObj.libelle,
-                //  ),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0xFFF2F2F2),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(
-                        width: 1,
-                      )),
-                  labelText: 'date de mesure',
-                  labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                  ),
-                  hintText: 'entre le date de mesure',
+                decoration: textFieldDecoration(
+                  "Mot de passe",
+                  "entre le password",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
                   } else {
-                    // libellefield = widget.eventObj.libelle;
                     return null;
                   }
                 },
@@ -75,24 +72,9 @@ class _UpdateEventViewState extends State<UpdateEventView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
-                //controller: TextEditingController(text: widget.eventObj.prix),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0xFFF2F2F2),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(
-                        width: 1,
-                      )),
-                  labelText: 'date de mesure',
-                  labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                  ),
-                  hintText: 'entre le date de mesure',
+                decoration: textFieldDecoration(
+                  "Mot de passe",
+                  "entre le password",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -109,32 +91,14 @@ class _UpdateEventViewState extends State<UpdateEventView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
-                //    controller:
-                //      TextEditingController(text: widget.eventObj.description),
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0xFFF2F2F2),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Color(0xFFFF8000)),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(
-                        width: 1,
-                      )),
-                  labelText: 'date de mesure',
-                  labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                  ),
-                  hintText: 'entre le date de mesure',
+                decoration: textFieldDecoration(
+                  "Mot de passe",
+                  "entre le password",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
                   } else {
-                    //dateMesurefield = datenow.toString();
-                    //descriptionfield = widget.eventObj.description.toString();
                     return null;
                   }
                 },
@@ -144,8 +108,8 @@ class _UpdateEventViewState extends State<UpdateEventView> {
               ),
             ),
             Container(
-              child: ElevatedButton(
-                onPressed: () {
+              child: InkWell(
+                onTap: () {
                   if (formkey.currentState!.validate()) {
                     var event = {
                       "id": widget.eventObj.id,
@@ -171,7 +135,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                     });
                   }
                 },
-                child: Text("Update"),
+                child: MediumButton(text: "MODIFIER"),
               ),
             ),
           ],

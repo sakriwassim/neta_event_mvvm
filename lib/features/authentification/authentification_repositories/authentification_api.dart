@@ -1,10 +1,6 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../home_view.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
 import 'authentification_repository.dart';
@@ -42,8 +38,6 @@ class AuthentificationApi extends AuthentificationRepository {
       var token = authentificationResponseModel.data.token;
       var code = authentificationResponseModel.code;
 
-      // print(eventModelJson);
-      //print(responsebody);
       print(token);
       print(code);
 
@@ -62,9 +56,7 @@ class AuthentificationApi extends AuthentificationRepository {
   @override
   Future<bool> register(AuthentificationModel registerModel) async {
     try {
-      // final eventId = eventModel.id;
       final eventModelJson = registerModel.toJSON();
-
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -78,7 +70,7 @@ class AuthentificationApi extends AuthentificationRepository {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
-      // print(eventModelJson);
+
       print(responsebody);
       return true;
     } catch (e) {

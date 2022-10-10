@@ -1,0 +1,11 @@
+[
+  {
+    "event_id": 1,
+    "libelle": "Libelle",
+    "description": "Description du ticket",
+    "prix": "15000",
+    "QR_code": "qr_code",
+    "date": "Date",
+    "statut": "Statut"
+  }
+]

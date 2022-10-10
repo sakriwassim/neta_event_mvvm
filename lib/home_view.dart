@@ -64,7 +64,7 @@ class _HomeViewState extends State<HomeView> {
                 bottomRight: Radius.circular(25),
               ),
               gradient: gradientbackground,
-            ), // set your color
+            ),
             child: Column(
               children: [
                 Expanded(

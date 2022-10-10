@@ -4,12 +4,7 @@ class OneEventViewModel {
   EventModel? eventModel;
   OneEventViewModel({this.eventModel});
 
-  // get id => eventModel?.id;
-  // get libelle => eventModel?.libelle;
-  // get description => eventModel?.description;
-  // get prix => eventModel?.prix;
-  // get adresse => eventModel?.adresse;
-  // get image => eventModel?.image;
+  
 
   get id => eventModel?.id;
   get category_id => eventModel?.categoryId;

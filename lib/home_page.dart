@@ -7,6 +7,7 @@ import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
+import 'features/tickets/views_tickets/tickets_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -23,9 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List Screen = [
     HomeView(),
     GetAllEventView(),
-    Container(
-      color: Color.fromARGB(255, 241, 18, 167),
-    ),
+    GetAllTicketView(),
     Container(
       color: Color.fromARGB(255, 241, 18, 167),
     )

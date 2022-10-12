@@ -18,7 +18,9 @@ class TicketModel {
       this.prix,
       this.Qr_code,
       this.date,
-      this.statut});
+      this.statut,
+      this.created_at,
+      this.updated_at});
 
   TicketModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

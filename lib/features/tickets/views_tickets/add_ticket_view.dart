@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 
+import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/tickets_view_model.dart';
@@ -106,19 +107,17 @@ class _AddTicketViewState extends State<AddTicketView> {
                   onTap: () {
                     if (formkey.currentState!.validate()) {
                       var ticket = {
-                        "id": 1,
-                        "event_id": "1",
+                        "event_id": 1,
                         "libelle": libellefield,
                         "description": descriptionfield,
                         "prix": prixfield,
                         "QR_code": "qr_code",
                         "date": "Date",
-                        "statut": "Statut",
-                        "created_at": "2022-10-09T22:52:56.000000Z",
-                        "updated_at": "2022-10-09T22:52:56.000000Z"
+                        "statut": "Statut"
                       };
 
-                      TicketModel ticketformJson = TicketModel.fromJson(ticket);
+                      AddTicketModel ticketformJson =
+                          AddTicketModel.fromJson(ticket);
                       print(ticketformJson);
 
                       setState(() {

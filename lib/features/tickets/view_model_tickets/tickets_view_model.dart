@@ -2,6 +2,7 @@ import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 
+import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_repository.dart';
 import 'one_ticket_view_model.dart';
@@ -24,13 +25,13 @@ class TicketsViewModel {
     return OneTicketViewModel(ticketModel: ticketModel);
   }
 
-  Future<bool> UpdateTicketByID(TicketModel ticketModel) async {
-    var ticket = await ticketsRepository!.updateTicketByID(ticketModel);
+  Future<bool> UpdateTicketByID(AddTicketModel addTicketModel) async {
+    var ticket = await ticketsRepository!.updateTicketByID(addTicketModel);
     return true;
   }
 
-  Future<bool> AddTicket(TicketModel addTicketModel) async {
-    var ticket = await ticketsRepository!.addTicket(addTicketModel);
+  Future<bool> AddTicket(AddTicketModel addTicketModel) async {
+    var event = await ticketsRepository!.addTicket(addTicketModel);
     return true;
   }
 

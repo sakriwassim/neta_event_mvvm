@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
@@ -130,14 +129,14 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
-                                            // Text(
-                                            //     "${tickets![index].prix}" + "€",
-                                            //     style: TextStyle(
-                                            //       fontFamily: 'AirbnbCereal',
-                                            //       color: Colors.black,
-                                            //       fontSize: 12,
-                                            //       fontWeight: FontWeight.w700,
-                                            //     )),
+                                            Text(
+                                                "${tickets![index].prix}" + "€",
+                                                style: TextStyle(
+                                                  fontFamily: 'AirbnbCereal',
+                                                  color: Colors.black,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w700,
+                                                )),
                                           ],
                                         ),
                                       ),

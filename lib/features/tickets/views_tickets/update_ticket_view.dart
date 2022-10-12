@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
-import 'package:neta_event_mvvm/features/tickets/models_tickets/ticket_model.dart';
 
+import '../models_tickets/add_ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
@@ -113,26 +112,17 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
                 onTap: () {
                   if (formkey.currentState!.validate()) {
                     var ticket = {
-                      "id": widget.ticketObj.id,
-                      "event_id": "1",
+                      "event_id": widget.ticketObj.id,
                       "libelle": libellefield,
                       "description": descriptionfield,
                       "prix": prixfield,
                       "QR_code": "qr_code",
                       "date": "Date",
                       "statut": "Statut",
-                      "created_at": "2022-10-09T22:52:56.000000Z",
-                      "updated_at": "2022-10-09T22:52:56.000000Z"
-                      // "event_id": widget.ticketObj.event_id,
-                      // "libelle": libellefield,
-                      // "description": libellefield,
-                      // "prix": prixfield,
-                      // "QR_code": "qr_code",
-                      // "date": "Date",
-                      // "statut": "Statut"
                     };
 
-                    TicketModel ticketformJson = TicketModel.fromJson(ticket);
+                    AddTicketModel ticketformJson =
+                        AddTicketModel.fromJson(ticket);
                     print(ticketformJson);
 
                     setState(() {

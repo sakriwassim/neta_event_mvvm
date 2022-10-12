@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:neta_event_mvvm/features/tickets/tickets_repositories/tickets_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 
 class TicketsApi extends TicketsRepository {
@@ -58,72 +59,6 @@ class TicketsApi extends TicketsRepository {
   }
 
   @override
-  Future<TicketModel> updateTicketByID(TicketModel ticketModel) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
-      final ticketId = ticketModel.event_id;
-      final ticketModelJson = ticketModel.toJSON();
-
-      var headers = {
-        'Content-type': 'application/json',
-        "Accept": "application/json",
-        'authorization': 'Bearer $token',
-      };
-
-      final body = ticketModelJson;
-
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets/$ticketId';
-
-      var url = Uri.parse(link);
-
-      http.Response response = await http.put(url,
-          headers: headers, body: json.encode(ticketModelJson));
-      var responsebody = jsonDecode(response.body);
-      // print(ticketModelJson);
-      print(responsebody);
-    } catch (e) {
-      print(e);
-    }
-
-    return ticketModel;
-    //throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> addTicket(TicketModel TicketModel) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
-      final ticketModelJson = TicketModel.toJSON();
-
-      Map<String, String> headers = {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Basic +$token'
-      };
-
-      final body = jsonEncode(ticketModelJson);
-
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets';
-
-      var url = Uri.parse(link);
-
-      http.Response response =
-          await http.post(url, headers: headers, body: body);
-      var responsebody = jsonEncode(response.body);
-      // print(ticketModelJson);
-      print(responsebody);
-    } catch (e) {
-      print(e);
-    }
-
-    return true;
-
-    //throw UnimplementedError();
-  }
-
-  @override
   Future<bool> deleteTicketByID(int id) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -143,5 +78,67 @@ class TicketsApi extends TicketsRepository {
     } catch (e) {
       return false;
     }
+  }
+
+  @override
+  Future<bool> addTicket(AddTicketModel addTicketModel) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+      final eventModelJson = addTicketModel.toJSON();
+
+      Map<String, String> headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'authorization': 'Basic +$token'
+      };
+
+      final body = jsonEncode(eventModelJson);
+
+      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets';
+
+      var url = Uri.parse(link);
+
+      http.Response response =
+          await http.post(url, headers: headers, body: body);
+      var responsebody = jsonEncode(response.body);
+      // print(eventModelJson);
+      print(responsebody);
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
+
+  @override
+  Future<AddTicketModel> updateTicketByID(AddTicketModel addTicketModel) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+      final eventId = addTicketModel.event_id;
+      final eventModelJson = addTicketModel.toJSON();
+
+      var headers = {
+        'Content-type': 'application/json',
+        "Accept": "application/json",
+        'authorization': 'Bearer $token',
+      };
+
+      final body = eventModelJson;
+
+      String link =
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets/$eventId';
+
+      var url = Uri.parse(link);
+
+      http.Response response = await http.put(url,
+          headers: headers, body: json.encode(eventModelJson));
+      var responsebody = jsonDecode(response.body);
+      // print(eventModelJson);
+      print(responsebody);
+    } catch (e) {
+      print(e);
+    }
+
+    return addTicketModel;
   }
 }

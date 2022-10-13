@@ -11,6 +11,11 @@ import 'features/packs/view_model_packs/one_pack_view_model.dart';
 import 'features/packs/view_model_packs/packs_view_model.dart';
 import 'features/packs/views_packs/packs_view.dart';
 import 'features/tickets/views_tickets/widget/pack_card_widget.dart';
+import 'features/tontines/tontines_repositories/tontines_api.dart';
+import 'features/tontines/view_model_tickets/one_tontine_view_model.dart';
+import 'features/tontines/view_model_tickets/tontines_view_model.dart';
+import 'features/tontines/views_tontines/tontines_view.dart';
+import 'features/tontines/views_tontines/widget/tontine_card_widget.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({this.userCat, Key? key}) : super(key: key);
@@ -24,6 +29,8 @@ class _HomeViewState extends State<HomeView> {
 
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
+
+  var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
         context: context,
@@ -579,10 +586,11 @@ class _HomeViewState extends State<HomeView> {
                       Spacer(),
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => Tontine()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GetAllTontineView()),
+                          );
                         },
                         child: Row(
                           children: [
@@ -607,200 +615,32 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 SizedBox(
-                    height: 270,
-                    child: ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
-                          width: 15,
+                  height: 360,
+                  child: FutureBuilder<List<OneTontineViewModel>>(
+                    future: datatontine.FetchAllTontines(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else {
+                        var packs = snapshot.data;
+                        return Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: packs?.length,
+                              itemBuilder: (context, index) =>
+                                  TontineCardWidget(
+                                    libelle: packs![index].libelle,
+                                    montant_regulier:
+                                        packs![index].montant_regulier,
+                                    nbr_participant:
+                                        packs![index].nbr_participant,
+                                  )),
                         );
-                      },
-                      shrinkWrap: false,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: InkWell(
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => SingleTontineScreen()),
-                            // );
-                          },
-                          child: Container(
-                            color: Colors.grey[50],
-                            child: Stack(
-                              children: [
-                                ClipPath(
-                                    clipper: TriangleClipper(),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          gradient: gradientbackground),
-                                      height: 220,
-                                      width: 220,
-                                    )),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 73, left: 20),
-                                  child: Container(
-                                    decoration: const BoxDecoration(boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 15.0,
-                                      ),
-                                    ]),
-                                    child: Container(
-                                      height: 180,
-                                      width: 180,
-                                      color: Colors.white,
-                                      child: Column(children: [
-                                        Image.asset(
-                                          "assets/téléchargement 4.png",
-                                          width: 230,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, top: 8),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Mariage',
-                                                style: TextStyle(
-                                                    fontFamily: 'AirbnbCereal',
-                                                    fontSize: 8,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color(0xffE28541)),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Lorem espium anturium ka',
-                                                style: TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, top: 8),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '500\$ Chaque trimestre',
-                                                style: TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  fontSize: 10,
-                                                  color: Color(0xff4F4F4F),
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, top: 8),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '12 participants',
-                                                style: TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  fontSize: 10,
-                                                  color: Color(0xff4F4F4F),
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 8),
-                                              child: Center(
-                                                child: Container(
-                                                  height: 25.0,
-                                                  width: 50,
-                                                  child: ElevatedButton(
-                                                    onPressed: () {},
-                                                    child: Ink(
-                                                      decoration: BoxDecoration(
-                                                          gradient:
-                                                              LinearGradient(
-                                                            colors: [
-                                                              Color(0xff8301BC),
-                                                              Color(0xffD2286A)
-                                                            ],
-                                                            begin: Alignment
-                                                                .centerLeft,
-                                                            end: Alignment
-                                                                .centerRight,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      4.0)),
-                                                      child: Container(
-                                                        constraints:
-                                                            const BoxConstraints(
-                                                                maxWidth: 270.0,
-                                                                minHeight:
-                                                                    100.0),
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Text(
-                                                          'Participer',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  'AirbnbCereal',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 8,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ]),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ))
+                      }
+                    }),
+                  ),
+                ),
               ],
             ),
           ),
@@ -810,19 +650,5 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-class TriangleClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path()
-      ..lineTo(size.width / 2, 0) // point p1
-      ..lineTo(0, size.height / 3) // point p2
-      ..lineTo(size.width, size.height / 3)
-      ..lineTo(size.width / 2, 0) // point p3
-      ..close();
 
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
-}
+// child: TontineCardWidget(libelle: packs![index].libelll, montant_regulier: '', nbr_participant: '',),

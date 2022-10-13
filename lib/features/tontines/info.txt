@@ -1,0 +1,10 @@
+     "id": 1,
+        "user_id": "1",
+        "libelle": "Libelle",
+        "periode": "periode",
+        "nbr_participant": "15000",
+        "montant_regulier": "1000",
+        "status": "statut",
+        "image": "htpps://LienDeLimage",
+        "created_at": "2022-10-11T12:27:41.000000Z",
+        "updated_at": "2022-10-11T12:27:41.000000Z"

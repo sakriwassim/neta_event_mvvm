@@ -1,0 +1,5 @@
+
+        "id": 3,
+        "libelle": "zzzzzzzzzzzzzzzzzzzzzzz",
+        "created_at": "2022-10-12T21:42:29.000000Z",
+        "updated_at": "2022-10-12T22:03:08.000000Z"

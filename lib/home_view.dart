@@ -6,6 +6,11 @@ import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
 import 'features/events/views_events/update_event_view.dart';
+import 'features/packs/packs_repositories/packs_api.dart';
+import 'features/packs/view_model_packs/one_pack_view_model.dart';
+import 'features/packs/view_model_packs/packs_view_model.dart';
+import 'features/packs/views_packs/packs_view.dart';
+import 'features/tickets/views_tickets/widget/pack_card_widget.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({this.userCat, Key? key}) : super(key: key);
@@ -18,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
   var data = EventsViewModel(eventsRepository: EventsApi());
+  var datapack = PacksViewModel(packsRepository: PacksApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
         context: context,
@@ -299,7 +305,7 @@ class _HomeViewState extends State<HomeView> {
                               padding: const EdgeInsets.only(top: 15.0),
                               child: Row(
                                 children: [
-                                  Icon(Icons.location_on_outlined,
+                                  const Icon(Icons.location_on_outlined,
                                       color: Colors.grey),
                                   SizedBox(
                                     width: 5,
@@ -326,26 +332,26 @@ class _HomeViewState extends State<HomeView> {
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Row(
                     children: [
-                      Text("Catégories",
+                      const Text("Catégories",
                           style: TextStyle(
                             fontFamily: 'AirbnbCereal',
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                           )),
-                      Spacer(),
+                      const Spacer(),
                       Row(
                         children: [
-                          Text("Voir tout",
+                          const Text("Voir tout",
                               style: TextStyle(
                                 fontFamily: 'AirbnbCereal',
                                 color: Colors.grey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.forward_outlined,
                             color: Colors.grey,
                           )
@@ -361,7 +367,7 @@ class _HomeViewState extends State<HomeView> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (BuildContext context, int index) => Card(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       elevation: 2,
                       shadowColor: Colors.grey,
@@ -372,7 +378,7 @@ class _HomeViewState extends State<HomeView> {
                         child: Stack(
                           children: [
                             Image.asset("assets/123.png"),
-                            Positioned(
+                            const Positioned(
                               top: 25,
                               left: 10,
                               child: Text('Musique &\nchant',
@@ -431,7 +437,7 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 360,
                   child: FutureBuilder<List<OneEventViewModel>>(
                     future: data.FetchAllEvents(),
@@ -496,75 +502,6 @@ class _HomeViewState extends State<HomeView> {
                       }
                     }),
                   ),
-
-                  // child: ListView.builder(
-                  //   shrinkWrap: true,
-                  //   scrollDirection: Axis.vertical,
-                  //   itemCount: 5,
-                  //   itemBuilder: (BuildContext context, int index) => Card(
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.all(Radius.circular(10))),
-                  //     elevation: 2,
-                  //     shadowColor: Colors.grey,
-                  //     color: Colors.white,
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.symmetric(
-                  //           horizontal: 0, vertical: 12),
-                  //       child: InkWell(
-                  //         onTap: () {
-                  //           // Navigator.push(
-                  //           //   context,
-                  //           //   MaterialPageRoute(
-                  //           //       builder: (context) => SingleEventScreen()),
-                  //           // );
-                  //         },
-                  //         child: ListTile(
-                  //           title: Text('1er  May- LUN -2:00 PM',
-                  //               style: TextStyle(
-                  //                   fontFamily: 'AirbnbCereal',
-                  //                   fontSize: 12,
-                  //                   fontWeight: FontWeight.w500,
-                  //                   color: Colors.blue)),
-                  //           subtitle: Column(
-                  //             mainAxisAlignment: MainAxisAlignment.start,
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               Text('One man show \nramatonlaye',
-                  //                   style: TextStyle(
-                  //                     fontFamily: 'AirbnbCereal',
-                  //                     color: Colors.black,
-                  //                     fontSize: 15,
-                  //                     fontWeight: FontWeight.w500,
-                  //                   )),
-                  //               Padding(
-                  //                 padding: const EdgeInsets.only(top: 8.0),
-                  //                 child: Row(
-                  //                   children: [
-                  //                     Icon(
-                  //                       Icons.location_pin,
-                  //                       size: 20,
-                  //                     ),
-                  //                     Text('Radius Gallery • Santa Cruz',
-                  //                         style: TextStyle(
-                  //                           fontFamily: 'AirbnbCereal',
-                  //                           color: Colors.grey,
-                  //                           fontSize: 13,
-                  //                           fontWeight: FontWeight.w400,
-                  //                         )),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //           leading: Image.asset(
-                  //             fit: BoxFit.contain,
-                  //             "assets/124.png",
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 14.0),
@@ -579,10 +516,11 @@ class _HomeViewState extends State<HomeView> {
                       Spacer(),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => Packs()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GetAllPackView()),
+                          );
                         },
                         child: Row(
                           children: [
@@ -606,152 +544,27 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Container(
-                      height: 300,
-                      child: ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            width: 20,
-                          );
-                        },
-                        shrinkWrap: false,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int index) =>
-                            InkWell(
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => DonationPayOptions()),
-                            // );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Container(
-                              height: 300,
-                              width: 244,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                    bottom: 0,
-                                    child: Container(
-                                      height: 265,
-                                      width: 244,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Positioned(
-                                      top: 0,
-                                      left: 20,
-                                      child: Stack(
-                                        children: [
-                                          Image.asset(
-                                              'assets/Rectangle 4291.png'),
-                                          Positioned(
-                                              top: 21,
-                                              left: 50.5,
-                                              child: Text(
-                                                'Pack Bronze',
-                                                style: TextStyle(
-                                                    fontFamily: 'AirbnbCereal',
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ))
-                                        ],
-                                      )),
-                                  Positioned(
-                                    left: 70,
-                                    top: 75,
-                                    child: Text(
-                                      '10 euro',
-                                      style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ),
-                                  Positioned(
-                                      bottom: 0,
-                                      child:
-                                          Image.asset('assets/Vector 19.png')),
-                                  Positioned(
-                                    left: 60,
-                                    top: 175,
-                                    child: Row(
-                                      children: [
-                                        Image.asset('assets/darkTick.png'),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          '3 évenèments',
-                                          style: const TextStyle(
-                                              fontFamily: 'AirbnbCereal',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 60,
-                                    top: 210,
-                                    child: Row(
-                                      children: [
-                                        Image.asset('assets/darkTick.png'),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          '7 jours de publicité',
-                                          style: const TextStyle(
-                                              fontFamily: 'AirbnbCereal',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 75,
-                                    top: 250,
-                                    child: Stack(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                                'assets/Rectangle 4296.png'),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                          ],
-                                        ),
-                                        Positioned(
-                                          top: 6,
-                                          left: 23,
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            'Acheter',
-                                            style: TextStyle(
-                                                fontFamily: 'AirbnbCereal',
-                                                fontSize: 14,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      )),
+                SizedBox(
+                  height: 360,
+                  child: FutureBuilder<List<OnePackViewModel>>(
+                    future: datapack.FetchAllPacks(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else {
+                        var packs = snapshot.data;
+                        return Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: packs?.length,
+                              itemBuilder: (context, index) => PackCardWidget(
+                                    libelle: packs![index].libelle,
+                                  )),
+                        );
+                      }
+                    }),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
@@ -793,7 +606,7 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                     height: 270,
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) {

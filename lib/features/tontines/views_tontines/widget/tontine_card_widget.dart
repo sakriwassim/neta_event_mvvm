@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
+import 'package:neta_event_mvvm/core/widgets/mini_button_style.dart';
 
 class TontineCardWidget extends StatelessWidget {
   String? libelle;
@@ -122,42 +123,8 @@ class TontineCardWidget extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8),
-                          child: Center(
-                            child: Container(
-                              height: 25.0,
-                              width: 50,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xff8301BC),
-                                          Color(0xffD2286A)
-                                        ],
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(4.0)),
-                                  child: Container(
-                                    constraints: const BoxConstraints(
-                                        maxWidth: 270.0, minHeight: 100.0),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Participer',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          color: Colors.white,
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                          child: MiniButton(text: "Participer"),
+                        )
                       ],
                     )
                   ]),

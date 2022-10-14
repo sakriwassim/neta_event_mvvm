@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 
+import '../../../core/widgets/medium_button.dart';
 import '../models_packs/pack_model.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/packs_view_model.dart';

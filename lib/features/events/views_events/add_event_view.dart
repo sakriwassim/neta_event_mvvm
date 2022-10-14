@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
+import '../../../core/widgets/medium_button.dart';
 import '../models_events/add_event_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';

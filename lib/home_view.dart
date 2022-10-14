@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/colors.dart';
+import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
-
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
 import 'features/events/views_events/update_event_view.dart';
+import 'features/events/views_events/widgets/event_card_widget.dart';
 import 'features/packs/packs_repositories/packs_api.dart';
 import 'features/packs/view_model_packs/one_pack_view_model.dart';
 import 'features/packs/view_model_packs/packs_view_model.dart';
@@ -29,7 +29,6 @@ class _HomeViewState extends State<HomeView> {
 
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
-
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
@@ -62,142 +61,90 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: SideBarMenu(),
       appBar: AppBar(
-        shadowColor: Color.fromARGB(255, 255, 255, 255),
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        toolbarHeight:
-            MediaQuery.of(context).size.height * 0.15, //set your height
-        flexibleSpace: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 203, 20, 20),
+        title: Column(
+          children: const [
+            Text(
+              "Hey Bienvenue..",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
               ),
-              gradient: gradientbackground,
             ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Image.asset(
-                            "assets/SlashScreen/menus.png",
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: const [
-                            Text(
-                              "Hey Bienvenue..",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              "Saidou Sawadogo",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {},
-                          child: const Icon(Icons.notifications_none,
-                              color: Colors.white, size: 30),
-                        ),
-                      ),
-                    ],
+            Text(
+              "Saidou Sawadogo",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 19,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(
+                icon: Icon(Icons.notifications_none,
+                    color: Colors.white, size: 30),
+                onPressed: () {}),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(60.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                onTap: () {},
+                child: const Icon(Icons.search, color: Colors.white, size: 30),
+              ),
+              SizedBox(
+                width: 150,
+                height: 30,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Recherche...',
+                    hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey),
                   ),
                 ),
-                Expanded(
+              ),
+              Container(
+                  height: 40,
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20.0,
+                    top: 10,
+                    bottom: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Color(0xFF701D53),
+                  ),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.03,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: const Icon(Icons.search,
-                            color: Colors.white, size: 30),
+                      Image.asset(
+                        "assets/SlashScreen/sort.png",
+                        width: 20,
+                        height: 20,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.03,
+                        width: 3,
                       ),
-                      Container(
-                        height: 22,
-                        child: Text(""),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.03,
-                      ),
-                      const SizedBox(
-                        width: 150,
-                        height: 30,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Recherche...',
-                            hintStyle:
-                                TextStyle(fontSize: 15.0, color: Colors.grey),
-                          ),
+                      Text(
+                        "Filtres",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.10,
-                      ),
-                      Container(
-                          height: 40,
-                          padding: const EdgeInsets.only(
-                            left: 20.0,
-                            right: 20.0,
-                            top: 10,
-                            bottom: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
-                            color: Color(0xFF701D53),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/SlashScreen/sort.png",
-                                width: 20,
-                                height: 20,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "Filtres",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          )),
                     ],
-                  ),
-                )
-              ],
-            ),
+                  )),
+            ],
           ),
         ),
       ),
@@ -223,7 +170,7 @@ class _HomeViewState extends State<HomeView> {
                       const Spacer(),
                       Row(
                         children: [
-                          const Text("Voir tout",
+                          Text("Voir tout",
                               style: TextStyle(
                                 fontFamily: 'AirbnbCereal',
                                 color: Colors.grey,
@@ -459,51 +406,11 @@ class _HomeViewState extends State<HomeView> {
                                   onTap: () {
                                     alertupdate(events[index]);
                                   },
-                                  child: ListTile(
-                                    title: Text("${events![index].date_heure}",
-                                        style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.blue)),
-                                    subtitle: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('${events[index].description}',
-                                            style: TextStyle(
-                                              fontFamily: 'AirbnbCereal',
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500,
-                                            )),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 8.0),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Icons.location_pin,
-                                                size: 20,
-                                              ),
-                                              Text('${events[index].libelle}',
-                                                  style: TextStyle(
-                                                    fontFamily: 'AirbnbCereal',
-                                                    color: Colors.grey,
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w400,
-                                                  )),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    leading: Image.asset(
-                                      fit: BoxFit.contain,
-                                      "assets/124.png",
-                                    ),
+                                  child: EventCardWidget(
+                                    date_heure: events![index].date_heure,
+                                    events: events,
+                                    description: events[index].description,
+                                    libelle: events[index].libelle,
                                   ),
                                 ));
                       }
@@ -649,6 +556,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-
-// child: TontineCardWidget(libelle: packs![index].libelll, montant_regulier: '', nbr_participant: '',),

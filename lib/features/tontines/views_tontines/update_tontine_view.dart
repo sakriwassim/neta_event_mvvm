@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 
-import '../models_tontines/add_tontine_model.dart';
+import '../../../core/decoration.dart';
+import '../../../core/widgets/medium_button.dart';
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
@@ -108,33 +105,31 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    var ticket = {
-                      "id": widget.ticketObj.id,
-                      "user_id": "1",
-                      "libelle": libellefield,
-                      "periode": descriptionfield,
-                      "nbr_participant": prixfield,
-                      "montant_regulier": "1000",
-                      "status": "statut",
-                      "image": "htpps://LienDeLimage",
-                      "created_at": "2022-10-11T12:27:41.000000Z",
-                      "updated_at": "2022-10-11T12:27:41.000000Z"
-                    };
+            InkWell(
+              onTap: () {
+                if (formkey.currentState!.validate()) {
+                  var ticket = {
+                    "id": widget.ticketObj.id,
+                    "user_id": "1",
+                    "libelle": libellefield,
+                    "periode": descriptionfield,
+                    "nbr_participant": prixfield,
+                    "montant_regulier": "1000",
+                    "status": "statut",
+                    "image": "htpps://LienDeLimage",
+                    "created_at": "2022-10-11T12:27:41.000000Z",
+                    "updated_at": "2022-10-11T12:27:41.000000Z"
+                  };
 
-                    TontineModel ticketformJson = TontineModel.fromJson(ticket);
-                    print(ticketformJson);
+                  TontineModel ticketformJson = TontineModel.fromJson(ticket);
+                  print(ticketformJson);
 
-                    setState(() {
-                      data.UpdateTontineByID(ticketformJson);
-                    });
-                  }
-                },
-                child: MediumButton(text: "MODIFIER"),
-              ),
+                  setState(() {
+                    data.UpdateTontineByID(ticketformJson);
+                  });
+                }
+              },
+              child: MediumButton(text: "MODIFIER"),
             ),
           ],
         ),

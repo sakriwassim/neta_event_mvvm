@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 
-import '../models_tontines/add_tontine_model.dart';
+import '../../../core/widgets/medium_button.dart';
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/tontines_view_model.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/Medium_button_style%20copy.dart';
 
+import '../../../core/widgets/medium_button.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';

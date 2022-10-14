@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/decoration.dart';
 
+import '../../../core/decoration.dart';
 import '../../../core/widgets/medium_button.dart';
-import '../models_packs/pack_model.dart';
-import '../packs_repositories/packs_api.dart';
-import '../view_model_packs/packs_view_model.dart';
+import '../models_categories/categories_model.dart';
+import '../categories_repositories/categories_api.dart';
+import '../view_model_categories/one_categorie_view_model.dart';
+import '../view_model_categories/categories_view_model.dart';
 
-class AddPackView extends StatefulWidget {
-  AddPackView({
-    super.key,
-  });
+class UpdateCategorieView extends StatefulWidget {
+  final OneCategorieViewModel ticketObj;
+  UpdateCategorieView({super.key, required this.ticketObj});
 
   @override
-  State<AddPackView> createState() => _AddPackViewState();
+  State<UpdateCategorieView> createState() => _UpdateCategorieViewState();
 }
 
-class _AddPackViewState extends State<AddPackView> {
+class _UpdateCategorieViewState extends State<UpdateCategorieView> {
   final formkey = GlobalKey<FormState>();
   late String libellefield;
-  late int prixfield;
+  late String prixfield;
   late String descriptionfield;
 
-  var data = PacksViewModel(packsRepository: PacksApi());
+  late String Libellefield;
+  late String Prixfield;
+  late String Descriptionfield;
+
+  var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class _AddPackViewState extends State<AddPackView> {
           elevation: 0.0,
           backgroundColor: Colors.white,
           title: Text(
-            "Add pack",
+            "MODIFIER",
             style: TextStyle(
               color: Colors.black,
             ),
@@ -78,7 +82,7 @@ class _AddPackViewState extends State<AddPackView> {
                   }
                 },
                 onChanged: (text) {
-                  prixfield = 7;
+                  prixfield = text;
                 },
               ),
             ),
@@ -93,8 +97,6 @@ class _AddPackViewState extends State<AddPackView> {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
                   } else {
-                    //dateMesurefield = datenow.toString();
-                    //descriptionfield = widget.eventObj.description.toString();
                     return null;
                   }
                 },
@@ -103,30 +105,30 @@ class _AddPackViewState extends State<AddPackView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                  onTap: () {
-                    if (formkey.currentState!.validate()) {
-                      var event = {
-                        "id": 1,
-                        "type_pack_id": "8",
-                        "libelle": libellefield,
-                        "montant": "Description du pack",
-                        "nbre_events": "1500",
-                        "nbre_jr_pubs": "21",
-                        "created_at": "2022-10-11T11:51:57.000000Z",
-                        "updated_at": "2022-10-11T11:51:57.000000Z"
-                      };
+            InkWell(
+              onTap: () {
+                if (formkey.currentState!.validate()) {
+                  var ticket = {
+                    "id": widget.ticketObj.id,
+                    "type_pack_id": "8",
+                    "libelle": libellefield,
+                    "montant": "Description du pack",
+                    "nbre_events": "1500",
+                    "nbre_jr_pubs": "21",
+                    "created_at": "2022-10-11T11:51:57.000000Z",
+                    "updated_at": "2022-10-11T11:51:57.000000Z"
+                  };
 
-                      PackModel eventformJson = PackModel.fromJson(event);
-                      print(eventformJson);
+                  CategorieModel ticketformJson =
+                      CategorieModel.fromJson(ticket);
+                  print(ticketformJson);
 
-                      setState(() {
-                        data.AddPack(eventformJson);
-                      });
-                    }
-                  },
-                  child: MediumButton(text: "APPLIQUER")),
+                  setState(() {
+                    data.UpdateCategorieByID(ticketformJson);
+                  });
+                }
+              },
+              child: MediumButton(text: "MODIFIER"),
             ),
           ],
         ),

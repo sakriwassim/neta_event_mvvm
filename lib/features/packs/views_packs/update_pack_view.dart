@@ -106,10 +106,14 @@ class _UpdatePackViewState extends State<UpdatePackView> {
                 onTap: () {
                   if (formkey.currentState!.validate()) {
                     var event = {
-                      "id": 4,
-                      "libelle": libellefield.toString(),
-                      "created_at": "2022-10-12T22:02:41.000000Z",
-                      "updated_at": "2022-10-12T22:02:41.000000Z"
+                      "id": 1,
+                      "type_pack_id": "8",
+                      "libelle": libellefield,
+                      "montant": "Description du pack",
+                      "nbre_events": "1500",
+                      "nbre_jr_pubs": "21",
+                      "created_at": "2022-10-11T11:51:57.000000Z",
+                      "updated_at": "2022-10-11T11:51:57.000000Z"
                     };
 
                     PackModel eventformJson = PackModel.fromJson(event);

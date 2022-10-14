@@ -1,0 +1,12 @@
+     Categories
+     categories
+     
+     
+      "id": 1,
+        "type_pack_id": "8",
+        "libelle": "Libelle",
+        "montant": "Description du pack",
+        "nbre_events": "1500",
+        "nbre_jr_pubs": "21",
+        "created_at": "2022-10-11T11:51:57.000000Z",
+        "updated_at": "2022-10-11T11:51:57.000000Z"

@@ -1,4 +1,4 @@
-class PackModel {
+class CategorieModel {
   int? id;
   String? type_pack_id;
   String? libelle;
@@ -8,9 +8,17 @@ class PackModel {
   String? created_at;
   String? updated_at;
 
-  PackModel({this.id, this.libelle, this.created_at, this.updated_at});
+  CategorieModel(
+      {this.id,
+      this.type_pack_id,
+      this.libelle,
+      this.montant,
+      this.nbre_events,
+      this.nbre_jr_pubs,
+      this.created_at,
+      this.updated_at});
 
-  PackModel.fromJson(Map<String, dynamic> json) {
+  CategorieModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type_pack_id = json['type_pack_id'];
     libelle = json['libelle'];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
+import 'features/Categories/views_categories/categories_view.dart';
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
@@ -295,13 +296,22 @@ class _HomeViewState extends State<HomeView> {
                       const Spacer(),
                       Row(
                         children: [
-                          const Text("Voir tout",
-                              style: TextStyle(
-                                fontFamily: 'AirbnbCereal',
-                                color: Colors.grey,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              )),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          GetAllCategorieView()),
+                                );
+                              },
+                              child: const Text("Voir tout",
+                                  style: TextStyle(
+                                    fontFamily: 'AirbnbCereal',
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ))),
                           const SizedBox(
                             width: 4,
                           ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 import 'add_tontine_view.dart';
-import 'update_tontine_view.dart';
+import 'widget/tontine_card_H_widget.dart';
 
 class GetAllTontineView extends StatefulWidget {
   const GetAllTontineView({super.key});
@@ -17,34 +18,40 @@ class GetAllTontineView extends StatefulWidget {
 class _GetAllTontineViewState extends State<GetAllTontineView> {
   var data = TontinesViewModel(ticketsRepository: TontinesApi());
 
-  alertupdate(OneTontineViewModel obj) => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('êtes-vous sûr!!'),
-          content: const Text('de mettre à jour la valeur de compteur'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, 'MODIFY');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            UpdateTontineView(ticketObj: obj)));
-              },
-              child: const Text('MODIFY'),
-            ),
-            TextButton(
-                child: const Text('DELETE'),
-                onPressed: () {
-                  Navigator.pop(context, 'DELETE');
-                  setState(() {
-                    data.DeleteTontineByID(obj.id);
-                  });
-                }),
-          ],
-        ),
-      );
+  deletetontines(id) {
+    setState(() {
+      data.DeleteTontineByID(id);
+    });
+  }
+
+  // alertupdate(OneTontineViewModel obj) => showDialog<String>(
+  //       context: context,
+  //       builder: (BuildContext context) => AlertDialog(
+  //         title: const Text('êtes-vous sûr!!'),
+  //         content: const Text('de mettre à jour la valeur de compteur'),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.pop(context, 'MODIFY');
+  //               Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                       builder: (context) =>
+  //                           UpdateTontineView(ticketObj: obj)));
+  //             },
+  //             child: const Text('MODIFY'),
+  //           ),
+  //           // TextButton(
+  //           //     child: const Text('DELETE'),
+  //           //     onPressed: () {
+  //           //       Navigator.pop(context, 'DELETE');
+  //           //       setState(() {
+  //           //         data.DeleteTontineByID(obj.id);
+  //           //       });
+  //           //     }),
+  //         ],
+  //       ),
+  //     );
 
   @override
   Widget build(BuildContext context) {
@@ -101,55 +108,27 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                       return ListView.builder(
                           itemCount: tickets?.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  alertupdate(tickets![index]);
-                                },
-                                child: ListTile(
-                                  title: Text("${tickets![index].image}",
-                                      style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(
-                                              255, 211, 7, 194))),
-                                  subtitle: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("${tickets![index].libelle}",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          )),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                                "${tickets![index].montant_regulier}" +
-                                                    "€",
-                                                style: TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  color: Colors.black,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w700,
-                                                )),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  leading: Image.asset(
-                                    "assets/125.png",
-                                  ),
-                                ),
-                              ));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UpdateTontineView(
+                                              ticketObj: tickets![index],
+                                            )));
+                              },
+                              child: TontineCardWidgetH(
+                                image: "assets/125.png",
+                                libelle: '${tickets![index].libelle}',
+                                montant_regulier:
+                                    "${tickets![index].montant_regulier}\$",
+                                nbr_participant:
+                                    '${tickets![index].nbr_participant}',
+                                periode: '',
+                                status: '${tickets![index].status}',
+                                events: tickets,
+                                callbackFunction: deletetontines,
+                                id: tickets![index].id,
+                              )));
                     }
                   }),
                 ),

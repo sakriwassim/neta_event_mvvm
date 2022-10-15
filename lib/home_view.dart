@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
+import 'package:neta_event_mvvm/core/widgets/exclusive_card_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'features/Categories/categories_repositories/categories_api.dart';
 import 'features/Categories/view_model_categories/categories_view_model.dart';
@@ -176,116 +177,52 @@ class _HomeViewState extends State<HomeView> {
                       const Spacer(),
                       Row(
                         children: [
-                          Text("Voir tout",
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              "Voir tout",
                               style: TextStyle(
                                 fontFamily: 'AirbnbCereal',
                                 color: Colors.grey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                              )),
-                          const SizedBox(
-                            width: 4,
+                              ),
+                            ),
                           ),
                           Icon(
                             Icons.forward_outlined,
                             color: Colors.grey,
-                          )
+                          ),
                         ],
                       )
                     ],
                   ),
                 ),
-                Container(
-                  height: 255,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) => Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      elevation: 2,
-                      shadowColor: Colors.grey,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/122.png"),
-                            SizedBox(
-                              height: 6,
+                SizedBox(
+                  height: 260,
+                  child: FutureBuilder<List<OneCategorieViewModel>>(
+                    future: datacategorie.FetchAllCategories(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else {
+                        var categories = snapshot.data;
+                        return Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: categories?.length,
+                            itemBuilder: (context, index) =>
+                                ExclusiveCardWidget(
+                              image: 'assets/122.png',
+                              adresse: '',
+                              libelle: '',
+                              prix: '',
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                "Merci à tous pour la co...",
-                                style: TextStyle(
-                                  fontFamily: 'AirbnbCereal',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star,
-                                          color: Colors.pink, size: 15),
-                                      Icon(Icons.star,
-                                          color: Colors.pink, size: 15),
-                                      Icon(Icons.star,
-                                          color: Colors.pink, size: 15),
-                                      Icon(Icons.star,
-                                          color: Colors.pink, size: 15),
-                                      Icon(Icons.star,
-                                          color: Colors.grey, size: 15),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 80,
-                                  ),
-                                  Text(
-                                    "Prix : 70€",
-                                    style: TextStyle(
-                                        fontFamily: 'AirbnbCereal',
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15.0),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.location_on_outlined,
-                                      color: Colors.grey),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    '36 Guild Street, Bamako',
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      color: Colors.grey,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
+                        );
+                      }
+                    }),
                   ),
                 ),
                 Padding(

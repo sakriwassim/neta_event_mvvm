@@ -21,9 +21,6 @@ class CategoriesApi extends CategoriesRepository {
 
       http.Response response = await http.get(url, headers: headersa);
 
-      //var responsebody = jsonDecode(response.body);
-
-      // print(ticketData);
       CategorieModel.fromJson(json.decode(response.body));
       var ticketDate = CategorieModel.fromJson(json.decode(response.body));
 

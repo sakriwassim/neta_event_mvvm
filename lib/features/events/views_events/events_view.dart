@@ -16,7 +16,6 @@ class GetAllEventView extends StatefulWidget {
 }
 
 class _GetAllEventViewState extends State<GetAllEventView> {
-  
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
@@ -35,14 +34,14 @@ class _GetAllEventViewState extends State<GetAllEventView> {
               },
               child: const Text('MODIFY'),
             ),
-            TextButton(
-                child: const Text('DELETE'),
-                onPressed: () {
-                  Navigator.pop(context, 'DELETE');
-                  setState(() {
-                    data.DeleteEventByID(obj.id);
-                  });
-                }),
+            // TextButton(
+            //     child: const Text('DELETE'),
+            //     onPressed: () {
+            //       Navigator.pop(context, 'DELETE');
+            //       setState(() {
+            //         data.DeleteEventByID(obj.id);
+            //       });
+            //     }),
           ],
         ),
       );

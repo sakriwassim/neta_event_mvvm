@@ -4,8 +4,6 @@ class OneEventViewModel {
   EventModel? eventModel;
   OneEventViewModel({this.eventModel});
 
-  
-
   get id => eventModel?.id;
   get category_id => eventModel?.categoryId;
   get observation_id => eventModel?.observationId;

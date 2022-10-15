@@ -3,7 +3,6 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 
 import '../../../core/widgets/medium_button.dart';
 import '../models_categories/add_categories_model.dart';
-import '../models_categories/categories_model.dart';
 import '../categories_repositories/categories_api.dart';
 import '../view_model_categories/categories_view_model.dart';
 

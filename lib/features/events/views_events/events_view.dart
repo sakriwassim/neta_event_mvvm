@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/events_local.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
+import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
 
-import '../models_events/event_model.dart';
 import 'update_event_view.dart';
 
 class GetAllEventView extends StatefulWidget {
@@ -66,7 +65,6 @@ class _GetAllEventViewState extends State<GetAllEventView> {
               ),
             ),
             InkWell(
-              
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => AddEventView()));
@@ -102,53 +100,17 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                       return ListView.builder(
                           itemCount: events?.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  alertupdate(events![index]);
-                                },
-                                child: ListTile(
-                                  title: Text("${events![index].date_heure}",
-                                      style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(
-                                              255, 211, 7, 194))),
-                                  subtitle: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("${events![index].description}",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          )),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text("${events![index].prix}" + "€",
-                                                style: TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  color: Colors.black,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w700,
-                                                )),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  leading: Image.asset(
-                                    "assets/125.png",
-                                  ),
-                                ),
-                              ));
+                              onTap: () {
+                                alertupdate(events![index]);
+                              },
+                              child: EventCardWidget(
+                                description: events![index].description,
+                                events: events,
+                                date_heure: events![index].date_heure,
+                                libelle: events![index].libelle,
+                                prix: events![index].prix,
+                                adresse: events![index].adresse,
+                              )));
                     }
                   }),
                 ),

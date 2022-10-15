@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
+import 'features/Categories/categories_repositories/categories_api.dart';
+import 'features/Categories/view_model_categories/categories_view_model.dart';
+import 'features/Categories/view_model_categories/one_categorie_view_model.dart';
 import 'features/Categories/views_categories/categories_view.dart';
+import 'features/Categories/views_categories/widget/categorie_card_widget.dart';
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
@@ -31,6 +35,7 @@ class _HomeViewState extends State<HomeView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
+  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
         context: context,
@@ -324,40 +329,27 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                Container(
-                  height: 115,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) => Card(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      elevation: 2,
-                      shadowColor: Colors.grey,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 8),
-                        child: Stack(
-                          children: [
-                            Image.asset("assets/123.png"),
-                            const Positioned(
-                              top: 25,
-                              left: 10,
-                              child: Text('Musique &\nchant',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'AirbnbCereal',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
+                SizedBox(
+                  height: 120,
+                  child: FutureBuilder<List<OneCategorieViewModel>>(
+                    future: datacategorie.FetchAllCategories(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else {
+                        var categories = snapshot.data;
+                        return Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: categories?.length,
+                              itemBuilder: (context, index) =>
+                                  CategorieCardWidget(
+                                    libelle: categories![index].libelle,
                                   )),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                        );
+                      }
+                    }),
                   ),
                 ),
                 Padding(
@@ -417,11 +409,12 @@ class _HomeViewState extends State<HomeView> {
                                     alertupdate(events[index]);
                                   },
                                   child: EventCardWidget(
-                                    date_heure: events![index].date_heure,
-                                    events: events,
-                                    description: events[index].description,
-                                    libelle: events[index].libelle,
-                                  ),
+                                      date_heure: events![index].date_heure,
+                                      events: events,
+                                      description: events[index].description,
+                                      libelle: events[index].libelle,
+                                      prix: events[index].prix,
+                                      adresse: events[index].adresse),
                                 ));
                       }
                     }),

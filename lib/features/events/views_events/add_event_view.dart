@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import '../../../core/widgets/medium_button.dart';
@@ -20,6 +21,8 @@ class _AddEventViewState extends State<AddEventView> {
   late String libellefield;
   late int prixfield;
   late String descriptionfield;
+  late String _yourVariable;
+  List<DateTime?> _dataTime = [];
 
   var data = EventsViewModel(eventsRepository: EventsApi());
 
@@ -48,12 +51,12 @@ class _AddEventViewState extends State<AddEventView> {
               padding: const EdgeInsets.all(15),
               child: TextFormField(
                 decoration: textFieldDecoration(
-                  "Mot de passe",
-                  "entre le password",
+                  "Nom de levenment",
+                  "entre le nom de levenment",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "entre le date de mesure";
+                    return "Nom de levenment";
                   } else {
                     return null;
                   }
@@ -63,16 +66,33 @@ class _AddEventViewState extends State<AddEventView> {
                 },
               ),
             ),
+            ElevatedButton(
+                onPressed: () async {
+                  var _newDate = await showCalendarDatePicker2Dialog(
+                    context: context,
+                    config: CalendarDatePicker2WithActionButtonsConfig(),
+                    dialogSize: const Size(325, 400),
+                    initialValue: [],
+                    borderRadius: BorderRadius.circular(15),
+                  );
+                  if (_newDate != null) {
+                    setState(() {
+                      _dataTime = _newDate;
+                    });
+                  }
+                },
+                child: Text("Parcourire ce calendrier")),
+            Text('${_dataTime}'),
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
                 decoration: textFieldDecoration(
-                  "Mot de passe",
-                  "entre le password",
+                  "localisation",
+                  "entre le localisation",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "entre le date de mesure";
+                    return "le localisation";
                   } else {
                     return null;
                   }
@@ -86,15 +106,51 @@ class _AddEventViewState extends State<AddEventView> {
               padding: const EdgeInsets.all(15),
               child: TextFormField(
                 decoration: textFieldDecoration(
-                  "Mot de passe",
-                  "entre le password",
+                  "categories",
+                  "entre le categories",
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
                   } else {
-                    //dateMesurefield = datenow.toString();
-                    //descriptionfield = widget.eventObj.description.toString();
+                    return null;
+                  }
+                },
+                onChanged: (text) {
+                  descriptionfield = text;
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: TextFormField(
+                decoration: textFieldDecoration(
+                  "Lien",
+                  "entre le Lien",
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "entre Lien";
+                  } else {
+                    return null;
+                  }
+                },
+                onChanged: (text) {
+                  descriptionfield = text;
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: TextFormField(
+                decoration: textFieldDecoration(
+                  "publicite",
+                  "entre le publicite",
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "entre publicite";
+                  } else {
                     return null;
                   }
                 },
@@ -113,7 +169,7 @@ class _AddEventViewState extends State<AddEventView> {
                         "libelle": libellefield,
                         "description": descriptionfield,
                         "prix": prixfield,
-                        "date_heure": "2020-01-27 17:50:45",
+                        "date_heure": _dataTime,
                         "adresse": "Stade du 26 Mars",
                         "nbre_tichet": 1000,
                         "status": "statut",

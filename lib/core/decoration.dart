@@ -5,8 +5,8 @@ InputDecoration textFieldDecoration(String labelText, String hintText) {
   // String hintText;
 
   return InputDecoration(
+    fillColor: Colors.white,
     filled: true,
-    fillColor: Color(0xFFF2F2F2),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
       borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
@@ -34,7 +34,7 @@ InputDecoration textFieldDecorationWithicon(
 
   return InputDecoration(
     filled: true,
-    fillColor: Color(0xFFF2F2F2),
+    fillColor: Colors.white,
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
       borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),

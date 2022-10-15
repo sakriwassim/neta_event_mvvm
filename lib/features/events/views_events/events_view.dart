@@ -6,7 +6,6 @@ import 'package:neta_event_mvvm/features/events/view_model_events/events_view_mo
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
-
 import 'update_event_view.dart';
 
 class GetAllEventView extends StatefulWidget {
@@ -17,6 +16,7 @@ class GetAllEventView extends StatefulWidget {
 }
 
 class _GetAllEventViewState extends State<GetAllEventView> {
+  
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   alertupdate(OneEventViewModel obj) => showDialog<String>(
@@ -52,6 +52,9 @@ class _GetAllEventViewState extends State<GetAllEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         shadowColor: Colors.white,
         elevation: 0.0,
         backgroundColor: Colors.white,

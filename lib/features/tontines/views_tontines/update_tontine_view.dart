@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 
 import '../../../core/decoration.dart';
 import '../../../core/widgets/medium_button.dart';
@@ -106,7 +107,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
               ),
             ),
             InkWell(
-              onTap: () {
+              onTap: () async {
                 if (formkey.currentState!.validate()) {
                   var ticket = {
                     "id": widget.ticketObj.id,
@@ -124,9 +125,14 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   TontineModel ticketformJson = TontineModel.fromJson(ticket);
                   print(ticketformJson);
 
-                  setState(() {
-                    data.UpdateTontineByID(ticketformJson);
-                  });
+                  var update = await data.UpdateTontineByID(ticketformJson);
+
+                  if (update == true) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GetAllTontineView()));
+                  }
                 }
               },
               child: MediumButton(text: "MODIFIER"),

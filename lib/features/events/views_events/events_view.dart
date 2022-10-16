@@ -6,7 +6,8 @@ import 'package:neta_event_mvvm/features/events/view_model_events/events_view_mo
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
-import 'update_event_view.dart';
+
+import 'one_event_view.dart';
 
 class GetAllEventView extends StatefulWidget {
   const GetAllEventView({super.key});
@@ -17,34 +18,6 @@ class GetAllEventView extends StatefulWidget {
 
 class _GetAllEventViewState extends State<GetAllEventView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
-
-  alertupdate(OneEventViewModel obj) => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('êtes-vous sûr!!'),
-          content: const Text('de mettre à jour la valeur de compteur'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, 'MODIFY');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UpdateEventView(eventObj: obj)));
-              },
-              child: const Text('MODIFY'),
-            ),
-            // TextButton(
-            //     child: const Text('DELETE'),
-            //     onPressed: () {
-            //       Navigator.pop(context, 'DELETE');
-            //       setState(() {
-            //         data.DeleteEventByID(obj.id);
-            //       });
-            //     }),
-          ],
-        ),
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +76,13 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                           itemCount: events?.length,
                           itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
-                                alertupdate(events![index]);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OnEventView(
+                                            id: events![index].id,
+                                          )),
+                                );
                               },
                               child: EventCardWidget(
                                 description: events![index].description,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
 
-class BigButton extends StatelessWidget {
+class SigneInUpButton extends StatelessWidget {
   String text;
-  BigButton({Key? key, required this.text}) : super(key: key);
+  SigneInUpButton({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,6 @@ class BigButton extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 60,
-        width: 150,
         decoration: new BoxDecoration(
           borderRadius: BorderRadius.circular(13.0),
           gradient: gradientbackground,

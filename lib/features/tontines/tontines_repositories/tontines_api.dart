@@ -14,8 +14,7 @@ class TontinesApi extends TontinesRepository {
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontines/' +
-              "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine/' + "${id}";
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);

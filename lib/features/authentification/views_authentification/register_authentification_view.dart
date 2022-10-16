@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
+import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -264,7 +265,7 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                       }
                     },
-                    child: BigButton(
+                    child: SigneInUpButton(
                       text: "S'INSCRIRE",
                     )),
                 Center(

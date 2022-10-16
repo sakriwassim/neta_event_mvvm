@@ -3,6 +3,7 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
+import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -113,22 +114,6 @@ class _LoginViewState extends State<LoginView> {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Row(
                       children: [
-                        // FlutterSwitch(
-                        // activeColor: Colors.purple,
-                        // width: 55.0,
-                        // height: 25.0,
-                        // valueFontSize: 20.0,
-                        // toggleSize: 30.0,
-                        // value: trSwitch,
-                        // borderRadius: 30.0,
-                        // padding: 4.0,
-                        // showOnOff: false,
-                        // onToggle: (val) {
-                        //   setState(() {
-                        //     trSwitch = val;
-                        //   });
-                        // },
-                        // ),
                         Text(
                           " Se rappeler",
                           style: TextStyle(
@@ -185,7 +170,7 @@ class _LoginViewState extends State<LoginView> {
                         }
                       }
                     },
-                    child: BigButton(
+                    child: SigneInUpButton(
                       text: "SE CONNECTER",
                     )),
                 Center(
@@ -311,31 +296,4 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-
-  // InputDecoration textFieldDecoration() {
-  //   return const InputDecoration(
-  //                   filled: true,
-  //                   fillColor: Color(0xFFF2F2F2),
-  //                   focusedBorder: OutlineInputBorder(
-  //                     borderRadius: BorderRadius.all(Radius.circular(4)),
-  //                     borderSide: BorderSide(
-  //                         width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-  //                   ),
-  //                   border: OutlineInputBorder(
-  //                       borderRadius: BorderRadius.all(Radius.circular(4)),
-  //                       borderSide: BorderSide(
-  //                         width: 1,
-  //                       )),
-  //                   labelText: 'Adresse e-mail',
-  //                   prefixIcon: Icon(
-  //                     Icons.mail_outline_outlined,
-  //                     color: Colors.grey,
-  //                   ),
-  //                   labelStyle: TextStyle(
-  //                     color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-  //                   ),
-  //                   hintText: 'entre le email',
-  //                 );
-  // }
-
 }

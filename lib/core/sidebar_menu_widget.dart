@@ -4,11 +4,16 @@ class SideBarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 250,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+      ),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           Container(
-            height: 120,
+            height: 100,
             child: DrawerHeader(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,10 +58,13 @@ class SideBarMenu extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Friends'),
-            onTap: () => null,
+          Container(
+            //height: 20,
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Friends'),
+              onTap: () => null,
+            ),
           ),
           ListTile(
             leading: Icon(Icons.event),

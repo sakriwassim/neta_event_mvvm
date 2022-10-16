@@ -15,124 +15,115 @@ class TontineCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //       builder: (context) => SingleTontineScreen()),
-        // );
-      },
-      child: Container(
-        color: Colors.grey[50],
-        child: Stack(
-          children: [
-            ClipPath(
-                clipper: TriangleClipper(),
-                child: Container(
-                  decoration: BoxDecoration(gradient: gradientbackground),
-                  height: 220,
-                  width: 220,
-                )),
-            Padding(
-              padding: EdgeInsets.only(top: 73, left: 20),
+    return Container(
+      color: Colors.grey[50],
+      child: Stack(
+        children: [
+          ClipPath(
+              clipper: TriangleClipper(),
               child: Container(
-                decoration: const BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    blurRadius: 15.0,
-                  ),
-                ]),
-                child: Container(
-                  height: 180,
-                  width: 180,
-                  color: Colors.white,
-                  child: Column(children: [
-                    Image.asset(
-                      "assets/téléchargement 4.png",
-                      width: 230,
-                      fit: BoxFit.contain,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            libelle!,
-                            style: TextStyle(
-                                fontFamily: 'AirbnbCereal',
-                                fontSize: 8,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xffE28541)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Lorem espium anturium ka',
-                            style: TextStyle(
-                              fontFamily: 'AirbnbCereal',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$montant_regulier\$ Chaque trimestre',
-                            style: TextStyle(
-                              fontFamily: 'AirbnbCereal',
-                              fontSize: 10,
-                              color: Color(0xff4F4F4F),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$nbr_participant participants',
-                            style: TextStyle(
-                              fontFamily: 'AirbnbCereal',
-                              fontSize: 10,
-                              color: Color(0xff4F4F4F),
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: MiniButton(text: "Participer"),
-                        )
-                      ],
-                    )
-                  ]),
+                decoration: BoxDecoration(gradient: gradientbackground),
+                height: 220,
+                width: 220,
+              )),
+          Padding(
+            padding: EdgeInsets.only(top: 73, left: 20),
+            child: Container(
+              decoration: const BoxDecoration(boxShadow: [
+                BoxShadow(
+                  blurRadius: 15.0,
                 ),
+              ]),
+              child: Container(
+                height: 180,
+                width: 180,
+                color: Colors.white,
+                child: Column(children: [
+                  Image.asset(
+                    "assets/téléchargement 4.png",
+                    width: 230,
+                    fit: BoxFit.contain,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, top: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          libelle!,
+                          style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              fontSize: 8,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xffE28541)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Lorem espium anturium ka',
+                          style: TextStyle(
+                            fontFamily: 'AirbnbCereal',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, top: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$montant_regulier\$ Chaque trimestre',
+                          style: TextStyle(
+                            fontFamily: 'AirbnbCereal',
+                            fontSize: 10,
+                            color: Color(0xff4F4F4F),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, top: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$nbr_participant participants',
+                          style: TextStyle(
+                            fontFamily: 'AirbnbCereal',
+                            fontSize: 10,
+                            color: Color(0xff4F4F4F),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: MiniButton(text: "Participer"),
+                      )
+                    ],
+                  )
+                ]),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

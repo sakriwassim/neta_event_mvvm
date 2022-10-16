@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 import 'add_tontine_view.dart';
+import 'one_tontine_view.dart';
 import 'widget/tontine_card_H_widget.dart';
 
 class GetAllTontineView extends StatefulWidget {
@@ -24,40 +24,14 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
     });
   }
 
-  // alertupdate(OneTontineViewModel obj) => showDialog<String>(
-  //       context: context,
-  //       builder: (BuildContext context) => AlertDialog(
-  //         title: const Text('êtes-vous sûr!!'),
-  //         content: const Text('de mettre à jour la valeur de compteur'),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             onPressed: () {
-  //               Navigator.pop(context, 'MODIFY');
-  //               Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(
-  //                       builder: (context) =>
-  //                           UpdateTontineView(ticketObj: obj)));
-  //             },
-  //             child: const Text('MODIFY'),
-  //           ),
-  //           // TextButton(
-  //           //     child: const Text('DELETE'),
-  //           //     onPressed: () {
-  //           //       Navigator.pop(context, 'DELETE');
-  //           //       setState(() {
-  //           //         data.DeleteTontineByID(obj.id);
-  //           //       });
-  //           //     }),
-  //         ],
-  //       ),
-  //     );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         shadowColor: Colors.white,
         elevation: 0.0,
         backgroundColor: Colors.white,
@@ -112,8 +86,8 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => UpdateTontineView(
-                                              ticketObj: tickets![index],
+                                        builder: (context) => OnTontineView(
+                                              id: tickets![index].id,
                                             )));
                               },
                               child: TontineCardWidgetH(

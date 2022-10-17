@@ -17,6 +17,7 @@ class AddEventView extends StatefulWidget {
 }
 
 class _AddEventViewState extends State<AddEventView> {
+  int selectedIndex = -1;
   final formkey = GlobalKey<FormState>();
   late String libellefield;
   late int prixfield;
@@ -104,22 +105,38 @@ class _AddEventViewState extends State<AddEventView> {
             ),
             Padding(
               padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                decoration: textFieldDecoration(
-                  "categories",
-                  "entre le categories",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "entre le date de mesure";
-                  } else {
-                    return null;
-                  }
-                },
-                onChanged: (text) {
-                  descriptionfield = text;
-                },
+              child: Wrap(
+                direction: Axis.horizontal,
+                children: List.generate(5, (index) {
+                  return InkWell(
+                    onTap: () {
+                      print("tapped" + index.toString());
+                    },
+                    child: Container(
+                        height: 50,
+                        // margin: const EdgeInsets.only(right: 2),
+                        child:
+                            Image(image: AssetImage("assets/Ecllipse 5.png"))),
+                  );
+                }),
               ),
+
+              // TextFormField(
+              //   decoration: textFieldDecoration(
+              //     "categories",
+              //     "entre le categories",
+              //   ),
+              //   validator: (value) {
+              //     if (value!.isEmpty) {
+              //       return "entre le date de mesure";
+              //     } else {
+              //       return null;
+              //     }
+              //   },
+              //   onChanged: (text) {
+              //     descriptionfield = text;
+              //   },
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.all(15),

@@ -87,21 +87,21 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => OnTontineView(
-                                              id: tickets![index].id,
+                                              id: tickets[index].id,
                                             )));
                               },
                               child: TontineCardWidgetH(
                                 image: "assets/125.png",
                                 libelle: '${tickets![index].libelle}',
                                 montant_regulier:
-                                    "${tickets![index].montant_regulier}\$",
+                                    "${tickets[index].montant_regulier}\$",
                                 nbr_participant:
-                                    '${tickets![index].nbr_participant}',
+                                    '${tickets[index].nbr_participant}',
                                 periode: '',
-                                status: '${tickets![index].status}',
+                                status: '${tickets[index].status}',
                                 events: tickets,
                                 callbackFunction: deletetontines,
-                                id: tickets![index].id,
+                                id: tickets[index].id,
                               )));
                     }
                   }),

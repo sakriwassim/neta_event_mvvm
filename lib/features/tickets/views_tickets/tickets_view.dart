@@ -100,7 +100,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                           itemCount: tickets?.length,
                           itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
-                                  alertupdate(tickets![index]);
+                                  alertupdate(tickets[index]);
                                 },
                                 child: ListTile(
                                   title: Text("${tickets![index].date}",
@@ -115,13 +115,14 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("${tickets![index].description}",
+                                      Text("${tickets[index].description}",
                                           style: TextStyle(
                                             fontFamily: 'AirbnbCereal',
                                             color: Colors.black,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                          )),
+                                          )
+                                          ),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(top: 8.0),
@@ -129,8 +130,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
-                                            Text(
-                                                "${tickets![index].prix}" + "€",
+                                            Text("${tickets[index].prix}" + "€",
                                                 style: TextStyle(
                                                   fontFamily: 'AirbnbCereal',
                                                   color: Colors.black,

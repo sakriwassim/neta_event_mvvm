@@ -24,6 +24,7 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   shared_preferences: ^2.0.15
   calendar_date_picker2: ^0.2.5
+  custom_slider: ^0.0.3
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +42,7 @@ flutter:
   assets:
     - assets/
     - assets/SlashScreen/
+    - assets/icon_add_event/
 
 
  

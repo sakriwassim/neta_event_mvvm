@@ -80,17 +80,17 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => OnEventView(
-                                            id: events![index].id,
+                                            id: events[index].id,
                                           )),
                                 );
                               },
                               child: EventCardWidget(
                                 description: events![index].description,
                                 events: events,
-                                date_heure: events![index].date_heure,
-                                libelle: events![index].libelle,
-                                prix: events![index].prix,
-                                adresse: events![index].adresse,
+                                date_heure: events[index].date_heure,
+                                libelle: events[index].libelle,
+                                prix: events[index].prix,
+                                adresse: events[index].adresse,
                               )));
                     }
                   }),

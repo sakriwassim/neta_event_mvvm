@@ -331,7 +331,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                           SizedBox(
-                            height: 360,
+                            height: 200,
                             child: FutureBuilder<List<OneEventViewModel>>(
                               future: data.FetchAllEvents(),
                               builder: ((context, snapshot) {
@@ -351,7 +351,7 @@ class _HomeViewState extends State<HomeView> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         OnEventView(
-                                                          id: events![index].id,
+                                                          id: events[index].id,
                                                         )),
                                               );
                                             },
@@ -502,16 +502,15 @@ class _HomeViewState extends State<HomeView> {
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           OnTontineView(
-                                                            id: packs![index]
-                                                                .id,
+                                                            id: packs[index].id,
                                                           )),
                                                 );
                                               },
                                               child: TontineCardWidget(
                                                 libelle: packs![index].libelle,
-                                                montant_regulier: packs![index]
+                                                montant_regulier: packs[index]
                                                     .montant_regulier,
-                                                nbr_participant: packs![index]
+                                                nbr_participant: packs[index]
                                                     .nbr_participant,
                                               ),
                                             )),

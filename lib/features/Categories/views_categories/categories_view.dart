@@ -102,7 +102,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                           itemCount: tickets?.length,
                           itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
-                                  alertupdate(tickets![index]);
+                                  alertupdate(tickets[index]);
                                 },
                                 child: ListTile(
                                   title: Text("${tickets![index].montant}",
@@ -117,7 +117,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("${tickets![index].libelle}",
+                                      Text("${tickets[index].libelle}",
                                           style: TextStyle(
                                             fontFamily: 'AirbnbCereal',
                                             color: Colors.black,
@@ -132,7 +132,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                                               MainAxisAlignment.end,
                                           children: [
                                             Text(
-                                                "${tickets![index].categorieModel}" +
+                                                "${tickets[index].categorieModel}" +
                                                     "€",
                                                 style: const TextStyle(
                                                   fontFamily: 'AirbnbCereal',

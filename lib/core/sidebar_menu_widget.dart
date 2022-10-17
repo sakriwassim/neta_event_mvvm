@@ -19,14 +19,8 @@ class SideBarMenu extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
-                    child: ClipOval(
-                      child: Image.network(
-                        'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
-                      ),
-                    ),
+                    child:
+                        ClipOval(child: Image.asset("assets/profileimage.png")),
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -46,7 +40,7 @@ class SideBarMenu extends StatelessWidget {
                         // bottom: 8.0,
                         // left: 4.0,
                         child: Text(
-                          "sakri@gmail.com",
+                          "sakriwassim@gmail.com",
                           style: TextStyle(
                               color: Color.fromARGB(255, 183, 27, 27),
                               fontSize: 15),

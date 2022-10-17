@@ -11,7 +11,7 @@ class AuthentificationResponseModel {
   late final String message;
 
   AuthentificationResponseModel.fromJson(Map<String, dynamic> json) {
-    data = Data.fromJson(json?['data']);
+    data = Data.fromJson(json['data']);
     status = json['status'];
     code = json['code'];
     message = json['message'];

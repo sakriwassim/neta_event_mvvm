@@ -22,18 +22,27 @@ class _OnEventViewState extends State<OnEventView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
-          shadowColor: Colors.white,
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          title: Text(
-            "Event details",
-            style: TextStyle(
-              color: Colors.black,
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(150.0),
+          child: AppBar(
+            elevation: 0.0,
+            shadowColor: Colors.white,
+            title: Text(
+              "Event details",
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+            flexibleSpace: Center(
+              child: Image(
+                image: AssetImage('assets/130.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            backgroundColor: Colors.transparent,
           )),
       body: Center(
         child: FutureBuilder<OneEventViewModel>(
@@ -42,7 +51,7 @@ class _OnEventViewState extends State<OnEventView> {
             if (snapshot.hasData) {
               return Column(
                 children: [
-                  Image.asset("assets/130.png"),
+                  // Image.asset("assets/130.png"),
                   Text(snapshot.data!.libelle),
                   Padding(
                     padding: const EdgeInsets.all(10),

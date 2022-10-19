@@ -8,6 +8,8 @@ import 'features/Categories/view_model_categories/categories_view_model.dart';
 import 'features/Categories/view_model_categories/one_categorie_view_model.dart';
 import 'features/Categories/views_categories/categories_view.dart';
 import 'features/Categories/views_categories/widget/categorie_card_widget.dart';
+import 'features/authentification/authentification_repositories/authentification_api.dart';
+import 'features/authentification/view_model_authentification/authentification_view_model.dart';
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
@@ -39,11 +41,23 @@ class _HomeViewState extends State<HomeView> {
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  var data2 = AuthentificationViewModel(
+      authentificationRepository: AuthentificationApi());
+
+  logout() {
+    setState(() {
+      data2.Cleanpref();
+      // if (verif == true) {
+      //}
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBarMenu(),
+      drawer: SideBarMenu(
+        callbackFunctionlogout: logout,
+      ),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 203, 20, 20),

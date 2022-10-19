@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../features/authentification/views_authentification/login_authentification_view.dart';
+
 class SideBarMenu extends StatelessWidget {
+  Function? callbackFunctionlogout;
+
+  SideBarMenu({
+    Key? key,
+    required this.callbackFunctionlogout,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -103,7 +112,11 @@ class SideBarMenu extends StatelessWidget {
           ListTile(
             title: Text('Se deconnecter'),
             leading: Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () {
+              callbackFunctionlogout;
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginView()));
+            },
           ),
         ],
       ),

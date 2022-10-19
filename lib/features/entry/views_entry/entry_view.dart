@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
-import 'package:neta_event_mvvm/home_page.dart';
+
+import '../../../bottom_navigation_bar.dart';
 import '../entry_repositories/events_local.dart';
 import '../view_model_entry/events_view_model.dart';
 

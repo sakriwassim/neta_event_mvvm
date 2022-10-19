@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/authentification/authentification_repositories/authentification_api.dart';
-import 'package:neta_event_mvvm/features/authentification/view_model_authentification/authentification_view_model.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/tickets/views_tickets/tickets_view.dart';
+import 'features/tontines/views_tontines/tontines_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,17 +15,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var data = EventsViewModel(eventsRepository: EventsApi());
-  var data2 = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+
   int _currentIndex = 0;
 
   List Screen = [
     HomeView(),
     GetAllEventView(),
     GetAllTicketView(),
-    Container(
-      color: Color.fromARGB(255, 241, 18, 167),
-    )
+    GetAllTontineView(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -131,22 +126,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    data2.Cleanpref();
-                    // if (verif == true) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginView()));
-                    //}
+                    currentScreen = Screen[3];
+                    _currentIndex = 3;
                   });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.logout_outlined,
+                      Icons.attach_money,
                       color: Colors.grey,
                     ),
                     Text(
-                      'Déconnecter',
+                      'Tontine',
                       style: TextStyle(
                           color: _currentIndex == 3
                               ? Color(0xffD2286A)

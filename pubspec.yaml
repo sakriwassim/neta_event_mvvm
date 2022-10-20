@@ -25,6 +25,9 @@ dependencies:
   shared_preferences: ^2.0.15
   calendar_date_picker2: ^0.2.5
   custom_slider: ^0.0.3
+  flutter_custom_tab_bar: ^1.2.0
+  
+  
 
 dev_dependencies:
   flutter_test:

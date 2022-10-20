@@ -16,10 +16,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   String? token;
   static bool _isSet = false;
-  // bool _isSet = false;
   var data = EntryViewModel(entryRepository: EntryLocal());
 
-  //var _isSet = data.Checktoken();
 
   _navigatettohomepage() async {
     var token = await data.Gettokenformpref();

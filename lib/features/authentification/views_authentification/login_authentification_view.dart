@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../bottom_navigation_bar.dart';

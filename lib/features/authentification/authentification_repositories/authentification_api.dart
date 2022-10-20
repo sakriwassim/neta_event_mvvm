@@ -6,17 +6,15 @@ import '../models_authentification/response_model.dart';
 import 'authentification_repository.dart';
 
 class AuthentificationApi extends AuthentificationRepository {
-  //List tonken = [];
   String? verif;
   String? authentificationtoken;
   int? code;
   String? token;
+
   @override
   Future<bool> login(AuthentificationModel registerModel) async {
     try {
-      // final eventId = eventModel.id;
       final eventModelJson = registerModel.toJSON();
-
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -31,11 +29,13 @@ class AuthentificationApi extends AuthentificationRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       var responsebodydecode = jsonDecode(response.body);
+      print(responsebodydecode);
 
       AuthentificationResponseModel authentificationResponseModel =
           AuthentificationResponseModel.fromJson(responsebodydecode);
 
       var token = authentificationResponseModel.data.token;
+      //var iduser = authentificationResponseModel.code;
       var code = authentificationResponseModel.code;
 
       print(token);
@@ -44,6 +44,7 @@ class AuthentificationApi extends AuthentificationRepository {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
       prefs.setString("token", authentificationtoken.toString());
+      //  prefs.setString("iduser", authentificationtoken.toString());
       print("Seccess");
 
       return true;

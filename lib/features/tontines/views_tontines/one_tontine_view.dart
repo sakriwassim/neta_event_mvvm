@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
-
 import '../../../core/widgets/big_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';

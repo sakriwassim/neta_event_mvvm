@@ -1,5 +1,4 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:custom_slider/custom_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
@@ -92,8 +91,9 @@ class _AddEventViewState extends State<AddEventView> {
                 },
                 child: Text("Parcourire ce calendrier")),
             Text('${_dataTime}'),
-            Padding(
-              padding: const EdgeInsets.all(15),
+            Container(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 5, bottom: 5),
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "localisation",
@@ -111,100 +111,111 @@ class _AddEventViewState extends State<AddEventView> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SizedBox(
-                height: 120,
-                child: FutureBuilder<List<OneCategorieViewModel>>(
-                  future: datacategorie.FetchAllCategories(),
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else {
-                      categories = snapshot.data;
-                      return Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: categories?.length,
-                            itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      selectedIndex = index;
-                                    });
-                                  },
-                                  child: CategorieIconWidget(
-                                    libelle: categories![index].libelle,
-                                    backgroundColor: selectedIndex == index
-                                        ? Color(0xffD2286A)
-                                        : Colors.grey,
-                                  ),
-                                )),
-                      );
-                    }
-                  }),
-                ),
+            Container(
+              margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5),
+              alignment: Alignment.topLeft,
+              child: Text("Categories",
+                  style: TextStyle(
+                    fontFamily: 'AirbnbCereal',
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            SizedBox(
+              height: 120,
+              child: FutureBuilder<List<OneCategorieViewModel>>(
+                future: datacategorie.FetchAllCategories(),
+                builder: ((context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
+                    categories = snapshot.data;
+                    return Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categories?.length,
+                          itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                  });
+                                },
+                                child: CategorieIconWidget(
+                                  libelle: categories![index].libelle,
+                                  backgroundColor: selectedIndex == index
+                                      ? Color(0xffD2286A)
+                                      : Colors.grey,
+                                ),
+                              )),
+                    );
+                  }
+                }),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text("Selection le prix",
-                          style: TextStyle(
-                            fontFamily: 'AirbnbCereal',
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Text("${_currentSliderValue.toInt()}",
-                          style: TextStyle(
-                            fontFamily: 'AirbnbCereal',
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-
-                  child: Slider(
-                    value: _currentSliderValue,
-                    max: 100,
-                    divisions: 100,
-                    label: _currentSliderValue.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        _currentSliderValue = value;
-                      });
-                    },
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text("Selection le prix",
+                            style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text("${_currentSliderValue.toInt()}",
+                            style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ),
+                    ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
 
-                  // child: CustomSlider(
-                  //     assetImage: 'assets/icon_add_event/SliderIcon.png',
-                  //     inActiveTrackColor: Colors.pink,
-                  //     linearGradient:
-                  //         LinearGradient(colors: [Colors.pink, Colors.white]),
-                  //     trackHeight: 2.0,
-                  //     max: 100.0,
-                  //     min: 0.0,
-                  //     assetImageHeight: 30,
-                  //     assetImageWidth: 30,
-                  //     divisions: 100),
-                ),
-              ],
+                    child: Slider(
+                      value: _currentSliderValue,
+                      max: 100,
+                      divisions: 100,
+                      label: _currentSliderValue.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {
+                          _currentSliderValue = value;
+                        });
+                      },
+                    ),
+                    // child: CustomSlider(
+                    //     assetImage: 'assets/icon_add_event/SliderIcon.png',
+                    //     inActiveTrackColor: Colors.pink,
+                    //     linearGradient:
+                    //         LinearGradient(colors: [Colors.pink, Colors.white]),
+                    //     trackHeight: 2.0,
+                    //     max: 100.0,
+                    //     min: 0.0,
+                    //     assetImageHeight: 30,
+                    //     assetImageWidth: 30,
+                    //     divisions: 100),
+                  ),
+                ],
+              ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
+            Container(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 5, bottom: 5),
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "publicite",

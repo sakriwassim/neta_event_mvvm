@@ -50,7 +50,7 @@ class EventsApi extends EventsRepository {
 
       var list = responsebody as List;
       eventsList = list.map((event) => EventModel.fromJson(event)).toList();
-      //  print(responsebody);
+
       return eventsList;
     } catch (e) {
       print(e);

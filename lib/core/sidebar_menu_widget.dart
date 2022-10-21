@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../features/authentification/views_authentification/login_authentification_view.dart';
+import '../features/user/view_user/one_user_view.dart';
 import '../features/user/view_user/user_view.dart';
 
 class SideBarMenu extends StatelessWidget {
@@ -69,7 +70,7 @@ class SideBarMenu extends StatelessWidget {
               title: Text('Profile'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserView()));
+                    MaterialPageRoute(builder: (context) => OneUserView()));
               },
             ),
           ),

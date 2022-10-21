@@ -8,11 +8,11 @@ InputDecoration textFieldDecoration(String labelText, String hintText) {
     fillColor: Colors.white,
     filled: true,
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
+      borderRadius: BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
     ),
     border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(
           width: 1,
         )),

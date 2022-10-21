@@ -26,6 +26,8 @@ dependencies:
   calendar_date_picker2: ^0.2.5
   custom_slider: ^0.0.3
   flutter_custom_tab_bar: ^1.2.0
+  flutter_svg: ^1.1.5
+  
   
   
 
@@ -46,6 +48,7 @@ flutter:
     - assets/
     - assets/SlashScreen/
     - assets/icon_add_event/
+    - assets/icon_user/
 
 
  

@@ -32,4 +32,16 @@ class EventsLocal extends EventsRepository {
     // TODO: implement deleteEventByID
     throw UnimplementedError();
   }
+  
+  @override
+  Future<EventModel> getEventByEventsByCategorie(int id) {
+    // TODO: implement getEventByEventsByCategorie
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<EventModel>> getEventByCategorie(int id) {
+    // TODO: implement getEventByCategorie
+    throw UnimplementedError();
+  }
 }

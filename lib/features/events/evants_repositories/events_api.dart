@@ -59,6 +59,33 @@ class EventsApi extends EventsRepository {
   }
 
   @override
+  Future<List<EventModel>> getEventByCategorie(int id) async {
+    try {
+      List<EventModel> eventsList = [];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+
+      var headersa = {'Authorization': 'Bearer ${token!}'};
+
+      String link =
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/EventsByCategorie/$id';
+
+      var url = Uri.parse(link);
+
+      var response = await http.get(url, headers: headersa);
+      var responsebody = jsonDecode(response.body);
+
+      var list = responsebody as List;
+      eventsList = list.map((event) => EventModel.fromJson(event)).toList();
+
+      return eventsList;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
+  @override
   Future<EventModel> updateEventByID(EventModel eventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -145,4 +172,10 @@ class EventsApi extends EventsRepository {
       return false;
     }
   }
+
+  // @override
+  // Future<List<EventModel>> getEventByCategorie(int id) {
+  //   // TODO: implement getEventByCategorie
+  //   throw UnimplementedError();
+  // }
 }

@@ -128,6 +128,8 @@ class _OnTontineViewState extends State<OnTontineView> {
                   )
                 ],
               );
+            
+            
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }

@@ -208,8 +208,8 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           SizedBox(
                             height: 260,
-                            child: FutureBuilder<List<OneCategorieViewModel>>(
-                              future: datacategorie.FetchAllCategories(),
+                            child: FutureBuilder<List<OneEventViewModel>>(
+                              future: data.GetEventByCategorie(2),
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
@@ -225,9 +225,11 @@ class _HomeViewState extends State<HomeView> {
                                       itemBuilder: (context, index) =>
                                           ExclusiveCardWidget(
                                         image: 'assets/122.png',
-                                        adresse: '',
-                                        libelle: '',
-                                        prix: '',
+                                        adresse:
+                                            "${categories![index].adresse}",
+                                        libelle:
+                                            "${categories![index].libelle}",
+                                        prix: "${categories![index].prix}",
                                       ),
                                     ),
                                   );

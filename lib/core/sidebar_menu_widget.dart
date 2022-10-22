@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../features/authentification/views_authentification/login_authentification_view.dart';
-import '../features/user/view_user/one_user_view.dart';
-import '../features/user/view_user/user_view.dart';
 
 class SideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
@@ -69,8 +67,10 @@ class SideBarMenu extends StatelessWidget {
               leading: Icon(Icons.person),
               title: Text('Profile'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => OneUserView()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => OneUserView(id: 1)));
               },
             ),
           ),

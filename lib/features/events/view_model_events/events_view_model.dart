@@ -11,6 +11,13 @@ class EventsViewModel {
   EventsRepository? eventsRepository;
   EventsViewModel({this.eventsRepository});
 
+  Future<List<OneEventViewModel>> GetEventByCategorie(int id) async {
+    List<EventModel> list = await eventsRepository!.getEventByCategorie(id);
+    return list
+        .map((listEvent) => OneEventViewModel(eventModel: listEvent))
+        .toList();
+  }
+
   Future<List<OneEventViewModel>> FetchAllEvents() async {
     List<EventModel> list = await eventsRepository!.getAllEvents();
     return list

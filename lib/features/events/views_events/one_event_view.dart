@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
+import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/update_event_view.dart';
 
 import '../../../core/widgets/big_button_style.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
-import 'events_view.dart';
+import 'events_exclusives_view.dart';
 
 class OnEventView extends StatefulWidget {
   final int id;

@@ -9,14 +9,14 @@ import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_
 
 import 'one_event_view.dart';
 
-class GetAllEventView extends StatefulWidget {
-  const GetAllEventView({super.key});
+class GetExcusivesEventView extends StatefulWidget {
+  const GetExcusivesEventView({super.key});
 
   @override
-  State<GetAllEventView> createState() => _GetAllEventViewState();
+  State<GetExcusivesEventView> createState() => _GetExcusivesEventViewState();
 }
 
-class _GetAllEventViewState extends State<GetAllEventView> {
+class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override
@@ -66,7 +66,7 @@ class _GetAllEventViewState extends State<GetAllEventView> {
               },
               child: Center(
                 child: FutureBuilder<List<OneEventViewModel>>(
-                  future: data.FetchAllEvents(),
+                  future: data.GetEventByCategorie(2),
                   builder: ((context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();

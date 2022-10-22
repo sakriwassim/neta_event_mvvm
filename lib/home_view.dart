@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/core/widgets/exclusive_card_widget.dart';
-import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
+import 'package:neta_event_mvvm/features/events/views_events/events_exclusives_view.dart';
 import 'features/Categories/categories_repositories/categories_api.dart';
 import 'features/Categories/view_model_categories/categories_view_model.dart';
 import 'features/Categories/view_model_categories/one_categorie_view_model.dart';
@@ -13,6 +13,7 @@ import 'features/authentification/view_model_authentification/authentification_v
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
+import 'features/events/views_events/events_view.dart';
 import 'features/events/views_events/one_event_view.dart';
 import 'features/events/views_events/widgets/event_card_widget.dart';
 import 'features/packs/packs_repositories/packs_api.dart';
@@ -47,8 +48,6 @@ class _HomeViewState extends State<HomeView> {
   logout() {
     setState(() {
       data2.Cleanpref();
-      // if (verif == true) {
-      //}
     });
   }
 
@@ -155,6 +154,7 @@ class _HomeViewState extends State<HomeView> {
             return RefreshIndicator(
                 onRefresh: () async {
                   setState(() {
+                    data.GetEventByCategorie(2);
                     data.FetchAllEvents();
                     datapack.FetchAllPacks();
                     datatontine.FetchAllTontines();
@@ -186,7 +186,14 @@ class _HomeViewState extends State<HomeView> {
                                 Row(
                                   children: [
                                     TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  GetExcusivesEventView()),
+                                        );
+                                      },
                                       child: const Text(
                                         "Voir tout",
                                         style: TextStyle(
@@ -219,19 +226,33 @@ class _HomeViewState extends State<HomeView> {
                                   var categories = snapshot.data;
                                   return Expanded(
                                     child: ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: categories?.length,
-                                      itemBuilder: (context, index) =>
-                                          ExclusiveCardWidget(
-                                        image: 'assets/122.png',
-                                        adresse:
-                                            "${categories![index].adresse}",
-                                        libelle:
-                                            "${categories![index].libelle}",
-                                        prix: "${categories![index].prix}",
-                                      ),
-                                    ),
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: categories?.length,
+                                        itemBuilder: (context, index) =>
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          OnEventView(
+                                                            id: categories[
+                                                                    index]
+                                                                .id,
+                                                          )),
+                                                );
+                                              },
+                                              child: ExclusiveCardWidget(
+                                                image: 'assets/122.png',
+                                                adresse:
+                                                    "${categories![index].adresse}",
+                                                libelle:
+                                                    "${categories![index].libelle}",
+                                                prix:
+                                                    "${categories![index].prix}",
+                                              ),
+                                            )),
                                   );
                                 }
                               }),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../features/authentification/views_authentification/login_authentification_view.dart';
+import '../features/users/views_events/events_view.dart';
 
 class SideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
@@ -74,7 +75,10 @@ class SideBarMenu extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.event),
             title: const Text('Evenements'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => GetAllUserView()));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.favorite_border),

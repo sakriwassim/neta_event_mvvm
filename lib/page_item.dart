@@ -16,8 +16,9 @@ class _PageItemState extends State<PageItem>
     // print('build index:${widget.index} page');
     return Container(
       // color: Colors.pink,
-      child: Text('index:${widget.index}'),
       alignment: Alignment.center,
+      // color: Colors.pink,
+      child: Text('index:${widget.index}'),
     );
   }
 

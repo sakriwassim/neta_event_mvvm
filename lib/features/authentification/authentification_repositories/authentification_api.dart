@@ -12,9 +12,9 @@ class AuthentificationApi extends AuthentificationRepository {
   String? token;
 
   @override
-  Future<bool> login(AuthentificationModel registerModel) async {
+  Future<bool> login(AuthentificationModel authentificationModel) async {
     try {
-      final eventModelJson = registerModel.toJSON();
+      final eventModelJson = authentificationModel.toJSON();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -38,18 +38,18 @@ class AuthentificationApi extends AuthentificationRepository {
       //var iduser = authentificationResponseModel.code;
       var code = authentificationResponseModel.code;
 
-     // print(token);
-     // print(code);
+      // print(token);
+      // print(code);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
       prefs.setString("token", authentificationtoken.toString());
       //  prefs.setString("iduser", authentificationtoken.toString());
-    //  print("Seccess");
+      //  print("Seccess");
 
       return true;
     } catch (e) {
-     // print(e);
+      // print(e);
       return false;
     }
   }

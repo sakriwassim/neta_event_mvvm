@@ -14,11 +14,11 @@ class CategorieCardWidget extends StatelessWidget {
           Image.asset('assets/123.png'),
           Text(
             libelle,
-            style:const TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontFamily: 'AirbnbCereal',
                 fontSize: 20,
-                fontWeight: FontWeight.w500) ,
+                fontWeight: FontWeight.w500),
           )
         ],
       ),

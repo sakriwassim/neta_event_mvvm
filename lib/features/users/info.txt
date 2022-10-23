@@ -1,0 +1,15 @@
+{
+    "id": 2,
+    "role_id": "1",
+    "packs_id": "1",
+    "nom_complet": "wassim",
+    "telephone": "70213645",
+    "adresse": "Faladiè",
+    "image": "https://cheminverslimage",
+    "email": "wassim",
+    "email_verified_at": null,
+    "password": "$2y$10$A0fS371mzOa591ePZcpEDugnFQUGlxjFjAgacDgN4IfFKh79qp6ta",
+    "remember_token": null,
+    "created_at": "2022-10-21T19:30:24.000000Z",
+    "updated_at": "2022-10-21T19:30:24.000000Z"
+}

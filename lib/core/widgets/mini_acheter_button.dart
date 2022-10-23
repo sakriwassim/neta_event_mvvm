@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/colors.dart';
 
-class MiniButton extends StatelessWidget {
+class MiniAcheterButton extends StatelessWidget {
   String text;
-  MiniButton({Key? key, required this.text}) : super(key: key);
+  MiniAcheterButton({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 25,
       width: 60,
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        gradient: gradientbackground,
+        color: Colors.grey,
       ),
       child: Center(
         child: Text(

@@ -7,17 +7,17 @@ InputDecoration textFieldDecoration(String labelText, String hintText) {
   return InputDecoration(
     fillColor: Colors.white,
     filled: true,
-    focusedBorder: OutlineInputBorder(
+    focusedBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
     ),
-    border: OutlineInputBorder(
+    border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(
           width: 1,
         )),
     labelText: labelText,
-    labelStyle: TextStyle(
+    labelStyle:const TextStyle(
       color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
     ),
     hintText: hintText,
@@ -35,11 +35,11 @@ InputDecoration textFieldDecorationWithicon(
   return InputDecoration(
     filled: true,
     fillColor: Colors.white,
-    focusedBorder: OutlineInputBorder(
+    focusedBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
       borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
     ),
-    border: OutlineInputBorder(
+    border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(4)),
         borderSide: BorderSide(
           width: 1,
@@ -49,7 +49,7 @@ InputDecoration textFieldDecorationWithicon(
       nameOfIcon,
       color: colorOfIcon,
     ),
-    labelStyle: TextStyle(
+    labelStyle: const TextStyle(
       color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
     ),
     hintText: hintText,

@@ -12,7 +12,7 @@ class CategorieIconWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 80,
             child: CircleAvatar(
               backgroundColor: backgroundColor,
@@ -21,7 +21,7 @@ class CategorieIconWidget extends StatelessWidget {
           ),
           Text(
             libelle,
-            style: TextStyle(
+            style:const TextStyle(
                 color: Colors.black,
                 fontFamily: 'AirbnbCereal',
                 fontSize: 20,

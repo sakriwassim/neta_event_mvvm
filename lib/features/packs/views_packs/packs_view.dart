@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
-
 import '../../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/one_pack_view_model.dart';
 import '../view_model_packs/packs_view_model.dart';
-import 'add_pack_view.dart';
 
 class GetAllPackView extends StatefulWidget {
   const GetAllPackView({super.key});
@@ -23,7 +20,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme:const IconThemeData(
           color: Colors.black,
         ),
         shadowColor: Colors.white,
@@ -34,7 +31,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
           children: [
             Text(
               data.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -55,7 +52,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
                   data.FetchAllPacks();
                 });
 
-                return Future.delayed(Duration(seconds: 2));
+                return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OnePackViewModel>>(
@@ -79,18 +76,18 @@ class _GetAllPackViewState extends State<GetAllPackView> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children:const<Widget>[
+             Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+             Text(
               'Just turn off your internet.',
             ),
           ],

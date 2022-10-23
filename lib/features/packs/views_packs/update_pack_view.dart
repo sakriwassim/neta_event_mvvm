@@ -28,13 +28,13 @@ class _UpdatePackViewState extends State<UpdatePackView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "MODIFIER",
             style: TextStyle(
               color: Colors.black,
@@ -101,31 +101,29 @@ class _UpdatePackViewState extends State<UpdatePackView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    var event = {
-                      "id": 1,
-                      "type_pack_id": "8",
-                      "libelle": libellefield,
-                      "montant": "Description du pack",
-                      "nbre_events": "1500",
-                      "nbre_jr_pubs": "21",
-                      "created_at": "2022-10-11T11:51:57.000000Z",
-                      "updated_at": "2022-10-11T11:51:57.000000Z"
-                    };
+            InkWell(
+              onTap: () {
+                if (formkey.currentState!.validate()) {
+                  var event = {
+                    "id": 1,
+                    "type_pack_id": "8",
+                    "libelle": libellefield,
+                    "montant": "Description du pack",
+                    "nbre_events": "1500",
+                    "nbre_jr_pubs": "21",
+                    "created_at": "2022-10-11T11:51:57.000000Z",
+                    "updated_at": "2022-10-11T11:51:57.000000Z"
+                  };
 
-                    PackModel eventformJson = PackModel.fromJson(event);
-                    print(eventformJson);
+                  PackModel eventformJson = PackModel.fromJson(event);
+                  print(eventformJson);
 
-                    setState(() {
-                      data.UpdatePackByID(eventformJson);
-                    });
-                  }
-                },
-                child: MediumButton(text: "MODIFIER"),
-              ),
+                  setState(() {
+                    data.UpdatePackByID(eventformJson);
+                  });
+                }
+              },
+              child: MediumButton(text: "MODIFIER"),
             ),
           ],
         ),

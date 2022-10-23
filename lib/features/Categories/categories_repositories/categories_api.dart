@@ -15,8 +15,7 @@ class CategoriesApi extends CategoriesRepository {
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/' +
-              "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -50,7 +49,7 @@ class CategoriesApi extends CategoriesRepository {
       var list = responsebody as List;
       ticketsList =
           list.map((ticket) => CategorieModel.fromJson(ticket)).toList();
-      print(responsebody);
+      //print(responsebody);
       return ticketsList;
     } catch (e) {
       print(e);
@@ -69,8 +68,7 @@ class CategoriesApi extends CategoriesRepository {
         'authorization': 'Basic +$token'
       };
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/' +
-              "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -104,9 +102,9 @@ class CategoriesApi extends CategoriesRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      // print(responsebody);
     } catch (e) {
-      print(e);
+      //  print(e);
     }
     return true;
   }
@@ -137,9 +135,9 @@ class CategoriesApi extends CategoriesRepository {
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      // print(responsebody);
     } catch (e) {
-      print(e);
+      //print(e);
     }
 
     return addCategorieModel;

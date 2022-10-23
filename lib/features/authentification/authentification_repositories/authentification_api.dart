@@ -29,7 +29,7 @@ class AuthentificationApi extends AuthentificationRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       var responsebodydecode = jsonDecode(response.body);
-      print(responsebodydecode);
+      //print(responsebodydecode);
 
       AuthentificationResponseModel authentificationResponseModel =
           AuthentificationResponseModel.fromJson(responsebodydecode);
@@ -38,18 +38,18 @@ class AuthentificationApi extends AuthentificationRepository {
       //var iduser = authentificationResponseModel.code;
       var code = authentificationResponseModel.code;
 
-      print(token);
-      print(code);
+     // print(token);
+     // print(code);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
       prefs.setString("token", authentificationtoken.toString());
       //  prefs.setString("iduser", authentificationtoken.toString());
-      print("Seccess");
+    //  print("Seccess");
 
       return true;
     } catch (e) {
-      print(e);
+     // print(e);
       return false;
     }
   }
@@ -72,10 +72,10 @@ class AuthentificationApi extends AuthentificationRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
 
-      print(responsebody);
+      // print(responsebody);
       return true;
     } catch (e) {
-      print(e);
+      // print(e);
       return false;
     }
   }

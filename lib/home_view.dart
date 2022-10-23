@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 203, 20, 20),
+        backgroundColor: const Color.fromARGB(255, 203, 20, 20),
         title: Column(
           children: const [
             Text(
@@ -83,13 +83,13 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: IconButton(
-                icon: Icon(Icons.notifications_none,
+                icon: const Icon(Icons.notifications_none,
                     color: Colors.white, size: 30),
                 onPressed: () {}),
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(60.0),
+          preferredSize: const Size.fromHeight(60.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -97,7 +97,7 @@ class _HomeViewState extends State<HomeView> {
                 onTap: () {},
                 child: const Icon(Icons.search, color: Colors.white, size: 30),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 150,
                 height: 30,
                 child: TextField(
@@ -118,7 +118,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
-                    color: Color(0xFF701D53),
+                    color: const Color(0xFF701D53),
                   ),
                   child: Row(
                     children: [
@@ -127,10 +127,10 @@ class _HomeViewState extends State<HomeView> {
                         width: 20,
                         height: 20,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 3,
                       ),
-                      Text(
+                      const Text(
                         "Filtres",
                         style: TextStyle(
                           fontSize: 15,
@@ -161,7 +161,7 @@ class _HomeViewState extends State<HomeView> {
                     datacategorie.FetchAllCategories();
                   });
 
-                  return Future.delayed(Duration(seconds: 2));
+                  return Future.delayed(const Duration(seconds: 2));
                 },
                 child: SingleChildScrollView(
                     child: Column(
@@ -191,7 +191,7 @@ class _HomeViewState extends State<HomeView> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  GetExcusivesEventView()),
+                                                  const GetExcusivesEventView()),
                                         );
                                       },
                                       child: const Text(
@@ -204,7 +204,7 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                       ),
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.forward_outlined,
                                       color: Colors.grey,
                                     ),
@@ -220,40 +220,36 @@ class _HomeViewState extends State<HomeView> {
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   var categories = snapshot.data;
-                                  return Expanded(
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: categories?.length,
-                                        itemBuilder: (context, index) =>
-                                            GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          OnEventView(
-                                                            id: categories[
-                                                                    index]
-                                                                .id,
-                                                          )),
-                                                );
-                                              },
-                                              child: ExclusiveCardWidget(
-                                                image: 'assets/122.png',
-                                                adresse:
-                                                    "${categories![index].adresse}",
-                                                libelle:
-                                                    "${categories![index].libelle}",
-                                                prix:
-                                                    "${categories![index].prix}",
-                                              ),
-                                            )),
-                                  );
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: categories?.length,
+                                      itemBuilder: (context, index) =>
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OnEventView(
+                                                          id: categories[index]
+                                                              .id,
+                                                        )),
+                                              );
+                                            },
+                                            child: ExclusiveCardWidget(
+                                              image: 'assets/122.png',
+                                              adresse:
+                                                  "${categories![index].adresse}",
+                                              libelle:
+                                                  "${categories[index].libelle}",
+                                              prix: "${categories[index].prix}",
+                                            ),
+                                          ));
                                 }
                               }),
                             ),
@@ -277,7 +273,7 @@ class _HomeViewState extends State<HomeView> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    GetAllCategorieView()),
+                                                    const GetAllCategorieView()),
                                           );
                                         },
                                         child: const Text("Voir tout",
@@ -306,21 +302,18 @@ class _HomeViewState extends State<HomeView> {
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   var categories = snapshot.data;
-                                  return Expanded(
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: categories?.length,
-                                        itemBuilder: (context, index) =>
-                                            CategorieCardWidget(
-                                              libelle:
-                                                  categories![index].libelle,
-                                            )),
-                                  );
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: categories?.length,
+                                      itemBuilder: (context, index) =>
+                                          CategorieCardWidget(
+                                            libelle: categories![index].libelle,
+                                          ));
                                 }
                               }),
                             ),
@@ -329,24 +322,24 @@ class _HomeViewState extends State<HomeView> {
                             padding: const EdgeInsets.only(top: 10.0),
                             child: Row(
                               children: [
-                                Text("Evènements",
+                                const Text("Evènements",
                                     style: TextStyle(
                                       fontFamily: 'AirbnbCereal',
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     )),
-                                Spacer(),
+                                const Spacer(),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              GetAllEventView()),
+                                              const GetAllEventView()),
                                     );
                                   },
                                   child: Row(
-                                    children: [
+                                    children: const [
                                       Text("Voir tout",
                                           style: TextStyle(
                                             fontFamily: 'AirbnbCereal',
@@ -374,7 +367,7 @@ class _HomeViewState extends State<HomeView> {
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   var events = snapshot.data;
@@ -410,24 +403,24 @@ class _HomeViewState extends State<HomeView> {
                             padding: const EdgeInsets.only(top: 14.0),
                             child: Row(
                               children: [
-                                Text("Packs",
+                                const Text("Packs",
                                     style: TextStyle(
                                       fontFamily: 'AirbnbCereal',
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     )),
-                                Spacer(),
+                                const Spacer(),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              GetAllPackView()),
+                                              const GetAllPackView()),
                                     );
                                   },
                                   child: Row(
-                                    children: [
+                                    children: const [
                                       Text("Voir tout",
                                           style: TextStyle(
                                             fontFamily: 'AirbnbCereal',
@@ -455,20 +448,18 @@ class _HomeViewState extends State<HomeView> {
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   var packs = snapshot.data;
-                                  return Expanded(
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: packs?.length,
-                                        itemBuilder: (context, index) =>
-                                            PackCardWidget(
-                                              libelle: packs![index].libelle,
-                                            )),
-                                  );
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: packs?.length,
+                                      itemBuilder: (context, index) =>
+                                          PackCardWidget(
+                                            libelle: packs![index].libelle,
+                                          ));
                                 }
                               }),
                             ),
@@ -477,24 +468,24 @@ class _HomeViewState extends State<HomeView> {
                             padding: const EdgeInsets.only(top: 10.0),
                             child: Row(
                               children: [
-                                Text("Tontine",
+                                const Text("Tontine",
                                     style: TextStyle(
                                       fontFamily: 'AirbnbCereal',
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     )),
-                                Spacer(),
+                                const Spacer(),
                                 InkWell(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              GetAllTontineView()),
+                                              const GetAllTontineView()),
                                     );
                                   },
                                   child: Row(
-                                    children: [
+                                    children: const [
                                       Text("Voir tout",
                                           style: TextStyle(
                                             fontFamily: 'AirbnbCereal',
@@ -522,36 +513,34 @@ class _HomeViewState extends State<HomeView> {
                               builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   var packs = snapshot.data;
-                                  return Expanded(
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: packs?.length,
-                                        itemBuilder: (context, index) =>
-                                            GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          OnTontineView(
-                                                            id: packs[index].id,
-                                                          )),
-                                                );
-                                              },
-                                              child: TontineCardWidget(
-                                                libelle: packs![index].libelle,
-                                                montant_regulier: packs[index]
-                                                    .montant_regulier,
-                                                nbr_participant: packs[index]
-                                                    .nbr_participant,
-                                              ),
-                                            )),
-                                  );
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: packs?.length,
+                                      itemBuilder: (context, index) =>
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OnTontineView(
+                                                          id: packs[index].id,
+                                                        )),
+                                              );
+                                            },
+                                            child: TontineCardWidget(
+                                              libelle: packs![index].libelle,
+                                              montant_regulier:
+                                                  packs[index].montant_regulier,
+                                              nbr_participant:
+                                                  packs[index].nbr_participant,
+                                            ),
+                                          ));
                                 }
                               }),
                             ),
@@ -562,18 +551,18 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 )));
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children: const <Widget>[
+            Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+            Text(
               'Just turn off your internet.',
             ),
           ],

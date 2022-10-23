@@ -10,14 +10,14 @@ class MediumButton extends StatelessWidget {
     return Container(
       height: 50,
       width: 110,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13.0),
         gradient: gradientbackground,
       ),
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             color: Colors.white,
           ),

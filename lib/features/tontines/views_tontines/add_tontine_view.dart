@@ -120,7 +120,7 @@ class _AddTontineViewState extends State<AddTontineView> {
 
                       TontineModel ticketformJson =
                           TontineModel.fromJson(ticket);
-                      print(ticketformJson);
+                     // print(ticketformJson);
 
                       setState(() {
                         data.AddTontine(ticketformJson);

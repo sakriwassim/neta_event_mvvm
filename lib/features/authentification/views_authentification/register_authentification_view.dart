@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/widgets/big_button_style.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
 import '../../../core/widgets/signein_signeup_button_style.dart';
@@ -28,13 +25,13 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "S'inscrire",
             style: TextStyle(
               color: Colors.black,
@@ -294,14 +291,12 @@ class _RegisterViewState extends State<RegisterView> {
                                     MediaQuery.of(context).size.height * 0.1,
                                 //scale: 0.1,
                               ),
-                              Expanded(
-                                child: Text(
-                                  "Se conncter avec Google",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                              const Text(
+                                "Se conncter avec Google",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -316,13 +311,13 @@ class _RegisterViewState extends State<RegisterView> {
                       onTap: () {},
                       child: Container(
                           height: 60,
-                          padding: EdgeInsets.only(
+                          padding:const EdgeInsets.only(
                             left: 10.0,
                             right: 10.0,
                             top: 10,
                             bottom: 5,
                           ),
-                          decoration: new BoxDecoration(
+                          decoration:  BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(13.0),
                           ),
@@ -335,14 +330,12 @@ class _RegisterViewState extends State<RegisterView> {
                                     MediaQuery.of(context).size.height * 0.1,
                                 //scale: 0.1,
                               ),
-                              Expanded(
-                                child: Text(
-                                  " Se conncter avec Facebook",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                              const Text(
+                                " Se conncter avec Facebook",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -357,7 +350,7 @@ class _RegisterViewState extends State<RegisterView> {
                     crossAxisAlignment: CrossAxisAlignment
                         .center, //Center Row contents vertically,
                     children: [
-                      Text(
+                      const Text(
                         " Vous n'avez pas un compte",
                         style: TextStyle(
                           fontSize: 13,
@@ -372,7 +365,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 builder: (context) => LoginView(),
                               ));
                         },
-                        child: Text(
+                        child: const Text(
                           " Signin",
                           style: TextStyle(
                             fontSize: 15,

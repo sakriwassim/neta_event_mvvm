@@ -22,12 +22,12 @@ class TontineCardWidget extends StatelessWidget {
           ClipPath(
               clipper: TriangleClipper(),
               child: Container(
-                decoration: BoxDecoration(gradient: gradientbackground),
+                decoration: const BoxDecoration(gradient: gradientbackground),
                 height: 220,
                 width: 220,
               )),
           Padding(
-            padding: EdgeInsets.only(top: 73, left: 20),
+            padding: const EdgeInsets.only(top: 73, left: 20),
             child: Container(
               decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
@@ -51,7 +51,7 @@ class TontineCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           libelle!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: 'AirbnbCereal',
                               fontSize: 8,
                               fontWeight: FontWeight.w500,
@@ -64,7 +64,7 @@ class TontineCardWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           'Lorem espium anturium ka',
                           style: TextStyle(
@@ -83,7 +83,7 @@ class TontineCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           '$montant_regulier\$ Chaque trimestre',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'AirbnbCereal',
                             fontSize: 10,
                             color: Color(0xff4F4F4F),
@@ -100,7 +100,7 @@ class TontineCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           '$nbr_participant participants',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'AirbnbCereal',
                             fontSize: 10,
                             color: Color(0xff4F4F4F),

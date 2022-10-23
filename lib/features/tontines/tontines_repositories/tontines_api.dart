@@ -50,7 +50,7 @@ class TontinesApi extends TontinesRepository {
       var list = responsebody as List;
       ticketsList =
           list.map((ticket) => TontineModel.fromJson(ticket)).toList();
-      print(responsebody);
+     // print(responsebody);
       return ticketsList;
     } catch (e) {
       print(e);
@@ -102,7 +102,7 @@ class TontinesApi extends TontinesRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+    //  print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -134,7 +134,7 @@ class TontinesApi extends TontinesRepository {
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+     // print(responsebody);
     } catch (e) {
       print(e);
     }

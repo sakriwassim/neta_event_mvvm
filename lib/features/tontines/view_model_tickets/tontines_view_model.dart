@@ -1,8 +1,4 @@
-import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 
-import '../models_tontines/add_tontine_model.dart';
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_repository.dart';
 import 'one_tontine_view_model.dart';

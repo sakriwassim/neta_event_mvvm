@@ -33,13 +33,13 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "MODIFIER",
             style: TextStyle(
               color: Colors.black,
@@ -123,7 +123,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   };
 
                   TontineModel ticketformJson = TontineModel.fromJson(ticket);
-                  print(ticketformJson);
+                //  print(ticketformJson);
 
                   var update = await data.UpdateTontineByID(ticketformJson);
 

@@ -11,8 +11,8 @@ class AuthentificationViewModel {
     var authentification =
         await authentificationRepository!.login(authentificationModel);
 
-    print("authentificationviewmodel");
-    print(authentification);
+    // print("authentificationviewmodel");
+    // print(authentification);
 
     return authentification;
   }

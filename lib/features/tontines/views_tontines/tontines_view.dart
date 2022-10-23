@@ -29,7 +29,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         shadowColor: Colors.white,
@@ -40,7 +40,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
           children: [
             Text(
               data.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -69,7 +69,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                   data.FetchAllTontines();
                 });
 
-                return Future.delayed(Duration(seconds: 2));
+                return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OneTontineViewModel>>(
@@ -109,18 +109,18 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children: const <Widget>[
+            Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+            Text(
               'Just turn off your internet.',
             ),
           ],

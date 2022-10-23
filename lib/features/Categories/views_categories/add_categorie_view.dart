@@ -7,7 +7,7 @@ import '../categories_repositories/categories_api.dart';
 import '../view_model_categories/categories_view_model.dart';
 
 class AddCategorieView extends StatefulWidget {
-  AddCategorieView({
+  const AddCategorieView({
     super.key,
   });
 
@@ -28,13 +28,13 @@ class _AddCategorieViewState extends State<AddCategorieView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Add Categorie",
             style: TextStyle(
               color: Colors.black,
@@ -101,29 +101,27 @@ class _AddCategorieViewState extends State<AddCategorieView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                  onTap: () {
-                    if (formkey.currentState!.validate()) {
-                      var ticket = {
-                        "nbre_events": 1,
-                        "libelle": libellefield,
-                        "description": "description",
-                        "montant_total": "25000",
-                        "image": "https://lienDeLimage"
-                      };
+            InkWell(
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    var ticket = {
+                      "nbre_events": 1,
+                      "libelle": libellefield,
+                      "description": "description",
+                      "montant_total": "25000",
+                      "image": "https://lienDeLimage"
+                    };
 
-                      AddCategorieModel ticketformJson =
-                          AddCategorieModel.fromJson(ticket);
-                      print(ticketformJson);
+                    AddCategorieModel ticketformJson =
+                        AddCategorieModel.fromJson(ticket);
+                    // print(ticketformJson);
 
-                      setState(() {
-                        data.AddCategorie(ticketformJson);
-                      });
-                    }
-                  },
-                  child: MediumButton(text: "APPLIQUER")),
-            ),
+                    setState(() {
+                      data.AddCategorie(ticketformJson);
+                    });
+                  }
+                },
+                child: MediumButton(text: "APPLIQUER")),
           ],
         ),
       ),

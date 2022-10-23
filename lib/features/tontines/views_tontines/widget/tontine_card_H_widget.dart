@@ -29,10 +29,10 @@ class TontineCardWidgetH extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 120,
       child: Card(
-        margin: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -48,7 +48,7 @@ class TontineCardWidgetH extends StatelessWidget {
                     "$image",
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 150,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -57,47 +57,41 @@ class TontineCardWidgetH extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("$status",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'AirbnbCereal',
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.blue)),
                         Text("$libelle",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'AirbnbCereal',
                               color: Colors.black,
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             )),
-                        Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    child: Text("Chaque trimestre",
-                                        style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                        )),
-                                  ),
-                                  Container(
-                                    child: Text("$nbr_participant participants",
-                                        style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                const Text("Chaque trimestre",
+                                    style: TextStyle(
+                                      fontFamily: 'AirbnbCereal',
+                                      color: Colors.grey,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    )),
+                                Text("$nbr_participant participants",
+                                    style: const TextStyle(
+                                      fontFamily: 'AirbnbCereal',
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -115,19 +109,17 @@ class TontineCardWidgetH extends StatelessWidget {
                     radius: 25,
                     child: Text(
                       '$montant_regulier',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
                           color: Colors.white),
                     ), //Text
                   ), //C
-                  Container(
-                    child: InkWell(
-                      onTap: () {
-                        callbackFunction!(id);
-                      },
-                      child: MiniButton(text: "Supprimer"),
-                    ),
+                  InkWell(
+                    onTap: () {
+                      callbackFunction!(id);
+                    },
+                    child: MiniButton(text: "Supprimer"),
                   ),
                 ],
               ),

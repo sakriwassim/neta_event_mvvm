@@ -16,7 +16,7 @@ class ExclusiveCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
       elevation: 2,
       shadowColor: Colors.grey,
@@ -27,14 +27,14 @@ class ExclusiveCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(image!),
-            SizedBox(
+            const SizedBox(
               height: 6,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 "$libelle",
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'AirbnbCereal',
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -47,7 +47,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Icon(Icons.star, color: Colors.pink, size: 15),
                       Icon(Icons.star, color: Colors.pink, size: 15),
                       Icon(Icons.star, color: Colors.pink, size: 15),
@@ -55,12 +55,12 @@ class ExclusiveCardWidget extends StatelessWidget {
                       Icon(Icons.star, color: Colors.grey, size: 15),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 80,
                   ),
                   Text(
                     "Prix :$prix",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 12,
                         fontWeight: FontWeight.w700),
@@ -73,12 +73,12 @@ class ExclusiveCardWidget extends StatelessWidget {
               child: Row(
                 children: [
                   const Icon(Icons.location_on_outlined, color: Colors.grey),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
                     adresse!,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'AirbnbCereal',
                       color: Colors.grey,
                       fontSize: 13,

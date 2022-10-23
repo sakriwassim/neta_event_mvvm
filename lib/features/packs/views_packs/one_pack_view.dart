@@ -27,7 +27,7 @@ class _OnPackViewState extends State<OnPackView> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }),
         ),
       ),

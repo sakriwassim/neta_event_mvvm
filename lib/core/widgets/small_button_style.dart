@@ -10,14 +10,14 @@ class SmallButton extends StatelessWidget {
     return Container(
       height: 40,
       width: 100,
-      decoration: new BoxDecoration(
+      decoration:  BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         gradient: gradientbackground,
       ),
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             color: Colors.white,
           ),

@@ -6,7 +6,6 @@ import 'package:neta_event_mvvm/features/events/views_events/update_event_view.d
 import '../../../core/widgets/big_button_style.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
-import 'events_exclusives_view.dart';
 
 class OnEventView extends StatefulWidget {
   final int id;
@@ -24,20 +23,20 @@ class _OnEventViewState extends State<OnEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(150.0),
+          preferredSize: const Size.fromHeight(150.0),
           child: AppBar(
             elevation: 0.0,
             shadowColor: Colors.white,
-            title: Text(
+            title: const Text(
               "Event details",
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white,
             ),
-            flexibleSpace: Center(
+            flexibleSpace: const Center(
               child: Image(
                 image: AssetImage('assets/130.png'),
                 fit: BoxFit.cover,
@@ -59,7 +58,7 @@ class _OnEventViewState extends State<OnEventView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.calendar_month,
                           size: 50.0,
                           color: Color.fromARGB(255, 217, 15, 197),
@@ -73,7 +72,7 @@ class _OnEventViewState extends State<OnEventView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.map,
                           size: 50.0,
                           color: Color.fromARGB(255, 217, 15, 197),
@@ -87,13 +86,13 @@ class _OnEventViewState extends State<OnEventView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("participants actuels"),
+                        const Text("participants actuels"),
                         Text("${snapshot.data!.status}"),
                       ],
                     ),
                   ),
-                  Text("Next Owner"),
-                  Container(
+                  const Text("Next Owner"),
+                  SizedBox(
                     width: 100,
                     height: 100,
                     child: CircleAvatar(
@@ -140,7 +139,7 @@ class _OnEventViewState extends State<OnEventView> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }),
         ),
       ),

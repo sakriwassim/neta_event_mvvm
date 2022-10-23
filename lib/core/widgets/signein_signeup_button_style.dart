@@ -11,7 +11,7 @@ class SigneInUpButton extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 60,
-        decoration: new BoxDecoration(
+        decoration:  BoxDecoration(
           borderRadius: BorderRadius.circular(13.0),
           gradient: gradientbackground,
         ),
@@ -20,7 +20,7 @@ class SigneInUpButton extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
               ),

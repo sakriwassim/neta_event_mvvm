@@ -1,6 +1,3 @@
-import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';

@@ -21,9 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigatettohomepage() async {
     var token = await data.Gettokenformpref();
-    print("_isSetttttttttttttttttttttttttttt");
-    print(token);
-    Timer(Duration(seconds: 5), () async {
+    //print(token);
+    Timer(const Duration(seconds: 5), () async {
       if (token.isNotEmpty || token != "" || token != null) {
         Navigator.pushReplacement(
             context,

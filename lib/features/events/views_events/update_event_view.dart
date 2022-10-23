@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
@@ -34,13 +32,13 @@ class _UpdateEventViewState extends State<UpdateEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "MODIFIER",
             style: TextStyle(
               color: Colors.black,
@@ -128,7 +126,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                     };
 
                     EventModel eventformJson = EventModel.fromJson(event);
-                    print(eventformJson);
+                    //   print(eventformJson);
 
                     setState(() {
                       data.UpdateEventByID(eventformJson);

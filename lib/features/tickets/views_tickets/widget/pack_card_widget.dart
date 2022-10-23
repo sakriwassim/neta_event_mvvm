@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../core/widgets/mini_acheter_button.dart';
 
 class PackCardWidget extends StatelessWidget {
   String libelle;
@@ -25,41 +26,43 @@ class PackCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     libelle,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 20,
                         fontWeight: FontWeight.w500),
                   ),
-                  Text(
+                 const Text(
                     '10 euro',
                     style: TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 30,
                         fontWeight: FontWeight.w300),
                   ),
-                  Text(
+                 const Text(
                     '3 évenèments',
-                    style: const TextStyle(
+                    style:  TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
-                  Text(
+                  const Text(
                     '7 jours de publicité',
-                    style: const TextStyle(
+                    style:  TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
-                  Text(
-                    textAlign: TextAlign.center,
-                    'Acheter',
-                    style: TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400),
-                  ),
+                  // Text(
+                  //   textAlign: TextAlign.center,
+                  //   'Acheter',
+                  //   style: TextStyle(
+                  //       fontFamily: 'AirbnbCereal',
+                  //       fontSize: 14,
+                  //       color: Colors.black,
+                  //       fontWeight: FontWeight.w400),
+                  // ),
+                  InkWell(
+                      onTap: () {}, child: MiniAcheterButton(text: "ACHETER")),
                 ],
               ),
             ),

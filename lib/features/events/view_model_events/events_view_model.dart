@@ -1,6 +1,5 @@
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 
 import '../models_events/add_event_model.dart';
 import 'one_event_view_model.dart';

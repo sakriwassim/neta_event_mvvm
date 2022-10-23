@@ -10,19 +10,16 @@ class CategoriesLocal extends CategoriesRepository {
 
   @override
   Future<bool> deleteCategorieByID(int id) {
-    // TODO: implement deleteCategorieByID
     throw UnimplementedError();
   }
 
   @override
   Future<List<CategorieModel>> getAllCategories() {
-    // TODO: implement getAllCategories
     throw UnimplementedError();
   }
 
   @override
   Future<CategorieModel> getCategorieByID(int id) {
-    // TODO: implement getCategorieByID
     throw UnimplementedError();
   }
 

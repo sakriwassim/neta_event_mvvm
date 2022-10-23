@@ -37,16 +37,16 @@ class AddEventModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category_id'] = this.categoryId;
-    data['observation_id'] = this.observationId;
-    data['libelle'] = this.libelle;
-    data['description'] = this.description;
-    data['prix'] = this.prix;
-    data['date_heure'] = this.dateHeure;
-    data['adresse'] = this.adresse;
-    data['nbre_tichet'] = this.nbreTichet;
-    data['status'] = this.status;
-    data['image'] = this.image;
+    data['category_id'] = categoryId;
+    data['observation_id'] = observationId;
+    data['libelle'] = libelle;
+    data['description'] = description;
+    data['prix'] = prix;
+    data['date_heure'] = dateHeure;
+    data['adresse'] = adresse;
+    data['nbre_tichet'] = nbreTichet;
+    data['status'] = status;
+    data['image'] = image;
     return data;
   }
 }

@@ -46,13 +46,13 @@ class _LoginViewState extends State<LoginView> {
                 Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 25.0,
                         right: 5.0,
                         top: 10,
                         bottom: 16,
                       ),
-                      child: Text(
+                      child: const Text(
                         "Se connecter",
                         style: TextStyle(
                           fontSize: 25,
@@ -113,7 +113,7 @@ class _LoginViewState extends State<LoginView> {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           " Se rappeler",
                           style: TextStyle(
                             fontSize: 15,
@@ -126,7 +126,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         InkWell(
                           onTap: () {},
-                          child: Text(
+                          child: const Text(
                             "mot de passe oublié?",
                             style: TextStyle(
                               fontSize: 15,
@@ -179,13 +179,13 @@ class _LoginViewState extends State<LoginView> {
                       onTap: () {},
                       child: Container(
                           height: 60,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             left: 10.0,
                             right: 10.0,
                             top: 10,
                             bottom: 5,
                           ),
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(13.0),
                           ),
@@ -198,14 +198,12 @@ class _LoginViewState extends State<LoginView> {
                                     MediaQuery.of(context).size.height * 0.1,
                                 //scale: 0.1,
                               ),
-                              Expanded(
-                                child: Text(
-                                  "Se conncter avec Google",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                              const Text(
+                                "Se conncter avec Google",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -220,13 +218,13 @@ class _LoginViewState extends State<LoginView> {
                       onTap: () {},
                       child: Container(
                           height: 60,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             left: 10.0,
                             right: 10.0,
                             top: 10,
                             bottom: 5,
                           ),
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(13.0),
                           ),
@@ -239,14 +237,12 @@ class _LoginViewState extends State<LoginView> {
                                     MediaQuery.of(context).size.height * 0.1,
                                 //scale: 0.1,
                               ),
-                              Expanded(
-                                child: Text(
-                                  " Se conncter avec Facebook",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                              const Text(
+                                " Se conncter avec Facebook",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -261,7 +257,7 @@ class _LoginViewState extends State<LoginView> {
                     crossAxisAlignment: CrossAxisAlignment
                         .center, //Center Row contents vertically,
                     children: [
-                      Text(
+                      const Text(
                         " Vous n'avez pas un compte",
                         style: TextStyle(
                           fontSize: 13,
@@ -276,7 +272,7 @@ class _LoginViewState extends State<LoginView> {
                                 builder: (context) => RegisterView(),
                               ));
                         },
-                        child: Text(
+                        child: const Text(
                           " S'inscrire",
                           style: TextStyle(
                             fontSize: 15,

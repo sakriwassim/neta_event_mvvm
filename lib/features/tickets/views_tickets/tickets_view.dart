@@ -59,7 +59,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
           children: [
             Text(
               data.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -86,7 +86,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                   data.FetchAllTickets();
                 });
 
-                return Future.delayed(Duration(seconds: 2));
+                return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OneTicketViewModel>>(
@@ -104,7 +104,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                 },
                                 child: ListTile(
                                   title: Text("${tickets![index].date}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: 'AirbnbCereal',
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
@@ -116,7 +116,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text("${tickets[index].description}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontFamily: 'AirbnbCereal',
                                             color: Colors.black,
                                             fontSize: 18,
@@ -131,7 +131,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
                                               MainAxisAlignment.end,
                                           children: [
                                             Text("${tickets[index].prix}" + "€",
-                                                style: TextStyle(
+                                                style:const  TextStyle(
                                                   fontFamily: 'AirbnbCereal',
                                                   color: Colors.black,
                                                   fontSize: 12,
@@ -153,18 +153,18 @@ class _GetAllTicketViewState extends State<GetAllTicketView> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children:const <Widget>[
+             Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+             Text(
               'Just turn off your internet.',
             ),
           ],

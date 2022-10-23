@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
-import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 
-import '../models_tontines/add_tontine_model.dart';
 import '../models_tontines/tontine_model.dart';
 
 abstract class TontinesRepository {

@@ -1,4 +1,3 @@
-
 import '../models_categories/add_categories_model.dart';
 import '../models_categories/categories_model.dart';
 import '../categories_repositories/categories_repository.dart';
@@ -13,7 +12,8 @@ class CategoriesViewModel {
   Future<List<OneCategorieViewModel>> FetchAllCategories() async {
     List<CategorieModel> list = await ticketsRepository!.getAllCategories();
     return list
-        .map((listCategorie) => OneCategorieViewModel(categorieModel: listCategorie))
+        .map((listCategorie) =>
+            OneCategorieViewModel(categorieModel: listCategorie))
         .toList();
   }
 
@@ -23,7 +23,8 @@ class CategoriesViewModel {
   }
 
   Future<bool> UpdateCategorieByID(CategorieModel addCategorieModel) async {
-    var ticket = await ticketsRepository!.updateCategorieByID(addCategorieModel);
+    var ticket =
+        await ticketsRepository!.updateCategorieByID(addCategorieModel);
     return true;
   }
 

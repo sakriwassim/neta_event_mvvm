@@ -7,6 +7,8 @@ import 'features/tontines/views_tontines/tontines_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -18,9 +20,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List Screen = [
     HomeView(),
-    GetAllEventView(),
-    GetAllTicketView(),
-    GetAllTontineView(),
+    const GetAllEventView(),
+    const GetAllTicketView(),
+    const GetAllTontineView(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -30,18 +32,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: PageStorage(
-        child: currentScreen,
         bucket: bucket,
+        child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Découvrir ',
                       style: TextStyle(
                         color: _currentIndex == 0
-                            ? Color(0xffD2286A)
+                            ? const Color(0xffD2286A)
                             : Colors.grey,
                       ),
                     )
@@ -85,12 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.event_outlined, color: Colors.grey),
+                    const Icon(Icons.event_outlined, color: Colors.grey),
                     Text(
                       'Events',
                       style: TextStyle(
                         color: _currentIndex == 1
-                            ? Color(0xffD2286A)
+                            ? const Color(0xffD2286A)
                             : Colors.grey,
                       ),
                     )
@@ -108,12 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.add_location_outlined, color: Colors.grey),
+                    const Icon(Icons.add_location_outlined, color: Colors.grey),
                     Text(
                       'Tickets',
                       style: TextStyle(
                         color: _currentIndex == 2
-                            ? Color(0xffD2286A)
+                            ? const Color(0xffD2286A)
                             : Colors.grey,
                       ),
                     )
@@ -131,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.attach_money,
                       color: Colors.grey,
                     ),
@@ -139,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Tontine',
                       style: TextStyle(
                           color: _currentIndex == 3
-                              ? Color(0xffD2286A)
+                              ? const Color(0xffD2286A)
                               : Colors.grey),
                     )
                   ],

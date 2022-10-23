@@ -26,16 +26,16 @@ class _OnTontineViewState extends State<OnTontineView> {
           child: AppBar(
             elevation: 0.0,
             shadowColor: Colors.white,
-            title: Text(
+            title: const Text(
               "Tontine details",
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white,
             ),
-            flexibleSpace: Center(
+            flexibleSpace: const Center(
               child: Image(
                 image: AssetImage('assets/130.png'),
                 fit: BoxFit.cover,
@@ -57,7 +57,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Participants"),
+                        const Text("Participants"),
                         Text("${snapshot.data!.nbr_participant} participants"),
                       ],
                     ),
@@ -67,7 +67,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Monatnt"),
+                        const Text("Monatnt"),
                         Text("${snapshot.data!.montant_regulier} \$"),
                       ],
                     ),
@@ -77,13 +77,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("participants actuels"),
+                        const Text("participants actuels"),
                         Text("${snapshot.data!.status}"),
                       ],
                     ),
                   ),
-                  Text("Next Owner"),
-                  Container(
+                  const Text("Next Owner"),
+                  SizedBox(
                     width: 100,
                     height: 100,
                     child: CircleAvatar(
@@ -128,12 +128,10 @@ class _OnTontineViewState extends State<OnTontineView> {
                   )
                 ],
               );
-            
-            
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }),
         ),
       ),

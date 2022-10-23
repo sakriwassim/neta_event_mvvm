@@ -27,7 +27,7 @@ class _OnTicketViewState extends State<OnTicketView> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }),
         ),
       ),

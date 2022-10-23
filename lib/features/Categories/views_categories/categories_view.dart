@@ -59,7 +59,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
           children: [
             Text(
               data.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -88,7 +88,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                   data.FetchAllCategories();
                 });
 
-                return Future.delayed(Duration(seconds: 2));
+                return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OneCategorieViewModel>>(
@@ -106,7 +106,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                                 },
                                 child: ListTile(
                                   title: Text("${tickets![index].montant}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: 'AirbnbCereal',
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
@@ -118,7 +118,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text("${tickets[index].libelle}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontFamily: 'AirbnbCereal',
                                             color: Colors.black,
                                             fontSize: 18,
@@ -156,18 +156,18 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children: const <Widget>[
+            Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+            Text(
               'Just turn off your internet.',
             ),
           ],

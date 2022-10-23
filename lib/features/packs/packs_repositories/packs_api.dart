@@ -15,7 +15,7 @@ class PacksApi extends PacksRepository {
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs' + "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -83,7 +83,7 @@ class PacksApi extends PacksRepository {
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      //  print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -114,7 +114,7 @@ class PacksApi extends PacksRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      // print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -135,7 +135,7 @@ class PacksApi extends PacksRepository {
         'authorization': 'Basic +$token'
       };
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/' + "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);

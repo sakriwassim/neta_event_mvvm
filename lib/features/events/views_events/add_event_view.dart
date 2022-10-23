@@ -11,7 +11,7 @@ import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
 class AddEventView extends StatefulWidget {
-  AddEventView({
+  const AddEventView({
     super.key,
   });
 
@@ -39,13 +39,13 @@ class _AddEventViewState extends State<AddEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Add event",
             style: TextStyle(
               color: Colors.black,
@@ -89,8 +89,8 @@ class _AddEventViewState extends State<AddEventView> {
                     });
                   }
                 },
-                child: Text("Parcourire ce calendrier")),
-            Text('${_dataTime}'),
+                child: const Text("Parcourire ce calendrier")),
+            Text('$_dataTime'),
             Container(
               margin: const EdgeInsets.only(
                   left: 20.0, right: 20.0, top: 5, bottom: 5),
@@ -114,7 +114,7 @@ class _AddEventViewState extends State<AddEventView> {
             Container(
               margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5),
               alignment: Alignment.topLeft,
-              child: Text("Categories",
+              child: const Text("Categories",
                   style: TextStyle(
                     fontFamily: 'AirbnbCereal',
                     color: Colors.black,
@@ -128,28 +128,26 @@ class _AddEventViewState extends State<AddEventView> {
                 future: datacategorie.FetchAllCategories(),
                 builder: ((context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else {
                     categories = snapshot.data;
-                    return Expanded(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categories?.length,
-                          itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    selectedIndex = index;
-                                  });
-                                },
-                                child: CategorieIconWidget(
-                                  libelle: categories![index].libelle,
-                                  backgroundColor: selectedIndex == index
-                                      ? Color(0xffD2286A)
-                                      : Colors.grey,
-                                ),
-                              )),
-                    );
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categories?.length,
+                        itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedIndex = index;
+                                });
+                              },
+                              child: CategorieIconWidget(
+                                libelle: categories![index].libelle,
+                                backgroundColor: selectedIndex == index
+                                    ? const Color(0xffD2286A)
+                                    : Colors.grey,
+                              ),
+                            ));
                   }
                 }),
               ),
@@ -162,8 +160,8 @@ class _AddEventViewState extends State<AddEventView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
                         child: Text("Selection le prix",
                             style: TextStyle(
                               fontFamily: 'AirbnbCereal',
@@ -175,7 +173,7 @@ class _AddEventViewState extends State<AddEventView> {
                       Padding(
                         padding: const EdgeInsets.only(right: 20),
                         child: Text("${_currentSliderValue.toInt()}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'AirbnbCereal',
                               color: Colors.black,
                               fontSize: 18,
@@ -186,7 +184,6 @@ class _AddEventViewState extends State<AddEventView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-
                     child: Slider(
                       value: _currentSliderValue,
                       max: 100,
@@ -198,17 +195,6 @@ class _AddEventViewState extends State<AddEventView> {
                         });
                       },
                     ),
-                    // child: CustomSlider(
-                    //     assetImage: 'assets/icon_add_event/SliderIcon.png',
-                    //     inActiveTrackColor: Colors.pink,
-                    //     linearGradient:
-                    //         LinearGradient(colors: [Colors.pink, Colors.white]),
-                    //     trackHeight: 2.0,
-                    //     max: 100.0,
-                    //     min: 0.0,
-                    //     assetImageHeight: 30,
-                    //     assetImageWidth: 30,
-                    //     divisions: 100),
                   ),
                 ],
               ),
@@ -233,34 +219,31 @@ class _AddEventViewState extends State<AddEventView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                  onTap: () {
-                    if (formkey.currentState!.validate()) {
-                      var event = {
-                        "category_id": categories![selectedIndex].id,
-                        "observation_id": 21,
-                        "libelle": libellefield,
-                        "description": descriptionfield,
-                        "prix": _currentSliderValue.toInt(),
-                        "date_heure": _dataTime.toString(),
-                        "adresse": "Stade du 26 Mars",
-                        "nbre_tichet": 1000,
-                        "status": "statut",
-                        "image": "image"
-                      };
+            InkWell(
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    var event = {
+                      "category_id": categories![selectedIndex].id,
+                      "observation_id": 21,
+                      "libelle": libellefield,
+                      "description": descriptionfield,
+                      "prix": _currentSliderValue.toInt(),
+                      "date_heure": _dataTime.toString(),
+                      "adresse": "Stade du 26 Mars",
+                      "nbre_tichet": 1000,
+                      "status": "statut",
+                      "image": "image"
+                    };
 
-                      AddEventModel eventformJson =
-                          AddEventModel.fromJson(event);
-                      print(eventformJson);
+                    AddEventModel eventformJson = AddEventModel.fromJson(event);
+                    //  print(eventformJson);
 
-                      setState(() {
-                        data.AddEvent(eventformJson);
-                      });
-                    }
-                  },
-                  child: MediumButton(text: "APPLIQUER")),
-            ),
+                    setState(() {
+                      data.AddEvent(eventformJson);
+                    });
+                  }
+                },
+                child: MediumButton(text: "APPLIQUER")),
           ],
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 
 import '../../../core/widgets/medium_button.dart';
 import '../models_tickets/add_ticket_model.dart';
-import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
@@ -35,7 +34,7 @@ class _AddTicketViewState extends State<AddTicketView> {
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Add Ticket",
             style: TextStyle(
               color: Colors.black,
@@ -102,31 +101,29 @@ class _AddTicketViewState extends State<AddTicketView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                  onTap: () {
-                    if (formkey.currentState!.validate()) {
-                      var ticket = {
-                        "event_id": 1,
-                        "libelle": libellefield,
-                        "description": descriptionfield,
-                        "prix": prixfield,
-                        "QR_code": "qr_code",
-                        "date": "Date",
-                        "statut": "Statut"
-                      };
+            InkWell(
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    var ticket = {
+                      "event_id": 1,
+                      "libelle": libellefield,
+                      "description": descriptionfield,
+                      "prix": prixfield,
+                      "QR_code": "qr_code",
+                      "date": "Date",
+                      "statut": "Statut"
+                    };
 
-                      AddTicketModel ticketformJson =
-                          AddTicketModel.fromJson(ticket);
-                      print(ticketformJson);
+                    AddTicketModel ticketformJson =
+                        AddTicketModel.fromJson(ticket);
+                    print(ticketformJson);
 
-                      setState(() {
-                        data.AddTicket(ticketformJson);
-                      });
-                    }
-                  },
-                  child: MediumButton(text: "APPLIQUER")),
-            ),
+                    setState(() {
+                      data.AddTicket(ticketformJson);
+                    });
+                  }
+                },
+                child: MediumButton(text: "APPLIQUER")),
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class BigButton extends StatelessWidget {
       child: Container(
         height: 60,
         width: 150,
-        decoration: new BoxDecoration(
+        decoration:  BoxDecoration(
           borderRadius: BorderRadius.circular(13.0),
           gradient: gradientbackground,
         ),
@@ -21,7 +21,7 @@ class BigButton extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
               ),

@@ -24,7 +24,7 @@ class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         shadowColor: Colors.white,
@@ -35,7 +35,7 @@ class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
           children: [
             Text(
               data.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -62,7 +62,7 @@ class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
                   data.GetEventByCategorie(2);
                 });
 
-                return Future.delayed(Duration(seconds: 2));
+                return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OneEventViewModel>>(
@@ -98,18 +98,18 @@ class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("no connection"),
             );
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
+          children: const <Widget>[
+            Text(
               'There are no bottons to push :)',
             ),
-            new Text(
+            Text(
               'Just turn off your internet.',
             ),
           ],

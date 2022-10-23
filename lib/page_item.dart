@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PageItem extends StatefulWidget {
   final int index;
-  PageItem(this.index, {Key? key}) : super(key: key);
+  const PageItem(this.index, {Key? key}) : super(key: key);
 
   @override
   _PageItemState createState() => _PageItemState();
@@ -13,7 +13,7 @@ class _PageItemState extends State<PageItem>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    print('build index:${widget.index} page');
+    // print('build index:${widget.index} page');
     return Container(
       // color: Colors.pink,
       child: Text('index:${widget.index}'),

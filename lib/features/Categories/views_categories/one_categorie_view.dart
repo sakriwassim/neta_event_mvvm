@@ -27,7 +27,7 @@ class _OnCategorieViewState extends State<OnCategorieView> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return CircularProgressIndicator();
+            return const  CircularProgressIndicator();
           }),
         ),
       ),

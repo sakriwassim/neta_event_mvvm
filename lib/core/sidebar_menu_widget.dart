@@ -21,7 +21,7 @@ class SideBarMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          Container(
+          SizedBox(
             height: 100,
             child: DrawerHeader(
               child: Row(
@@ -34,7 +34,7 @@ class SideBarMenu extends StatelessWidget {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Positioned(
                         // bottom: 8.0,
                         // left: 4.0,
@@ -61,62 +61,59 @@ class SideBarMenu extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            //height: 20,
-            child: ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => OneUserView(id: 1)));
-              },
-            ),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => OneUserView(id: 1)));
+            },
           ),
           ListTile(
-            leading: Icon(Icons.event),
-            title: Text('Evenements'),
+            leading: const Icon(Icons.event),
+            title: const Text('Evenements'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.favorite_border),
-            title: Text('Favorites'),
+            leading: const Icon(Icons.favorite_border),
+            title: const Text('Favorites'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.mail),
-            title: Text('Contacter-nous'),
+            leading: const Icon(Icons.mail),
+            title: const Text('Contacter-nous'),
             onTap: () => null,
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Request'),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('aide & FAQs'),
+            leading: const Icon(Icons.settings),
+            title: const Text('aide & FAQs'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Don'),
+            leading: const Icon(Icons.description),
+            title: const Text('Don'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Tontine'),
+            leading: const Icon(Icons.description),
+            title: const Text('Tontine'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Enquete'),
+            leading: const Icon(Icons.description),
+            title: const Text('Enquete'),
             onTap: () => null,
           ),
           ListTile(
-            title: Text('Se deconnecter'),
-            leading: Icon(Icons.exit_to_app),
+            title: const Text('Se deconnecter'),
+            leading: const Icon(Icons.exit_to_app),
             onTap: () {
               callbackFunctionlogout;
               Navigator.push(context,

@@ -15,7 +15,7 @@ class EventsApi extends EventsRepository {
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/' + "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -53,7 +53,6 @@ class EventsApi extends EventsRepository {
 
       return eventsList;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -80,7 +79,6 @@ class EventsApi extends EventsRepository {
 
       return eventsList;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -110,13 +108,12 @@ class EventsApi extends EventsRepository {
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      // print(responsebody);
     } catch (e) {
       print(e);
     }
 
     return eventModel;
-    //throw UnimplementedError();
   }
 
   @override
@@ -141,7 +138,7 @@ class EventsApi extends EventsRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
-      print(responsebody);
+      // print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -162,7 +159,7 @@ class EventsApi extends EventsRepository {
         'authorization': 'Basic +$token'
       };
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/' + "${id}";
+          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -172,10 +169,4 @@ class EventsApi extends EventsRepository {
       return false;
     }
   }
-
-  // @override
-  // Future<List<EventModel>> getEventByCategorie(int id) {
-  //   // TODO: implement getEventByCategorie
-  //   throw UnimplementedError();
-  // }
 }

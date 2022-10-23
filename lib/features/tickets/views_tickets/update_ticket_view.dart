@@ -34,13 +34,13 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "MODIFIER",
             style: TextStyle(
               color: Colors.black,
@@ -123,7 +123,7 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
 
                     AddTicketModel ticketformJson =
                         AddTicketModel.fromJson(ticket);
-                    print(ticketformJson);
+                 //   print(ticketformJson);
 
                     setState(() {
                       data.UpdateTicketByID(ticketformJson);

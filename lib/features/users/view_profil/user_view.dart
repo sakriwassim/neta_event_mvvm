@@ -19,6 +19,9 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   late String passwordfield;
   late String phonefield;
   late String adressefield;
+  late String ancienpasswordfield;
+  late String nouveaupasswordfield;
+  late String confirmerpasswordfield;
 
   var data = UsersViewModel(eventsRepository: UsersApi());
 
@@ -370,7 +373,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           borderSide: BorderSide(
                                             width: 1,
                                           )),
-                                      labelText: ' Mot de passe',
+                                      labelText: ' Ancien mot de passe',
 
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
@@ -380,7 +383,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         color: Color.fromARGB(
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
-                                      hintText: 'entre le password',
+                                      hintText: 'entre le ancien password',
 
                                       //  suffixIcon: IconButton(
                                       //           icon: Icon(_isObscure
@@ -395,7 +398,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
 
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "entre le password";
+                                        return "entre le ancien password";
                                       } else {
                                         //dateMesurefield = datenow.toString();
                                         //descriptionfield = widget.eventObj.description.toString();
@@ -403,7 +406,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       }
                                     },
                                     onChanged: (text) {
-                                      passwordfield = text;
+                                      ancienpasswordfield = text;
                                     },
                                   ),
                                 ),
@@ -429,7 +432,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           borderSide: BorderSide(
                                             width: 1,
                                           )),
-                                      labelText: ' Mot de passe',
+                                      labelText: ' Nouveau mot de passe',
 
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
@@ -439,7 +442,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         color: Color.fromARGB(
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
-                                      hintText: 'entre le password',
+                                      hintText: 'entre le nouveau password',
 
                                       //  suffixIcon: IconButton(
                                       //           icon: Icon(_isObscure
@@ -454,7 +457,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
 
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "entre le password";
+                                        return "entre le nouveau password";
                                       } else {
                                         //dateMesurefield = datenow.toString();
                                         //descriptionfield = widget.eventObj.description.toString();
@@ -462,7 +465,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       }
                                     },
                                     onChanged: (text) {
-                                      passwordfield = text;
+                                      nouveaupasswordfield = text;
                                     },
                                   ),
                                 ),
@@ -488,7 +491,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           borderSide: BorderSide(
                                             width: 1,
                                           )),
-                                      labelText: ' Mot de passe',
+                                      labelText: '  Confirmer mot de passe',
 
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
@@ -521,13 +524,17 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       }
                                     },
                                     onChanged: (text) {
-                                      passwordfield = text;
+                                      confirmerpasswordfield = text;
                                     },
                                   ),
                                 ),
                                 InkWell(
                                     onTap: () async {
                                       if (formkey.currentState!.validate()) {
+                                        // if (confirmerpasswordfield ==
+                                        //         nouveaupasswordfield &&
+                                        //    ancienpasswordfield ==
+                                        //        snapshot.data!.password) {
                                         var event = {
                                           "role_id": int.parse(
                                               '${snapshot.data!.role_id}'), //1,
@@ -544,7 +551,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                               snapshot.data!.adresse.toString(),
                                           "image":
                                               snapshot.data!.image.toString(),
-                                          "password": passwordfield.toString()
+                                          "password":
+                                              confirmerpasswordfield.toString()
                                         };
 
                                         AddUserModel eventformJson =
@@ -553,6 +561,10 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         setState(() {
                                           data.UpdateUserByID(eventformJson);
                                         });
+                                        // } else {
+                                        //   print(
+                                        //       "confirm or ancien password is  false ");
+                                        // }
                                       }
                                     },
                                     child: MediumButton(

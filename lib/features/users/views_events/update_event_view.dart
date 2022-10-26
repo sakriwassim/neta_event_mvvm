@@ -110,16 +110,6 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                 onTap: () {
                   if (formkey.currentState!.validate()) {
                     var event = {
-                      // "id": widget.eventObj.id,
-                      // "category_id": "1",
-                      // "observation_id": "21",
-                      // "libelle": libellefield.toString(),
-                      // "description": descriptionfield.toString(),
-                      // "prix": prixfield.toString(),
-                      // "date_heure": "2020-01-27 17:50:45",
-                      // "adresse": "Stade du 26 Mars",
-                      // "nbre_tichet": "1000",
-                      // "status": "statut",
                       "image": "image8888888888888888888",
                       "created_at": "2022-09-30T15:11:08.000000Z",
                       "updated_at": "2022-09-30T15:11:08.000000Z"

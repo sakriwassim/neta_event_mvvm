@@ -281,20 +281,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 ),
                                 InkWell(
                                     onTap: () async {
-                                      /*********** */
-
-                                      //  "role_id": 1, //1,
-                                      //     "packs_id": 1,
-                                      //     "nom_complet": nomcompletfield,
-                                      //     "email": emailfield,
-                                      //     "telephone": int.parse('$phonefield'),
-                                      //     "adresse": adressefield,
-                                      //     "image": "https://cheminverslimage",
-                                      //     "password": "password@!"
-
-                                      // var
-
-                                      /************** */
                                       if (formkey.currentState!.validate()) {
                                         var event = {
                                           "role_id": int.parse(
@@ -365,51 +351,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: 'Sakri wassim',
-                                      prefixIcon: Icon(
-                                        Icons.person,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le email',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "entre le nom_complet";
-                                      } else {
-                                        // libellefield = widget.eventObj.libelle;
-                                        return null;
-                                      }
-                                    },
-                                    onChanged: (text) {
-                                      nomcompletfield = text;
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    //controller: TextEditingController(text: widget.eventObj.prix),
+                                    //    controller:
+                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -427,28 +370,40 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           borderSide: BorderSide(
                                             width: 1,
                                           )),
-                                      labelText: 'Adresse e-mail',
+                                      labelText: ' Mot de passe',
+
                                       prefixIcon: Icon(
-                                        Icons.mail_outline_outlined,
+                                        Icons.lock_outline,
                                         color: Colors.grey,
                                       ),
                                       labelStyle: TextStyle(
                                         color: Color.fromARGB(
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
-                                      hintText: 'entre le email',
+                                      hintText: 'entre le password',
+
+                                      //  suffixIcon: IconButton(
+                                      //           icon: Icon(_isObscure
+                                      //               ? Icons.visibility
+                                      //               : Icons.visibility_off),
+                                      //           onPressed: () {
+                                      //             setState(() {
+                                      //               _isObscure = !_isObscure;
+                                      //             });
+                                      //           })
                                     ),
 
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "entre le email";
+                                        return "entre le password";
                                       } else {
-                                        // prixfield = widget.eventObj.prix;
+                                        //dateMesurefield = datenow.toString();
+                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
                                     onChanged: (text) {
-                                      emailfield = text;
+                                      passwordfield = text;
                                     },
                                   ),
                                 ),
@@ -571,7 +526,35 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 InkWell(
-                                    onTap: () async {},
+                                    onTap: () async {
+                                      if (formkey.currentState!.validate()) {
+                                        var event = {
+                                          "role_id": int.parse(
+                                              '${snapshot.data!.role_id}'), //1,
+                                          "packs_id": int.parse(
+                                              '${snapshot.data!.packs_id}'),
+                                          "nom_complet": snapshot
+                                              .data!.nom_complet
+                                              .toString(),
+                                          "email":
+                                              snapshot.data!.email.toString(),
+                                          "telephone": int.parse(
+                                              '${snapshot.data!.telephone}'),
+                                          "adresse":
+                                              snapshot.data!.adresse.toString(),
+                                          "image":
+                                              snapshot.data!.image.toString(),
+                                          "password": passwordfield.toString()
+                                        };
+
+                                        AddUserModel eventformJson =
+                                            AddUserModel.fromJson(event);
+
+                                        setState(() {
+                                          data.UpdateUserByID(eventformJson);
+                                        });
+                                      }
+                                    },
                                     child: MediumButton(
                                       text: "APPLIQUER",
                                     )),

@@ -8,6 +8,7 @@ import 'one_event_view_model.dart';
 
 class UsersViewModel {
   String title = "User Page ";
+  OneUserViewModel? eventModel;
 
   UsersRepository? eventsRepository;
   UsersViewModel({this.eventsRepository});
@@ -31,7 +32,7 @@ class UsersViewModel {
     return OneUserViewModel(eventModel: eventModel);
   }
 
-  Future<bool> UpdateUserByID(UserModel eventModel) async {
+  Future<bool> UpdateUserByID(AddUserModel eventModel) async {
     var event = await eventsRepository!.updateUserByID(eventModel);
     return true;
   }

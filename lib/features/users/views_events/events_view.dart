@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
-import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
-import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
 import 'package:neta_event_mvvm/features/users/views_events/widgets/event_card_widget.dart';
 
 import '../evants_repositories/events_api.dart';

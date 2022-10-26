@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
-import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
-import 'package:neta_event_mvvm/features/events/views_events/update_event_view.dart';
 import 'package:neta_event_mvvm/features/users/views_events/update_event_view.dart';
 
 import '../../../core/widgets/big_button_style.dart';
@@ -131,7 +128,8 @@ class _OnUserViewState extends State<OnUserView> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const GetAllUserView()));
+                                      builder: (context) =>
+                                          const GetAllUserView()));
                             }
                           },
                           child: BigButton(text: "SUPPRIMER")),

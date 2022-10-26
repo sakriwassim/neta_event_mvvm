@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../features/authentification/views_authentification/login_authentification_view.dart';
+import '../features/users/view_profil/one_user_view.dart';
 import '../features/users/views_events/events_view.dart';
 
 class SideBarMenu extends StatelessWidget {
@@ -19,8 +20,7 @@ class SideBarMenu extends StatelessWidget {
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
       ),
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
           SizedBox(
             height: 100,
@@ -66,10 +66,8 @@ class SideBarMenu extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => OneUserView(id: 1)));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => OneUserView()));
             },
           ),
           ListTile(
@@ -90,11 +88,10 @@ class SideBarMenu extends StatelessWidget {
             title: const Text('Contacter-nous'),
             onTap: () => null,
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Request'),
           ),
-          const Divider(),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('aide & FAQs'),

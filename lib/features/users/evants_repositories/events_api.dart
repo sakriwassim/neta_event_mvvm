@@ -83,11 +83,11 @@ class UsersApi extends UsersRepository {
   }
 
   @override
-  Future<UserModel> updateUserByID(UserModel eventModel) async {
+  Future<AddUserModel> updateUserByID(AddUserModel eventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      final eventId = eventModel.id;
+      // final eventId = eventModel.;
       final eventModelJson = eventModel.toJson();
 
       var headers = {
@@ -98,8 +98,7 @@ class UsersApi extends UsersRepository {
 
       final body = eventModelJson;
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/User/$eventId';
+      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User/1';
 
       var url = Uri.parse(link);
 

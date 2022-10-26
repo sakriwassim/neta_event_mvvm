@@ -7,7 +7,7 @@ abstract class UsersRepository {
   Future<List<UserModel>> getUserByCategorie(int id);
   Future<List<UserModel>> getAllUsers();
   Future<UserModel> getUserByID(int id);
-  Future<UserModel> updateUserByID(UserModel eventModel);
+  Future<AddUserModel> updateUserByID(AddUserModel eventModel);
   Future<bool> addUser(AddUserModel addUserModel);
   Future<bool> deleteUserByID(int id);
 }

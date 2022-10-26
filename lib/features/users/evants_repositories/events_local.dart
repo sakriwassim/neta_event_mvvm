@@ -19,7 +19,7 @@ class UsersLocal extends UsersRepository {
   }
 
   @override
-  Future<UserModel> updateUserByID(UserModel eventModel) {
+  Future<AddUserModel> updateUserByID(AddUserModel eventModel) {
     throw UnimplementedError();
   }
 

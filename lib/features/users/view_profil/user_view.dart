@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 
+import '../../../core/widget/text_widget.dart';
 import '../evants_repositories/events_api.dart';
 import '../models_events/add_event_model.dart';
 import '../view_model_events/events_view_model.dart';
@@ -351,6 +352,25 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                             ),
                             Column(
                               children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget(
+                                      title: 'Les étapes à suivre:',
+                                    ),
+                                    TextWidget(
+                                      title: "1- Inserer l'ancien mot de passe",
+                                    ),
+                                    TextWidget(
+                                      title:
+                                          "2- Inserer le nouveau mot de passe",
+                                    ),
+                                    TextWidget(
+                                      title:
+                                          "3- Reinserer le nouveau mot de passe",
+                                    ),
+                                  ],
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
@@ -528,48 +548,52 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                     },
                                   ),
                                 ),
-                                InkWell(
-                                    onTap: () async {
-                                      if (formkey.currentState!.validate()) {
-                                        // if (confirmerpasswordfield ==
-                                        //         nouveaupasswordfield &&
-                                        //    ancienpasswordfield ==
-                                        //        snapshot.data!.password) {
-                                        var event = {
-                                          "role_id": int.parse(
-                                              '${snapshot.data!.role_id}'), //1,
-                                          "packs_id": int.parse(
-                                              '${snapshot.data!.packs_id}'),
-                                          "nom_complet": snapshot
-                                              .data!.nom_complet
-                                              .toString(),
-                                          "email":
-                                              snapshot.data!.email.toString(),
-                                          "telephone": int.parse(
-                                              '${snapshot.data!.telephone}'),
-                                          "adresse":
-                                              snapshot.data!.adresse.toString(),
-                                          "image":
-                                              snapshot.data!.image.toString(),
-                                          "password":
-                                              confirmerpasswordfield.toString()
-                                        };
+                                Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                      onTap: () async {
+                                        if (formkey.currentState!.validate()) {
+                                          // if (confirmerpasswordfield ==
+                                          //         nouveaupasswordfield &&
+                                          //    ancienpasswordfield ==
+                                          //        snapshot.data!.password) {
+                                          var event = {
+                                            "role_id": int.parse(
+                                                '${snapshot.data!.role_id}'), //1,
+                                            "packs_id": int.parse(
+                                                '${snapshot.data!.packs_id}'),
+                                            "nom_complet": snapshot
+                                                .data!.nom_complet
+                                                .toString(),
+                                            "email":
+                                                snapshot.data!.email.toString(),
+                                            "telephone": int.parse(
+                                                '${snapshot.data!.telephone}'),
+                                            "adresse": snapshot.data!.adresse
+                                                .toString(),
+                                            "image":
+                                                snapshot.data!.image.toString(),
+                                            "password": confirmerpasswordfield
+                                                .toString()
+                                          };
 
-                                        AddUserModel eventformJson =
-                                            AddUserModel.fromJson(event);
+                                          AddUserModel eventformJson =
+                                              AddUserModel.fromJson(event);
 
-                                        setState(() {
-                                          data.UpdateUserByID(eventformJson);
-                                        });
-                                        // } else {
-                                        //   print(
-                                        //       "confirm or ancien password is  false ");
-                                        // }
-                                      }
-                                    },
-                                    child: MediumButton(
-                                      text: "APPLIQUER",
-                                    )),
+                                          setState(() {
+                                            data.UpdateUserByID(eventformJson);
+                                          });
+                                          // } else {
+                                          //   print(
+                                          //       "confirm or ancien password is  false ");
+                                          // }
+                                        }
+                                      },
+                                      child: MediumButton(
+                                        text: "APPLIQUER",
+                                      )),
+                                ),
                               ],
                             ),
                           ],

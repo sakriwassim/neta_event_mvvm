@@ -75,7 +75,7 @@ class SideBarMenu extends StatelessWidget {
             title: const Text('Evenements'),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => GetAllUserView()));
+                  MaterialPageRoute(builder: (context) => const GetAllUserView()));
             },
           ),
           ListTile(
@@ -88,7 +88,7 @@ class SideBarMenu extends StatelessWidget {
             title: const Text('Contacter-nous'),
             onTap: () => null,
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Request'),
           ),

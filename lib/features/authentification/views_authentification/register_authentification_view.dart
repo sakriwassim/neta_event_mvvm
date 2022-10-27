@@ -272,7 +272,7 @@ class _RegisterViewState extends State<RegisterView> {
                       onTap: () {},
                       child: Container(
                           height: 60,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             left: 10.0,
                             right: 10.0,
                             top: 10,

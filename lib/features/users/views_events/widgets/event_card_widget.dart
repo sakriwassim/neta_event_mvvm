@@ -45,13 +45,13 @@ class UserCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(date_heure!,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'AirbnbCereal',
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: Colors.blue)),
                     Text(libelle!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'AirbnbCereal',
                           color: Colors.black,
                           fontSize: 15,
@@ -66,12 +66,12 @@ class UserCardWidget extends StatelessWidget {
                           Container(
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.location_pin,
                                   size: 20,
                                 ),
                                 Text(adresse!,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'AirbnbCereal',
                                       color: Colors.grey,
                                       fontSize: 13,
@@ -82,7 +82,7 @@ class UserCardWidget extends StatelessWidget {
                           ),
                           Container(
                             child: Text(prix!,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: 'AirbnbCereal',
                                   color: Colors.black,
                                   fontSize: 15,

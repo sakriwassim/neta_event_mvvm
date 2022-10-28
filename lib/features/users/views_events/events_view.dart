@@ -42,7 +42,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
             InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddUserView()));
+                      MaterialPageRoute(builder: (context) => const AddUserView()));
                 },
                 child: SmallButton(text: "ADD EVENT")),
           ],

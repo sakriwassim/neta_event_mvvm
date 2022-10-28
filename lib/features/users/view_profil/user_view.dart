@@ -32,13 +32,13 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Profile",
             style: TextStyle(
               color: Colors.black,
@@ -63,12 +63,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                           ),
                           Text(
                             snapshot.data!.nom_complet,
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: const TextStyle(color: Colors.black, fontSize: 20),
                           ),
                         ],
                       ),
                       TabBar(
-                        indicatorColor: Color.fromARGB(255, 214, 9, 204),
+                        indicatorColor: const Color.fromARGB(255, 214, 9, 204),
                         isScrollable: true,
                         controller: _tabController,
                         labelColor: Color.fromARGB(255, 214, 9, 204),
@@ -549,7 +549,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   alignment: Alignment.centerRight,
                                   child: InkWell(
                                       onTap: () async {

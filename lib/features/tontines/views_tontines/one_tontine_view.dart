@@ -22,7 +22,7 @@ class _OnTontineViewState extends State<OnTontineView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(150.0),
+          preferredSize: const Size.fromHeight(150.0),
           child: AppBar(
             elevation: 0.0,
             shadowColor: Colors.white,
@@ -120,7 +120,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          GetAllTontineView()));
+                                          const GetAllTontineView()));
                             }
                           },
                           child: BigButton(text: "SUPPRIMER")),

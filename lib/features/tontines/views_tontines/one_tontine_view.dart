@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import '../../../core/widgets/big_button_style.dart';
@@ -26,7 +27,7 @@ class _OnTontineViewState extends State<OnTontineView> {
           child: AppBar(
             elevation: 0.0,
             shadowColor: Colors.white,
-            title: const Text(
+            title: Text(
               "Tontine details",
               style: TextStyle(
                 color: Colors.white,
@@ -57,8 +58,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text("Participants"),
-                        Text("${snapshot.data!.nbr_participant} participants"),
+                        TextWidgetText2(
+                          title: "Participants",
+                        ),
+                        TextWidgetText2(
+                          title:
+                              "${snapshot.data!.nbr_participant} participants",
+                        ),
                       ],
                     ),
                   ),
@@ -67,8 +73,12 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text("Monatnt"),
-                        Text("${snapshot.data!.montant_regulier} \$"),
+                        TextWidgetText2(
+                          title: "Monatnt",
+                        ),
+                        TextWidgetText2(
+                          title: "${snapshot.data!.montant_regulier} \$",
+                        ),
                       ],
                     ),
                   ),
@@ -77,12 +87,16 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text("participants actuels"),
+                        TextWidgetText2(
+                          title: "participants actuels",
+                        ),
                         Text("${snapshot.data!.status}"),
                       ],
                     ),
                   ),
-                  const Text("Next Owner"),
+                  TextWidgetText2(
+                    title: "Next Owner",
+                  ),
                   SizedBox(
                     width: 100,
                     height: 100,

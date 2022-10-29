@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/intro/screen_one.dart';
 
 import '../../../bottom_navigation_bar.dart';
 import '../entry_repositories/events_local.dart';
@@ -18,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
   static bool _isSet = false;
   var data = EntryViewModel(entryRepository: EntryLocal());
 
-
   _navigatettohomepage() async {
     var token = await data.Gettokenformpref();
     //print(token);
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginView(),
+              builder: (context) => ScreenOne(),
             ));
       } else {
         Navigator.pushReplacement(
@@ -49,15 +49,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/SlashScreen/netaLogo.png',
-              height: 200,
-              width: 200,
-            ),
-          ],
+        child: Image.asset(
+          'assets/SlashScreen/netaLogo.png',
+          width: MediaQuery.of(context).size.width * 0.4,
+          height: MediaQuery.of(context).size.height * 0.2,
         ),
       ),
     );

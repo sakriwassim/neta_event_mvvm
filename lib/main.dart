@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'features/entry/views_entry/entry_view.dart';
+import 'features/intro/screen_one.dart';
+import 'features/intro/screen_three.dart';
+import 'features/intro/screen_two.dart';
 
 void main() {
   runApp(const MyApp());

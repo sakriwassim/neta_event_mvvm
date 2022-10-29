@@ -5,7 +5,7 @@ import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 import 'add_ticket_view.dart';
-import 'update_ticket_view.dart';
+import 'one_ticket_view.dart';
 
 class GetAllTicketView extends StatefulWidget {
   const GetAllTicketView({super.key});
@@ -17,35 +17,6 @@ class GetAllTicketView extends StatefulWidget {
 class _GetAllTicketViewState extends State<GetAllTicketView>
     with TickerProviderStateMixin {
   var data = TicketsViewModel(ticketsRepository: TicketsApi());
-
-  alertupdate(OneTicketViewModel obj) => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('êtes-vous sûr!!'),
-          content: const Text('de mettre à jour la valeur de compteur'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, 'MODIFY');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            UpdateTicketView(ticketObj: obj)));
-              },
-              child: const Text('MODIFY'),
-            ),
-            TextButton(
-                child: const Text('DELETE'),
-                onPressed: () {
-                  Navigator.pop(context, 'DELETE');
-                  setState(() {
-                    data.DeleteTicketByID(obj.id);
-                  });
-                }),
-          ],
-        ),
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +41,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => AddTicketView()));
                 },
-                child: SmallButton(text: "ADD TICKET")),
+                child: SmallButton(text: "DELETE ALL")),
           ],
         ),
       ),
@@ -130,7 +101,17 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                                       itemBuilder: (context, index) =>
                                           GestureDetector(
                                             onTap: () {
-                                              alertupdate(tickets[index]);
+                                              // alertupdate(tickets[index]);
+
+                                   Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => OnTicketView(
+                                            id: tickets[index].id,
+                                          )),
+                                     );
+
+
                                             },
                                             child: ListTile(
                                               title: Text(
@@ -220,7 +201,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                                       itemBuilder: (context, index) =>
                                           GestureDetector(
                                             onTap: () {
-                                              alertupdate(tickets[index]);
+                                              //  alertupdate(tickets[index]);
                                             },
                                             child: ListTile(
                                               title: Text(

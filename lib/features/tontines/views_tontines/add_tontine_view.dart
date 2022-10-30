@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
+import '../../../core/colors.dart';
+import '../../../core/signein/card_google_widget.dart';
 import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/medium_button.dart';
 import '../../../core/widgets/small_button_style.dart';
@@ -346,46 +348,139 @@ class _AddTontineViewState extends State<AddTontineView>
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
                             child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "PAYPAL")),
+                              onTap: () {},
+                              child: CardGoogle(
+                                image: 'assets/tontine/paypal.png',
+                                title: 'PAYPAL',
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
                             child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "VISA")),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "WAVA")),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "APPLIQUER")),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10, top: 10),
-                            child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "APPLIQUER")),
+                              onTap: () {},
+                              // child: MediumButton(text: "VISA")
+
+                              child: CardGoogle(
+                                image: 'assets/tontine/visa.png',
+                                title: 'VISA',
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
                             // padding: const EdgeInsets.all(15),
                             child: InkWell(
-                                onTap: () {},
-                                child: MediumButton(text: "MooV")),
+                              onTap: () {},
+                              child: CardGoogle(
+                                image: 'assets/tontine/payoneer.png',
+                                title: 'payoneer',
+                              ),
+                            ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: InkWell(
+                              padding: const EdgeInsets.all(15),
+                              child: InkWell(
                                 onTap: () {},
-                                child: MediumButton(text: "Place My Order")),
-                          ),
+                                child: Container(
+                                  height: 200,
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    gradient: gradientbackground,
+                                  ),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              "Tontine groupe",
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              "12 personnes",
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              "Price",
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              "5 Fcfa",
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              "Total",
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              "5 Fcfa",
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            height: 50,
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(13.0),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "Place My Order",
+                                                style: const TextStyle(
+                                                  fontSize: 15,
+                                                  color: Color.fromARGB(
+                                                      255, 213, 33, 171),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                              )
+
+                              //MediumButton(text: "Place My Order")),
+                              ),
                         ],
                       ),
                     ],

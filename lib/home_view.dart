@@ -108,37 +108,40 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
-              Container(
-                  height: 40,
-                  padding: const EdgeInsets.only(
-                    left: 20.0,
-                    right: 20.0,
-                    top: 10,
-                    bottom: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                    color: const Color(0xFF701D53),
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        "assets/SlashScreen/sort.png",
-                        width: 20,
-                        height: 20,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      const Text(
-                        "Filtres",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Container(
+                    height: 40,
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20.0,
+                      top: 10,
+                      bottom: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: const Color(0xFF701D53),
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/SlashScreen/sort.png",
+                          width: 20,
+                          height: 20,
                         ),
-                      ),
-                    ],
-                  )),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        const Text(
+                          "Filtres",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
             ],
           ),
         ),

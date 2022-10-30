@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
+import 'package:neta_event_mvvm/features/intro/screen_one.dart';
 import 'package:neta_event_mvvm/features/intro/screen_three.dart';
 
 import '../../core/widgets/big_button_style.dart';
@@ -15,13 +16,23 @@ class ScreenTwo extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            iconTheme: const IconThemeData(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
               color: Colors.black,
             ),
-            shadowColor: Colors.white,
-            elevation: 0.0,
-            backgroundColor: Colors.white,
-           ),
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const ScreenOne()));
+            },
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+          ),
+          shadowColor: Colors.white,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: Center(
@@ -39,7 +50,7 @@ class ScreenTwo extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LoginView()));
@@ -47,7 +58,7 @@ class ScreenTwo extends StatelessWidget {
                           child: TextWidgetText2(title: "Passer")),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ScreenThree()));

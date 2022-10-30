@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/intro/screen_two.dart';
 
 import '../../core/widgets/big_button_style.dart';
 import '../../core/widgets/text_widget_text2.dart';
@@ -14,6 +15,16 @@ class ScreenThree extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => ScreenTwo()));
+            },
+          ),
           iconTheme: const IconThemeData(
             color: Colors.black,
           ),
@@ -35,7 +46,7 @@ class ScreenThree extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => LoginView()));
                     },
                     child: BigButton(text: "Commencer"),

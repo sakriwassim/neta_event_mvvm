@@ -15,6 +15,8 @@ class ScreenOne extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          // add more IconButton
+
           iconTheme: const IconThemeData(
             color: Colors.black,
           ),
@@ -39,7 +41,7 @@ class ScreenOne extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LoginView()));
@@ -47,7 +49,7 @@ class ScreenOne extends StatelessWidget {
                           child: TextWidgetText2(title: "Passer")),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ScreenTwo()));

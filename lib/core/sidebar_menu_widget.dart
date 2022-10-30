@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../features/authentification/authentification_repositories/authentification_api.dart';
+import '../features/authentification/view_model_authentification/authentification_view_model.dart';
 import '../features/authentification/views_authentification/login_authentification_view.dart';
 import '../features/users/view_profil/one_user_view.dart';
 import '../features/users/views_events/events_view.dart';
@@ -11,6 +13,15 @@ class SideBarMenu extends StatelessWidget {
     Key? key,
     required this.callbackFunctionlogout,
   }) : super(key: key);
+
+  var data2 = AuthentificationViewModel(
+      authentificationRepository: AuthentificationApi());
+
+  // logout() {
+  //   setState(() {
+  //     data2.Cleanpref();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +85,10 @@ class SideBarMenu extends StatelessWidget {
             leading: const Icon(Icons.event),
             title: const Text('Evenements'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const GetAllUserView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GetAllUserView()));
             },
           ),
           ListTile(
@@ -116,7 +129,8 @@ class SideBarMenu extends StatelessWidget {
             title: const Text('Se deconnecter'),
             leading: const Icon(Icons.exit_to_app),
             onTap: () {
-              callbackFunctionlogout;
+              data2.Cleanpref();
+              //callbackFunctionlogout;
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => LoginView()));
             },

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
 
 import '../../../core/widgets/medium_button.dart';
+import '../../../core/widgets/text_widget_text2.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
@@ -24,13 +26,13 @@ class _OneUserViewState extends State<OneUserView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Profile",
             style: TextStyle(
               color: Colors.black,
@@ -43,7 +45,7 @@ class _OneUserViewState extends State<OneUserView> {
             if (snapshot.hasData) {
               return Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 300,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,22 +57,44 @@ class _OneUserViewState extends State<OneUserView> {
                         ),
                         Text(
                           snapshot.data!.nom_complet,
-                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Column(
-                              children: [
-                                Text("420"),
-                                Text("ticket"),
-                              ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 10, left: 10),
+                              child: Column(
+                                children: [
+                                  TextWidgetText2(
+                                    title: "420",
+                                  ),
+                                  Text(
+                                    "ticket",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Column(
-                              children: [
-                                Text("1800\$"),
-                                Text("spent"),
-                              ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 10, left: 10),
+                              child: Column(
+                                children: [
+                                  TextWidgetText2(
+                                    title: "1800\$",
+                                  ),
+                                  Text(
+                                    "spent",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -83,7 +107,7 @@ class _OneUserViewState extends State<OneUserView> {
                                   ));
                             },
                             child: MediumButton(
-                              text: "Edit",
+                              text: "Edit Profile",
                             )),
                       ],
                     ),
@@ -110,8 +134,13 @@ class _OneUserViewState extends State<OneUserView> {
                                   color: Colors.grey,
                                   size: 40.0,
                                 ),
-                                Text(
-                                  snapshot.data!.nom_complet,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 10, left: 10),
+                                  child: Text(
+                                    snapshot.data!.nom_complet,
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
                                 )
                               ],
                             ),
@@ -125,8 +154,13 @@ class _OneUserViewState extends State<OneUserView> {
                                   color: Colors.grey,
                                   size: 40.0,
                                 ),
-                                Text(
-                                  snapshot.data!.email,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 10, left: 10),
+                                  child: Text(
+                                    snapshot.data!.email,
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
                                 )
                               ],
                             ),
@@ -140,7 +174,14 @@ class _OneUserViewState extends State<OneUserView> {
                                   color: Colors.grey,
                                   size: 40.0,
                                 ),
-                                Text(snapshot.data!.adresse)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 10, left: 10),
+                                  child: Text(
+                                    snapshot.data!.adresse,
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -153,7 +194,14 @@ class _OneUserViewState extends State<OneUserView> {
                                   color: Colors.grey,
                                   size: 40.0,
                                 ),
-                                Text(snapshot.data!.telephone)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 10, left: 10),
+                                  child: Text(
+                                    snapshot.data!.telephone,
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                )
                               ],
                             ),
                           )

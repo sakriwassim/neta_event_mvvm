@@ -123,16 +123,11 @@ class _HomeViewState extends State<HomeView> {
                       color: const Color(0xFF701D53),
                     ),
                     child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/SlashScreen/sort.png",
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(
+                      children: const [
+                        SizedBox(
                           width: 3,
                         ),
-                        const Text(
+                        Text(
                           "Filtres",
                           style: TextStyle(
                             fontSize: 15,

@@ -1,8 +1,16 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
+import 'package:neta_event_mvvm/features/imageupload/models_image/image_model.dart';
 
 import '../../../core/widget/text_widget.dart';
+import '../../imageupload/images_repositories/images_api.dart';
+import '../../imageupload/view_model_images/images_view_model.dart';
+import '../../imageupload/view_model_images/one_image_view_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../models_events/add_event_model.dart';
 import '../view_model_events/events_view_model.dart';
@@ -23,9 +31,32 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   late String ancienpasswordfield;
   late String nouveaupasswordfield;
   late String confirmerpasswordfield;
+  String? imagepath;
 
   var data = UsersViewModel(eventsRepository: UsersApi());
+  var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
 
+//***********************************/
+  final ImagePicker _picker = ImagePicker();
+  List<XFile>? _imageFileList;
+  dynamic _pickImageError;
+
+  Future<void> _onImageButtonPressed(ImageSource source,
+      {BuildContext? context}) async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: source,
+      );
+
+      imagepath = await dataimage.addImage(pickedFile);
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+    }
+  }
+
+/********************************* */
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -56,14 +87,19 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                     children: [
                       Column(
                         children: [
+                          /********** */
                           CircleAvatar(
-                            radius: 50.0,
-                            child: ClipOval(
-                                child: Image.asset("assets/profileimage.png")),
+                            radius: 60.0,
+                            backgroundImage: NetworkImage(snapshot.data!.image),
+                            backgroundColor: Colors.transparent,
                           ),
+
+/**/ /////////////// */
+
                           Text(
                             snapshot.data!.nom_complet,
-                            style: const TextStyle(color: Colors.black, fontSize: 20),
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 20),
                           ),
                         ],
                       ),
@@ -179,8 +215,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    //    controller:
-                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -199,7 +233,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             width: 1,
                                           )),
                                       labelText: 'Address',
-
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
                                         color: Colors.grey,
@@ -209,24 +242,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
                                       hintText: 'entre le Address',
-
-                                      //  suffixIcon: IconButton(
-                                      //           icon: Icon(_isObscure
-                                      //               ? Icons.visibility
-                                      //               : Icons.visibility_off),
-                                      //           onPressed: () {
-                                      //             setState(() {
-                                      //               _isObscure = !_isObscure;
-                                      //             });
-                                      //           })
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le Address";
                                       } else {
-                                        //dateMesurefield = datenow.toString();
-                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
@@ -238,8 +258,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    //    controller:
-                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -268,13 +286,10 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       ),
                                       hintText: 'entre le phone nbr',
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le phone nbr";
                                       } else {
-                                        //dateMesurefield = datenow.toString();
-                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
@@ -323,13 +338,47 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         bottom: 20,
                                         right: 10,
                                         left: 10),
-                                    child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        child: SvgPicture.asset(
-                                            "assets/icon_user/CameraButton.svg")),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await _onImageButtonPressed(
+                                            ImageSource.camera,
+                                            context: context);
+                                        if (formkey.currentState!.validate()) {
+                                          var event = {
+                                            "role_id": int.parse(
+                                                '${snapshot.data!.role_id}'), //1,
+                                            "packs_id": int.parse(
+                                                '${snapshot.data!.packs_id}'),
+                                            "nom_complet": snapshot
+                                                .data!.nom_complet
+                                                .toString(),
+                                            "email":
+                                                snapshot.data!.email.toString(),
+                                            "telephone": int.parse(
+                                                '${snapshot.data!.telephone}'),
+                                            "adresse": snapshot.data!.adresse
+                                                .toString(),
+                                            "image": imagepath,
+                                            "password": snapshot.data!.password
+                                                .toString()
+                                          };
+
+                                          AddUserModel eventformJson =
+                                              AddUserModel.fromJson(event);
+
+                                          setState(() {
+                                            data.UpdateUserByID(eventformJson);
+                                          });
+                                        }
+                                      },
+                                      child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          child: SvgPicture.asset(
+                                              "assets/icon_user/CameraButton.svg")),
+                                    ),
                                   ),
                                 ),
                                 Expanded(
@@ -339,13 +388,48 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         bottom: 20,
                                         right: 10,
                                         left: 10),
-                                    child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        child: SvgPicture.asset(
-                                            "assets/icon_user/GalleryButton.svg")),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await _onImageButtonPressed(
+                                            ImageSource.gallery,
+                                            context: context);
+
+                                        if (formkey.currentState!.validate()) {
+                                          var event = {
+                                            "role_id": int.parse(
+                                                '${snapshot.data!.role_id}'), //1,
+                                            "packs_id": int.parse(
+                                                '${snapshot.data!.packs_id}'),
+                                            "nom_complet": snapshot
+                                                .data!.nom_complet
+                                                .toString(),
+                                            "email":
+                                                snapshot.data!.email.toString(),
+                                            "telephone": int.parse(
+                                                '${snapshot.data!.telephone}'),
+                                            "adresse": snapshot.data!.adresse
+                                                .toString(),
+                                            "image": imagepath,
+                                            "password": snapshot.data!.password
+                                                .toString()
+                                          };
+
+                                          AddUserModel eventformJson =
+                                              AddUserModel.fromJson(event);
+
+                                          setState(() {
+                                            data.UpdateUserByID(eventformJson);
+                                          });
+                                        }
+                                      },
+                                      child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          child: SvgPicture.asset(
+                                              "assets/icon_user/GalleryButton.svg")),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -374,8 +458,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    //    controller:
-                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -394,7 +476,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             width: 1,
                                           )),
                                       labelText: ' Ancien mot de passe',
-
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
                                         color: Colors.grey,
@@ -404,24 +485,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
                                       hintText: 'entre le ancien password',
-
-                                      //  suffixIcon: IconButton(
-                                      //           icon: Icon(_isObscure
-                                      //               ? Icons.visibility
-                                      //               : Icons.visibility_off),
-                                      //           onPressed: () {
-                                      //             setState(() {
-                                      //               _isObscure = !_isObscure;
-                                      //             });
-                                      //           })
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le ancien password";
                                       } else {
-                                        //dateMesurefield = datenow.toString();
-                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
@@ -433,8 +501,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    //    controller:
-                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -453,7 +519,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             width: 1,
                                           )),
                                       labelText: ' Nouveau mot de passe',
-
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
                                         color: Colors.grey,
@@ -463,24 +528,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
                                       hintText: 'entre le nouveau password',
-
-                                      //  suffixIcon: IconButton(
-                                      //           icon: Icon(_isObscure
-                                      //               ? Icons.visibility
-                                      //               : Icons.visibility_off),
-                                      //           onPressed: () {
-                                      //             setState(() {
-                                      //               _isObscure = !_isObscure;
-                                      //             });
-                                      //           })
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le nouveau password";
                                       } else {
-                                        //dateMesurefield = datenow.toString();
-                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
@@ -492,8 +544,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    //    controller:
-                                    //      TextEditingController(text: widget.eventObj.description),
                                     decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Color(0xFFF2F2F2),
@@ -512,7 +562,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             width: 1,
                                           )),
                                       labelText: '  Confirmer mot de passe',
-
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
                                         color: Colors.grey,
@@ -522,24 +571,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                             255, 114, 59, 3), //<-- SEE HERE
                                       ),
                                       hintText: 'entre le password',
-
-                                      //  suffixIcon: IconButton(
-                                      //           icon: Icon(_isObscure
-                                      //               ? Icons.visibility
-                                      //               : Icons.visibility_off),
-                                      //           onPressed: () {
-                                      //             setState(() {
-                                      //               _isObscure = !_isObscure;
-                                      //             });
-                                      //           })
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le password";
                                       } else {
-                                        //dateMesurefield = datenow.toString();
-                                        //descriptionfield = widget.eventObj.description.toString();
                                         return null;
                                       }
                                     },
@@ -554,10 +590,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   child: InkWell(
                                       onTap: () async {
                                         if (formkey.currentState!.validate()) {
-                                          // if (confirmerpasswordfield ==
-                                          //         nouveaupasswordfield &&
-                                          //    ancienpasswordfield ==
-                                          //        snapshot.data!.password) {
                                           var event = {
                                             "role_id": int.parse(
                                                 '${snapshot.data!.role_id}'), //1,
@@ -584,10 +616,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           setState(() {
                                             data.UpdateUserByID(eventformJson);
                                           });
-                                          // } else {
-                                          //   print(
-                                          //       "confirm or ancien password is  false ");
-                                          // }
+
+                                          _imageFileList = null;
                                         }
                                       },
                                       child: MediumButton(

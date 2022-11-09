@@ -1,4 +1,4 @@
-
+import 'package:cross_file/src/types/interface.dart';
 import 'package:neta_event_mvvm/features/events/models_events/add_event_model.dart';
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
@@ -32,14 +32,15 @@ class UsersLocal extends UsersRepository {
   Future<bool> deleteUserByID(int id) {
     throw UnimplementedError();
   }
-  
+
   @override
   Future<UserModel> getUserByUsersByCategorie(int id) {
     throw UnimplementedError();
   }
-  
+
   @override
   Future<List<UserModel>> getUserByCategorie(int id) {
     throw UnimplementedError();
   }
+
 }

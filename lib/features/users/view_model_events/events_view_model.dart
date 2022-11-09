@@ -1,5 +1,4 @@
-import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../evants_repositories/event_repository.dart';
 import '../models_events/add_event_model.dart';
@@ -27,11 +26,6 @@ class UsersViewModel {
         .toList();
   }
 
-  Future<OneUserViewModel> GetUserByID(int id) async {
-    var eventModel = await eventsRepository!.getUserByID(id);
-    return OneUserViewModel(eventModel: eventModel);
-  }
-
   Future<bool> UpdateUserByID(AddUserModel eventModel) async {
     var event = await eventsRepository!.updateUserByID(eventModel);
     return true;
@@ -45,5 +39,10 @@ class UsersViewModel {
   Future<bool> DeleteUserByID(int id) async {
     var eventModel = await eventsRepository!.deleteUserByID(id);
     return true;
+  }
+
+  Future<OneUserViewModel> GetUserByID(int id) async {
+    var eventModel = await eventsRepository!.getUserByID(id);
+    return OneUserViewModel(eventModel: eventModel);
   }
 }

@@ -1,4 +1,4 @@
-
+import 'package:image_picker/image_picker.dart';
 
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
@@ -10,4 +10,5 @@ abstract class UsersRepository {
   Future<AddUserModel> updateUserByID(AddUserModel eventModel);
   Future<bool> addUser(AddUserModel addUserModel);
   Future<bool> deleteUserByID(int id);
+
 }

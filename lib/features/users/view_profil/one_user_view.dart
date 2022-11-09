@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
 
 import '../../../core/widgets/medium_button.dart';
@@ -52,8 +51,8 @@ class _OneUserViewState extends State<OneUserView> {
                       children: [
                         CircleAvatar(
                           radius: 50.0,
-                          child: ClipOval(
-                              child: Image.asset("assets/profileimage.png")),
+                          backgroundImage: NetworkImage(snapshot.data!.image),
+                          backgroundColor: Colors.transparent,
                         ),
                         Text(
                           snapshot.data!.nom_complet,

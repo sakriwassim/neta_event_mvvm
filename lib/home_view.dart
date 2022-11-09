@@ -3,6 +3,8 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/core/widgets/exclusive_card_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_exclusives_view.dart';
+import 'package:neta_event_mvvm/search.dart';
+
 import 'features/Categories/categories_repositories/categories_api.dart';
 import 'features/Categories/view_model_categories/categories_view_model.dart';
 import 'features/Categories/view_model_categories/one_categorie_view_model.dart';
@@ -94,7 +96,16 @@ class _HomeViewState extends State<HomeView> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  showSearch(context: context, delegate: SearchElement());
+
+                  //  IconButton(
+//               icon: Icon(Icons.search),
+//               onPressed: () {
+//                 showSearch(context: context, delegate: SearchElement());
+//               },
+//             )
+                },
                 child: const Icon(Icons.search, color: Colors.white, size: 30),
               ),
               const SizedBox(
@@ -108,6 +119,29 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
+              // Expanded(
+              //     child: FutureBuilder<List<OneEventViewModel>>(
+              //         future: data.FetchAllEvents(),
+              //         builder: (context, snapshot) {
+              //           var events = snapshot.data;
+              //           return ListView.builder(
+              //               itemCount: events?.length,
+              //               itemBuilder: (context, index) => GestureDetector(
+              //                   onTap: () {
+              //                     Navigator.push(
+              //                       context,
+              //                       MaterialPageRoute(
+              //                           builder: (context) => OnEventView(
+              //                                 id: events[index].id,
+              //                               )),
+              //                     );
+              //                   },
+              //                   child: ListTile(
+              //                     leading: Image.asset("assets/122.png"),
+              //                     title: Text("${events![index].libelle}"),
+              //                   )));
+              //         })),
+
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Container(

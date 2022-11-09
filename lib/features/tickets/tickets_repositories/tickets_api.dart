@@ -58,6 +58,7 @@ class TicketsApi extends TicketsRepository {
     }
   }
 
+  
   @override
   Future<bool> deleteTicketByID(int id) async {
     try {

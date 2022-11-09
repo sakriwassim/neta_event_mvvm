@@ -27,6 +27,9 @@ dependencies:
   custom_slider: ^0.0.3
   flutter_custom_tab_bar: ^1.2.0
   flutter_svg: ^1.1.5
+  image_picker: ^0.8.6
+  dio: ^4.0.6
+
   
   
   

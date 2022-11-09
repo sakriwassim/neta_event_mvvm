@@ -1,5 +1,10 @@
 import 'dart:convert';
+
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models_events/add_event_model.dart';
@@ -166,4 +171,7 @@ class UsersApi extends UsersRepository {
       return false;
     }
   }
+
+
+
 }

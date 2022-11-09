@@ -159,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
                         bool verif = await data.Login(authentificationModel);
                         if (verif == true) {
                           // ignore: use_build_context_synchronously
-                          Navigator.pushReplacement(
+                          Navigator.  pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MyHomePage(),

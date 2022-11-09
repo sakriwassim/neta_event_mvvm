@@ -35,7 +35,7 @@ class EventsApi extends EventsRepository {
   }
 
   @override
-  Future<List<EventModel>> getAllEvents() async {
+  Future<List<EventModel>> getAllEvents({String? query}) async {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -52,6 +52,13 @@ class EventsApi extends EventsRepository {
 
       var list = responsebody as List;
       eventsList = list.map((event) => EventModel.fromJson(event)).toList();
+
+      if (query != null) {
+        eventsList = eventsList
+            .where((element) =>
+                element.libelle!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
 
       return eventsList;
     } catch (e) {

@@ -1,10 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
-import '../../../bottom_navigation_bar.dart';
 import '../../../core/signein/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
+import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -31,6 +32,7 @@ class _LoginViewState extends State<LoginView> {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
+            autovalidateMode: AutovalidateMode.always,
             key: formkey,
             child: Column(
               children: [
@@ -73,8 +75,14 @@ class _LoginViewState extends State<LoginView> {
                       Colors.grey,
                     ),
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return "entre le email";
+                      String pattern =
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                      RegExp regex = RegExp(pattern);
+
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
+                        return "Enter a valid email address";
                       } else {
                         return null;
                       }
@@ -94,8 +102,14 @@ class _LoginViewState extends State<LoginView> {
                       Colors.grey,
                     ),
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return "entre le password";
+                      String pattern =
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      RegExp regex = RegExp(pattern);
+
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
+                        return "Enter a valid mot de pass";
                       } else {
                         return null;
                       }
@@ -159,7 +173,7 @@ class _LoginViewState extends State<LoginView> {
                         bool verif = await data.Login(authentificationModel);
                         if (verif == true) {
                           // ignore: use_build_context_synchronously
-                          Navigator.  pushReplacement(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MyHomePage(),

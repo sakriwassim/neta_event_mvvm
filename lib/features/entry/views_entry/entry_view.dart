@@ -2,10 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
-import 'package:neta_event_mvvm/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../bottom_navigation_bar.dart';
 import '../../authentification/authentification_repositories/authentification_api.dart';
 import '../../authentification/view_model_authentification/authentification_view_model.dart';
 import '../../into_screen/view/home_page.dart';

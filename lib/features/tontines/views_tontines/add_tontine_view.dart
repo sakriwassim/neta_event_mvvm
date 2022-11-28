@@ -318,7 +318,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                         "id": 1,
                                         "user_id": "1",
                                         "libelle": libellefield,
-                                        "periode": descriptionfield,
+                                        "periode": "periode",
                                         "nbr_participant": prixfield,
                                         "montant_regulier": "1000",
                                         "status": "statut",

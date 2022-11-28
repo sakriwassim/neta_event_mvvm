@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'features/events/evants_repositories/events_api.dart';
-import 'features/events/view_model_events/events_view_model.dart';
-import 'features/events/views_events/events_view.dart';
-import 'features/tickets/views_tickets/tickets_view.dart';
-import 'features/tontines/views_tontines/tontines_view.dart';
+
+import '../events/evants_repositories/events_api.dart';
+import '../events/view_model_events/events_view_model.dart';
+import '../events/views_events/events_view.dart';
+import '../tickets/views_tickets/tickets_view.dart';
+import '../tontines/views_tontines/tontines_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {

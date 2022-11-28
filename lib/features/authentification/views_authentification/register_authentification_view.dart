@@ -16,6 +16,7 @@ class _RegisterViewState extends State<RegisterView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
+  late String passwordfield2;
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -70,7 +71,7 @@ class _RegisterViewState extends State<RegisterView> {
                       labelStyle: TextStyle(
                         color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
                       ),
-                      hintText: 'entre le email',
+                      hintText: 'entre le nom de user',
                     ),
 
                     validator: (value) {
@@ -115,8 +116,14 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
 
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return "entre le email";
+                      String pattern =
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                      RegExp regex = RegExp(pattern);
+
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
+                        return "Enter a valid email address";
                       } else {
                         // prixfield = widget.eventObj.prix;
                         return null;
@@ -146,7 +153,6 @@ class _RegisterViewState extends State<RegisterView> {
                             width: 1,
                           )),
                       labelText: ' Mot de passe',
-
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: Colors.grey,
@@ -155,20 +161,15 @@ class _RegisterViewState extends State<RegisterView> {
                         color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
                       ),
                       hintText: 'entre le password',
-
-                      //  suffixIcon: IconButton(
-                      //           icon: Icon(_isObscure
-                      //               ? Icons.visibility
-                      //               : Icons.visibility_off),
-                      //           onPressed: () {
-                      //             setState(() {
-                      //               _isObscure = !_isObscure;
-                      //             });
-                      //           })
                     ),
 
                     validator: (value) {
-                      if (value!.isEmpty) {
+                      String pattern =
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      RegExp regex = RegExp(pattern);
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
                         return "entre le password";
                       } else {
                         //dateMesurefield = datenow.toString();
@@ -222,16 +223,22 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
 
                     validator: (value) {
-                      if (value!.isEmpty) {
+                      var result = passwordfield2.compareTo(passwordfield);
+
+                      if (
+                          //passwordfield2 == passwordfield
+                          value!.isEmpty) {
+                        return "entre le password";
+                      } else if (result < 0) {
                         return "entre le password";
                       } else {
-                        //dateMesurefield = datenow.toString();
-                        //descriptionfield = widget.eventObj.description.toString();
                         return null;
                       }
+                      //dateMesurefield = datenow.toString();
+                      //descriptionfield = widget.eventObj.description.toString();
                     },
                     onChanged: (text) {
-                      passwordfield = text;
+                      passwordfield2 = text;
                     },
                   ),
                 ),
@@ -311,13 +318,13 @@ class _RegisterViewState extends State<RegisterView> {
                       onTap: () {},
                       child: Container(
                           height: 60,
-                          padding:const EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             left: 10.0,
                             right: 10.0,
                             top: 10,
                             bottom: 5,
                           ),
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(13.0),
                           ),

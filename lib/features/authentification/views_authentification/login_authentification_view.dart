@@ -32,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
-            autovalidateMode: AutovalidateMode.always,
+           // autovalidateMode: AutovalidateMode.always,
             key: formkey,
             child: Column(
               children: [

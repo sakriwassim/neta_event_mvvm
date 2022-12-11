@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
 
+import '../../../core/string.dart';
 import '../../../core/widgets/medium_button.dart';
 import '../../../core/widgets/text_widget_text2.dart';
 import '../evants_repositories/events_api.dart';
@@ -51,7 +53,11 @@ class _OneUserViewState extends State<OneUserView> {
                       children: [
                         CircleAvatar(
                           radius: 50.0,
-                          backgroundImage: NetworkImage(snapshot.data!.image),
+                          backgroundImage: AdvancedNetworkImage(
+                              snapshot.data!.image,
+                              fallbackAssetImage: defaultImage),
+
+                          //   backgroundImage: NetworkImage(snapshot.data!.image),
                           backgroundColor: Colors.transparent,
                         ),
                         Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/features/tontines/view_model_tickets/tontines_view_model.dart';
 
 import '../features/authentification/authentification_repositories/authentification_api.dart';
@@ -10,6 +11,7 @@ import '../features/users/view_model_events/events_view_model.dart';
 import '../features/users/view_model_events/one_event_view_model.dart';
 import '../features/users/view_profil/one_user_view.dart';
 import '../features/users/views_events/events_view.dart';
+import 'string.dart';
 
 class SideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
@@ -47,24 +49,26 @@ class SideBarMenu extends StatelessWidget {
             ),
             child: Stack(
               children: <Widget>[
-                // Align(
-                //   alignment: Alignment.centerLeft,
-                //   child: FutureBuilder<OneUserViewModel>(
-                //     future: data.GetUserByID(1),
-                //     builder: ((context, snapshot) {
-                //       if (snapshot.hasData) {
-                //         return CircleAvatar(
-                //           radius: 40.0,
-                //           backgroundImage: NetworkImage(snapshot.data!.image),
-                //           backgroundColor: Colors.transparent,
-                //         );
-                //       } else if (snapshot.hasError) {
-                //         return Text("${snapshot.error}");
-                //       }
-                //       return const CircularProgressIndicator();
-                //     }),
-                //   ),
-                // ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: FutureBuilder<OneUserViewModel>(
+                    future: data.GetUserByID(1),
+                    builder: ((context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CircleAvatar(
+                          radius: 40.0,
+                          backgroundImage: AdvancedNetworkImage(
+                              snapshot.data!.image,
+                              fallbackAssetImage: defaultImage),
+                          backgroundColor: Colors.transparent,
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      }
+                      return const CircularProgressIndicator();
+                    }),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(

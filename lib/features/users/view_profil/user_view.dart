@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 import 'package:neta_event_mvvm/features/imageupload/models_image/image_model.dart';
 
+import '../../../core/string.dart';
 import '../../../core/widget/text_widget.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
@@ -90,7 +92,9 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                           /********** */
                           CircleAvatar(
                             radius: 60.0,
-                            backgroundImage: NetworkImage(snapshot.data!.image),
+                            backgroundImage: AdvancedNetworkImage(
+                                snapshot.data!.image,
+                                fallbackAssetImage: defaultImage),
                             backgroundColor: Colors.transparent,
                           ),
 

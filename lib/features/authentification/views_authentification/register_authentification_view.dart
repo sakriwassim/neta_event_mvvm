@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/signein/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -269,85 +273,29 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                       }
                     },
-                    child: SigneInUpButton(
+                    child: Button(
                       text: "S'INSCRIRE",
+                      fontSize: fontSizebigbutton,
+                      height: heightbigbutton,
+                      width: widthbigbutton,
+                      gradientbackground: gradientbackground,
                     )),
-                Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                          height: 60,
-                          padding: const EdgeInsets.only(
-                            left: 10.0,
-                            right: 10.0,
-                            top: 10,
-                            bottom: 5,
-                          ),
-                          decoration: new BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(13.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/SlashScreen/google.png',
-                                width: MediaQuery.of(context).size.width * 0.1,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                //scale: 0.1,
-                              ),
-                              const Text(
-                                "Se conncter avec Google",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          )),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: CardGoogle(
+                    image: 'assets/SlashScreen/google.png',
+                    title: 'Se conncter avec Google',
+                    height: heightgoogle,
+                    width: widthgoogle,
                   ),
                 ),
-                Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.72,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                          height: 60,
-                          padding: const EdgeInsets.only(
-                            left: 10.0,
-                            right: 10.0,
-                            top: 10,
-                            bottom: 5,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(13.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/SlashScreen/Facebook.png',
-                                width: MediaQuery.of(context).size.width * 0.1,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                //scale: 0.1,
-                              ),
-                              const Text(
-                                " Se conncter avec Facebook",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          )),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: CardGoogle(
+                    image: 'assets/SlashScreen/Facebook.png',
+                    title: 'Se connecter avec Facebook',
+                    height: heightgoogle,
+                    width: widthgoogle,
                   ),
                 ),
                 SizedBox(

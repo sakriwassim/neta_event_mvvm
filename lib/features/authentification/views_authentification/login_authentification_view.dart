@@ -1,10 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
+import '../../../core/colors.dart';
 import '../../../core/signein/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -32,38 +35,41 @@ class _LoginViewState extends State<LoginView> {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
-            // autovalidateMode: AutovalidateMode.always,
             key: formkey,
             child: Column(
               children: [
-                Image.asset(
-                  'assets/SlashScreen/netaLogo.png',
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                Container(
+                  child: Image.asset(
+                    'assets/SlashScreen/netaLogo.png',
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(
-                        left: 25.0,
-                        right: 5.0,
-                        top: 10,
-                        bottom: 16,
-                      ),
-                      child: const Text(
-                        "Se connecter",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                          left: 25.0,
+                          right: 5.0,
+                          top: 10,
+                          bottom: 16,
+                        ),
+                        child: const Text(
+                          "Se connecter",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                    )
-                  ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15),
@@ -190,29 +196,29 @@ class _LoginViewState extends State<LoginView> {
                         }
                       }
                     },
-                    child: SigneInUpButton(
+                    child: Button(
                       text: "SE CONNECTER",
+                      fontSize: fontSizebigbutton,
+                      height: heightbigbutton,
+                      width: widthbigbutton,
+                      gradientbackground: gradientbackground,
                     )),
                 Center(
-                  child: SizedBox(
-                    height: 80,
-                    width: 300,
-                    child: InkWell(
-                      onTap: () {},
-                      child: CardGoogle(
-                        image: 'assets/SlashScreen/google.png',
-                        title: 'Se conncter avec Google',
-                        height: 80,
-                        width: 300,
-                      ),
+                  child: InkWell(
+                    onTap: () {},
+                    child: CardGoogle(
+                      image: 'assets/SlashScreen/google.png',
+                      title: 'Se connecter avec Google',
+                      height: heightgoogle,
+                      width: widthgoogle,
                     ),
                   ),
                 ),
                 CardGoogle(
                   image: 'assets/SlashScreen/Facebook.png',
-                  title: 'Se conncter avec Facebook',
-                  height: 80,
-                  width: 300,
+                  title: 'Se connecter avec Facebook',
+                  height: heightgoogle,
+                  width: widthgoogle,
                 ),
                 SizedBox(
                   child: Row(

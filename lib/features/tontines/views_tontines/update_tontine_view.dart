@@ -10,7 +10,7 @@ import '../view_model_tickets/tontines_view_model.dart';
 
 class UpdateTontineView extends StatefulWidget {
   final OneTontineViewModel ticketObj;
-  UpdateTontineView({super.key, required this.ticketObj});
+  const UpdateTontineView({super.key, required this.ticketObj});
 
   @override
   State<UpdateTontineView> createState() => _UpdateTontineViewState();
@@ -21,11 +21,6 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
   late String libellefield;
   late String prixfield;
   late String descriptionfield;
-
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
-
   var data = TontinesViewModel(ticketsRepository: TontinesApi());
 
   @override
@@ -123,7 +118,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   };
 
                   TontineModel ticketformJson = TontineModel.fromJson(ticket);
-                //  print(ticketformJson);
+                  //  print(ticketformJson);
 
                   var update = await data.UpdateTontineByID(ticketformJson);
 
@@ -131,7 +126,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => GetAllTontineView()));
+                            builder: (context) => const GetAllTontineView()));
                   }
                 }
               },

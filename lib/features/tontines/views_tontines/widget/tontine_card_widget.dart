@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
-import 'package:neta_event_mvvm/core/widgets/mini_button_style.dart';
+
+import '../../../../core/int.dart';
+import '../../../../core/widgets/small_button_style.dart';
 
 class TontineCardWidget extends StatelessWidget {
   String? libelle;
@@ -115,7 +117,13 @@ class TontineCardWidget extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: MiniButton(text: "Participer"),
+                        child: Button(
+                          text: "Participer",
+                          fontSize: fontSizeminibutton,
+                          gradientbackground: gradientbackground,
+                          height: heightminibutton,
+                          width: widthminibutton,
+                        ),
                       )
                     ],
                   )

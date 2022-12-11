@@ -21,6 +21,7 @@ import '../events/views_events/widgets/event_card_widget.dart';
 import '../packs/packs_repositories/packs_api.dart';
 import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
+import '../packs/views_packs/get_all_pack_view_body.dart';
 import '../packs/views_packs/packs_view.dart';
 import '../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../tontines/tontines_repositories/tontines_api.dart';
@@ -375,7 +376,7 @@ class _HomeViewState extends State<HomeView> {
                             text: 'Packs',
                             callbackfonction: navGetAllPackView,
                           ),
-                          SizedBox(height: 360, child: GetAllPackView()),
+                          SizedBox(height: 360, child: GetAllPackViewBody()),
                           VoirTout(
                             text: 'Tontine',
                             callbackfonction: navGetAllTontineView,

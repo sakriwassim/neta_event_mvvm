@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
-import '../../../core/widgets/big_button_style.dart';
+
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
@@ -123,7 +126,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                                           ticketObj: snapshot.data!,
                                         )));
                           },
-                          child: BigButton(text: "MODIFIER")),
+                          child: Button(
+                            text: "MODIFIER",
+                            fontSize: 20,
+                            gradientbackground: gradientbackground,
+                            height: heightbigbutton,
+                            width: widthbigbutton,
+                          )),
                       InkWell(
                           onTap: () async {
                             var delete =
@@ -137,7 +146,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                                           const GetAllTontineView()));
                             }
                           },
-                          child: BigButton(text: "SUPPRIMER")),
+                          child: Button(
+                            text: "SUPPRIMER",
+                            fontSize: fontSizeminibutton,
+                            gradientbackground: gradientbackground,
+                            height: heightminibutton,
+                            width: widthminibutton,
+                          )),
                     ],
                   )
                 ],

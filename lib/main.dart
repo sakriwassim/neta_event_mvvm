@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/authentification/views_authentification/login_authentification_view.dart';
-import 'features/entry/views_entry/entry_view.dart';
-import 'features/events/views_events/events_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
-import 'features/home/home_view.dart';
 import 'features/into_screen/utils/colors.dart';
 
 void main() {
@@ -41,9 +37,9 @@ class MyApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       )),
-      home: LoginView(),
+      //home: LoginView(),
       //home: SplashScreen(),
-      //home: MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }

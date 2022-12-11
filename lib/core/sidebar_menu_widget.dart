@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
-import 'package:neta_event_mvvm/features/tontines/view_model_tickets/tontines_view_model.dart';
 
 import '../features/authentification/authentification_repositories/authentification_api.dart';
 import '../features/authentification/view_model_authentification/authentification_view_model.dart';

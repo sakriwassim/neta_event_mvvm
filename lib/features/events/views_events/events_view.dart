@@ -8,6 +8,7 @@ import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
 
 import '../../../core/colors.dart';
+import 'events_body_view.dart';
 import 'one_event_view.dart';
 
 class GetAllEventView extends StatefulWidget {
@@ -23,105 +24,40 @@ class _GetAllEventViewState extends State<GetAllEventView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-        ),
-        shadowColor: Colors.white,
-        elevation: 0.0,
         backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              data.title,
-              style: const TextStyle(
-                color: Colors.black,
-              ),
-            ),
-            InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddEventView()));
-                },
-                child: Button(
-                  text: "ADD EVENT",
-                  height: 40,
-                  width: 100,
-                  fontSize: 15,
-                  gradientbackground: gradientbackground,
-                )),
-          ],
-        ),
-      ),
-      body: OfflineBuilder(
-        connectivityBuilder: (
-          BuildContext context,
-          ConnectivityResult connectivity,
-          Widget child,
-        ) {
-          final bool connected = connectivity != ConnectivityResult.none;
-          if (connected) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                setState(() {
-                  data.GetEventByCategorie(2);
-                });
-
-                return Future.delayed(const Duration(seconds: 2));
-              },
-              child: Center(
-                child: FutureBuilder<List<OneEventViewModel>>(
-                  future: data.FetchAllEvents(query: "gdg"),
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      var events = snapshot.data;
-                      return ListView.builder(
-                          itemCount: events?.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OnEventView(
-                                            id: events[index].id,
-                                          )),
-                                );
-                              },
-                              child: EventCardWidget(
-                                description: events![index].description,
-                                events: events,
-                                date_heure: events[index].date_heure,
-                                libelle: events[index].libelle,
-                                prix: events[index].prix,
-                                adresse: events[index].adresse,
-                              )));
-                    }
-                  }),
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+          ),
+          shadowColor: Colors.white,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                data.title,
+                style: const TextStyle(
+                  color: Colors.black,
                 ),
               ),
-            );
-          } else {
-            return const Center(
-              child: Text("no connection"),
-            );
-          }
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'There are no bottons to push :)',
-            ),
-            Text(
-              'Just turn off your internet.',
-            ),
-          ],
+              InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddEventView()));
+                  },
+                  child: Button(
+                    text: "ADD EVENT",
+                    height: 40,
+                    width: 100,
+                    fontSize: 15,
+                    gradientbackground: gradientbackground,
+                  )),
+            ],
+          ),
         ),
-      ),
-    );
+        body: GetAllEventViewBody());
   }
 }

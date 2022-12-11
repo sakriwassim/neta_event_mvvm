@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/update_event_view.dart';
 
-import '../../../core/widgets/big_button_style.dart';
+import '../../../core/colors.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
@@ -118,7 +120,13 @@ class _OnEventViewState extends State<OnEventView> {
                                           eventObj: snapshot.data!,
                                         )));
                           },
-                          child: BigButton(text: "MODIFIER")),
+                          child: Button(
+                            text: "MODIFIER",
+                            fontSize: 20,
+                            gradientbackground: gradientbackground,
+                            height: heightbigbutton,
+                            width: widthbigbutton,
+                          )),
                       InkWell(
                           onTap: () async {
                             var delete =
@@ -128,10 +136,17 @@ class _OnEventViewState extends State<OnEventView> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const GetAllEventView()));
+                                      builder: (context) =>
+                                          const GetAllEventView()));
                             }
                           },
-                          child: BigButton(text: "SUPPRIMER")),
+                          child: Button(
+                            text: "SUPPRIMER",
+                            fontSize: 20,
+                            gradientbackground: gradientbackground,
+                            height: heightbigbutton,
+                            width: widthbigbutton,
+                          )),
                     ],
                   )
                 ],

@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import '../../../core/colors.dart';
-import '../../../core/signein/card_google_widget.dart';
+import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/medium_button.dart';
 import '../../../core/widgets/small_button_style.dart';

@@ -4,6 +4,7 @@ import '../../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/one_pack_view_model.dart';
 import '../view_model_packs/packs_view_model.dart';
+import 'get_all_pack_view_body.dart';
 
 class GetAllPackView extends StatefulWidget {
   const GetAllPackView({super.key});
@@ -20,7 +21,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme:const IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         shadowColor: Colors.white,
@@ -38,61 +39,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
           ],
         ),
       ),
-      body: OfflineBuilder(
-        connectivityBuilder: (
-          BuildContext context,
-          ConnectivityResult connectivity,
-          Widget child,
-        ) {
-          final bool connected = connectivity != ConnectivityResult.none;
-          if (connected) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                setState(() {
-                  data.FetchAllPacks();
-                });
-
-                return Future.delayed(const Duration(seconds: 2));
-              },
-              child: Center(
-                child: FutureBuilder<List<OnePackViewModel>>(
-                  future: data.FetchAllPacks(),
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      var events = snapshot.data;
-                      return ListView.builder(
-                          itemCount: events?.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {},
-                                child: PackCardWidget(
-                                  libelle: '${events![index].libelle}',
-                                ),
-                              ));
-                    }
-                  }),
-                ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: Text("no connection"),
-            );
-          }
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:const<Widget>[
-             Text(
-              'There are no bottons to push :)',
-            ),
-             Text(
-              'Just turn off your internet.',
-            ),
-          ],
-        ),
-      ),
+      body: GetAllPackViewBody(),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
-import '../../../core/signein/card_google_widget.dart';
+import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../authentification_repositories/authentification_api.dart';

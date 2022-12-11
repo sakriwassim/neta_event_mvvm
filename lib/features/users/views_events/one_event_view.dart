@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/users/views_events/update_event_view.dart';
 
-import '../../../core/widgets/big_button_style.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
@@ -118,7 +120,13 @@ class _OnUserViewState extends State<OnUserView> {
                                           eventObj: snapshot.data!,
                                         )));
                           },
-                          child: BigButton(text: "MODIFIER")),
+                          child: Button(
+                            text: "MODIFIER",
+                            fontSize: 20,
+                            gradientbackground: gradientbackground,
+                            height: heightbigbutton,
+                            width: widthbigbutton,
+                          )),
                       InkWell(
                           onTap: () async {
                             var delete =
@@ -132,7 +140,13 @@ class _OnUserViewState extends State<OnUserView> {
                                           const GetAllUserView()));
                             }
                           },
-                          child: BigButton(text: "SUPPRIMER")),
+                          child: Button(
+                            text: "SUPPRIMER",
+                            fontSize: 20,
+                            gradientbackground: gradientbackground,
+                            height: heightbigbutton,
+                            width: widthbigbutton,
+                          )),
                     ],
                   )
                 ],

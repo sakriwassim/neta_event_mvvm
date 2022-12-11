@@ -5,7 +5,7 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../core/colors.dart';
-import '../../../core/signein/card_google_widget.dart';
+import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
@@ -167,19 +167,11 @@ class _LoginViewState extends State<LoginView> {
                           "role_id": 1,
                           "packs_id": 1,
                           "nom_complet": "Mousa Keita",
-                          "email": "monemail@email.com",
+                          "email": emailfield.toString(),
                           "telephone": 70213645,
                           "adresse": "Faladiè",
                           "image": "https://cheminverslimage",
-                          "password": "password@!"
-                          // "role_id": 1,
-                          // "packs_id": 1,
-                          // "nom_complet": "Mousa Keita",
-                          // "email": emailfield.toString(),
-                          // "telephone": 70213645,
-                          // "adresse": "Faladiè",
-                          // "image": "https://cheminverslimage",
-                          // "password": passwordfield.toString()
+                          "password": passwordfield.toString()
                         };
 
                         AuthentificationModel authentificationModel =

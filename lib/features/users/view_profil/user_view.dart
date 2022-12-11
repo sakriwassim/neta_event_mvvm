@@ -9,7 +9,7 @@ import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 import 'package:neta_event_mvvm/features/imageupload/models_image/image_model.dart';
 
 import '../../../core/string.dart';
-import '../../../core/widget/text_widget.dart';
+import '../../../core/widgets/text_widget.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../../imageupload/view_model_images/one_image_view_model.dart';

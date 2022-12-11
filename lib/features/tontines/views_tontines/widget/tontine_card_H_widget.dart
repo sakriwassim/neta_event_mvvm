@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/widgets/mini_button_style.dart';
+import '../../../../core/colors.dart';
+import '../../../../core/int.dart';
+import '../../../../core/widgets/small_button_style.dart';
 import '../../view_model_tickets/one_tontine_view_model.dart';
 
 class TontineCardWidgetH extends StatelessWidget {
@@ -119,7 +121,13 @@ class TontineCardWidgetH extends StatelessWidget {
                     onTap: () {
                       callbackFunction!(id);
                     },
-                    child: MiniButton(text: "Supprimer"),
+                    child: Button(
+                      text: "Supprimer",
+                      fontSize: fontSizeminibutton,
+                      gradientbackground: gradientbackground,
+                      height: heightminibutton,
+                      width: widthminibutton,
+                    ),
                   ),
                 ],
               ),

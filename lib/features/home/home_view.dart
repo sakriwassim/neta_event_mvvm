@@ -29,6 +29,7 @@ import '../tontines/view_model_tickets/tontines_view_model.dart';
 import '../tontines/views_tontines/one_tontine_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
 import '../tontines/views_tontines/widget/tontine_card_widget.dart';
+import 'widget/voirtout.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({this.userCat, Key? key}) : super(key: key);
@@ -247,296 +248,64 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           SizedBox(
                             height: 260,
-                            child: FutureBuilder<List<OneEventViewModel>>(
-                              future: data.GetEventByCategorie(2),
-                              builder: ((context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                } else {
-                                  var categories = snapshot.data;
-                                  return ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: categories?.length,
-                                      itemBuilder: (context, index) =>
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        OnEventView(
-                                                          id: categories[index]
-                                                              .id,
-                                                        )),
-                                              );
-                                            },
-                                            child: ExclusiveCardWidget(
-                                              image: 'assets/122.png',
-                                              adresse:
-                                                  "${categories![index].adresse}",
-                                              libelle:
-                                                  "${categories[index].libelle}",
-                                              prix: "${categories[index].prix}",
-                                            ),
-                                          ));
-                                }
-                              }),
+                            child: SizedBox(
+                              height: 260,
+                              child: FutureBuilder<List<OneEventViewModel>>(
+                                future: data.GetEventByCategorie(2),
+                                builder: ((context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  } else {
+                                    var categories = snapshot.data;
+                                    return ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: categories?.length,
+                                        itemBuilder: (context, index) =>
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          OnEventView(
+                                                            id: categories[
+                                                                    index]
+                                                                .id,
+                                                          )),
+                                                );
+                                              },
+                                              child: ExclusiveCardWidget(
+                                                image: 'assets/122.png',
+                                                adresse:
+                                                    "${categories![index].adresse}",
+                                                libelle:
+                                                    "${categories[index].libelle}",
+                                                prix:
+                                                    "${categories[index].prix}",
+                                              ),
+                                            ));
+                                  }
+                                }),
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              children: [
-                                const Text("Catégories",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                const Spacer(),
-                                Row(
-                                  children: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const GetAllCategorieView()),
-                                          );
-                                        },
-                                        child: const Text("Voir tout",
-                                            style: TextStyle(
-                                              fontFamily: 'AirbnbCereal',
-                                              color: Colors.grey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                            ))),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    const Icon(
-                                      Icons.forward_outlined,
-                                      color: Colors.grey,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
+                          VoirTout(
+                            text: 'Catégories',
                           ),
-                          SizedBox(
-                            height: 120,
-                            child: FutureBuilder<List<OneCategorieViewModel>>(
-                              future: datacategorie.FetchAllCategories(),
-                              builder: ((context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                } else {
-                                  var categories = snapshot.data;
-                                  return ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: categories?.length,
-                                      itemBuilder: (context, index) =>
-                                          CategorieCardWidget(
-                                            libelle: categories![index].libelle,
-                                          ));
-                                }
-                              }),
-                            ),
+                          SizedBox(height: 120, child: GetAllCategorieView()),
+                          VoirTout(
+                            text: 'Evènements',
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              children: [
-                                const Text("Evènements",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                const Spacer(),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const GetAllEventView()),
-                                    );
-                                  },
-                                  child: Row(
-                                    children: const [
-                                      Text("Voir tout",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.grey,
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                          SizedBox(height: 200, child: GetAllEventView()),
+                          VoirTout(
+                            text: 'Packs',
                           ),
-                          SizedBox(
-                            height: 200,
-                            child: FutureBuilder<List<OneEventViewModel>>(
-                              future: data.FetchAllEvents(),
-                              builder: ((context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                } else {
-                                  var events = snapshot.data;
-                                  return ListView.builder(
-                                      itemCount: events?.length,
-                                      itemBuilder: (context, index) =>
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        OnEventView(
-                                                          id: events[index].id,
-                                                        )),
-                                              );
-                                            },
-                                            child: EventCardWidget(
-                                                date_heure:
-                                                    events![index].date_heure,
-                                                events: events,
-                                                description:
-                                                    events[index].description,
-                                                libelle: events[index].libelle,
-                                                prix: events[index].prix,
-                                                adresse: events[index].adresse),
-                                          ));
-                                }
-                              }),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 14.0),
-                            child: Row(
-                              children: [
-                                const Text("Packs",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                const Spacer(),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const GetAllPackView()),
-                                    );
-                                  },
-                                  child: Row(
-                                    children: const [
-                                      Text("Voir tout",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.grey,
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 360,
-                            child: FutureBuilder<List<OnePackViewModel>>(
-                              future: datapack.FetchAllPacks(),
-                              builder: ((context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                } else {
-                                  var packs = snapshot.data;
-                                  return ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: packs?.length,
-                                      itemBuilder: (context, index) =>
-                                          PackCardWidget(
-                                            libelle: packs![index].libelle,
-                                          ));
-                                }
-                              }),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              children: [
-                                const Text("Tontine",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                const Spacer(),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const GetAllTontineView()),
-                                    );
-                                  },
-                                  child: Row(
-                                    children: const [
-                                      Text("Voir tout",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Icon(
-                                        Icons.forward_outlined,
-                                        color: Colors.grey,
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                          SizedBox(height: 360, child: GetAllPackView()),
+                          VoirTout(
+                            text: 'Tontine',
                           ),
                           SizedBox(
                             height: 360,

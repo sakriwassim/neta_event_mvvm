@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 InputDecoration textFieldDecoration(String labelText, String hintText) {
-  //var labelText = labelText.toString(); ;
-  // String hintText;
-
   return InputDecoration(
     fillColor: Colors.white,
     filled: true,
@@ -24,14 +21,8 @@ InputDecoration textFieldDecoration(String labelText, String hintText) {
   );
 }
 
-//'Adresse e-mail',
-//'entre le email',
-
 InputDecoration textFieldDecorationWithicon(
     String labelText, String hintText, IconData nameOfIcon, Color colorOfIcon) {
-  //var labelText = labelText.toString(); ;
-  // String hintText;
-
   return InputDecoration(
     filled: true,
     fillColor: Colors.white,
@@ -55,6 +46,3 @@ InputDecoration textFieldDecorationWithicon(
     hintText: hintText,
   );
 }
-
-//'Adresse e-mail',
-//'entre le email',

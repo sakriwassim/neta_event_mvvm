@@ -249,19 +249,38 @@ class _AddTontineViewState extends State<AddTontineView>
                                           onTap: () {
                                             periode = "Par semaine";
                                           },
-                                          child:
-                                              SmallButton(text: "Par semaine")),
+                                          child: Button(
+                                            text: "Par semaine",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                       InkWell(
                                           onTap: () {
                                             periode = "2 semaines";
                                           },
-                                          child:
-                                              SmallButton(text: "2 semaines")),
+                                          child: Button(
+                                            text: "2 semaines",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                       InkWell(
                                           onTap: () {
                                             periode = "Par mois";
                                           },
-                                          child: SmallButton(text: "Par mois")),
+                                          child: Button(
+                                            text: "Par mois",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                     ],
                                   ),
                                   Row(
@@ -272,19 +291,38 @@ class _AddTontineViewState extends State<AddTontineView>
                                           onTap: () {
                                             periode = "2 mois";
                                           },
-                                          child: SmallButton(text: "2 mois")),
+                                          child: Button(
+                                            text: "2 mois",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                       InkWell(
                                           onTap: () {
                                             periode = "Par Trimestre";
                                           },
-                                          child: SmallButton(
-                                              text: "Par Trimestre")),
+                                          child: Button(
+                                            text: "Par Trimestre",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                       InkWell(
                                           onTap: () {
                                             periode = "Par semestre";
                                           },
-                                          child: SmallButton(
-                                              text: "Par semestre ")),
+                                          child: Button(
+                                            text: "Par semestre ",
+                                            height: 40,
+                                            width: 100,
+                                            fontSize: 15,
+                                            gradientbackground:
+                                                gradientbackground,
+                                          )),
                                     ],
                                   ),
                                 ],
@@ -352,6 +390,8 @@ class _AddTontineViewState extends State<AddTontineView>
                               child: CardGoogle(
                                 image: 'assets/tontine/paypal.png',
                                 title: 'PAYPAL',
+                                height: 80,
+                                width: 300,
                               ),
                             ),
                           ),
@@ -364,6 +404,8 @@ class _AddTontineViewState extends State<AddTontineView>
                               child: CardGoogle(
                                 image: 'assets/tontine/visa.png',
                                 title: 'VISA',
+                                height: 80,
+                                width: 300,
                               ),
                             ),
                           ),
@@ -375,6 +417,8 @@ class _AddTontineViewState extends State<AddTontineView>
                               child: CardGoogle(
                                 image: 'assets/tontine/payoneer.png',
                                 title: 'payoneer',
+                                height: 80,
+                                width: 300,
                               ),
                             ),
                           ),

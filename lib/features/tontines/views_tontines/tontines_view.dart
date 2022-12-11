@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
@@ -51,7 +52,13 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                       MaterialPageRoute(
                           builder: (context) => AddTontineView()));
                 },
-                child: SmallButton(text: "ADD EVENT")),
+                child: Button(
+                  text: "ADD EVENT",
+                  height: 40,
+                  width: 100,
+                  fontSize: 15,
+                  gradientbackground: gradientbackground,
+                )),
           ],
         ),
       ),

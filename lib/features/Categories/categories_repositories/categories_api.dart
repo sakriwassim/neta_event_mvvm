@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../models_categories/add_categories_model.dart';
 import '../models_categories/categories_model.dart';
 import 'categories_repository.dart';
@@ -14,8 +15,7 @@ class CategoriesApi extends CategoriesRepository {
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/$id';
+      String link = '$baseUrl/Categories/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -38,8 +38,7 @@ class CategoriesApi extends CategoriesRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories';
+      String link = '$baseUrl/Categories';
 
       var url = Uri.parse(link);
 
@@ -67,8 +66,7 @@ class CategoriesApi extends CategoriesRepository {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/$id';
+      String link = '$baseUrl/Categories/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -93,8 +91,7 @@ class CategoriesApi extends CategoriesRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories';
+      String link = '$baseUrl/Categories';
 
       var url = Uri.parse(link);
 
@@ -126,8 +123,7 @@ class CategoriesApi extends CategoriesRepository {
 
       final body = eventModelJson;
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Categories/$eventId';
+      String link = '$baseUrl/Categories/$eventId';
 
       var url = Uri.parse(link);
 

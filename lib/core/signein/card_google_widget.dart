@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 class CardGoogle extends StatelessWidget {
   String? image;
   String? title;
-  CardGoogle({Key? key, required this.image, required this.title})
+  double? height;
+  double? width;
+  CardGoogle(
+      {Key? key,
+      required this.image,
+      required this.title,
+      required this.height,
+      required this.width})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 80,
-        width: 300,
+        height: height, //80
+        width: width, //300
         child: InkWell(
           onTap: () {},
           child: Card(

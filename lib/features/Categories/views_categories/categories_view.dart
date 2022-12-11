@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../categories_repositories/categories_api.dart';
 import '../view_model_categories/one_categorie_view_model.dart';
@@ -70,7 +71,13 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                       MaterialPageRoute(
                           builder: (context) => AddCategorieView()));
                 },
-                child: SmallButton(text: "ADD EVENT")),
+                child: Button(
+                  text: "ADD EVENT",
+                  height: 40,
+                  width: 100,
+                  fontSize: 15,
+                  gradientbackground: gradientbackground,
+                )),
           ],
         ),
       ),

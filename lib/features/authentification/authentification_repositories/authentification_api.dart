@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
@@ -21,7 +22,7 @@ class AuthentificationApi extends AuthentificationRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Login';
+      String link = '$baseUrl/Login';
 
       var url = Uri.parse(link);
 
@@ -64,7 +65,7 @@ class AuthentificationApi extends AuthentificationRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Register';
+      String link = '$baseUrl/Register';
 
       var url = Uri.parse(link);
 

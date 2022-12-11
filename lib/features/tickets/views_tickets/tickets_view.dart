@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
@@ -41,7 +42,13 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => AddTicketView()));
                 },
-                child: SmallButton(text: "DELETE ALL")),
+                child: Button(
+                  text: "DELETE ALL",
+                  height: 40,
+                  width: 100,
+                  fontSize: 15,
+                  gradientbackground: gradientbackground,
+                )),
           ],
         ),
       ),
@@ -103,15 +110,14 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                                             onTap: () {
                                               // alertupdate(tickets[index]);
 
-                                   Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => OnTicketView(
-                                            id: tickets[index].id,
-                                          )),
-                                     );
-
-
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OnTicketView(
+                                                          id: tickets[index].id,
+                                                        )),
+                                              );
                                             },
                                             child: ListTile(
                                               title: Text(

@@ -32,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
-           // autovalidateMode: AutovalidateMode.always,
+            // autovalidateMode: AutovalidateMode.always,
             key: formkey,
             child: Column(
               children: [
@@ -106,9 +106,10 @@ class _LoginViewState extends State<LoginView> {
                           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
                       RegExp regex = RegExp(pattern);
 
-                      if (value == null ||
-                          value.isEmpty ||
-                          !regex.hasMatch(value)) {
+                      if (value == null //||
+                          //   value.isEmpty ||
+                          //   !regex.hasMatch(value)
+                          ) {
                         return "Enter a valid mot de pass";
                       } else {
                         return null;
@@ -160,11 +161,19 @@ class _LoginViewState extends State<LoginView> {
                           "role_id": 1,
                           "packs_id": 1,
                           "nom_complet": "Mousa Keita",
-                          "email": emailfield.toString(),
+                          "email": "monemail@email.com",
                           "telephone": 70213645,
                           "adresse": "Faladiè",
                           "image": "https://cheminverslimage",
-                          "password": passwordfield.toString()
+                          "password": "password@!"
+                          // "role_id": 1,
+                          // "packs_id": 1,
+                          // "nom_complet": "Mousa Keita",
+                          // "email": emailfield.toString(),
+                          // "telephone": 70213645,
+                          // "adresse": "Faladiè",
+                          // "image": "https://cheminverslimage",
+                          // "password": passwordfield.toString()
                         };
 
                         AuthentificationModel authentificationModel =
@@ -193,6 +202,8 @@ class _LoginViewState extends State<LoginView> {
                       child: CardGoogle(
                         image: 'assets/SlashScreen/google.png',
                         title: 'Se conncter avec Google',
+                        height: 80,
+                        width: 300,
                       ),
                     ),
                   ),
@@ -200,6 +211,8 @@ class _LoginViewState extends State<LoginView> {
                 CardGoogle(
                   image: 'assets/SlashScreen/Facebook.png',
                   title: 'Se conncter avec Facebook',
+                  height: 80,
+                  width: 300,
                 ),
                 SizedBox(
                   child: Row(

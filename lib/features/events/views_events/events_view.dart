@@ -7,6 +7,7 @@ import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
 
+import '../../../core/colors.dart';
 import 'one_event_view.dart';
 
 class GetAllEventView extends StatefulWidget {
@@ -44,7 +45,13 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => AddEventView()));
                 },
-                child: SmallButton(text: "ADD EVENT")),
+                child: Button(
+                  text: "ADD EVENT",
+                  height: 40,
+                  width: 100,
+                  fontSize: 15,
+                  gradientbackground: gradientbackground,
+                )),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:neta_event_mvvm/features/events/evants_repositories/event_reposi
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 
 class EventsApi extends EventsRepository {
@@ -16,8 +17,7 @@ class EventsApi extends EventsRepository {
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       // try {
       var headersa = {'Authorization': 'Bearer $token'};
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$id';
+      String link = '$baseUrl/Events/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -39,11 +39,13 @@ class EventsApi extends EventsRepository {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      // var token = prefs.getString("token");
+      var token =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
-      var headersa = {'Authorization': 'Bearer ${token!}'};
+      var headersa = {'Authorization': 'Bearer $token'};
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
+      String link = '$baseUrl/Events';
 
       var url = Uri.parse(link);
 
@@ -71,12 +73,13 @@ class EventsApi extends EventsRepository {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      // var token = prefs.getString("token");
+      var token =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
-      var headersa = {'Authorization': 'Bearer ${token!}'};
+      var headersa = {'Authorization': 'Bearer $token'};
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/EventsByCategorie/$id';
+      String link = '$baseUrl/EventsByCategorie/$id';
 
       var url = Uri.parse(link);
 
@@ -96,9 +99,12 @@ class EventsApi extends EventsRepository {
   Future<EventModel> updateEventByID(EventModel eventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      //var token = prefs.getString("token");
       final eventId = eventModel.id;
       final eventModelJson = eventModel.toJSON();
+
+      var token =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
       var headers = {
         'Content-type': 'application/json',
@@ -108,8 +114,7 @@ class EventsApi extends EventsRepository {
 
       final body = eventModelJson;
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$eventId';
+      String link = '$baseUrl/Events/$eventId';
 
       var url = Uri.parse(link);
 
@@ -129,8 +134,10 @@ class EventsApi extends EventsRepository {
   Future<bool> addEvent(AddEventModel addEventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      // var token = prefs.getString("token");
       final eventModelJson = addEventModel.toJson();
+      var token =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -139,7 +146,7 @@ class EventsApi extends EventsRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Events';
+      String link = '$baseUrl/Events';
 
       var url = Uri.parse(link);
 
@@ -161,14 +168,16 @@ class EventsApi extends EventsRepository {
   Future<bool> deleteEventByID(int id) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      // var token = prefs.getString("token");
+
+      var token =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Events/$id';
+      String link = '$baseUrl/Events/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);

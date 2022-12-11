@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../models_packs/pack_model.dart';
 import 'pack_repository.dart';
 
@@ -15,7 +16,7 @@ class PacksApi extends PacksRepository {
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/$id';
+          '$baseUrl/Packs/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -41,7 +42,7 @@ class PacksApi extends PacksRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs';
+      String link = '$baseUrl/Packs';
 
       var url = Uri.parse(link);
 
@@ -75,7 +76,7 @@ class PacksApi extends PacksRepository {
       final body = eventModelJson;
 
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/$eventId';
+          '$baseUrl/Packs/$eventId';
 
       var url = Uri.parse(link);
 
@@ -106,7 +107,7 @@ class PacksApi extends PacksRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs';
+      String link = '$baseUrl/Packs';
 
       var url = Uri.parse(link);
 
@@ -135,7 +136,7 @@ class PacksApi extends PacksRepository {
         'authorization': 'Basic +$token'
       };
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Packs/$id';
+          '$baseUrl/Packs/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);

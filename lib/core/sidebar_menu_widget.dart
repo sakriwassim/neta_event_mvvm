@@ -25,11 +25,6 @@ class SideBarMenu extends StatelessWidget {
   var data2 = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  // logout() {
-  //   setState(() {
-  //     data2.Cleanpref();
-  //   });
-  // }
   getimge() async {
     OneUserViewModel modeluser = await data.GetUserByID(1);
     var imagepath = modeluser.image;
@@ -52,24 +47,24 @@ class SideBarMenu extends StatelessWidget {
             ),
             child: Stack(
               children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: FutureBuilder<OneUserViewModel>(
-                    future: data.GetUserByID(1),
-                    builder: ((context, snapshot) {
-                      if (snapshot.hasData) {
-                        return CircleAvatar(
-                          radius: 40.0,
-                          backgroundImage: NetworkImage(snapshot.data!.image),
-                          backgroundColor: Colors.transparent,
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
-                      return const CircularProgressIndicator();
-                    }),
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: FutureBuilder<OneUserViewModel>(
+                //     future: data.GetUserByID(1),
+                //     builder: ((context, snapshot) {
+                //       if (snapshot.hasData) {
+                //         return CircleAvatar(
+                //           radius: 40.0,
+                //           backgroundImage: NetworkImage(snapshot.data!.image),
+                //           backgroundColor: Colors.transparent,
+                //         );
+                //       } else if (snapshot.hasError) {
+                //         return Text("${snapshot.error}");
+                //       }
+                //       return const CircularProgressIndicator();
+                //     }),
+                //   ),
+                // ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
@@ -178,63 +173,3 @@ class SideBarMenu extends StatelessWidget {
     );
   }
 }
-
-
-/**
- 
-
-  DrawerHeader(
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FutureBuilder<OneUserViewModel>(
-                    future: data.GetUserByID(1),
-                    builder: ((context, snapshot) {
-                      if (snapshot.hasData) {
-                        return CircleAvatar(
-                          backgroundImage: NetworkImage(snapshot.data!.image),
-                          backgroundColor: Colors.transparent,
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
-                      return const CircularProgressIndicator();
-                    }),
-                  ),
-
-                  // CircleAvatar(
-                  //   child:
-                  //       ClipOval(child: Image.asset("assets/profileimage.png")),
-                  // ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Positioned(
-                        // bottom: 8.0,
-                        // left: 4.0,
-                        child: Text(
-                          "Sakri wassim",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 183, 27, 27),
-                              fontSize: 20),
-                        ),
-                      ),
-                      Positioned(
-                        // bottom: 8.0,
-                        // left: 4.0,
-                        child: Text(
-                          "sakriwassim@gmail.com",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 183, 27, 27),
-                              fontSize: 15),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
- */

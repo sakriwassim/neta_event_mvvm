@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:neta_event_mvvm/features/tickets/tickets_repositories/tickets_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 
@@ -14,8 +15,7 @@ class TicketsApi extends TicketsRepository {
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets/' + "${id}";
+      String link = '$baseUrl/Tickets/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -41,7 +41,7 @@ class TicketsApi extends TicketsRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets';
+      String link = '$baseUrl/Tickets';
 
       var url = Uri.parse(link);
 
@@ -58,7 +58,6 @@ class TicketsApi extends TicketsRepository {
     }
   }
 
-  
   @override
   Future<bool> deleteTicketByID(int id) async {
     try {
@@ -69,8 +68,7 @@ class TicketsApi extends TicketsRepository {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets/' + "${id}";
+      String link = '$baseUrl/Tickets/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -95,7 +93,7 @@ class TicketsApi extends TicketsRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets';
+      String link = '$baseUrl/Tickets';
 
       var url = Uri.parse(link);
 
@@ -127,7 +125,7 @@ class TicketsApi extends TicketsRepository {
       final body = eventModelJson;
 
       String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tickets/$eventId';
+          '$baseUrl/Tickets/$eventId';
 
       var url = Uri.parse(link);
 

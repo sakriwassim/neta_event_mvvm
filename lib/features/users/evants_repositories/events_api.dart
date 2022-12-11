@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
 import 'event_repository.dart';
@@ -19,7 +20,7 @@ class UsersApi extends UsersRepository {
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User/$id';
+      String link = '$baseUrl/User/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -45,7 +46,7 @@ class UsersApi extends UsersRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User';
+      String link = '$baseUrl/User';
 
       var url = Uri.parse(link);
 
@@ -70,8 +71,7 @@ class UsersApi extends UsersRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/UsersByCategorie/$id';
+      String link = '$baseUrl/UsersByCategorie/$id';
 
       var url = Uri.parse(link);
 
@@ -103,7 +103,7 @@ class UsersApi extends UsersRepository {
 
       final body = eventModelJson;
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User/1';
+      String link = '$baseUrl/User/1';
 
       var url = Uri.parse(link);
 
@@ -133,7 +133,7 @@ class UsersApi extends UsersRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User';
+      String link = '$baseUrl/User';
 
       var url = Uri.parse(link);
 
@@ -161,7 +161,7 @@ class UsersApi extends UsersRepository {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/User/$id';
+      String link = '$baseUrl/User/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -171,7 +171,4 @@ class UsersApi extends UsersRepository {
       return false;
     }
   }
-
-
-
 }

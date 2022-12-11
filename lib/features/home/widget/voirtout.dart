@@ -5,9 +5,11 @@ import '../../Categories/views_categories/categories_view.dart';
 
 class VoirTout extends StatelessWidget {
   String text;
+  Function callbackfonction;
   VoirTout({
     Key? key,
     required this.text,
+    required this.callbackfonction,
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class VoirTout extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10.0),
       child: Row(
         children: [
-          Text(text, //"Catégories",
+          Text(text,
               style: TextStyle(
                 fontFamily: 'AirbnbCereal',
                 fontSize: 18,
@@ -27,11 +29,7 @@ class VoirTout extends StatelessWidget {
             children: [
               TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GetAllCategorieView()),
-                    );
+                    callbackfonction();
                   },
                   child: const Text("Voir tout",
                       style: TextStyle(

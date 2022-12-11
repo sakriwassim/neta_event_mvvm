@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
@@ -10,53 +12,58 @@ import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import 'one_event_view.dart';
 
-class GetExcusivesEventView extends StatefulWidget {
-  const GetExcusivesEventView({super.key});
+class GetEventByCategorisView extends StatefulWidget {
+  int categorieid;
+  GetEventByCategorisView({
+    Key? key,
+    required this.categorieid,
+  }) : super(key: key);
 
   @override
-  State<GetExcusivesEventView> createState() => _GetExcusivesEventViewState();
+  State<GetEventByCategorisView> createState() =>
+      _GetEventByCategorisViewState();
 }
 
-class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
+class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-        ),
-        shadowColor: Colors.white,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              data.title,
-              style: const TextStyle(
-                color: Colors.black,
-              ),
-            ),
-            InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AddEventView()));
-                },
-                child: Button(
-                  text: "ADD EVENT",
-                  height: 40,
-                  width: 100,
-                  fontSize: 15,
-                  gradientbackground: gradientbackground,
-                )),
-          ],
-        ),
-      ),
+      // backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   iconTheme: const IconThemeData(
+      //     color: Colors.black,
+      //   ),
+      //   shadowColor: Colors.white,
+      //   elevation: 0.0,
+      //   backgroundColor: Colors.white,
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       Text(
+      //         data.title,
+      //         style: const TextStyle(
+      //           color: Colors.black,
+      //         ),
+      //       ),
+      //       InkWell(
+      //           onTap: () {
+      //             Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                     builder: (context) => const AddEventView()));
+      //           },
+      //           child: Button(
+      //             text: "ADD EVENT",
+      //             height: 40,
+      //             width: 100,
+      //             fontSize: 15,
+      //             gradientbackground: gradientbackground,
+      //           )),
+      //     ],
+      //   ),
+      // ),
       body: OfflineBuilder(
         connectivityBuilder: (
           BuildContext context,
@@ -68,14 +75,14 @@ class _GetExcusivesEventViewState extends State<GetExcusivesEventView> {
             return RefreshIndicator(
               onRefresh: () async {
                 setState(() {
-                  data.GetEventByCategorie(2);
+                  data.GetEventByCategorie(widget.categorieid);
                 });
 
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
                 child: FutureBuilder<List<OneEventViewModel>>(
-                  future: data.GetEventByCategorie(2),
+                  future: data.GetEventByCategorie(widget.categorieid),
                   builder: ((context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();

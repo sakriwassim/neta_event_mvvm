@@ -87,8 +87,8 @@ class _AddEventViewState extends State<AddEventView> {
             if (isLastStep) {
               //  if (formkey.currentState!.validate()) {
               var event = {
-                //"category_id": categories![selectedIndex].id,
-                "category_id": 1,
+                "category_id": categories![selectedIndex].id,
+                // "category_id": 1,
                 "observation_id": 21,
                 "libelle": libellefield,
                 "description": descriptionfield,

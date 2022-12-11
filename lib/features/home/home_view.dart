@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/core/widgets/exclusive_card_widget.dart';
-import 'package:neta_event_mvvm/features/events/views_events/events_exclusives_view.dart';
+import 'package:neta_event_mvvm/features/events/views_events/events_bycategoris_view.dart';
 import 'package:neta_event_mvvm/search.dart';
 
 import '../Categories/categories_repositories/categories_api.dart';
@@ -32,8 +32,10 @@ import '../tontines/views_tontines/widget/tontine_card_widget.dart';
 import 'widget/voirtout.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({this.userCat, Key? key}) : super(key: key);
   String? userCat;
+
+  HomeView({this.userCat, Key? key}) : super(key: key);
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -47,11 +49,40 @@ class _HomeViewState extends State<HomeView> {
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
   var data2 = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
+  var indexCategories = 0;
 
   logout() {
     setState(() {
       data2.Cleanpref();
     });
+  }
+
+  navGetAllCategorieView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GetAllCategorieView()),
+    );
+  }
+
+  navGetAllEventView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GetAllEventView()),
+    );
+  }
+
+  navGetAllPackView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GetAllPackView()),
+    );
+  }
+
+  navGetAllTontineView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GetAllTontineView()),
+    );
   }
 
   @override
@@ -187,7 +218,7 @@ class _HomeViewState extends State<HomeView> {
             return RefreshIndicator(
                 onRefresh: () async {
                   setState(() {
-                    data.GetEventByCategorie(2);
+                    data.GetEventByCategorie(indexCategories);
                     data.FetchAllEvents();
                     datapack.FetchAllPacks();
                     datatontine.FetchAllTontines();
@@ -220,12 +251,12 @@ class _HomeViewState extends State<HomeView> {
                                   children: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const GetExcusivesEventView()),
-                                        );
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //       builder: (context) =>
+                                        //           GetEventByCategorisView()),
+                                        // );
                                       },
                                       child: const Text(
                                         "Voir tout",
@@ -294,18 +325,60 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           VoirTout(
                             text: 'Catégories',
+                            callbackfonction: navGetAllCategorieView,
                           ),
-                          SizedBox(height: 120, child: GetAllCategorieView()),
+                          SizedBox(
+                            height: 120,
+                            child: FutureBuilder<List<OneCategorieViewModel>>(
+                              future: datacategorie.FetchAllCategories(),
+                              builder: ((context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                } else {
+                                  var categories = snapshot.data;
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: categories?.length,
+                                      itemBuilder: (context, index) => InkWell(
+                                            onTap: () {
+                                              indexCategories = index;
+                                              print(
+                                                  "AAAAAAAAAAAAAAAAAA$indexCategories");
+
+                                              setState(() {
+                                                data.GetEventByCategorie(
+                                                    indexCategories);
+                                              });
+                                            },
+                                            child: CategorieCardWidget(
+                                              libelle:
+                                                  categories![index].libelle,
+                                            ),
+                                          ));
+                                }
+                              }),
+                            ),
+                          ),
                           VoirTout(
                             text: 'Evènements',
+                            callbackfonction: navGetAllEventView,
                           ),
-                          SizedBox(height: 200, child: GetAllEventView()),
+                          SizedBox(
+                              height: 200,
+                              child: GetEventByCategorisView(
+                                categorieid: indexCategories,
+                              )),
                           VoirTout(
                             text: 'Packs',
+                            callbackfonction: navGetAllPackView,
                           ),
                           SizedBox(height: 360, child: GetAllPackView()),
                           VoirTout(
                             text: 'Tontine',
+                            callbackfonction: navGetAllTontineView,
                           ),
                           SizedBox(
                             height: 360,

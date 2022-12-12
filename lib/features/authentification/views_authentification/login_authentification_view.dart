@@ -5,6 +5,7 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../core/colors.dart';
+import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
@@ -40,14 +41,14 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Container(
                   child: Image.asset(
-                    'assets/SlashScreen/netaLogo.png',
+                    LoginImage,
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.2,
                   ),
                 ),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         padding: const EdgeInsets.only(
@@ -65,9 +66,6 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                      )
                     ],
                   ),
                 ),
@@ -212,45 +210,51 @@ class _LoginViewState extends State<LoginView> {
                   height: heightgoogle,
                   width: widthgoogle,
                 ),
-                SizedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .center, //Center Row contents horizontally,
-                    crossAxisAlignment: CrossAxisAlignment
-                        .center, //Center Row contents vertically,
-                    children: [
-                      const Text(
-                        " Vous n'avez pas un compte",
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.black,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => RegisterView(),
-                              ));
-                        },
-                        child: const Text(
-                          " S'inscrire",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                SinscrireRow(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class SinscrireRow extends StatelessWidget {
+  const SinscrireRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          " Vous n'avez pas un compte",
+          style: TextStyle(
+            fontSize: 13,
+            color: Colors.black,
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterView(),
+                ));
+          },
+          child: const Text(
+            " S'inscrire",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.pink,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

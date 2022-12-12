@@ -4,7 +4,6 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/card_google_widget.dart';
-import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -51,9 +50,6 @@ class _RegisterViewState extends State<RegisterView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: TextFormField(
-                    // controller: TextEditingController(
-                    //   text: widget.eventObj.libelle,
-                    //  ),
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF2F2F2),
@@ -77,7 +73,6 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       hintText: 'entre le nom de user',
                     ),
-
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "entre le nom_complet";
@@ -141,8 +136,6 @@ class _RegisterViewState extends State<RegisterView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: TextFormField(
-                    //    controller:
-                    //      TextEditingController(text: widget.eventObj.description),
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF2F2F2),
@@ -166,7 +159,6 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       hintText: 'entre le password',
                     ),
-
                     validator: (value) {
                       String pattern =
                           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
@@ -189,8 +181,6 @@ class _RegisterViewState extends State<RegisterView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: TextFormField(
-                    //    controller:
-                    //      TextEditingController(text: widget.eventObj.description),
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF2F2F2),
@@ -225,7 +215,6 @@ class _RegisterViewState extends State<RegisterView> {
                       //             });
                       //           })
                     ),
-
                     validator: (value) {
                       var result = passwordfield2.compareTo(passwordfield);
 
@@ -238,8 +227,6 @@ class _RegisterViewState extends State<RegisterView> {
                       } else {
                         return null;
                       }
-                      //dateMesurefield = datenow.toString();
-                      //descriptionfield = widget.eventObj.description.toString();
                     },
                     onChanged: (text) {
                       passwordfield2 = text;
@@ -298,39 +285,37 @@ class _RegisterViewState extends State<RegisterView> {
                     width: widthgoogle,
                   ),
                 ),
-                SizedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .center, //Center Row contents horizontally,
-                    crossAxisAlignment: CrossAxisAlignment
-                        .center, //Center Row contents vertically,
-                    children: [
-                      const Text(
-                        " Vous n'avez pas un compte",
+                Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment
+                      .center, //Center Row contents vertically,
+                  children: [
+                    const Text(
+                      " Vous n'avez pas un compte",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.black,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginView(),
+                            ));
+                      },
+                      child: const Text(
+                        " Signin",
                         style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.pink,
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginView(),
-                              ));
-                        },
-                        child: const Text(
-                          " Signin",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

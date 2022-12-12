@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'features/authentification/views_authentification/login_authentification_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/home/home_view.dart';
 import 'features/into_screen/utils/colors.dart';
 import 'features/web/home/home_view_web.dart';
 import 'features/web/web_view/login_signup_view.dart';
-
 void main() {
   runApp(const MyApp());
 }

@@ -6,6 +6,8 @@ import 'features/home/bottom_navigation_bar.dart';
 import 'features/home/home_view.dart';
 import 'features/into_screen/utils/colors.dart';
 import 'features/web/home/home_view_web.dart';
+import 'features/web/home/home_view_web_phone.dart';
+import 'features/web/home/home_view_web_tab.dart';
 import 'features/web/web_view/login_signup_view.dart';
 
 void main() {
@@ -46,8 +48,8 @@ class MyApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       )),
-
-      home: HomeViewWeb(),
+      home: HomeViewWebPhone(),
+      //home: HomeViewWeb(),
       //home: LoginSignupView(),
       //home: SplashScreen(),
       //home: MyHomePage(),

@@ -6,6 +6,7 @@ import '../../tontines/views_tontines/tontines_view.dart';
 import '../../users/view_profil/user_view.dart';
 import '../../users/views_events/events_view.dart';
 import '../web_add_user_view.dart';
+import '../web_user_view.dart';
 
 List<Widget> widgetweb = [
   Container(
@@ -17,15 +18,13 @@ List<Widget> widgetweb = [
     //  child: AddTontineView(),
   ),
   Container(
+
     color: const Color.fromARGB(255, 243, 33, 215),
     child: Column(
       children: [
-        Expanded(
-            child: Container(
-          child: AddUserViewWeb(),
-          color: Color.fromARGB(255, 33, 243, 131),
-        )),
-        Expanded(child: GetAllUserView()),
+
+        WebUserView(),
+       
       ],
     ),
   ),

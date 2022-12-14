@@ -27,191 +27,208 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Form(
-        key: formkey,
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 50.0,
-              // backgroundImage: Image.asset(defaultImage),
-              //   backgroundImage: NetworkImage(snapshot.data!.image),
-              backgroundColor: Colors.blue,
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
-                      ),
-                      color: Colors.blue,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
-                      ),
-                      color: Colors.blue,
-                    ),
-                  ),
-                ],
+      body: Container(
+        color: Colors.cyan,
+        height: screenHeight,
+        child: Form(
+          key: formkey,
+          child: Column(
+            children: [
+              Container(
+                height: screenHeight * 0.1,
+                // width: screenWidth * 0.1,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  // backgroundImage: Image.asset(defaultImage),
+                  //   backgroundImage: NetworkImage(snapshot.data!.image),
+                  backgroundColor: Colors.blue,
+                ),
               ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
+              Container(
+                height: screenHeight * 0.1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
+                        color: Colors.blue,
                       ),
-                      color: Colors.blue,
                     ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
+                        color: Colors.blue,
                       ),
-                      color: Colors.blue,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
+              Container(
+                height: screenHeight * 0.1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
+                        color: Colors.blue,
                       ),
-                      color: Colors.blue,
                     ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: TextFormField(
-                        decoration: textFieldDecoration(
-                          "Mot de passe",
-                          "entre le password",
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "entre le date de mesure";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (text) {
-                          prixfield = text;
-                        },
+                        color: Colors.blue,
                       ),
-                      color: Colors.blue,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            InkWell(
-                onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    var ticket = {
-                      "event_id": 1,
-                      "libelle": libellefield,
-                      "description": descriptionfield,
-                      "prix": prixfield,
-                      "QR_code": "qr_code",
-                      "date": "Date",
-                      "statut": "Statut"
-                    };
+              Container(
+                height: screenHeight * 0.1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
+                        ),
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
+                        ),
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: screenHeight * 0.1,
+                child: InkWell(
+                    onTap: () {
+                      if (formkey.currentState!.validate()) {
+                        var ticket = {
+                          "event_id": 1,
+                          "libelle": libellefield,
+                          "description": descriptionfield,
+                          "prix": prixfield,
+                          "QR_code": "qr_code",
+                          "date": "Date",
+                          "statut": "Statut"
+                        };
 
-                    AddUserModel ticketformJson = AddUserModel.fromJson(ticket);
-                    print(ticketformJson);
+                        AddUserModel ticketformJson =
+                            AddUserModel.fromJson(ticket);
+                        print(ticketformJson);
 
-                    setState(() {
-                      data.AddUser(ticketformJson);
-                    });
-                  }
-                },
-                child: MediumButton(text: "APPLIQUER")),
-          ],
+                        setState(() {
+                          data.AddUser(ticketformJson);
+                        });
+                      }
+                    },
+                    child: MediumButton(text: "APPLIQUER")),
+              ),
+            ],
+          ),
         ),
       ),
     );

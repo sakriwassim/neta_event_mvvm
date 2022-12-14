@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/web/home/list_of_widget.dart';
 
 import '../../../core/sidebar_menu_widget.dart';
 import '../../../core/string.dart';
@@ -19,60 +22,6 @@ class HomeViewWebTab extends StatefulWidget {
   @override
   State<HomeViewWebTab> createState() => _HomeViewWebTabState();
 }
-
-List<Widget> widget = [
-  Container(
-    color: Color.fromARGB(255, 214, 219, 224),
-    //child: const AddEventView(),
-  ),
-  Container(
-    color: const Color.fromARGB(255, 37, 243, 33),
-    //  child: AddTontineView(),
-  ),
-  Container(
-    color: const Color.fromARGB(255, 243, 33, 215),
-    child: Column(
-      children: [
-        Expanded(
-            child: Container(
-          child: AddUserViewWeb(),
-          color: Color.fromARGB(255, 33, 243, 131),
-        )),
-        Expanded(child: GetAllUserView()),
-      ],
-    ),
-  ),
-  Container(
-    color: const Color.fromARGB(255, 243, 33, 215),
-    child: GetAllEventView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 110, 33, 243),
-    //child: GetAllUserView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 243, 54, 33),
-    // child: GetAllUserView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 33, 243, 79),
-    child: GetAllPackView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 93, 33, 243),
-    child: GetAllTontineView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 233, 243, 33),
-    child: UserView(),
-  ),
-  Container(
-    color: Color.fromARGB(255, 33, 243, 229),
-  ),
-  Container(
-    color: Color.fromARGB(255, 142, 33, 243),
-  )
-];
 
 class _HomeViewWebTabState extends State<HomeViewWebTab> {
   logout() {
@@ -352,7 +301,7 @@ class _HomeViewWebTabState extends State<HomeViewWebTab> {
                       flex: 8,
                       child: Container(
                           color: const Color.fromARGB(255, 30, 206, 130),
-                          child: widget[_select])),
+                          child: widgetweb[_select])),
                 ],
               ),
             )

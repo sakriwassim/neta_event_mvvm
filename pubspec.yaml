@@ -51,6 +51,7 @@ flutter:
     - assets/ticket/
     - assets/splash_screen/
     - assets/splash_screen/Logo.png
+    - assets/packs_bg/Libelle.png
 
     - assets/intro/
     - assets/tontine/

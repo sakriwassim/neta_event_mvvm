@@ -27,20 +27,32 @@ class CardGoogle extends StatelessWidget {
             ),
             color: Colors.white,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.asset(
-                  '$image',
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  //scale: 0.1,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    //color: Colors.blue,
+                    child: Image.asset(
+                      '$image',
+                      width: MediaQuery.of(context).size.width * 0.05,
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      //scale: 0.1,
+                    ),
+                  ),
                 ),
-                Text(
-                  "$title",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    // color: Colors.red,
+                    child: Text(
+                      "$title",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ),
               ],

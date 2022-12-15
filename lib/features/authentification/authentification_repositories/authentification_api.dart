@@ -50,7 +50,7 @@ class AuthentificationApi extends AuthentificationRepository {
 
       return true;
     } catch (e) {
-      // print(e);
+      print("Mouchkla fi il log in $e");
       return false;
     }
   }

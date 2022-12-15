@@ -10,10 +10,13 @@ import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
+import '../../web/home/home_view_web.dart';
+import '../../web/home/responsive_web.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 
+//****** */
 class LoginView extends StatefulWidget {
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -40,6 +43,9 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               children: [
                 Container(
+                  // child: Image.network(
+                  //   'https://picsum.photos/250?image=9',
+                  // ),
                   child: Image.asset(
                     LoginImage,
                     width: MediaQuery.of(context).size.width * 0.4,
@@ -124,37 +130,37 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
-                Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: Row(
-                      children: [
-                        const Text(
-                          " Se rappeler",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: const Text(
-                            "mot de passe oublié?",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Center(
+                //   child: SizedBox(
+                //     width: MediaQuery.of(context).size.width * 0.9,
+                //     child: Row(
+                //       children: [
+                //         const Text(
+                //           " Se rappeler",
+                //           style: TextStyle(
+                //             fontSize: 15,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //         SizedBox(
+                //           width: MediaQuery.of(context).size.width * 0.15,
+                //         ),
+                //         InkWell(
+                //           onTap: () {},
+                //           child: const Text(
+                //             "mot de passe oublié?",
+                //             style: TextStyle(
+                //               fontSize: 15,
+                //               fontWeight: FontWeight.bold,
+                //               color: Colors.black,
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -181,7 +187,7 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MyHomePage(),
+                                builder: (context) => ResponsiveWeb(),
                               ));
                         }
                       }
@@ -204,11 +210,15 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                CardGoogle(
-                  image: 'assets/SlashScreen/Facebook.png',
-                  title: 'Se connecter avec Facebook',
-                  height: heightgoogle,
-                  width: widthgoogle,
+                Center(
+                  child: InkWell(
+                    child: CardGoogle(
+                      image: 'assets/SlashScreen/Facebook.png',
+                      title: 'Se connecter avec Facebook',
+                      height: heightgoogle,
+                      width: widthgoogle,
+                    ),
+                  ),
                 ),
                 SinscrireRow(),
               ],

@@ -3,8 +3,6 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 
 import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../authentification/views_authentification/login_authentification_view.dart';
-import '../web_login_authentification_view.dart';
-import '../web_register_authentification_view.dart';
 
 class LoginSignupView extends StatefulWidget {
   @override
@@ -15,7 +13,7 @@ class _LoginSignupViewState extends State<LoginSignupView>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(length: 3, vsync: this);
+    TabController _tabController = TabController(length: 2, vsync: this);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -64,12 +62,12 @@ class _LoginSignupViewState extends State<LoginSignupView>
               child: Row(
                 children: [
                   Expanded(
-                      flex: 6,
+                      flex: 5,
                       child: Container(
                         color: Colors.lightGreen,
                       )),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Container(
@@ -79,11 +77,11 @@ class _LoginSignupViewState extends State<LoginSignupView>
                           width: double.maxFinite,
                           height: 500,
                           child: TabBarView(
-                            controller: _tabController,
                             children: [
-                              LoginViewWeb(),
-                              RegisterViewWeb(),
+                              Container(child: LoginView()),
+                              Container(child: RegisterView()),
                             ],
+                            controller: _tabController,
                           ),
                         ),
                       ),

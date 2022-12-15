@@ -13,9 +13,9 @@ import 'features/web/home/responsive_web.dart';
 import 'features/web/web_view/login_signup_view.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -50,10 +50,10 @@ class MyApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       )),
-      home: ResponsiveWeb(),
+      //home: ResponsiveWeb(),
       // home: HomeViewWebPhone(),
       //home: HomeViewWeb(),
-      //home: LoginSignupView(),
+      home: LoginSignupView(),
       //home: SplashScreen(),
       //home: MyHomePage(),
     );

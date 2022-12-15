@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 
 import '../../../core/widgets/medium_button.dart';
+import '../../core/colors.dart';
 import '../../core/string.dart';
+import '../../core/widgets/small_button_style.dart';
 import '../users/evants_repositories/events_api.dart';
 import '../users/models_events/add_event_model.dart';
 import '../users/view_model_events/events_view_model.dart';
@@ -203,29 +206,37 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
               ),
               Container(
                 height: screenHeight * 0.1,
-                child: InkWell(
-                    onTap: () {
-                      if (formkey.currentState!.validate()) {
-                        var ticket = {
-                          "event_id": 1,
-                          "libelle": libellefield,
-                          "description": descriptionfield,
-                          "prix": prixfield,
-                          "QR_code": "qr_code",
-                          "date": "Date",
-                          "statut": "Statut"
-                        };
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        if (formkey.currentState!.validate()) {
+                          var ticket = {
+                            "event_id": 1,
+                            "libelle": libellefield,
+                            "description": descriptionfield,
+                            "prix": prixfield,
+                            "QR_code": "qr_code",
+                            "date": "Date",
+                            "statut": "Statut"
+                          };
 
-                        AddUserModel ticketformJson =
-                            AddUserModel.fromJson(ticket);
-                        print(ticketformJson);
+                          AddUserModel ticketformJson =
+                              AddUserModel.fromJson(ticket);
+                          print(ticketformJson);
 
-                        setState(() {
-                          data.AddUser(ticketformJson);
-                        });
-                      }
-                    },
-                    child: MediumButton(text: "APPLIQUER")),
+                          setState(() {
+                            data.AddUser(ticketformJson);
+                          });
+                        }
+                      },
+                      child: Button(
+                        text: "APPLIQUER",
+                        fontSize: 15,
+                        gradientbackground: gradientbackground,
+                        height: heightmediumbutton,
+                        width: widthmediumbutton,
+                      )),
+                ),
               ),
             ],
           ),

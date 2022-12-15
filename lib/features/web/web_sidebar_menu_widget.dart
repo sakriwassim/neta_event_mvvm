@@ -106,10 +106,7 @@ class WebSideBarMenu extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => OneUserView()));
-            },
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.event),

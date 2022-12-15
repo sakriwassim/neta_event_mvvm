@@ -22,7 +22,7 @@ class _WebUserViewState extends State<WebUserView> {
       child: Column(
         children: [
           Container(height: screenHeight * 0.5, child: AddUserViewWeb()),
-          Container(height: screenHeight * 0.5, child: GetAllUserView()),
+          Container(height: screenHeight * 0.4, child: GetAllUserView()),
         ],
       ),
     );

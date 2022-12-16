@@ -25,6 +25,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(title: Text("Users")),
       backgroundColor: Colors.white,
       body: Container(
         height: screenHeight,
@@ -56,7 +57,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
                             itemCount: events?.length,
                             itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  Navigator.pop(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => OnUserView(

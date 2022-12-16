@@ -8,9 +8,9 @@ import '../tontines/views_tontines/tontines_view.dart';
 import '../users/evants_repositories/events_api.dart';
 import '../users/view_model_events/events_view_model.dart';
 import '../users/view_model_events/one_event_view_model.dart';
-import '../users/view_profil/one_user_view.dart';
 import '../users/views_events/events_view.dart';
 import '../../core/string.dart';
+import 'home/home_view_web_tab.dart';
 
 class WebSideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
@@ -112,16 +112,18 @@ class WebSideBarMenu extends StatelessWidget {
             leading: const Icon(Icons.event),
             title: const Text('Evenements'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const GetAllUserView()));
+              Navigator.pop(context);
+
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => const GetAllUserView()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.favorite_border),
             title: const Text('Favorites'),
-            onTap: () => null,
+            onTap: () => WebSideBarMenu,
           ),
           ListTile(
             leading: const Icon(Icons.mail),
@@ -172,4 +174,15 @@ class WebSideBarMenu extends StatelessWidget {
       ),
     );
   }
+}
+
+enum DrawerSections {
+  dashboard,
+  contacts,
+  events,
+  notes,
+  settings,
+  notifications,
+  privacy_policy,
+  send_feedback,
 }

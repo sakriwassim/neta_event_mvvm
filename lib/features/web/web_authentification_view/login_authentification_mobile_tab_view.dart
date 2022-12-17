@@ -9,21 +9,21 @@ import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../authentification/authentification_repositories/authentification_api.dart';
+import '../../authentification/models_authentification/login_authentification_model.dart';
+import '../../authentification/view_model_authentification/authentification_view_model.dart';
+import '../../authentification/views_authentification/widgets/sinscrire_row_widget.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../../web/home/home_view_web.dart';
 import '../../web/home/main_home_web.dart';
-import '../authentification_repositories/authentification_api.dart';
-import '../models_authentification/login_authentification_model.dart';
-import '../view_model_authentification/authentification_view_model.dart';
-import 'widgets/sinscrire_row_widget.dart';
 
 //****** */
-class LoginView extends StatefulWidget {
+class LoginViewTabMobile extends StatefulWidget {
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<LoginViewTabMobile> createState() => _LoginViewTabMobileState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewTabMobileState extends State<LoginViewTabMobile> {
   final formkey = GlobalKey<FormState>();
   late String nomcompletfield;
   late String emailfield;
@@ -61,7 +61,9 @@ class _LoginViewState extends State<LoginView> {
                     height: MediaQuery.of(context).size.height * 0.2,
                   ),
                 ),
-                Container(
+                SizedBox(
+                  width: widthbigbutton,
+                  height: heightbigbutton,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -80,7 +82,7 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                 ),
-                  SizedBox(
+                SizedBox(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(
@@ -108,7 +110,7 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(

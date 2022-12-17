@@ -15,7 +15,7 @@ import '../../users/views_events/events_view.dart';
 import '../model/drawer_sections.dart';
 import '../widgets/my_drawer_header.dart';
 import '../web_add_user_view.dart';
-import '../web_view/login_signup_view.dart';
+import '../web_authentification_view/login_signup_web_view.dart';
 
 class HomeViewWebTab extends StatefulWidget {
   HomeViewWebTab({super.key});

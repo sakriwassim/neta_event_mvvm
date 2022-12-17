@@ -7,12 +7,12 @@ import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../authentification/views_authentification/login_authentification_view.dart';
 
-class LoginSignupView extends StatefulWidget {
+class LoginSignupViewWeb extends StatefulWidget {
   @override
-  State<LoginSignupView> createState() => _LoginSignupViewState();
+  State<LoginSignupViewWeb> createState() => _LoginSignupViewWebState();
 }
 
-class _LoginSignupViewState extends State<LoginSignupView>
+class _LoginSignupViewWebState extends State<LoginSignupViewWeb>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/web/web_authentification_view/main_authentification_web.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../authentification_repositories/authentification_api.dart';
-import '../models_authentification/login_authentification_model.dart';
-import '../view_model_authentification/authentification_view_model.dart';
+import '../../authentification/authentification_repositories/authentification_api.dart';
+import '../../authentification/models_authentification/login_authentification_model.dart';
+import '../../authentification/view_model_authentification/authentification_view_model.dart';
 
 class RegisterView extends StatefulWidget {
   @override
@@ -47,7 +48,7 @@ class _RegisterViewState extends State<RegisterView> {
             key: formkey,
             child: Column(
               children: [
-           SizedBox(
+                Container(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(
@@ -87,7 +88,7 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-               SizedBox(
+                Container(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(
@@ -135,7 +136,7 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-               SizedBox(
+                Container(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(
@@ -181,7 +182,7 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                  SizedBox(
+                Container(
                   width: widthbigbutton,
                   height: heightbigbutton,
                   child: TextFormField(
@@ -307,7 +308,7 @@ class _RegisterViewState extends State<RegisterView> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginView(),
+                              builder: (context) => MainAuthentificationWeb(),
                             ));
                       },
                       child: const Text(

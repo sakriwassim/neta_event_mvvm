@@ -56,7 +56,8 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
                   children: [
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        width: widthbigbutton,
+                        height: heightbigbutton,
                         child: TextFormField(
                           decoration: textFieldDecoration(
                             "Mot de passe",
@@ -73,63 +74,12 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
                             prixfield = text;
                           },
                         ),
-                        color: Colors.blue,
                       ),
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: TextFormField(
-                          decoration: textFieldDecoration(
-                            "Mot de passe",
-                            "entre le password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "entre le date de mesure";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (text) {
-                            prixfield = text;
-                          },
-                        ),
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                height: screenHeight * 0.1,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: TextFormField(
-                          decoration: textFieldDecoration(
-                            "Mot de passe",
-                            "entre le password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "entre le date de mesure";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (text) {
-                            prixfield = text;
-                          },
-                        ),
-                        color: Colors.blue,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        width: widthbigbutton,
+                        height: heightbigbutton,
                         child: TextFormField(
                           decoration: textFieldDecoration(
                             "Mot de passe",
@@ -158,7 +108,8 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
                   children: [
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        width: widthbigbutton,
+                        height: heightbigbutton,
                         child: TextFormField(
                           decoration: textFieldDecoration(
                             "Mot de passe",
@@ -180,7 +131,61 @@ class _AddUserViewWebState extends State<AddUserViewWeb> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        width: widthbigbutton,
+                        height: heightbigbutton,
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
+                        ),
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: screenHeight * 0.1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: widthbigbutton,
+                        height: heightbigbutton,
+                        child: TextFormField(
+                          decoration: textFieldDecoration(
+                            "Mot de passe",
+                            "entre le password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "entre le date de mesure";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            prixfield = text;
+                          },
+                        ),
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        width: widthbigbutton,
+                        height: heightbigbutton,
                         child: TextFormField(
                           decoration: textFieldDecoration(
                             "Mot de passe",

@@ -10,7 +10,7 @@ import '../../tontines/views_tontines/tontines_view.dart';
 import '../../users/view_profil/user_view.dart';
 import '../../users/views_events/events_view.dart';
 import '../web_add_user_view.dart';
-import '../web_view/login_signup_view.dart';
+import '../web_authentification_view/login_signup_web_view.dart';
 import 'list_of_widget.dart';
 
 class HomeViewWeb extends StatefulWidget {
@@ -244,7 +244,7 @@ class _HomeViewWebState extends State<HomeViewWeb> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                LoginSignupView()));
+                                                LoginSignupViewWeb()));
                                     // setState(() {
                                     //   _select = 9;
                                     // });

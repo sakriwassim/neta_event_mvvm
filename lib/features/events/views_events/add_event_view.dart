@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
 import '../../../core/widgets/text_widget_text2.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
@@ -125,8 +126,9 @@ class _AddEventViewState extends State<AddEventView> {
           title: Text(''),
           content: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(15),
+              SizedBox(
+                width: widthbigbutton,
+                height: heightbigbutton,
                 child: TextFormField(
                   decoration: textFieldDecoration(
                     "Nom de levenment",
@@ -161,9 +163,9 @@ class _AddEventViewState extends State<AddEventView> {
                   },
                   child: const Text("Parcourire ce calendrier")),
               Text('$_dataTime'),
-              Container(
-                margin: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 5, bottom: 5),
+              SizedBox(
+                width: widthbigbutton,
+                height: heightbigbutton,
                 child: TextFormField(
                   decoration: textFieldDecoration(
                     "localisation",
@@ -269,9 +271,9 @@ class _AddEventViewState extends State<AddEventView> {
                   ],
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 5, bottom: 5),
+              SizedBox(
+                width: widthbigbutton,
+                height: heightbigbutton,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
@@ -328,8 +330,9 @@ class _AddEventViewState extends State<AddEventView> {
           title: Text(''),
           content: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
+              SizedBox(
+                  width: widthbigbutton,
+                  height: heightbigbutton,
                 child: TextFormField(
                   keyboardType: TextInputType.multiline,
                   maxLines: 4,

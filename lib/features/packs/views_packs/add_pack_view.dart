@@ -46,8 +46,9 @@ class _AddPackViewState extends State<AddPackView> {
         key: formkey,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -65,8 +66,9 @@ class _AddPackViewState extends State<AddPackView> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -84,8 +86,9 @@ class _AddPackViewState extends State<AddPackView> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",

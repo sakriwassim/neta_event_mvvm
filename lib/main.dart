@@ -10,8 +10,9 @@ import 'features/into_screen/utils/colors.dart';
 import 'features/web/home/home_view_web.dart';
 import 'features/web/home/home_view_web_phone.dart';
 import 'features/web/home/home_view_web_tab.dart';
-import 'features/web/home/responsive_web.dart';
-import 'features/web/web_view/login_signup_view.dart';
+import 'features/web/home/main_home_web.dart';
+import 'features/web/web_authentification_view/login_signup_web_view.dart';
+import 'features/web/web_authentification_view/main_authentification_web.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       //home: ResponsiveWeb(),
       // home: HomeViewWebPhone(),
       //home: HomeViewWeb(),
-      home: LoginSignupView(),
+      home: MainAuthentificationWeb(),
       //home: SplashScreen(),
       //home: MyHomePage(),
     );

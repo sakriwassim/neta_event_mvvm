@@ -7,7 +7,6 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
-import '../../../core/widgets/signein_signeup_button_style.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../../web/home/home_view_web.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text2.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
@@ -55,11 +57,12 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidgetText2(
-                            title: "qr_code",
+                          TextWidget(
+                            title: "qr_code", fontSize: 18.00,
                           ),
-                          TextWidgetText2(
+                          TextWidget(
                             title: "${snapshot.data!.qr_code.toString()}",
+                            fontSize: 18.00,
                           ),
                         ],
                       ),
@@ -71,11 +74,13 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidgetText2(
+                          TextWidget(
                             title: "prix",
+                            fontSize: 18.00,
                           ),
-                          TextWidgetText2(
+                          TextWidget(
                             title: "${snapshot.data!.prix}",
+                            fontSize: 18.00,
                           ),
                         ],
                       ),
@@ -87,11 +92,13 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidgetText2(
+                          TextWidget(
                             title: "date",
+                            fontSize: 18.00,
                           ),
-                          TextWidgetText2(
+                          TextWidget(
                             title: "${snapshot.data!.date}",
+                            fontSize: 18.00,
                           ),
                         ],
                       ),
@@ -103,11 +110,13 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidgetText2(
+                          TextWidget(
                             title: "libelle",
+                            fontSize: 18.00,
                           ),
-                          TextWidgetText2(
+                          TextWidget(
                             title: "${snapshot.data!.libelle}",
+                            fontSize: 18.00,
                           ),
                         ],
                       ),
@@ -118,7 +127,10 @@ class _OnTicketViewState extends State<OnTicketView> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {},
-                        child: MediumButton(text: "Scan Qr"),
+                        child: Button(text: "Scan Qr",  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,),
                       ),
                     ),
                   )

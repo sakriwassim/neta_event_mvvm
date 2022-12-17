@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
-import 'package:neta_event_mvvm/core/widgets/exclusive_card_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_bycategoris_view.dart';
 import 'package:neta_event_mvvm/search.dart';
 
+import '../../core/widgets/exclusive_card_widget.dart';
 import '../Categories/categories_repositories/categories_api.dart';
 import '../Categories/view_model_categories/categories_view_model.dart';
 import '../Categories/view_model_categories/one_categorie_view_model.dart';

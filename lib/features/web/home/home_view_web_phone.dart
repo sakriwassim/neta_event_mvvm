@@ -10,9 +10,10 @@ import '../../packs/views_packs/packs_view.dart';
 import '../../tontines/views_tontines/tontines_view.dart';
 import '../../users/view_profil/user_view.dart';
 import '../../users/views_events/events_view.dart';
+import '../model/drawer_sections.dart';
 import '../web_add_user_view.dart';
-import '../web_sidebar_menu_widget.dart';
 import '../web_view/login_signup_view.dart';
+import '../widgets/my_drawer_header.dart';
 
 class HomeViewWebPhone extends StatefulWidget {
   HomeViewWebPhone({super.key});
@@ -22,6 +23,7 @@ class HomeViewWebPhone extends StatefulWidget {
 }
 
 class _HomeViewWebPhoneState extends State<HomeViewWebPhone> {
+  var currentPage = DrawerSections.dashboard;
   logout() {
     setState(() {
       //data2.Cleanpref();
@@ -76,8 +78,17 @@ class _HomeViewWebPhoneState extends State<HomeViewWebPhone> {
     final bodyWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      drawer: WebSideBarMenu(
-        callbackFunctionlogout: logout,
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                MyHeaderDrawer(),
+                MyDrawerList(),
+              ],
+            ),
+          ),
+        ),
       ),
       appBar: appBar,
       body: Container(
@@ -87,6 +98,91 @@ class _HomeViewWebPhoneState extends State<HomeViewWebPhone> {
         child: Container(
             color: const Color.fromARGB(255, 30, 206, 130),
             child: widgetweb[_select]),
+      ),
+    );
+  }
+
+  Widget MyDrawerList() {
+    return Container(
+      padding: EdgeInsets.only(
+        top: 15,
+      ),
+      child: Column(
+        // shows the list of menu drawer
+        children: [
+          menuItem(1, "Dashboard", Icons.dashboard_outlined,
+              currentPage == DrawerSections.dashboard ? true : false),
+          menuItem(2, "Contacts", Icons.people_alt_outlined,
+              currentPage == DrawerSections.contacts ? true : false),
+          menuItem(3, "Events", Icons.event,
+              currentPage == DrawerSections.events ? true : false),
+          menuItem(4, "Notes", Icons.notes,
+              currentPage == DrawerSections.notes ? true : false),
+          Divider(),
+          menuItem(5, "Settings", Icons.settings_outlined,
+              currentPage == DrawerSections.settings ? true : false),
+          menuItem(6, "Notifications", Icons.notifications_outlined,
+              currentPage == DrawerSections.notifications ? true : false),
+          Divider(),
+          menuItem(7, "Privacy policy", Icons.privacy_tip_outlined,
+              currentPage == DrawerSections.privacy_policy ? true : false),
+          menuItem(8, "Send feedback", Icons.feedback_outlined,
+              currentPage == DrawerSections.send_feedback ? true : false),
+        ],
+      ),
+    );
+  }
+
+  Widget menuItem(int id, String title, IconData icon, bool selected) {
+    return Material(
+      color: selected ? Colors.grey[300] : Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+          setState(() {
+            if (id == 1) {
+              currentPage = DrawerSections.dashboard;
+            } else if (id == 2) {
+              currentPage = DrawerSections.contacts;
+            } else if (id == 3) {
+              currentPage = DrawerSections.events;
+            } else if (id == 4) {
+              currentPage = DrawerSections.notes;
+            } else if (id == 5) {
+              currentPage = DrawerSections.settings;
+            } else if (id == 6) {
+              currentPage = DrawerSections.notifications;
+            } else if (id == 7) {
+              currentPage = DrawerSections.privacy_policy;
+            } else if (id == 8) {
+              currentPage = DrawerSections.send_feedback;
+            }
+          });
+        },
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Icon(
+                  icon,
+                  size: 20,
+                  color: Colors.black,
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

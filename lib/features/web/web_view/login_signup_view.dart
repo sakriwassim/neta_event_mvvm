@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
-import '../../../core/widgets/signein_signeup_button_style.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../../authentification/views_authentification/login_authentification_view.dart';
 
 class LoginSignupView extends StatefulWidget {
@@ -46,8 +48,12 @@ class _LoginSignupViewState extends State<LoginSignupView>
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
-                            child: SigneInUpButton(
+                            child: Button(
                               text: "S'inscrire",
+                              fontSize: fontSizemediumbutton,
+                              gradientbackground: gradientbackground,
+                              height: heightmediumbutton,
+                              width: widthmediumbutton,
                             ),
                           ),
                         ),

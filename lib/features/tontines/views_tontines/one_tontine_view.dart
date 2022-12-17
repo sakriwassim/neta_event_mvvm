@@ -61,12 +61,14 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        TextWidgetText2(
+                        TextWidget(
                           title: "Participants",
+                          fontSize: 18.00,
                         ),
-                        TextWidgetText2(
+                        TextWidget(
                           title:
                               "${snapshot.data!.nbr_participant} participants",
+                              fontSize: 18.00,
                         ),
                       ],
                     ),
@@ -76,11 +78,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        TextWidgetText2(
+                        TextWidget(
                           title: "Monatnt",
+                          fontSize: 18.00,
                         ),
-                        TextWidgetText2(
+                        TextWidget(
                           title: "${snapshot.data!.montant_regulier} \$",
+                          fontSize: 18.00,
                         ),
                       ],
                     ),
@@ -90,15 +94,17 @@ class _OnTontineViewState extends State<OnTontineView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        TextWidgetText2(
+                        TextWidget(
                           title: "participants actuels",
+                          fontSize: 18.00,
                         ),
                         Text("${snapshot.data!.status}"),
                       ],
                     ),
                   ),
-                  TextWidgetText2(
+                  TextWidget(
                     title: "Next Owner",
+                    fontSize: 18.00,
                   ),
                   SizedBox(
                     width: 100,

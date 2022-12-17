@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 
+import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
@@ -130,7 +132,10 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   }
                 }
               },
-              child: MediumButton(text: "MODIFIER"),
+              child: Button(text: "MODIFIER" , fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,),
             ),
           ],
         ),

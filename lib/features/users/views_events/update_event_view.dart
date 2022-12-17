@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../models_events/add_event_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
@@ -123,7 +125,10 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                     });
                   }
                 },
-                child: MediumButton(text: "MODIFIER"),
+                child: Button(text: "MODIFIER",  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,),
               ),
             ),
           ],

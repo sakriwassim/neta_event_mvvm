@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../models_packs/pack_model.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/packs_view_model.dart';
@@ -125,7 +127,13 @@ class _AddPackViewState extends State<AddPackView> {
                     });
                   }
                 },
-                child: MediumButton(text: "APPLIQUER")),
+                child: Button(
+                  text: "APPLIQUER",
+                  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,
+                )),
           ],
         ),
       ),

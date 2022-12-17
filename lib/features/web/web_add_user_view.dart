@@ -3,7 +3,6 @@ import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 
-import '../../../core/widgets/medium_button.dart';
 import '../../core/colors.dart';
 import '../../core/string.dart';
 import '../../core/widgets/small_button_style.dart';

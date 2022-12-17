@@ -3,11 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import '../../../core/colors.dart';
+import '../../../core/int.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/dropdown_button_example.dart';
-import '../../../core/widgets/medium_button.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
@@ -52,8 +51,9 @@ class _AddTontineViewState extends State<AddTontineView>
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: TextWidgetText1(
+          title: TextWidget(
             title: 'Ajout Tontine',
+            fontSize: 15
           )),
       body: SingleChildScrollView(
         child: Form(
@@ -84,8 +84,9 @@ class _AddTontineViewState extends State<AddTontineView>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextWidgetText2(
+                            TextWidget(
                               title: 'Nom de la tontine',
+                              fontSize: 18.00,
                             ),
                             Padding(
                               padding:
@@ -107,8 +108,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                 },
                               ),
                             ),
-                            TextWidgetText2(
+                            TextWidget(
                               title: 'Montant regulier',
+                              fontSize: 18.00,
                             ),
                             Padding(
                               padding:
@@ -130,8 +132,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                 },
                               ),
                             ),
-                            TextWidgetText2(
+                            TextWidget(
                               title: 'choisir une photo de l evenement',
+                              fontSize: 18.00,
                             ),
                             Padding(
                               padding:
@@ -143,8 +146,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                   child: SvgPicture.asset(
                                       "assets/icon_user/GalleryButton.svg")),
                             ),
-                            TextWidgetText2(
+                            TextWidget(
                               title: 'Type',
+                              fontSize: 18.00,
                             ),
                             SizedBox(
                               height: 120,
@@ -194,8 +198,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             bottom: 10, top: 10),
-                                        child: TextWidgetText2(
+                                        child: TextWidget(
                                           title: 'Personnes',
+                                          fontSize: 18.00,
                                         ),
                                       ),
                                       Padding(
@@ -232,8 +237,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                 ],
                               ),
                             ),
-                            TextWidgetText2(
+                            TextWidget(
                               title: 'Periode',
+                              fontSize: 18.00,
                             ),
                             SizedBox(
                               height: 120,
@@ -336,8 +342,9 @@ class _AddTontineViewState extends State<AddTontineView>
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         bottom: 10, top: 10),
-                                    child: TextWidgetText2(
+                                    child: TextWidget(
                                       title: 'Publicite',
+                                      fontSize: 18.00,
                                     ),
                                   ),
                                   Padding(
@@ -376,7 +383,10 @@ class _AddTontineViewState extends State<AddTontineView>
                                       });
                                     }
                                   },
-                                  child: MediumButton(text: "APPLIQUER")),
+                                  child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,)),
                             ),
                           ],
                         ),

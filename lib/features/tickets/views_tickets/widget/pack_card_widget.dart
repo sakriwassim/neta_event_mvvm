@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 
-import '../../../../core/widgets/mini_acheter_button.dart';
+import '../../../../core/colors.dart';
+import '../../../../core/widgets/small_button_style.dart';
 
 class PackCardWidget extends StatelessWidget {
   String libelle;
@@ -62,7 +64,10 @@ class PackCardWidget extends StatelessWidget {
                   //       fontWeight: FontWeight.w400),
                   // ),
                   InkWell(
-                      onTap: () {}, child: MiniAcheterButton(text: "ACHETER")),
+                      onTap: () {}, child: Button(text: "ACHETER",  fontSize: fontSizeminibutton,
+                  gradientbackground: gradientbackground,
+                  height: heightminibutton,
+                  width: widthminibutton,)),
                 ],
               ),
             ),

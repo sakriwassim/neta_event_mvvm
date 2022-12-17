@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/colors.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../models_categories/add_categories_model.dart';
 import '../categories_repositories/categories_api.dart';
 import '../view_model_categories/categories_view_model.dart';
@@ -121,7 +123,13 @@ class _AddCategorieViewState extends State<AddCategorieView> {
                     });
                   }
                 },
-                child: MediumButton(text: "APPLIQUER")),
+                child: Button(
+                  text: "APPLIQUER",
+                  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,
+                )),
           ],
         ),
       ),

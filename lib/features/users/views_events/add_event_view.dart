@@ -2,7 +2,9 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
@@ -243,7 +245,10 @@ class _AddUserViewState extends State<AddUserView> {
                     });
                   }
                 },
-                child: MediumButton(text: "APPLIQUER")),
+                child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,)),
           ],
         ),
       ),

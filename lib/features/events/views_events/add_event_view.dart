@@ -360,8 +360,9 @@ class _AddEventViewState extends State<AddEventView> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextWidgetText2(
+                child: TextWidget(
                   title: "choisir une photo de levenement ",
+                  fontSize: 18.00,
                 ),
               ),
               Column(

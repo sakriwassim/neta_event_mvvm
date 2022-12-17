@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/int.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../models_categories/categories_model.dart';
 import '../categories_repositories/categories_api.dart';
 import '../view_model_categories/one_categorie_view_model.dart';
@@ -121,14 +123,20 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
 
                   CategorieModel ticketformJson =
                       CategorieModel.fromJson(ticket);
-                // print(ticketformJson);
+                  // print(ticketformJson);
 
                   setState(() {
                     data.UpdateCategorieByID(ticketformJson);
                   });
                 }
               },
-              child: MediumButton(text: "MODIFIER"),
+              child: Button(
+                text: "MODIFIER",
+                fontSize: fontSizemediumbutton,
+                gradientbackground: gradientbackground,
+                height: heightmediumbutton,
+                width: widthmediumbutton,
+              ),
             ),
           ],
         ),

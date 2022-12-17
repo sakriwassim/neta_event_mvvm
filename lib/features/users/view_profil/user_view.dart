@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:neta_event_mvvm/core/widgets/medium_button.dart';
 import 'package:neta_event_mvvm/features/imageupload/models_image/image_model.dart';
 
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
 import '../../../core/string.dart';
-import '../../../core/widgets/text_widget.dart';
+import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text2.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../../imageupload/view_model_images/one_image_view_model.dart';
@@ -328,8 +330,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         });
                                       }
                                     },
-                                    child: MediumButton(
+                                    child: Button(
                                       text: "APPLIQUER",
+                                      fontSize: fontSizemediumbutton,
+                                      gradientbackground: gradientbackground,
+                                      height: heightmediumbutton,
+                                      width: widthmediumbutton,
                                     )),
                               ],
                             ),
@@ -444,19 +450,20 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     TextWidget(
-                                      title: 'Les étapes à suivre:',
-                                    ),
+                                        title: 'Les étapes à suivre:',
+                                        fontSize: 15),
                                     TextWidget(
-                                      title: "1- Inserer l'ancien mot de passe",
-                                    ),
+                                        title:
+                                            "1- Inserer l'ancien mot de passe",
+                                        fontSize: 15),
                                     TextWidget(
-                                      title:
-                                          "2- Inserer le nouveau mot de passe",
-                                    ),
+                                        title:
+                                            "2- Inserer le nouveau mot de passe",
+                                        fontSize: 15),
                                     TextWidget(
-                                      title:
-                                          "3- Reinserer le nouveau mot de passe",
-                                    ),
+                                        title:
+                                            "3- Reinserer le nouveau mot de passe",
+                                        fontSize: 15),
                                   ],
                                 ),
                                 Padding(
@@ -624,8 +631,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           _imageFileList = null;
                                         }
                                       },
-                                      child: MediumButton(
+                                      child: Button(
                                         text: "APPLIQUER",
+                                        fontSize: fontSizemediumbutton,
+                                        gradientbackground: gradientbackground,
+                                        height: heightmediumbutton,
+                                        width: widthmediumbutton,
                                       )),
                                 ),
                               ],

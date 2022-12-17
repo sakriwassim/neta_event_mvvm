@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
 
+import '../../../core/colors.dart';
+import '../../../core/int.dart';
 import '../../../core/string.dart';
-import '../../../core/widgets/medium_button.dart';
+import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text2.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
@@ -76,8 +78,9 @@ class _OneUserViewState extends State<OneUserView> {
                                   const EdgeInsets.only(right: 10, left: 10),
                               child: Column(
                                 children: [
-                                  TextWidgetText2(
+                                  TextWidget(
                                     title: "420",
+                                    fontSize: 18.00,
                                   ),
                                   Text(
                                     "ticket",
@@ -91,8 +94,9 @@ class _OneUserViewState extends State<OneUserView> {
                                   const EdgeInsets.only(right: 10, left: 10),
                               child: Column(
                                 children: [
-                                  TextWidgetText2(
+                                  TextWidget(
                                     title: "1800\$",
+                                    fontSize: 18.00,
                                   ),
                                   Text(
                                     "spent",
@@ -111,8 +115,11 @@ class _OneUserViewState extends State<OneUserView> {
                                     builder: (context) => UserView(),
                                   ));
                             },
-                            child: MediumButton(
-                              text: "Edit Profile",
+                            child: Button(
+                              text: "Edit Profile",  fontSize: fontSizemediumbutton,
+                  gradientbackground: gradientbackground,
+                  height: heightmediumbutton,
+                  width: widthmediumbutton,
                             )),
                       ],
                     ),

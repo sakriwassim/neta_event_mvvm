@@ -19,6 +19,7 @@ import '../evants_repositories/events_api.dart';
 import '../models_events/add_event_model.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
+import 'widget/column_of_text.dart';
 
 class UserView extends StatefulWidget {
   @override
@@ -446,26 +447,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                             ),
                             Column(
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget(
-                                        title: 'Les étapes à suivre:',
-                                        fontSize: 15),
-                                    TextWidget(
-                                        title:
-                                            "1- Inserer l'ancien mot de passe",
-                                        fontSize: 15),
-                                    TextWidget(
-                                        title:
-                                            "2- Inserer le nouveau mot de passe",
-                                        fontSize: 15),
-                                    TextWidget(
-                                        title:
-                                            "3- Reinserer le nouveau mot de passe",
-                                        fontSize: 15),
-                                  ],
-                                ),
+                                ColumnOfTestWidget(),
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(

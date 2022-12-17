@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../core/colors.dart';
@@ -40,9 +41,9 @@ class _LoginSignupViewState extends State<LoginSignupView>
                       tabs: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Se connecte",
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                          child: TextWidget(
+                            fontSize: 25,
+                            title: "Se connecte",
                           ),
                         ),
                         Padding(

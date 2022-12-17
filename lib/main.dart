@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:provider/provider.dart';
 import 'features/authentification/views_authentification/login_authentification_view.dart';
 import 'features/entry/views_entry/entry_view.dart';
@@ -26,30 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          textTheme: const TextTheme(
-        headline1: TextStyle(
-          fontSize: 25,
-          color: MyColors.titleTextColor,
-          fontWeight: FontWeight.bold,
-        ),
-        headline2: TextStyle(
-            fontSize: 18,
-            color: MyColors.subTitleTextColor,
-            fontWeight: FontWeight.w400,
-            wordSpacing: 1.2,
-            height: 1.2),
-        headline3: TextStyle(
-          fontSize: 18,
-          color: MyColors.titleTextColor,
-          fontWeight: FontWeight.bold,
-        ),
-        headline4: TextStyle(
-          fontSize: 18,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      )),
+      theme: themedata(),
       //home: ResponsiveWeb(),
       // home: HomeViewWebPhone(),
       //home: HomeViewWeb(),

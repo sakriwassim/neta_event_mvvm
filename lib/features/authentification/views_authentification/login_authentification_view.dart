@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../core/colors.dart';
@@ -14,6 +15,7 @@ import '../../web/home/responsive_web.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
+import 'widgets/sinscrire_row_widget.dart';
 
 //****** */
 class LoginView extends StatefulWidget {
@@ -30,6 +32,14 @@ class _LoginViewState extends State<LoginView> {
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
+
+  navtoRegisterView() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RegisterView(),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +72,9 @@ class _LoginViewState extends State<LoginView> {
                           top: 10,
                           bottom: 16,
                         ),
-                        child: const Text(
-                          "Se connecter",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+                        child: TextWidget(
+                          title: 'Se connecter',
+                          fontSize: 25,
                         ),
                       ),
                     ],
@@ -219,51 +225,14 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                SinscrireRow(),
+                SinscrireRow(
+                  navtoRegisterView: navtoRegisterView,
+                ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class SinscrireRow extends StatelessWidget {
-  const SinscrireRow({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          " Vous n'avez pas un compte",
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.black,
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RegisterView(),
-                ));
-          },
-          child: const Text(
-            " S'inscrire",
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Colors.pink,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

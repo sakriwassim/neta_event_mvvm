@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:neta_event_mvvm/features/web/web_add_user_view.dart';
+import 'package:neta_event_mvvm/features/web/user/web_add_user_view.dart';
 
-import '../users/views_events/events_view.dart';
+import '../../users/views_events/events_view.dart';
 
-class WebUserView extends StatefulWidget {
-  const WebUserView({super.key});
+class MainWebUserView extends StatefulWidget {
+  const MainWebUserView({super.key});
 
   @override
-  State<WebUserView> createState() => _WebUserViewState();
+  State<MainWebUserView> createState() => _MainWebUserViewState();
 }
 
-class _WebUserViewState extends State<WebUserView> {
+class _MainWebUserViewState extends State<MainWebUserView> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;

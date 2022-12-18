@@ -4,11 +4,10 @@ import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/users/views_events/widgets/event_card_widget.dart';
 
 import '../../../core/colors.dart';
-import '../users/evants_repositories/events_api.dart';
-import '../users/view_model_events/events_view_model.dart';
-import '../users/view_model_events/one_event_view_model.dart';
-import '../users/views_events/add_event_view.dart';
-import '../users/views_events/one_event_view.dart';
+import '../../users/evants_repositories/events_api.dart';
+import '../../users/view_model_events/events_view_model.dart';
+import '../../users/view_model_events/one_event_view_model.dart';
+import '../../users/views_events/one_event_view.dart';
 
 class GetAllUserViewWeb extends StatefulWidget {
   const GetAllUserViewWeb({super.key});

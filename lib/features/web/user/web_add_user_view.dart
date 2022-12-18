@@ -3,12 +3,12 @@ import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 
-import '../../core/colors.dart';
-import '../../core/string.dart';
-import '../../core/widgets/small_button_style.dart';
-import '../users/evants_repositories/events_api.dart';
-import '../users/models_events/add_event_model.dart';
-import '../users/view_model_events/events_view_model.dart';
+import '../../../core/colors.dart';
+import '../../../core/widgets/small_button_style.dart';
+import '../../users/evants_repositories/events_api.dart';
+import '../../users/models_events/add_event_model.dart';
+import '../../users/view_model_events/events_view_model.dart';
+
 
 class AddUserViewWeb extends StatefulWidget {
   AddUserViewWeb({

@@ -9,7 +9,6 @@ import '../../packs/views_packs/packs_view.dart';
 import '../../tontines/views_tontines/tontines_view.dart';
 import '../../users/view_profil/user_view.dart';
 import '../../users/views_events/events_view.dart';
-import '../web_add_user_view.dart';
 import '../web_authentification_view/login_signup_web_view.dart';
 import 'list_of_widget.dart';
 

@@ -11,6 +11,7 @@ import 'features/web/home/home_view_web.dart';
 import 'features/web/home/home_view_web_phone.dart';
 import 'features/web/home/home_view_web_tab.dart';
 import 'features/web/home/main_home_web.dart';
+import 'features/web/user/main_web_user_view.dart';
 import 'features/web/web_authentification_view/login_signup_web_view.dart';
 import 'features/web/web_authentification_view/main_authentification_web.dart';
 
@@ -29,10 +30,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      //home: ResponsiveWeb(),
-      // home: HomeViewWebPhone(),
-      //home: HomeViewWeb(),
+
+      // home: MainHomeWeb(),
       home: MainAuthentificationWeb(),
+      //home: WebUserView(),
       //home: SplashScreen(),
       //home: MyHomePage(),
     );

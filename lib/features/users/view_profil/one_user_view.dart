@@ -81,6 +81,7 @@ class _OneUserViewState extends State<OneUserView> {
                                   TextWidget(
                                     title: "420",
                                     fontSize: 18.00,
+                                    fontWeight: FontWeight.normal,
                                   ),
                                   Text(
                                     "ticket",
@@ -97,6 +98,7 @@ class _OneUserViewState extends State<OneUserView> {
                                   TextWidget(
                                     title: "1800\$",
                                     fontSize: 18.00,
+                                    fontWeight: FontWeight.normal,
                                   ),
                                   Text(
                                     "spent",
@@ -116,6 +118,7 @@ class _OneUserViewState extends State<OneUserView> {
                                   ));
                             },
                             child: Button(
+                                  fontWeight: FontWeight.normal,
                               text: "Edit Profile",  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,

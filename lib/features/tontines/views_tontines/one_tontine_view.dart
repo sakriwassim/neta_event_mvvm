@@ -64,11 +64,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                         TextWidget(
                           title: "Participants",
                           fontSize: 18.00,
+                          fontWeight: FontWeight.normal,
                         ),
                         TextWidget(
                           title:
                               "${snapshot.data!.nbr_participant} participants",
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                         ),
                       ],
                     ),
@@ -81,10 +83,12 @@ class _OnTontineViewState extends State<OnTontineView> {
                         TextWidget(
                           title: "Monatnt",
                           fontSize: 18.00,
+                          fontWeight: FontWeight.normal,
                         ),
                         TextWidget(
                           title: "${snapshot.data!.montant_regulier} \$",
                           fontSize: 18.00,
+                          fontWeight: FontWeight.normal,
                         ),
                       ],
                     ),
@@ -97,6 +101,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                         TextWidget(
                           title: "participants actuels",
                           fontSize: 18.00,
+                          fontWeight: FontWeight.normal,
                         ),
                         Text("${snapshot.data!.status}"),
                       ],
@@ -105,6 +110,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                   TextWidget(
                     title: "Next Owner",
                     fontSize: 18.00,
+                    fontWeight: FontWeight.normal,
                   ),
                   SizedBox(
                     width: 100,
@@ -133,6 +139,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                         )));
                           },
                           child: Button(
+                                fontWeight: FontWeight.normal,
                             text: "MODIFIER",
                             fontSize: 20,
                             gradientbackground: gradientbackground,
@@ -153,6 +160,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                             }
                           },
                           child: Button(
+                                fontWeight: FontWeight.normal,
                             text: "SUPPRIMER",
                             fontSize: fontSizeminibutton,
                             gradientbackground: gradientbackground,

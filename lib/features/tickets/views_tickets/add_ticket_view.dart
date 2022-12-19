@@ -125,11 +125,14 @@ class _AddTicketViewState extends State<AddTicketView> {
                     });
                   }
                 },
-                child: Button(text: "APPLIQUER",
+                child: Button(
+                  text: "APPLIQUER",
                   fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
-                  width: widthmediumbutton,)),
+                  width: widthmediumbutton,
+                  fontWeight: FontWeight.normal,
+                )),
           ],
         ),
       ),

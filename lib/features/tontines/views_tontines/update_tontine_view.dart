@@ -133,6 +133,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 }
               },
               child: Button(text: "MODIFIER" , fontSize: fontSizemediumbutton,
+                  fontWeight: FontWeight.normal,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,),

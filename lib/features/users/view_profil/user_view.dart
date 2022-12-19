@@ -332,6 +332,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       }
                                     },
                                     child: Button(
+                                          fontWeight: FontWeight.normal,
                                       text: "APPLIQUER",
                                       fontSize: fontSizemediumbutton,
                                       gradientbackground: gradientbackground,
@@ -614,6 +615,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         }
                                       },
                                       child: Button(
+                                            fontWeight: FontWeight.normal,
                                         text: "APPLIQUER",
                                         fontSize: fontSizemediumbutton,
                                         gradientbackground: gradientbackground,

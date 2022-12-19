@@ -53,6 +53,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                           builder: (context) => AddTontineView()));
                 },
                 child: Button(
+                      fontWeight: FontWeight.normal,
                   text: "ADD EVENT",
                   height: 40,
                   width: 100,

@@ -50,9 +50,9 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
         key: formkey,
         child: Column(
           children: [
-             SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -70,9 +70,9 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
                 },
               ),
             ),
-             SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -90,9 +90,9 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
                 },
               ),
             ),
-           SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -139,6 +139,7 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
                 gradientbackground: gradientbackground,
                 height: heightmediumbutton,
                 width: widthmediumbutton,
+                fontWeight: FontWeight.normal,
               ),
             ),
           ],

@@ -6,6 +6,7 @@ class Button extends StatelessWidget {
   double height;
   double width;
   double fontSize;
+  dynamic fontWeight;
   LinearGradient gradientbackground;
 
   Button(
@@ -14,7 +15,8 @@ class Button extends StatelessWidget {
       required this.height,
       required this.width,
       required this.fontSize,
-      required this.gradientbackground})
+      required this.gradientbackground,
+      required this.fontWeight})
       : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class Button extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
+            fontWeight: fontWeight,
             fontSize: fontSize,
             color: Colors.white,
           ),

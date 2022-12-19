@@ -125,10 +125,14 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                     });
                   }
                 },
-                child: Button(text: "MODIFIER",  fontSize: fontSizemediumbutton,
+                child: Button(
+                  text: "MODIFIER",
+                  fontSize: fontSizemediumbutton,
+                  fontWeight: FontWeight.normal,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
-                  width: widthmediumbutton,),
+                  width: widthmediumbutton,
+                ),
               ),
             ),
           ],

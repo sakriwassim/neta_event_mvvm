@@ -53,7 +53,8 @@ class _AddTontineViewState extends State<AddTontineView>
           backgroundColor: Colors.white,
           title: TextWidget(
             title: 'Ajout Tontine',
-            fontSize: 15
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
           )),
       body: SingleChildScrollView(
         child: Form(
@@ -87,6 +88,7 @@ class _AddTontineViewState extends State<AddTontineView>
                             TextWidget(
                               title: 'Nom de la tontine',
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                             ),
                             Padding(
                               padding:
@@ -111,6 +113,7 @@ class _AddTontineViewState extends State<AddTontineView>
                             TextWidget(
                               title: 'Montant regulier',
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                             ),
                             Padding(
                               padding:
@@ -135,6 +138,7 @@ class _AddTontineViewState extends State<AddTontineView>
                             TextWidget(
                               title: 'choisir une photo de l evenement',
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                             ),
                             Padding(
                               padding:
@@ -149,6 +153,7 @@ class _AddTontineViewState extends State<AddTontineView>
                             TextWidget(
                               title: 'Type',
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                             ),
                             SizedBox(
                               height: 120,
@@ -201,6 +206,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                         child: TextWidget(
                                           title: 'Personnes',
                                           fontSize: 18.00,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                       ),
                                       Padding(
@@ -240,6 +246,7 @@ class _AddTontineViewState extends State<AddTontineView>
                             TextWidget(
                               title: 'Periode',
                               fontSize: 18.00,
+                              fontWeight: FontWeight.normal,
                             ),
                             SizedBox(
                               height: 120,
@@ -256,6 +263,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "Par semaine";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "Par semaine",
                                             height: 40,
                                             width: 100,
@@ -268,6 +276,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "2 semaines";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "2 semaines",
                                             height: 40,
                                             width: 100,
@@ -280,6 +289,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "Par mois";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "Par mois",
                                             height: 40,
                                             width: 100,
@@ -298,6 +308,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "2 mois";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "2 mois",
                                             height: 40,
                                             width: 100,
@@ -310,6 +321,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "Par Trimestre";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "Par Trimestre",
                                             height: 40,
                                             width: 100,
@@ -322,6 +334,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             periode = "Par semestre";
                                           },
                                           child: Button(
+                                                fontWeight: FontWeight.normal,
                                             text: "Par semestre ",
                                             height: 40,
                                             width: 100,
@@ -345,6 +358,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                     child: TextWidget(
                                       title: 'Publicite',
                                       fontSize: 18.00,
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                   Padding(
@@ -386,7 +400,8 @@ class _AddTontineViewState extends State<AddTontineView>
                                   child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
-                  width: widthmediumbutton,)),
+                  width: widthmediumbutton,
+                      fontWeight: FontWeight.normal,)),
                             ),
                           ],
                         ),

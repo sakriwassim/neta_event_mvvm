@@ -15,19 +15,23 @@ class ColumnOfTestWidget extends StatelessWidget {
       children: [
         TextWidget(
             title: 'Les étapes à suivre:',
-            fontSize: 15),
+            fontSize: 15,
+            fontWeight: FontWeight.normal,),
         TextWidget(
             title:
                 "1- Inserer l'ancien mot de passe",
-            fontSize: 15),
+            fontSize: 15,
+            fontWeight: FontWeight.normal,),
         TextWidget(
             title:
                 "2- Inserer le nouveau mot de passe",
-            fontSize: 15),
+            fontSize: 15,
+            fontWeight: FontWeight.normal,),
         TextWidget(
             title:
                 "3- Reinserer le nouveau mot de passe",
-            fontSize: 15),
+            fontSize: 15,
+            fontWeight: FontWeight.normal,),
       ],
     );
   }

@@ -122,6 +122,7 @@ class TontineCardWidgetH extends StatelessWidget {
                       callbackFunction!(id);
                     },
                     child: Button(
+                          fontWeight: FontWeight.normal,
                       text: "Supprimer",
                       fontSize: fontSizeminibutton,
                       gradientbackground: gradientbackground,

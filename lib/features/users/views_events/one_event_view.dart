@@ -121,6 +121,7 @@ class _OnUserViewState extends State<OnUserView> {
                                         )));
                           },
                           child: Button(
+                                fontWeight: FontWeight.normal,
                             text: "MODIFIER",
                             fontSize: 20,
                             gradientbackground: gradientbackground,
@@ -141,6 +142,7 @@ class _OnUserViewState extends State<OnUserView> {
                             }
                           },
                           child: Button(
+                                fontWeight: FontWeight.normal,
                             text: "SUPPRIMER",
                             fontSize: 20,
                             gradientbackground: gradientbackground,

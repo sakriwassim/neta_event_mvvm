@@ -132,6 +132,7 @@ class _AddCategorieViewState extends State<AddCategorieView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
+                   fontWeight: FontWeight.normal,
                 )),
           ],
         ),

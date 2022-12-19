@@ -51,8 +51,8 @@ class _UpdateEventViewState extends State<UpdateEventView> {
         child: Column(
           children: [
             SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -70,9 +70,9 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                 },
               ),
             ),
-             SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -90,9 +90,9 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                 },
               ),
             ),
-             SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+            SizedBox(
+              width: widthbigbutton,
+              height: heightbigbutton,
               child: TextFormField(
                 decoration: textFieldDecoration(
                   "Mot de passe",
@@ -144,6 +144,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
             ),

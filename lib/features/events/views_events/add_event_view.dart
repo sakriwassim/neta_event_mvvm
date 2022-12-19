@@ -331,8 +331,8 @@ class _AddEventViewState extends State<AddEventView> {
           content: Column(
             children: [
               SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+                width: widthbigbutton,
+                height: heightbigbutton,
                 child: TextFormField(
                   keyboardType: TextInputType.multiline,
                   maxLines: 4,
@@ -366,6 +366,7 @@ class _AddEventViewState extends State<AddEventView> {
                 child: TextWidget(
                   title: "choisir une photo de levenement ",
                   fontSize: 18.00,
+                  fontWeight: FontWeight.w200,
                 ),
               ),
               Column(

@@ -118,6 +118,7 @@ class TontineCardWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: Button(
+                              fontWeight: FontWeight.normal,
                           text: "Participer",
                           fontSize: fontSizeminibutton,
                           gradientbackground: gradientbackground,

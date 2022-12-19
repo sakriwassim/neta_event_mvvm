@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardGoogle extends StatelessWidget {
   String? image;
@@ -27,31 +29,28 @@ class CardGoogle extends StatelessWidget {
             ),
             color: Colors.white,
             child: Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
                   flex: 1,
                   child: Container(
-                    //color: Colors.blue,
-                    child: Image.asset(
-                      '$image',
-                      width: MediaQuery.of(context).size.width * 0.05,
-                      height: MediaQuery.of(context).size.height * 0.05,
-                      //scale: 0.1,
-                    ),
+                    child: SvgPicture.asset("$image"),
                   ),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Container(
-                    // color: Colors.red,
                     child: Text(
                       "$title",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                      style: GoogleFonts.lato(
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20,
+                          color: Colors.black),
+
+                      // style: TextStyle(
+                      //   fontSize: 15,
+                      //   fontWeight: FontWeight.bold,
+                      //   color: Colors.black,
+                      // ),
                     ),
                   ),
                 ),

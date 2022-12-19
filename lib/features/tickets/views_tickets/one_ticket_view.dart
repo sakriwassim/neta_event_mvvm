@@ -58,11 +58,14 @@ class _OnTicketViewState extends State<OnTicketView> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextWidget(
-                            title: "qr_code", fontSize: 18.00,
+                            title: "qr_code",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                           TextWidget(
                             title: "${snapshot.data!.qr_code.toString()}",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                         ],
                       ),
@@ -77,10 +80,12 @@ class _OnTicketViewState extends State<OnTicketView> {
                           TextWidget(
                             title: "prix",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                           TextWidget(
                             title: "${snapshot.data!.prix}",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                         ],
                       ),
@@ -95,10 +100,12 @@ class _OnTicketViewState extends State<OnTicketView> {
                           TextWidget(
                             title: "date",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                           TextWidget(
                             title: "${snapshot.data!.date}",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                         ],
                       ),
@@ -113,10 +120,12 @@ class _OnTicketViewState extends State<OnTicketView> {
                           TextWidget(
                             title: "libelle",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                           TextWidget(
                             title: "${snapshot.data!.libelle}",
                             fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
                           ),
                         ],
                       ),
@@ -127,10 +136,14 @@ class _OnTicketViewState extends State<OnTicketView> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {},
-                        child: Button(text: "Scan Qr",  fontSize: fontSizemediumbutton,
-                  gradientbackground: gradientbackground,
-                  height: heightmediumbutton,
-                  width: widthmediumbutton,),
+                        child: Button(
+                          text: "Scan Qr",
+                          fontSize: fontSizemediumbutton,
+                          gradientbackground: gradientbackground,
+                          height: heightmediumbutton,
+                          width: widthmediumbutton,
+                              fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                   )

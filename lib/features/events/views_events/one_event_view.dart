@@ -126,6 +126,7 @@ class _OnEventViewState extends State<OnEventView> {
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
                             width: widthbigbutton,
+                                fontWeight: FontWeight.normal,
                           )),
                       InkWell(
                           onTap: () async {
@@ -146,6 +147,7 @@ class _OnEventViewState extends State<OnEventView> {
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
                             width: widthbigbutton,
+                                fontWeight: FontWeight.normal,
                           )),
                     ],
                   )

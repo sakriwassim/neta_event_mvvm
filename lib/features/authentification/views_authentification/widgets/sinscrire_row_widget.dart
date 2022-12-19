@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SinscrireRow extends StatelessWidget {
   Function navtoRegisterView;
@@ -9,24 +10,23 @@ class SinscrireRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           " Vous n'avez pas un compte",
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.black,
+          style: GoogleFonts.lato(
+            fontStyle: FontStyle.normal,
+            fontSize: 15,
           ),
-        ),
+        ),//authentification
         InkWell(
           onTap: () {
             navtoRegisterView();
           },
-          child: const Text(
+          child: Text(
             " S'inscrire",
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Colors.pink,
-            ),
+            style: GoogleFonts.lato(
+                fontStyle: FontStyle.normal,
+                fontSize: 15,
+                color: Color.fromRGBO(194, 32, 124, 1)),
           ),
         ),
       ],

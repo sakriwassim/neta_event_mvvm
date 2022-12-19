@@ -7,13 +7,6 @@ import 'features/entry/views_entry/entry_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/home/home_view.dart';
 import 'features/into_screen/utils/colors.dart';
-import 'features/web/home/home_view_web.dart';
-import 'features/web/home/home_view_web_phone.dart';
-import 'features/web/home/home_view_web_tab.dart';
-import 'features/web/home/main_home_web.dart';
-import 'features/web/user/main_web_user_view.dart';
-import 'features/web/web_authentification_view/login_signup_web_view.dart';
-import 'features/web/web_authentification_view/main_authentification_web.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -30,12 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-
-      // home: MainHomeWeb(),
-      home: MainAuthentificationWeb(),
-      //home: WebUserView(),
+      home: LoginView(),
       //home: SplashScreen(),
-      //home: MyHomePage(),
     );
   }
 }

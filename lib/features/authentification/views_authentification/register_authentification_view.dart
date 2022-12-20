@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/register_row.dart';
 
 import '../../../core/colors.dart';
+import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text2.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -24,98 +27,77 @@ class _RegisterViewState extends State<RegisterView> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
+  navtoSinscrireRow() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: const IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          shadowColor: Colors.white,
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          title: const Text(
-            "S'inscrire",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          )),
+        iconTheme: const IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        shadowColor: Colors.white,
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Form(
             key: formkey,
             child: Column(
               children: [
-           SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextWidget(
+                        title: "S'inscrire",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: 'Sakri wassim',
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le nom de user',
+                    decoration: textFieldDecorationWithicon(
+                      "entre le nom",
+                      "Sanogo Yaya",
+                      Colors.grey,
+                      "assets/icons/authentification/Profile.svg",
                     ),
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return "entre le nom_complet";
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid email address";
                       } else {
-                        // libellefield = widget.eventObj.libelle;
                         return null;
                       }
                     },
                     onChanged: (text) {
-                      nomcompletfield = text;
+                      emailfield = text;
                     },
                   ),
                 ),
-               SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
-                    //controller: TextEditingController(text: widget.eventObj.prix),
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: 'Adresse e-mail',
-                      prefixIcon: Icon(
-                        Icons.mail_outline_outlined,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le email',
+                    decoration: textFieldDecorationWithicon(
+                      "entre le email",
+                      "Adresse e-mail",
+                      Colors.grey,
+                      "assets/icons/authentification/message.svg",
                     ),
-
                     validator: (value) {
                       String pattern =
                           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -126,7 +108,6 @@ class _RegisterViewState extends State<RegisterView> {
                           !regex.hasMatch(value)) {
                         return "Enter a valid email address";
                       } else {
-                        // prixfield = widget.eventObj.prix;
                         return null;
                       }
                     },
@@ -135,44 +116,29 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-               SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: ' Mot de passe',
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le password',
+                    decoration: textFieldDecorationWithTowicon(
+                      "Mot de passe",
+                      "entre le password",
+                      Colors.grey,
+                      "assets/icons/authentification/lock.svg",
+                      "assets/icons/authentification/hidden.svg",
                     ),
                     validator: (value) {
                       String pattern =
                           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
                       RegExp regex = RegExp(pattern);
+
                       if (value == null ||
                           value.isEmpty ||
                           !regex.hasMatch(value)) {
-                        return "entre le password";
+                        return "Enter a valid mot de pass";
                       } else {
-                        //dateMesurefield = datenow.toString();
-                        //descriptionfield = widget.eventObj.description.toString();
                         return null;
                       }
                     },
@@ -181,61 +147,39 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                  SizedBox(
-                  width: widthbigbutton,
-                  height: heightbigbutton,
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF2F2F2),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: ' Mot de passe',
-
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Colors.grey,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 114, 59, 3), //<-- SEE HERE
-                      ),
-                      hintText: 'entre le password',
-
-                      //  suffixIcon: IconButton(
-                      //           icon: Icon(_isObscure
-                      //               ? Icons.visibility
-                      //               : Icons.visibility_off),
-                      //           onPressed: () {
-                      //             setState(() {
-                      //               _isObscure = !_isObscure;
-                      //             });
-                      //           })
+                    decoration: textFieldDecorationWithTowicon(
+                      "Mot de passe",
+                      "entre le password",
+                      Colors.grey,
+                      "assets/icons/authentification/lock.svg",
+                      "assets/icons/authentification/hidden.svg",
                     ),
                     validator: (value) {
-                      var result = passwordfield2.compareTo(passwordfield);
+                      String pattern =
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      RegExp regex = RegExp(pattern);
 
-                      if (
-                          //passwordfield2 == passwordfield
-                          value!.isEmpty) {
-                        return "entre le password";
-                      } else if (result < 0) {
-                        return "entre le password";
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
+                        return "Enter a valid mot de pass";
                       } else {
                         return null;
                       }
                     },
                     onChanged: (text) {
-                      passwordfield2 = text;
+                      passwordfield = text;
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 InkWell(
                     onTap: () async {
@@ -270,13 +214,13 @@ class _RegisterViewState extends State<RegisterView> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                        fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w500,
                     )),
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: 'assets/SlashScreen/google.png',
-                    title: 'Se conncter avec Google',
+                    image: 'assets/icons/authentification/google.svg',
+                    title: 'Se connecter avec Google',
                     height: heightgoogle,
                     width: widthgoogle,
                   ),
@@ -284,43 +228,17 @@ class _RegisterViewState extends State<RegisterView> {
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: 'assets/SlashScreen/Facebook.png',
+                    image: 'assets/icons/authentification/facebook.svg',
                     title: 'Se connecter avec Facebook',
                     height: heightgoogle,
                     width: widthgoogle,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .center, //Center Row contents horizontally,
-                  crossAxisAlignment: CrossAxisAlignment
-                      .center, //Center Row contents vertically,
-                  children: [
-                    const Text(
-                      " Vous n'avez pas un compte",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.black,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginView(),
-                            ));
-                      },
-                      child: const Text(
-                        " Signin",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: 15,
+                ),
+                RegisterRow(
+                  navtoRegisterView: navtoSinscrireRow,
                 ),
               ],
             ),

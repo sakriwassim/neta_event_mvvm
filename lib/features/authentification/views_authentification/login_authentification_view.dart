@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
@@ -30,6 +32,14 @@ class _LoginViewState extends State<LoginView> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
+  navtoForgetpasswordRow() {
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => Forgetpassword(),
+    //     ));
+  }
+
   navtoRegisterView() {
     Navigator.push(
         context,
@@ -48,29 +58,25 @@ class _LoginViewState extends State<LoginView> {
             key: formkey,
             child: Column(
               children: [
-                Container(
-                  child: Image.asset(
-                    LoginImage,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                  ),
+                Image.asset(
+                  LoginImage,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
                 ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: TextWidget(
-                          title: 'Se connecter',
-                          fontSize: 24,
-                          fontWeight: FontWeight.w500,
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextWidget(
+                        title: 'Se connecter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Padding(
@@ -100,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Padding(
@@ -131,6 +137,10 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ForgetpasswordRow(),
                 const SizedBox(
                   height: 20,
                 ),

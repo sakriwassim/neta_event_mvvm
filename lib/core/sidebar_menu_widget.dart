@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../features/authentification/authentification_repositories/authentification_api.dart';
 import '../features/authentification/view_model_authentification/authentification_view_model.dart';
@@ -106,7 +107,11 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(Profile), //Favoris
-            title: const Text('Profile'),
+            title: Text('Profile',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => OneUserView()));
@@ -164,7 +169,7 @@ class SideBarMenu extends StatelessWidget {
               }),
           ListTile(
             title: const Text('Se deconnecter'),
-            leading: const Icon(Icons.exit_to_app),
+            leading: SvgPicture.asset(Deconnect),
             onTap: () {
               data2.Cleanpref();
               //callbackFunctionlogout;

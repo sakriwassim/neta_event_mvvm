@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 const baseUrl = "https://admin.saitech-group.com/api/v1";
 const defaultImage = "assets/intro/3.png";
 const LoginImage = "assets/SlashScreen/netaLogo.png";
@@ -15,9 +17,11 @@ const message = "assets/icons/authentification/message.svg";
 const google = 'assets/icons/authentification/google.svg';
 const facebook = 'assets/icons/authentification/facebook.svg';
 const Profile = "assets/icons/authentification/Profile.svg";
-const Favoris = "assets/icons/authentification/Favoris.svg";
-const helpcircle = "assets/icons/authentification/help-circle.svg"; //Tontin
-const Tontin = "assets/icons/authentification/Tontin.svg";
+const Favoris = "assets/icons/home/Favoris.svg";
+const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin
+const Tontin = "assets/icons/home/Tontin.svg";
+const Deconnect = "assets/icons/home/Deconnect.svg";
+
 const patternstring =
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 

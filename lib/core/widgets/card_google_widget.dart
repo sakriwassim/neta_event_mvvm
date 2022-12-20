@@ -48,11 +48,6 @@ class CardGoogle extends StatelessWidget {
                           fontSize: 20,
                           color: Colors.black),
 
-                      // style: TextStyle(
-                      //   fontSize: 15,
-                      //   fontWeight: FontWeight.bold,
-                      //   color: Colors.black,
-                      // ),
                     ),
                   ),
                 ),

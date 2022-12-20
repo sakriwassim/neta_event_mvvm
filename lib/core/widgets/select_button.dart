@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../colors.dart';
 
-class SelectButtonTrue extends StatelessWidget {
+class SelectButton extends StatelessWidget {
   String text;
   double height;
   double width;
   double fontSize;
   dynamic fontWeight;
   LinearGradient gradientbackground;
+  bool? isSelected;
 
-  SelectButtonTrue(
+  SelectButton(
       {Key? key,
       required this.text,
       required this.height,
       required this.width,
       required this.fontSize,
       required this.gradientbackground,
-      required this.fontWeight})
+      required this.fontWeight,
+      this.isSelected = false})
       : super(key: key);
 
   @override
@@ -29,59 +31,77 @@ class SelectButtonTrue extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         gradient: gradientbackground,
       ),
-      child: Card(
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontWeight: fontWeight,
-              fontSize: fontSize,
-              foreground: Paint()..shader = linearGradient,
-            ),
-          ),
-        ),
-      ),
+      child: isSelected == false
+          ? Container(
+              height: height,
+              width: width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                gradient: gradientbackground,
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: fontWeight,
+                    fontSize: fontSize,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            )
+          : Card(
+              child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontWeight: fontWeight,
+                  fontSize: fontSize,
+                  foreground: Paint()..shader = linearGradient,
+                ),
+              ),
+            )),
     );
   }
 }
 
-class SelectButtonFalse extends StatelessWidget {
-  SelectButtonFalse({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.gradientbackground,
-    required this.text,
-    required this.fontWeight,
-    required this.fontSize,
-  }) : super(key: key);
+// class SelectButtonFalse extends StatelessWidget {
+//   SelectButtonFalse({
+//     Key? key,
+//     required this.height,
+//     required this.width,
+//     required this.gradientbackground,
+//     required this.text,
+//     required this.fontWeight,
+//     required this.fontSize,
+//   }) : super(key: key);
 
-  double height;
-  double width;
-  LinearGradient gradientbackground;
-  String text;
-  dynamic fontWeight;
-  double fontSize;
+//   double height;
+//   double width;
+//   LinearGradient gradientbackground;
+//   String text;
+//   dynamic fontWeight;
+//   double fontSize;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        gradient: gradientbackground,
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: height,
+//       width: width,
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(10.0),
+//         gradient: gradientbackground,
+//       ),
+//       child: Center(
+//         child: Text(
+//           text,
+//           style: TextStyle(
+//             fontWeight: fontWeight,
+//             fontSize: fontSize,
+//             color: Colors.white,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

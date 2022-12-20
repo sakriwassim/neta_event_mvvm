@@ -24,6 +24,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
+      // home: SelectCompany(
+      //   emailfield: '',
+      //   nomcompletfield: '',
+      //   passwordfield: '',
+      // ),
       home: LoginView(),
       //home: SplashScreen(),
     );

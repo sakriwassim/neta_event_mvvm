@@ -39,6 +39,8 @@ class _SelectCompanyState extends State<SelectCompany> {
   late int valueselected = 1;
   bool buttonselected = false;
 
+  int selectIndex = -1;
+
 //  final bool _isObscure = true;
 
   var data = AuthentificationViewModel(
@@ -84,53 +86,37 @@ class _SelectCompanyState extends State<SelectCompany> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
-                InkWell(
-                    onTap: () {
-                      valueselected = 1;
-                      print(valueselected);
-                    },
-                    child: SelectButtonTrue(
-                      text: "CLIENT",
-                      fontSize: fontSizebigbutton,
-                      height: heightselectbutton,
-                      width: widthselectbutton,
-                      gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(
-                  height: 15,
+                Wrap(
+                  children: List.generate(3, (index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectIndex = index;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: SelectButton(
+                          isSelected: selectIndex == index
+                              ? buttonselected = true
+                              : buttonselected = false,
+                          text: index == 0
+                              ? "CLIENT"
+                              : index == 1
+                                  ? "ORGANISATEUR"
+                                  : "SOCIÉTÉ",
+                          fontSize: fontSizebigbutton,
+                          height: heightselectbutton,
+                          width: widthselectbutton,
+                          gradientbackground: gradientbackground,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    );
+                  }),
                 ),
-                InkWell(
-                    onTap: () {
-                      valueselected = 2;
-                      print(valueselected);
-                    },
-                    child: SelectButtonFalse(
-                      text: "ORGANISATEUR",
-                      fontSize: fontSizebigbutton,
-                      height: heightselectbutton,
-                      width: widthselectbutton,
-                      gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(
-                  height: 15,
-                ),
-                InkWell(
-                    onTap: () {
-                      valueselected = 3;
-                      print(valueselected);
-                    },
-                    child: SelectButtonTrue(
-                      text: "SOCIÉTÉS",
-                      fontSize: fontSizebigbutton,
-                      height: heightselectbutton,
-                      width: widthselectbutton,
-                      gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500,
-                    )),
                 const SizedBox(
                   height: 30,
                 ),
@@ -138,7 +124,7 @@ class _SelectCompanyState extends State<SelectCompany> {
                     onTap: () async {
                       print("il button ti5dem ");
                       var event = {
-                        "role_id": valueselected,
+                        "role_id": selectIndex,
                         "packs_id": 1,
                         "nom_complet": widget.nomcompletfield.toString(),
                         "email": widget.emailfield.toString(),

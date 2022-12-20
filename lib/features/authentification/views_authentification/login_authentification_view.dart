@@ -152,11 +152,11 @@ class _LoginViewState extends State<LoginView> {
                         var event = {
                           "role_id": 1,
                           "packs_id": 1,
-                          "nom_complet": "Mousa Keita",
+                          "nom_complet": " ",
                           "email": emailfield.toString(),
                           "telephone": 70213645,
-                          "adresse": "Faladiè",
-                          "image": "https://cheminverslimage",
+                          "adresse": " ",
+                          "image": " ",
                           "password": passwordfield.toString()
                         };
 

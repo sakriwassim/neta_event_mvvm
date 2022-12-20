@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      home: IntoScreen(),
+      //home: IntoScreen(),
       // home: LoginView(),
-      //  home: SplashScreen(),
-      //home: MyHomePage(),
+      //home: SplashScreen(),
+      home: MyHomePage(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../features/authentification/authentification_repositories/authentification_api.dart';
 import '../features/authentification/view_model_authentification/authentification_view_model.dart';
@@ -104,7 +105,7 @@ class SideBarMenu extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.person),
+            leading: SvgPicture.asset(Profile), //Favoris
             title: const Text('Profile'),
             onTap: () {
               Navigator.push(context,
@@ -122,12 +123,12 @@ class SideBarMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.favorite_border),
+            leading: SvgPicture.asset(Favoris), //Favoris
             title: const Text('Favorites'),
             onTap: () => null,
           ),
           ListTile(
-            leading: const Icon(Icons.mail),
+            leading: SvgPicture.asset(helpcircle), //Favoris
             title: const Text('Contacter-nous'),
             onTap: () => null,
           ),
@@ -136,17 +137,17 @@ class SideBarMenu extends StatelessWidget {
             title: Text('Request'),
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
+            leading: SvgPicture.asset(helpcircle),
             title: const Text('aide & FAQs'),
             onTap: () => null,
           ),
           ListTile(
-            leading: const Icon(Icons.description),
+            leading: SvgPicture.asset(Tontin),
             title: const Text('Don'),
             onTap: () => null,
           ),
           ListTile(
-              leading: const Icon(Icons.description),
+              leading: SvgPicture.asset(Tontin), //Tontin
               title: const Text('Tontine'),
               onTap: () {
                 Navigator.push(

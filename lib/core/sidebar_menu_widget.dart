@@ -78,8 +78,8 @@ class SideBarMenu extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.centerRight + Alignment(0, .3),
-                  child: Text(
+                  alignment: Alignment.centerRight + const Alignment(0, .3),
+                  child: const Text(
                     'Client',
                     style: TextStyle(
                       color: Colors.white70,
@@ -186,7 +186,7 @@ class SideBarMenu extends StatelessWidget {
               data2.Cleanpref();
               //callbackFunctionlogout;
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginView()));
+                  MaterialPageRoute(builder: (context) => const LoginView()));
             },
           ),
         ],

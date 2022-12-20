@@ -17,7 +17,7 @@ class SearchElement extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.close),
+        icon: const Icon(Icons.close),
         onPressed: () {
           query = "";
         },
@@ -30,7 +30,7 @@ class SearchElement extends SearchDelegate {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -103,7 +103,7 @@ class SearchElement extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Search Event'),
     );
   }

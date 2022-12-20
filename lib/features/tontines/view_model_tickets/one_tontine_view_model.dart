@@ -1,3 +1,4 @@
+
 import '../models_tontines/tontine_model.dart';
 
 class OneTontineViewModel {

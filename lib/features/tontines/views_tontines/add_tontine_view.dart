@@ -16,7 +16,7 @@ import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 
 class AddTontineView extends StatefulWidget {
-  AddTontineView({
+  const AddTontineView({
     super.key,
   });
 
@@ -45,7 +45,7 @@ class _AddTontineViewState extends State<AddTontineView>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
@@ -361,48 +361,46 @@ class _AddTontineViewState extends State<AddTontineView>
                                       fontWeight: FontWeight.normal,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
+                                  const Padding(
+                                    padding: EdgeInsets.only(
                                         bottom: 10, top: 10),
                                     child: DropdownButtonExample(),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
-                              child: InkWell(
-                                  onTap: () {
-                                    if (formkey.currentState!.validate()) {
-                                      var ticket = {
-                                        "id": 1,
-                                        "user_id": "1",
-                                        "libelle": libellefield,
-                                        "periode": "periode",
-                                        "nbr_participant": prixfield,
-                                        "montant_regulier": "1000",
-                                        "status": "statut",
-                                        "image": "htpps://LienDeLimage",
-                                        "created_at":
-                                            "2022-10-11T12:27:41.000000Z",
-                                        "updated_at":
-                                            "2022-10-11T12:27:41.000000Z"
-                                      };
+                            InkWell(
+                                onTap: () {
+                                  if (formkey.currentState!.validate()) {
+                                    var ticket = {
+                                      "id": 1,
+                                      "user_id": "1",
+                                      "libelle": libellefield,
+                                      "periode": "periode",
+                                      "nbr_participant": prixfield,
+                                      "montant_regulier": "1000",
+                                      "status": "statut",
+                                      "image": "htpps://LienDeLimage",
+                                      "created_at":
+                                          "2022-10-11T12:27:41.000000Z",
+                                      "updated_at":
+                                          "2022-10-11T12:27:41.000000Z"
+                                    };
 
-                                      TontineModel ticketformJson =
-                                          TontineModel.fromJson(ticket);
-                                      // print(ticketformJson);
+                                    TontineModel ticketformJson =
+                                        TontineModel.fromJson(ticket);
+                                    // print(ticketformJson);
 
-                                      setState(() {
-                                        data.AddTontine(ticketformJson);
-                                      });
-                                    }
-                                  },
-                                  child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
+                                    setState(() {
+                                      data.AddTontine(ticketformJson);
+                                    });
+                                  }
+                                },
+                                child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
                       fontWeight: FontWeight.normal,)),
-                            ),
                           ],
                         ),
                       ),
@@ -465,17 +463,17 @@ class _AddTontineViewState extends State<AddTontineView>
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                          children: const [
                                             Text(
                                               "Tontine groupe",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
                                               ),
                                             ),
                                             Text(
                                               "12 personnes",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
                                               ),
@@ -485,17 +483,17 @@ class _AddTontineViewState extends State<AddTontineView>
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                          children: const [
                                             Text(
                                               "Price",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
                                               ),
                                             ),
                                             Text(
                                               "5 Fcfa",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
                                               ),
@@ -505,17 +503,17 @@ class _AddTontineViewState extends State<AddTontineView>
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                          children: const [
                                             Text(
                                               "Total",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.white,
                                               ),
                                             ),
                                             Text(
                                               "5 Fcfa",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.white,
                                               ),
@@ -532,10 +530,10 @@ class _AddTontineViewState extends State<AddTontineView>
                                               borderRadius:
                                                   BorderRadius.circular(13.0),
                                             ),
-                                            child: Center(
+                                            child: const Center(
                                               child: Text(
                                                 "Place My Order",
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   fontSize: 15,
                                                   color: Color.fromARGB(
                                                       255, 213, 33, 171),

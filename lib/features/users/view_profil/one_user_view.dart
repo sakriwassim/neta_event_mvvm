@@ -12,6 +12,8 @@ import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
 
 class OneUserView extends StatefulWidget {
+  const OneUserView({super.key});
+
   @override
   State<OneUserView> createState() => _OneUserViewState();
 }
@@ -83,7 +85,7 @@ class _OneUserViewState extends State<OneUserView> {
                                     fontSize: 18.00,
                                     fontWeight: FontWeight.normal,
                                   ),
-                                  Text(
+                                  const Text(
                                     "ticket",
                                     style: TextStyle(color: Colors.grey),
                                   ),
@@ -100,7 +102,7 @@ class _OneUserViewState extends State<OneUserView> {
                                     fontSize: 18.00,
                                     fontWeight: FontWeight.normal,
                                   ),
-                                  Text(
+                                  const Text(
                                     "spent",
                                     style: TextStyle(color: Colors.grey),
                                   ),
@@ -144,7 +146,7 @@ class _OneUserViewState extends State<OneUserView> {
                             padding: const EdgeInsets.only(left: 30),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.person_outline_sharp,
                                   color: Colors.grey,
                                   size: 40.0,
@@ -154,7 +156,7 @@ class _OneUserViewState extends State<OneUserView> {
                                       right: 10, left: 10),
                                   child: Text(
                                     snapshot.data!.nom_complet,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                   ),
                                 )
                               ],
@@ -164,7 +166,7 @@ class _OneUserViewState extends State<OneUserView> {
                             padding: const EdgeInsets.only(left: 30),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.mail,
                                   color: Colors.grey,
                                   size: 40.0,
@@ -174,7 +176,7 @@ class _OneUserViewState extends State<OneUserView> {
                                       right: 10, left: 10),
                                   child: Text(
                                     snapshot.data!.email,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                   ),
                                 )
                               ],
@@ -184,7 +186,7 @@ class _OneUserViewState extends State<OneUserView> {
                             padding: const EdgeInsets.only(left: 30),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.map,
                                   color: Colors.grey,
                                   size: 40.0,
@@ -194,7 +196,7 @@ class _OneUserViewState extends State<OneUserView> {
                                       right: 10, left: 10),
                                   child: Text(
                                     snapshot.data!.adresse,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                   ),
                                 )
                               ],
@@ -204,7 +206,7 @@ class _OneUserViewState extends State<OneUserView> {
                             padding: const EdgeInsets.only(left: 30),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.phone,
                                   color: Colors.grey,
                                   size: 40.0,
@@ -214,7 +216,7 @@ class _OneUserViewState extends State<OneUserView> {
                                       right: 10, left: 10),
                                   child: Text(
                                     snapshot.data!.telephone,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                   ),
                                 )
                               ],

@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       //home: IntoScreen(),
       // home: LoginView(),
       //home: SplashScreen(),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }

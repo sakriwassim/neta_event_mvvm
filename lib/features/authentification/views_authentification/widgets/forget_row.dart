@@ -1,7 +1,5 @@
 //import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgetpasswordRow extends StatefulWidget {
@@ -53,7 +51,7 @@ class _ForgetpasswordRowState extends State<ForgetpasswordRow> {
               style: GoogleFonts.lato(
                   fontStyle: FontStyle.normal,
                   fontSize: 15,
-                  color: Color.fromRGBO(194, 32, 124, 1)),
+                  color: const Color.fromRGBO(194, 32, 124, 1)),
             ),
           ),
         ],

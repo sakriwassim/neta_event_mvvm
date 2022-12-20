@@ -1,20 +1,14 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:neta_event_mvvm/features/imageupload/models_image/image_model.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text2.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
-import '../../imageupload/view_model_images/one_image_view_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../models_events/add_event_model.dart';
 import '../view_model_events/events_view_model.dart';
@@ -22,6 +16,8 @@ import '../view_model_events/one_event_view_model.dart';
 import 'widget/column_of_text.dart';
 
 class UserView extends StatefulWidget {
+  const UserView({super.key});
+
   @override
   State<UserView> createState() => _UserViewState();
 }
@@ -61,7 +57,6 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
     }
   }
 
-/********************************* */
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -114,7 +109,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                         indicatorColor: const Color.fromARGB(255, 214, 9, 204),
                         isScrollable: true,
                         controller: _tabController,
-                        labelColor: Color.fromARGB(255, 214, 9, 204),
+                        labelColor: const Color.fromARGB(255, 214, 9, 204),
                         unselectedLabelColor: Colors.grey,
                         tabs: const [
                           Tab(text: "DONNEES"),
@@ -315,7 +310,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                               '${snapshot.data!.packs_id}'),
                                           "nom_complet": nomcompletfield,
                                           "email": emailfield,
-                                          "telephone": int.parse('$phonefield'),
+                                          "telephone": int.parse(phonefield),
                                           "adresse": adressefield,
                                           "image":
                                               snapshot.data!.image.toString(),
@@ -332,7 +327,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       }
                                     },
                                     child: Button(
-                                          fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.normal,
                                       text: "APPLIQUER",
                                       fontSize: fontSizemediumbutton,
                                       gradientbackground: gradientbackground,
@@ -448,7 +443,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                             ),
                             Column(
                               children: [
-                                ColumnOfTestWidget(),
+                                const ColumnOfTestWidget(),
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
@@ -615,7 +610,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         }
                                       },
                                       child: Button(
-                                            fontWeight: FontWeight.normal,
+                                        fontWeight: FontWeight.normal,
                                         text: "APPLIQUER",
                                         fontSize: fontSizemediumbutton,
                                         gradientbackground: gradientbackground,

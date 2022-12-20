@@ -123,7 +123,7 @@ class _AddEventViewState extends State<AddEventView> {
   List<Step> getSteps() => [
         Step(
           isActive: currentStep >= 0,
-          title: Text(''),
+          title: const Text(''),
           content: Column(
             children: [
               SizedBox(
@@ -327,7 +327,7 @@ class _AddEventViewState extends State<AddEventView> {
         ),
         Step(
           isActive: currentStep >= 1,
-          title: Text(''),
+          title: const Text(''),
           content: Column(
             children: [
               SizedBox(
@@ -358,7 +358,7 @@ class _AddEventViewState extends State<AddEventView> {
         ),
         Step(
           isActive: currentStep >= 2,
-          title: Text(''),
+          title: const Text(''),
           content: Column(
             children: [
               Padding(

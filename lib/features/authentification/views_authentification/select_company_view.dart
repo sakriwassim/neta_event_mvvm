@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
 
 import '../../../core/colors.dart';
-import '../../../core/string.dart';
-import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
-import 'widgets/sinscrire_row_widget.dart';
 
 //****** */
 class SelectCompany extends StatefulWidget {

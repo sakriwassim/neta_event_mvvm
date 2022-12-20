@@ -11,7 +11,7 @@ import 'events_view.dart';
 
 class OnUserView extends StatefulWidget {
   final int id;
-  OnUserView({super.key, required this.id});
+  const OnUserView({super.key, required this.id});
 
   @override
   State<OnUserView> createState() => _OnUserViewState();

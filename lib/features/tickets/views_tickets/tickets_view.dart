@@ -47,7 +47,8 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   height: 40,
                   width: 100,
                   fontSize: 15,
-                  gradientbackground: gradientbackground,    fontWeight: FontWeight.normal,
+                  gradientbackground: gradientbackground,
+                  fontWeight: FontWeight.normal,
                 )),
           ],
         ),
@@ -83,106 +84,103 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   width: double.maxFinite,
                   height: 500,
                   child: TabBarView(
-                      children: [
-                      Container(
-                        child: RefreshIndicator(
-                          onRefresh: () async {
-                            setState(() {
-                              data.FetchAllTickets();
-                            });
+                    controller: _tabController,
+                    children: [
+                      RefreshIndicator(
+                        onRefresh: () async {
+                          setState(() {
+                            data.FetchAllTickets();
+                          });
 
-                            return Future.delayed(const Duration(seconds: 2));
-                          },
-                          child: SizedBox(
-                            child: Center(
-                              child: FutureBuilder<List<OneTicketViewModel>>(
-                                future: data.FetchAllTickets(),
-                                builder: ((context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return const CircularProgressIndicator();
-                                  } else {
-                                    var tickets = snapshot.data;
-                                    return ListView.builder(
-                                        itemCount: tickets?.length,
-                                        itemBuilder: (context, index) =>
-                                            GestureDetector(
-                                              onTap: () {
-                                                // alertupdate(tickets[index]);
+                          return Future.delayed(const Duration(seconds: 2));
+                        },
+                        child: SizedBox(
+                          child: Center(
+                            child: FutureBuilder<List<OneTicketViewModel>>(
+                              future: data.FetchAllTickets(),
+                              builder: ((context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const CircularProgressIndicator();
+                                } else {
+                                  var tickets = snapshot.data;
+                                  return ListView.builder(
+                                      itemCount: tickets?.length,
+                                      itemBuilder: (context, index) =>
+                                          GestureDetector(
+                                            onTap: () {
+                                              // alertupdate(tickets[index]);
 
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          OnTicketView(
-                                                            id: tickets[index]
-                                                                .id,
-                                                          )),
-                                                );
-                                              },
-                                              child: ListTile(
-                                                title: Text(
-                                                    "${tickets![index].date}",
-                                                    style: const TextStyle(
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OnTicketView(
+                                                          id: tickets[index].id,
+                                                        )),
+                                              );
+                                            },
+                                            child: ListTile(
+                                              title: Text(
+                                                  "${tickets![index].date}",
+                                                  style: const TextStyle(
+                                                      fontFamily:
+                                                          'AirbnbCereal',
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Color.fromARGB(
+                                                          255, 211, 7, 194))),
+                                              subtitle: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      "${tickets[index].description}",
+                                                      style: const TextStyle(
                                                         fontFamily:
                                                             'AirbnbCereal',
-                                                        fontSize: 12,
+                                                        color: Colors.black,
+                                                        fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        color: Color.fromARGB(
-                                                            255, 211, 7, 194))),
-                                                subtitle: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        "${tickets[index].description}",
-                                                        style: const TextStyle(
-                                                          fontFamily:
-                                                              'AirbnbCereal',
-                                                          color: Colors.black,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        )),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 8.0),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                              "${tickets[index].prix}" +
-                                                                  "€",
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontFamily:
-                                                                    'AirbnbCereal',
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              )),
-                                                        ],
-                                                      ),
+                                                      )),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 8.0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Text(
+                                                            "${tickets[index].prix}" +
+                                                                "€",
+                                                            style:
+                                                                const TextStyle(
+                                                              fontFamily:
+                                                                  'AirbnbCereal',
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            )),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                                leading: Image.asset(
-                                                  "assets/125.png",
-                                                ),
+                                                  ),
+                                                ],
                                               ),
-                                            ));
-                                  }
-                                }),
-                              ),
+                                              leading: Image.asset(
+                                                "assets/125.png",
+                                              ),
+                                            ),
+                                          ));
+                                }
+                              }),
                             ),
                           ),
                         ),
@@ -281,7 +279,6 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                         ),
                       ),
                     ],
-                    controller: _tabController,
                   ),
                 ),
               ],

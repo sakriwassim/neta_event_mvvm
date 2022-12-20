@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../core/colors.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
@@ -37,8 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        mini: false,
+        backgroundColor: Color.fromARGB(138, 225, 8, 142),
         onPressed: () {},
+        elevation: 10,
+        child: SvgPicture.asset(
+          "assets/icons/home/Profile.svg",
+          width: 28,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -61,10 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
+                      // SvgPicture.asset("$image"),
+                      SvgPicture.asset(
                         _currentIndex == 0
-                            ? "assets/discover_icon.png"
-                            : "assets/discover_icon_not_filled.png",
+                            ? "assets/icons/home/compassoff.svg" //  "assets/icons/home/Calendar.svg"
+                            : "assets/icons/home/compassoff.svg",
                         width: 28,
                       ),
                       Text(
@@ -91,7 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.event_outlined, color: Colors.grey),
+                      SvgPicture.asset(
+                        _currentIndex == 1
+                            ? "assets/icons/home/Calendar.svg"
+                            : "assets/icons/home/Calendaroff.svg",
+                        width: 28,
+                      ),
                       Text(
                         'Events',
                         style: TextStyle(
@@ -116,8 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.add_location_outlined,
-                          color: Colors.grey),
+                      SvgPicture.asset(
+                        _currentIndex == 2
+                            ? "assets/icons/home/Location.svg"
+                            : "assets/icons/home/Location.svg", //Profile
+                        width: 28,
+                      ),
                       Text(
                         'Tickets',
                         style: TextStyle(

@@ -8,6 +8,7 @@ import 'features/entry/views_entry/entry_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/home/home_view.dart';
 import 'features/into_screen/utils/colors.dart';
+import 'features/into_screen/view/home_page.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +25,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      // home: SelectCompany(
-      //   emailfield: '',
-      //   nomcompletfield: '',
-      //   passwordfield: '',
-      // ),
-      home: LoginView(),
-      //home: SplashScreen(),
+      home: IntoScreen(),
+      // home: LoginView(),
+      //  home: SplashScreen(),
+      //home: MyHomePage(),
     );
   }
 }

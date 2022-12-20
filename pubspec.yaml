@@ -49,7 +49,7 @@ flutter:
 
   uses-material-design: true
   assets:
-
+    - assets/
     - assets/icons/authentification/
     - assets/SlashScreen/
     - assets/icon_add_event/
@@ -66,4 +66,4 @@ flutter:
     - assets/intro/1.png
     - assets/intro/2.png
     - assets/intro/3.png
-    - assets/discover_icon.png
+    - assets/icons/home/

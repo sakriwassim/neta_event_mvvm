@@ -50,7 +50,7 @@ class AuthentificationApi extends AuthentificationRepository {
 
       return true;
     } catch (e) {
-      print("Mouchkla fi il log in $e");
+      print("PROBLEM  sur login $e");
       return false;
     }
   }
@@ -76,7 +76,7 @@ class AuthentificationApi extends AuthentificationRepository {
       // print(responsebody);
       return true;
     } catch (e) {
-      // print(e);
+      print("PROBLEM  sur register $e");
       return false;
     }
   }

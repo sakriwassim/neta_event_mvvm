@@ -61,9 +61,9 @@ flutter:
     - assets/splash_screen/
     - assets/splash_screen/Logo.png
     - assets/packs_bg/Libelle.png
-
     - assets/intro/
     - assets/tontine/
     - assets/intro/1.png
     - assets/intro/2.png
     - assets/intro/3.png
+    - assets/discover_icon.png

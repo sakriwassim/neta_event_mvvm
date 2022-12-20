@@ -11,7 +11,7 @@ class CategorieCardWidget extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Image.asset('assets/123.png'),
+          //  Image.asset('assets/123.png'),
           Text(
             libelle,
             style: const TextStyle(

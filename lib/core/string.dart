@@ -5,4 +5,18 @@ const nameApp = "Neta-event V 1.1.0";
 
 ///LoginView
 
+const imagefacebook = 'assets/icons/authentification/facebook.svg';
+const imagegoogle = 'assets/icons/authentification/google.svg';
+const titleCF = 'Se connecter avec Facebook';
+const titleCG = 'Se connecter avec Google';
+const lockicon = "assets/icons/authentification/lock.svg";
+const hiddenicon = "assets/icons/authentification/hidden.svg";
+const message = "assets/icons/authentification/message.svg";
+const google = 'assets/icons/authentification/google.svg';
+const facebook = 'assets/icons/authentification/facebook.svg';
+const Profile = "assets/icons/authentification/Profile.svg";
+const patternstring =
+    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 
+const pattermail =
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";

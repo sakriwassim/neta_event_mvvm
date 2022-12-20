@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/core/string.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/register_row.dart';
 
 import '../../../core/colors.dart';
@@ -11,8 +11,11 @@ import '../../../core/widgets/text_widget_text2.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
+import 'select_company_view.dart';
 
 class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
+
   @override
   State<RegisterView> createState() => _RegisterViewState();
 }
@@ -69,10 +72,10 @@ class _RegisterViewState extends State<RegisterView> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
                     decoration: textFieldDecorationWithicon(
-                      "entre le nom",
+                      "entre le ",
                       "Sanogo Yaya",
                       Colors.grey,
-                      "assets/icons/authentification/Profile.svg",
+                      Profile,
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -82,7 +85,7 @@ class _RegisterViewState extends State<RegisterView> {
                       }
                     },
                     onChanged: (text) {
-                      emailfield = text;
+                      nomcompletfield = text;
                     },
                   ),
                 ),
@@ -96,11 +99,10 @@ class _RegisterViewState extends State<RegisterView> {
                       "entre le email",
                       "Adresse e-mail",
                       Colors.grey,
-                      "assets/icons/authentification/message.svg",
+                      message,
                     ),
                     validator: (value) {
-                      String pattern =
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                      String pattern = pattermail;
                       RegExp regex = RegExp(pattern);
 
                       if (value == null ||
@@ -126,12 +128,11 @@ class _RegisterViewState extends State<RegisterView> {
                       "Mot de passe",
                       "entre le password",
                       Colors.grey,
-                      "assets/icons/authentification/lock.svg",
-                      "assets/icons/authentification/hidden.svg",
+                      lockicon,
+                      hiddenicon,
                     ),
                     validator: (value) {
-                      String pattern =
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      String pattern = patternstring;
                       RegExp regex = RegExp(pattern);
 
                       if (value == null ||
@@ -157,24 +158,25 @@ class _RegisterViewState extends State<RegisterView> {
                       "Mot de passe",
                       "entre le password",
                       Colors.grey,
-                      "assets/icons/authentification/lock.svg",
-                      "assets/icons/authentification/hidden.svg",
+                      lockicon,
+                      hiddenicon,
                     ),
                     validator: (value) {
-                      String pattern =
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      String pattern = patternstring;
                       RegExp regex = RegExp(pattern);
 
                       if (value == null ||
                           value.isEmpty ||
                           !regex.hasMatch(value)) {
                         return "Enter a valid mot de pass";
-                      } else {
+                      } else if (passwordfield == passwordfield2) {
                         return null;
+                      } else {
+                        return "vérifier votre mot de passe";
                       }
                     },
                     onChanged: (text) {
-                      passwordfield = text;
+                      passwordfield2 = text;
                     },
                   ),
                 ),
@@ -184,28 +186,14 @@ class _RegisterViewState extends State<RegisterView> {
                 InkWell(
                     onTap: () async {
                       if (formkey.currentState!.validate()) {
-                        var event = {
-                          "role_id": 1,
-                          "packs_id": 1,
-                          "nom_complet": nomcompletfield.toString(),
-                          "email": emailfield.toString(),
-                          "telephone": 70213645,
-                          "adresse": "Faladiè",
-                          "image": "https://cheminverslimage",
-                          "password": passwordfield.toString()
-                        };
-
-                        AuthentificationModel authentificationModel =
-                            AuthentificationModel.fromJson(event);
-
-                        bool verif = await data.Register(authentificationModel);
-                        if (verif == true) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginView(),
-                              ));
-                        }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SelectCompany(
+                                  nomcompletfield: nomcompletfield,
+                                  emailfield: emailfield,
+                                  passwordfield: passwordfield),
+                            ));
                       }
                     },
                     child: Button(
@@ -216,10 +204,21 @@ class _RegisterViewState extends State<RegisterView> {
                       gradientbackground: gradientbackground,
                       fontWeight: FontWeight.w500,
                     )),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "OU",
+                  style: TextStyle(
+                      color: Color.fromRGBO(157, 152, 152, 1), fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: 'assets/icons/authentification/google.svg',
+                    image: google,
                     title: 'Se connecter avec Google',
                     height: heightgoogle,
                     width: widthgoogle,
@@ -228,13 +227,13 @@ class _RegisterViewState extends State<RegisterView> {
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: 'assets/icons/authentification/facebook.svg',
+                    image: facebook,
                     title: 'Se connecter avec Facebook',
                     height: heightgoogle,
                     width: widthgoogle,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 RegisterRow(

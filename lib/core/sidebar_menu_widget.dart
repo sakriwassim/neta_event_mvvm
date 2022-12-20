@@ -43,7 +43,7 @@ class SideBarMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [Colors.purple, Colors.pink]),
             ),
             child: Stack(
@@ -68,7 +68,7 @@ class SideBarMenu extends StatelessWidget {
                     }),
                   ),
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerRight,
                   child: Text(
                     'Alec Reynolds',

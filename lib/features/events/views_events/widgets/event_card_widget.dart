@@ -30,12 +30,13 @@ class EventCardWidget extends StatelessWidget {
         color: Colors.white,
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Image.asset(
-                "assets/124.png",
-              ),
-            ),
+            //Padding(
+            // padding: const EdgeInsets.all(0.0),
+            // child:
+            // Image.asset(
+            //   "assets/124.png",
+            // ),
+            // ),
             Container(
               height: 150,
               child: Padding(

@@ -7,6 +7,11 @@ const heightbigbutton = 60.00;
 const widthbigbutton = 350.00;
 const fontSizebigbutton = 20.00;
 
+//size selectbutton
+const heightselectbutton = 99.00;
+const widthselectbutton = 200.00;
+const fontSizeselectbutton = 20.00;
+
 //size minibutton
 const heightminibutton = 25.00;
 const widthminibutton = 60.00;

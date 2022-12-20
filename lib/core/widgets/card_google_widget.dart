@@ -24,8 +24,10 @@ class CardGoogle extends StatelessWidget {
         child: InkWell(
           onTap: () {},
           child: Card(
+            elevation: 5,
+            shadowColor: Colors.black,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(15.0),
             ),
             color: Colors.white,
             child: Row(

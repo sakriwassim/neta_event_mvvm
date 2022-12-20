@@ -14,10 +14,13 @@ import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
+import 'select_company_view.dart';
 import 'widgets/sinscrire_row_widget.dart';
 
 //****** */
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -27,7 +30,7 @@ class _LoginViewState extends State<LoginView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
-  bool _isObscure = true;
+//  final bool _isObscure = true;
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -86,11 +89,11 @@ class _LoginViewState extends State<LoginView> {
                       "entre le email",
                       "Adresse e-mail",
                       Colors.grey,
-                      "assets/icons/authentification/message.svg",
+                      message,
                     ),
                     validator: (value) {
-                      String pattern =
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                      String pattern = pattermail;
+
                       RegExp regex = RegExp(pattern);
 
                       if (value == null ||
@@ -116,12 +119,11 @@ class _LoginViewState extends State<LoginView> {
                       "Mot de passe",
                       "entre le password",
                       Colors.grey,
-                      "assets/icons/authentification/lock.svg",
-                      "assets/icons/authentification/hidden.svg",
+                      lockicon,
+                      hiddenicon,
                     ),
                     validator: (value) {
-                      String pattern =
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                      String pattern = patternstring;
                       RegExp regex = RegExp(pattern);
 
                       if (value == null ||
@@ -140,7 +142,7 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(
                   height: 20,
                 ),
-                ForgetpasswordRow(),
+                const ForgetpasswordRow(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -180,30 +182,38 @@ class _LoginViewState extends State<LoginView> {
                       gradientbackground: gradientbackground,
                       fontWeight: FontWeight.w500,
                     )),
-                SizedBox(
-                  height: 15,
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "OU",
+                  style: TextStyle(
+                      color: Color.fromRGBO(157, 152, 152, 1), fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: 'assets/icons/authentification/google.svg',
-                    title: 'Se connecter avec Google',
+                    image: imagegoogle,
+                    title: titleCG,
                     height: heightgoogle,
                     width: widthgoogle,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 InkWell(
                   child: CardGoogle(
-                    image: 'assets/icons/authentification/facebook.svg',
-                    title: 'Se connecter avec Facebook',
+                    image: imagefacebook,
+                    title: titleCF,
                     height: heightgoogle,
                     width: widthgoogle,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 SinscrireRow(

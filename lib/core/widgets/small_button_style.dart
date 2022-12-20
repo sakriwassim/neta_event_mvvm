@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/core/colors.dart';
 
 class Button extends StatelessWidget {
   String text;

@@ -80,25 +80,9 @@ class SideBarMenu extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight + Alignment(0, .3),
                   child: Text(
-                    'Flutter Youtuber',
+                    'Client',
                     style: TextStyle(
                       color: Colors.white70,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight + Alignment(0, .8),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Text(
-                        'Verified',
-                        style: TextStyle(color: Colors.white),
-                      ),
                     ),
                   ),
                 ),
@@ -118,8 +102,12 @@ class SideBarMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.event),
-            title: const Text('Evenements'),
+            leading: SvgPicture.asset(calendarside),
+            title: Text('Eléments',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () {
               Navigator.push(
                   context,
@@ -129,31 +117,47 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(Favoris), //Favoris
-            title: const Text('Favorites'),
+            title: Text('Favorites',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () => null,
           ),
           ListTile(
-            leading: SvgPicture.asset(helpcircle), //Favoris
-            title: const Text('Contacter-nous'),
+            leading: SvgPicture.asset(message), //Favoris
+            title: Text('Contacter-nous',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () => null,
-          ),
-          const ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Request'),
           ),
           ListTile(
             leading: SvgPicture.asset(helpcircle),
-            title: const Text('aide & FAQs'),
+            title: Text('aide & FAQs',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () => null,
           ),
           ListTile(
             leading: SvgPicture.asset(Tontin),
-            title: const Text('Don'),
+            title: Text('Don',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             onTap: () => null,
           ),
           ListTile(
               leading: SvgPicture.asset(Tontin), //Tontin
-              title: const Text('Tontine'),
+              title: Text('Tontine',
+                  style: GoogleFonts.lato(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 15,
+                      color: Colors.black)),
               onTap: () {
                 Navigator.push(
                     context,
@@ -161,14 +165,22 @@ class SideBarMenu extends StatelessWidget {
                         builder: (context) => const GetAllTontineView()));
               }),
           ListTile(
-              leading: const Icon(Icons.description),
-              title: const Text('Enquete'),
+              leading: SvgPicture.asset(calendarside),
+              title: Text('Enquete',
+                  style: GoogleFonts.lato(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 15,
+                      color: Colors.black)),
               onTap: () {
                 //  Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => const GetAllTontineView()));
               }),
           ListTile(
-            title: const Text('Se deconnecter'),
+            title: Text('Se deconnecter',
+                style: GoogleFonts.lato(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15,
+                    color: Colors.black)),
             leading: SvgPicture.asset(Deconnect),
             onTap: () {
               data2.Cleanpref();

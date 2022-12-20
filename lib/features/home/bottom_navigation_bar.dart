@@ -72,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       // SvgPicture.asset("$image"),
                       SvgPicture.asset(
                         _currentIndex == 0
-                            ? "assets/icons/home/compassoff.svg" //  "assets/icons/home/Calendar.svg"
-                            : "assets/icons/home/compassoff.svg",
+                            ? "assets/icons/home/compass.svg" //  "assets/icons/home/Calendar.svg"
+                            : "assets/icons/home/compassof.svg",
                         width: 28,
                       ),
                       Text(
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       SvgPicture.asset(
                         _currentIndex == 2
                             ? "assets/icons/home/Location.svg"
-                            : "assets/icons/home/Location.svg", //Profile
+                            : "assets/icons/home/Locationoff.svg", //Profile
                         width: 28,
                       ),
                       Text(

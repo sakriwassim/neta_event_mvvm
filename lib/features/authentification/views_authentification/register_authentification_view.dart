@@ -218,7 +218,7 @@ class _RegisterViewState extends State<RegisterView> {
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: google,
+                    image: imagegoogle,
                     title: 'Se connecter avec Google',
                     height: heightgoogle,
                     width: widthgoogle,
@@ -227,7 +227,7 @@ class _RegisterViewState extends State<RegisterView> {
                 InkWell(
                   onTap: () {},
                   child: CardGoogle(
-                    image: facebook,
+                    image: imagefacebook,
                     title: 'Se connecter avec Facebook',
                     height: heightgoogle,
                     width: widthgoogle,

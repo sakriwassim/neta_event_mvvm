@@ -104,14 +104,18 @@ class _HomeViewState extends State<HomeView> {
           children: [
             Text(
               "Hey Bienvenue..",
-              //style: GoogleFonts
-              style: GoogleFonts.lato(),
+              style: TextStyle(
+                fontFamily: 'AirbnbCereal',
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+                color: Color.fromARGB(135, 255, 255, 255),
+              ),
             ),
             Text(
               "Saidou Sawadogo",
               style: TextStyle(
-                fontFamily: 'AirbnbCereal_W_Bk',
-                fontWeight: FontWeight.bold,
+                fontFamily: 'AirbnbCereal',
+                fontWeight: FontWeight.w500,
                 fontSize: 19,
                 color: Colors.white,
               ),
@@ -132,13 +136,6 @@ class _HomeViewState extends State<HomeView> {
               InkWell(
                 onTap: () {
                   showSearch(context: context, delegate: SearchElement());
-
-                  //  IconButton(
-//               icon: Icon(Icons.search),
-//               onPressed: () {
-//                 showSearch(context: context, delegate: SearchElement());
-//               },
-//             )
                 },
                 child: const Icon(Icons.search, color: Colors.white, size: 30),
               ),
@@ -238,46 +235,9 @@ class _HomeViewState extends State<HomeView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              children: [
-                                const Text("Exclusives",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                const Spacer(),
-                                Row(
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        // Navigator.push(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //       builder: (context) =>
-                                        //           GetEventByCategorisView()),
-                                        // );
-                                      },
-                                      child: const Text(
-                                        "Voir tout",
-                                        style: TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          color: Colors.grey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.forward_outlined,
-                                      color: Colors.grey,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                          VoirTout(
+                            text: 'Exclusives',
+                            callbackfonction: navGetAllEventView,
                           ),
                           SizedBox(
                             height: 260,

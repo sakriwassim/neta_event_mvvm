@@ -9,7 +9,7 @@ const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
 ///LoginView
-//SvgPicture.asset("$image"),
+//SvgPicture.asset(Vector1),
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
@@ -22,8 +22,8 @@ const calendarside = "assets/icons/home/calendarside.svg";
 const Notif = "assets/icons/home/Notification.svg";
 const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin
 const Tontin = "assets/icons/home/Tontin.svg";
-const Deconnect = "assets/icons/home/Deconnect.svg";
-
+const Deconnect = "assets/icons/home/Deconnect.svg"; //Vector1
+const Vector1 = "assets/icons/home/Vector1.svg";
 const patternstring =
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 

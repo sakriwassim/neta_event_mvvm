@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../core/string.dart';
 import '../../Categories/views_categories/categories_view.dart';
 
 class VoirTout extends StatelessWidget {
@@ -15,15 +17,18 @@ class VoirTout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          Text(text,
-              style: TextStyle(
-                fontFamily: 'AirbnbCereal',
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              )),
+          Text(
+            text,
+            style: const TextStyle(
+              fontFamily: 'AirbnbCereal',
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
           const Spacer(),
           Row(
             children: [
@@ -35,16 +40,10 @@ class VoirTout extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'AirbnbCereal',
                         color: Colors.grey,
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: FontWeight.w400,
                       ))),
-              const SizedBox(
-                width: 4,
-              ),
-              const Icon(
-                Icons.forward_outlined,
-                color: Colors.grey,
-              )
+              SvgPicture.asset(Vector1),
             ],
           )
         ],

@@ -9,7 +9,7 @@ const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
 ///LoginView
-
+//SvgPicture.asset("$image"),
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
@@ -19,6 +19,7 @@ const Profile = "assets/icons/authentification/Profile.svg";
 const Favoris = "assets/icons/home/Favoris.svg";
 const Calendar = "assets/icons/home/Calendar.svg";
 const calendarside = "assets/icons/home/calendarside.svg";
+const Notif = "assets/icons/home/Notification.svg";
 const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin
 const Tontin = "assets/icons/home/Tontin.svg";
 const Deconnect = "assets/icons/home/Deconnect.svg";

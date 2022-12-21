@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/core/sidebar_menu_widget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/events_bycategoris_view.dart';
 import 'package:neta_event_mvvm/search.dart';
 
+import '../../core/string.dart';
 import '../../core/widgets/exclusive_card_widget.dart';
 import '../Categories/categories_repositories/categories_api.dart';
 import '../Categories/view_model_categories/categories_view_model.dart';
@@ -93,20 +97,20 @@ class _HomeViewState extends State<HomeView> {
         callbackFunctionlogout: logout,
       ),
       appBar: AppBar(
+        flexibleSpace:
+            Container(decoration: BoxDecoration(gradient: gradientbackground)),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 203, 20, 20),
         title: Column(
-          children: const [
+          children: [
             Text(
               "Hey Bienvenue..",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),
+              //style: GoogleFonts
+              style: GoogleFonts.lato(),
             ),
             Text(
               "Saidou Sawadogo",
               style: TextStyle(
+                fontFamily: 'AirbnbCereal_W_Bk',
                 fontWeight: FontWeight.bold,
                 fontSize: 19,
                 color: Colors.white,
@@ -117,10 +121,7 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: IconButton(
-                icon: const Icon(Icons.notifications_none,
-                    color: Colors.white, size: 30),
-                onPressed: () {}),
+            child: IconButton(icon: SvgPicture.asset(Notif), onPressed: () {}),
           ),
         ],
         bottom: PreferredSize(

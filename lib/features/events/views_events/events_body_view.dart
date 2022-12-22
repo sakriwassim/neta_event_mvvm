@@ -59,12 +59,13 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                             )),
                                   );
                                 },
-                                child: EventCardWidgetHome(
+                                child: EventCardWidget(
                                   description: events![index].description,
                                   events: events,
                                   date_heure: events[index].date_heure,
                                   libelle: events[index].libelle,
                                   adresse: events[index].adresse,
+                                  prix: events[index].prix,
                                 )));
                       }
                     }),

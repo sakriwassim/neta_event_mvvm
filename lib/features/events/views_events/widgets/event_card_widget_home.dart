@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/string.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
@@ -33,61 +34,67 @@ class EventCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         color: Colors.white,
-        child: Container(
-          child: Row(
-            children: [
-              Container(
-                height: getProportionateScreenHeight(120),
-                width: getProportionateScreenWidth(100),
-                child: Center(
-                  child: Image.network(
-                      "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                ),
-              ),
-              Container(
-                height: getProportionateScreenHeight(93),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                    TextAirbnbCereal(
-                      color: Color.fromARGB(255, 86, 106, 255),
-                      fontWeight: FontWeight.w500,
-                      size: 12,
-                      title: date_heure!,
-                    ),
-                    TextAirbnbCereal(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w500,
-                      size: 18,
-                      title: libelle!,
-                    ),
                     Container(
-                      width: 220,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      height: getProportionateScreenHeight(120),
+                      // width: getProportionateScreenWidth(),
+                      child: Center(
+                        child: Image.network(
+                            "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                      ),
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(10),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(93),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(Location),
-                                TextAirbnbCereal(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400,
-                                  size: 12,
-                                  title: adresse!,
-                                ),
-                              ],
+                          Text(
+                            date_heure!,
+                            style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12.0,
+                              foreground: Paint()..shader = linearGradient,
                             ),
+                          ),
+                          TextAirbnbCereal(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w500,
+                            size: 18,
+                            title: libelle!,
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextAirbnbCereal(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      size: 12,
+                      title: adresse!,
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(25),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

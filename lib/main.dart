@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       theme: themedata(),
       // home: IntoScreen(),
       // home: LoginView(),
-      home: SplashScreen(),
-      //home: const MyHomePage(),
+      //home: SplashScreen(),
+      home: const MyHomePage(),
       //  home: RegisterView(),
     );
   }

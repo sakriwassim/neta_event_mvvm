@@ -166,14 +166,19 @@ class _HomeViewState extends State<HomeView> {
                                   context: context, delegate: SearchElement());
                             },
                             child: SvgPicture.asset(search)),
+                        SvgPicture.asset(Line),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: const TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Recherche...',
-                              hintStyle:
-                                  TextStyle(fontSize: 15.0, color: Colors.grey),
+                              hintText: 'Chercher',
+                              hintStyle: TextStyle(
+                                  fontFamily: 'AirbnbCereal',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15.0,
+                                  color: Color.fromARGB(137, 255, 255, 255)
+                                  ),
                             ),
                           ),
                         ),

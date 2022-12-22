@@ -80,19 +80,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // SvgPicture.asset("$image"),
-                      SvgPicture.asset(
-                        _currentIndex == 0
-                            ? "assets/icons/home/compass.svg" //  "assets/icons/home/Calendar.svg"
-                            : "assets/icons/home/compassof.svg",
-                        width: 28,
+                      Container(
+                        height: 27,
+                        child: SvgPicture.asset(
+                          _currentIndex == 0
+                              ? "assets/icons/home/compass.svg" //  "assets/icons/home/Calendar.svg"
+                              : "assets/icons/home/compassof.svg",
+                          width: 28,
+                        ),
                       ),
 
                       Text(
                         'Découvrir',
                         style: TextStyle(
-                          color: _currentIndex == 0
-                              ? const Color(0xffD2286A)
-                              : Colors.grey,
+                          fontFamily: 'AirbnbCereal',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
+                          foreground: _currentIndex == 0
+                              ? (Paint()..shader = linearGradient)
+                              : Paint()
+                            ..color = Colors.grey,
                         ),
                       )
                     ],
@@ -111,18 +118,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        _currentIndex == 1
-                            ? "assets/icons/home/Calendar.svg"
-                            : "assets/icons/home/Calendaroff.svg",
-                        width: 28,
+                      Container(
+                        height: 27,
+                        child: SvgPicture.asset(
+                          _currentIndex == 1
+                              ? "assets/icons/home/Calendar.svg"
+                              : "assets/icons/home/Calendaroff.svg",
+                          width: 28,
+                        ),
                       ),
                       Text(
                         'Events',
                         style: TextStyle(
-                          color: _currentIndex == 1
-                              ? const Color(0xffD2286A)
-                              : Colors.grey,
+                          fontFamily: 'AirbnbCereal',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
+                          foreground: _currentIndex == 1
+                              ? (Paint()..shader = linearGradient)
+                              : Paint()
+                            ..color = Colors.grey,
                         ),
                       )
                     ],
@@ -141,18 +155,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        _currentIndex == 2
-                            ? "assets/icons/home/Location.svg"
-                            : "assets/icons/home/Locationoff.svg", //Profile
-                        width: 28,
+                      Container(
+                        height: 27,
+                        child: SvgPicture.asset(
+                          _currentIndex == 2
+                              ? "assets/icons/home/Location.svg"
+                              : "assets/icons/home/Locationoff.svg", //Profile
+                          width: 28,
+                        ),
                       ),
                       Text(
                         'Tickets',
                         style: TextStyle(
-                          color: _currentIndex == 2
-                              ? const Color(0xffD2286A)
-                              : Colors.grey,
+                          fontFamily: 'AirbnbCereal',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
+                          foreground: _currentIndex == 2
+                              ? (Paint()..shader = linearGradient)
+                              : Paint()
+                            ..color = Colors.grey,
                         ),
                       )
                     ],
@@ -171,16 +192,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.attach_money,
-                        color: Colors.grey,
+                      Container(
+                        height: 27,
+                        child: SvgPicture.asset(
+                          _currentIndex == 3
+                              ? "assets/icons/home/Tontin.svg" //  "assets/icons/home/Calendar.svg"
+                              : "assets/icons/home/Tontinoff.svg",
+                          width: 28,
+                        ),
                       ),
                       Text(
                         'Tontine',
+                        // foreground: Paint()..shader = linearGradient),
                         style: TextStyle(
-                            color: _currentIndex == 3
-                                ? const Color(0xffD2286A)
-                                : Colors.grey),
+                          foreground: _currentIndex == 3
+                              ? (Paint()..shader = linearGradient)
+                              : Paint()
+                            ..color = Colors.grey,
+                          fontFamily: 'AirbnbCereal',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
+                        ),
                       )
                     ],
                   ),

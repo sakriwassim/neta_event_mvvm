@@ -5,17 +5,19 @@ import '../../../../core/string.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../../view_model_events/one_event_view_model.dart';
 
-class EventCardWidgetHome extends StatelessWidget {
+class EventCardWidget extends StatelessWidget {
   String? description;
   String? date_heure;
   String? libelle;
+  String? prix;
   String? adresse;
-  EventCardWidgetHome({
+  EventCardWidget({
     Key? key,
     required this.events,
     required this.description,
     required this.date_heure,
     required this.libelle,
+    required this.prix,
     required this.adresse,
   }) : super(key: key);
 
@@ -27,8 +29,6 @@ class EventCardWidgetHome extends StatelessWidget {
     return Container(
       height: getProportionateScreenHeight(150),
       child: Card(
-        elevation: 5,
-        shadowColor: Colors.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -39,12 +39,9 @@ class EventCardWidgetHome extends StatelessWidget {
               Container(
                 height: getProportionateScreenHeight(120),
                 width: getProportionateScreenWidth(100),
-                // decoration: const BoxDecoration(
-                //     borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: Center(
                   child: Image.network(
-                    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  ),
+                      "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                 ),
               ),
               Container(
@@ -66,7 +63,7 @@ class EventCardWidgetHome extends StatelessWidget {
                       title: libelle!,
                     ),
                     Container(
-                      width: getProportionateScreenWidth(220),
+                      width: 220,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

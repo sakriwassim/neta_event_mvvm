@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'features/authentification/views_authentification/login_authentification_view.dart';
 import 'features/authentification/views_authentification/register_authentification_view.dart';
+import 'features/entry/views_entry/entry_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/into_screen/view/home_page.dart';
 
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
       theme: themedata(),
       // home: IntoScreen(),
       // home: LoginView(),
-      //home: SplashScreen(),
-      home: const MyHomePage(),
+      home: SplashScreen(),
+      //home: const MyHomePage(),
       //  home: RegisterView(),
     );
   }

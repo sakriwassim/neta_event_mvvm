@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
+import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
+import '../../../core/size_config.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
 import 'one_event_view.dart';
+import 'widgets/event_card_widget.dart';
 
 class GetAllEventViewBody extends StatefulWidget {
   const GetAllEventViewBody({super.key});
@@ -18,6 +20,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
   var data = EventsViewModel(eventsRepository: EventsApi());
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: OfflineBuilder(
@@ -56,12 +59,11 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                             )),
                                   );
                                 },
-                                child: EventCardWidget(
+                                child: EventCardWidgetHome(
                                   description: events![index].description,
                                   events: events,
                                   date_heure: events[index].date_heure,
                                   libelle: events[index].libelle,
-                                  prix: events[index].prix,
                                   adresse: events[index].adresse,
                                 )));
                       }

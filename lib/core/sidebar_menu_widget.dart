@@ -104,7 +104,7 @@ class SideBarMenu extends StatelessWidget {
             ),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => OneUserView()));
+                  MaterialPageRoute(builder: (context) => const OneUserView()));
             },
           ),
           ListTile(

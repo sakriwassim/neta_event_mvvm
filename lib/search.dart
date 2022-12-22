@@ -6,11 +6,6 @@ import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
 import 'features/events/views_events/one_event_view.dart';
 import 'features/events/views_events/widgets/event_card_widget.dart';
-import 'features/users/evants_repositories/events_api.dart';
-import 'features/users/view_model_events/events_view_model.dart';
-import 'features/users/view_model_events/one_event_view_model.dart';
-import 'features/users/views_events/one_event_view.dart';
-import 'features/users/views_events/widgets/event_card_widget.dart';
 
 class SearchElement extends SearchDelegate {
   @override
@@ -50,7 +45,7 @@ class SearchElement extends SearchDelegate {
           if (connected) {
             return Center(
               child: FutureBuilder<List<OneEventViewModel>>(
-                future: data.FetchAllEvents(query:query),
+                future: data.FetchAllEvents(query: query),
                 builder: ((context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -68,12 +63,11 @@ class SearchElement extends SearchDelegate {
                                         )),
                               );
                             },
-                            child: EventCardWidget(
+                            child: EventCardWidgetHome(
                               description: events![index].description,
                               events: events,
                               date_heure: events[index].date_heure,
                               libelle: events[index].libelle,
-                              prix: events[index].prix,
                               adresse: events[index].adresse,
                             )));
                   }

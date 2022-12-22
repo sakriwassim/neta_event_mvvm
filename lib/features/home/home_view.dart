@@ -24,7 +24,7 @@ import '../events/view_model_events/events_view_model.dart';
 import '../events/view_model_events/one_event_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../events/views_events/one_event_view.dart';
-import '../events/views_events/widgets/event_card_widget.dart';
+import '../events/views_events/widgets/event_card_widget_home.dart';
 import '../packs/packs_repositories/packs_api.dart';
 import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
@@ -233,6 +233,7 @@ class _HomeViewState extends State<HomeView> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  /******Exclusives********************************* */
                                   VoirTout(
                                     text: 'Exclusives',
                                     callbackfonction: navGetAllEventView,

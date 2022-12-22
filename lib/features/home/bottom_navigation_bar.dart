@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget currentScreen = HomeView();
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

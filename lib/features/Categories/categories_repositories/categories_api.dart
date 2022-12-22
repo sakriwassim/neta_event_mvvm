@@ -51,7 +51,7 @@ class CategoriesApi extends CategoriesRepository {
       //print(responsebody);
       return ticketsList;
     } catch (e) {
-      print(e);
+      print("**************probleme in get categories **********$e");
       return [];
     }
   }

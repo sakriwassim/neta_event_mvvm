@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/size_config.dart';
 import '../../view_model_events/one_event_view_model.dart';
 
 class UserCardWidget extends StatelessWidget {
@@ -21,6 +22,7 @@ class UserCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     SizeConfig().init(context);
     return Container(
       height: 120,
       child: Card(

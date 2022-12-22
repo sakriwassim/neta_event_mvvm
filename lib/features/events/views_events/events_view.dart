@@ -5,7 +5,7 @@ import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.d
 import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/add_event_view.dart';
-import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget.dart';
+import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
 import '../../../core/colors.dart';
 import 'events_body_view.dart';

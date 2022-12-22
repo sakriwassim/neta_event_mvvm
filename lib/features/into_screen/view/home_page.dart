@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../core/size_config.dart';
 import '../model/items_model.dart';
 import '../utils/colors.dart';
 import '../components.dart';
@@ -43,6 +44,8 @@ class _IntoScreenState extends State<IntoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     return SafeArea(
@@ -51,7 +54,7 @@ class _IntoScreenState extends State<IntoScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: getProportionateScreenHeight(500),
             //color: Colors.red,
             child: Center(
               child: PageView.builder(
@@ -116,8 +119,8 @@ class _IntoScreenState extends State<IntoScreen> {
               ),
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.3,
+          SizedBox(
+            height: getProportionateScreenHeight(200),
             // color: Colors.grey,
             child: Column(
               children: [

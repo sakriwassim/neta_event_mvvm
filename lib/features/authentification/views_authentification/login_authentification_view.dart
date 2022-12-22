@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
+import 'package:neta_event_mvvm/core/size_config.dart';
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
@@ -53,6 +54,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -63,8 +66,10 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Image.asset(
                   LoginImage,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: getProportionateScreenHeight(100),
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -79,8 +84,8 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -139,8 +144,8 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 const ForgetpasswordRow(),
                 const SizedBox(
@@ -182,8 +187,8 @@ class _LoginViewState extends State<LoginView> {
                       gradientbackground: gradientbackground,
                       fontWeight: FontWeight.w500,
                     )),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
                 ),
                 const Text(
                   "OU",
@@ -202,8 +207,8 @@ class _LoginViewState extends State<LoginView> {
                     width: widthgoogle,
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 InkWell(
                   child: CardGoogle(
@@ -213,8 +218,8 @@ class _LoginViewState extends State<LoginView> {
                     width: widthgoogle,
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 SinscrireRow(
                   navtoRegisterView: navtoRegisterView,

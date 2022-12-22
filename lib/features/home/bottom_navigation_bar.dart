@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/colors.dart';
+import '../../core/size_config.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: SizedBox(
-          height: 60,
+          height: getProportionateScreenHeight(70),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -80,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // SvgPicture.asset("$image"),
-                      Container(
-                        height: 27,
+                      SizedBox(
+                        height: getProportionateScreenHeight(27),
                         child: SvgPicture.asset(
                           _currentIndex == 0
                               ? "assets/icons/home/compass.svg" //  "assets/icons/home/Calendar.svg"
@@ -118,8 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 27,
+                      SizedBox(
+                        height: getProportionateScreenHeight(27),
                         child: SvgPicture.asset(
                           _currentIndex == 1
                               ? "assets/icons/home/Calendar.svg"
@@ -155,8 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 27,
+                      SizedBox(
+                        height: getProportionateScreenHeight(27),
                         child: SvgPicture.asset(
                           _currentIndex == 2
                               ? "assets/icons/home/Location.svg"
@@ -192,8 +193,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 27,
+                      SizedBox(
+                        height: getProportionateScreenHeight(27),
                         child: SvgPicture.asset(
                           _currentIndex == 3
                               ? "assets/icons/home/Tontin.svg" //  "assets/icons/home/Calendar.svg"
@@ -203,7 +204,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Text(
                         'Tontine',
-                        // foreground: Paint()..shader = linearGradient),
                         style: TextStyle(
                           foreground: _currentIndex == 3
                               ? (Paint()..shader = linearGradient)

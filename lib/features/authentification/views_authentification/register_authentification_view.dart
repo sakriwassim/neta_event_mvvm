@@ -5,11 +5,11 @@ import 'package:neta_event_mvvm/features/authentification/views_authentification
 import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
 import '../../../core/int.dart';
+import '../../../core/size_config.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text2.dart';
 import '../authentification_repositories/authentification_api.dart';
-import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import 'select_company_view.dart';
 
@@ -36,6 +36,8 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -65,8 +67,8 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -89,8 +91,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -118,8 +120,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -148,8 +150,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -180,8 +182,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 InkWell(
                     onTap: () async {
@@ -204,16 +206,16 @@ class _RegisterViewState extends State<RegisterView> {
                       gradientbackground: gradientbackground,
                       fontWeight: FontWeight.w500,
                     )),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
                 ),
                 const Text(
                   "OU",
                   style: TextStyle(
                       color: Color.fromRGBO(157, 152, 152, 1), fontSize: 16),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
                 ),
                 InkWell(
                   onTap: () {},
@@ -233,8 +235,8 @@ class _RegisterViewState extends State<RegisterView> {
                     width: widthgoogle,
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: getProportionateScreenHeight(15),
                 ),
                 RegisterRow(
                   navtoRegisterView: navtoSinscrireRow,

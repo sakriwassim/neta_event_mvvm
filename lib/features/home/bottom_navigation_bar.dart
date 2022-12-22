@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/colors.dart';
@@ -32,6 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget currentScreen = HomeView();
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       backgroundColor: Colors.white,
       body: PageStorage(
@@ -39,25 +44,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
           onPressed: () {},
           child: Container(
-            width: 60,
-            height: 60,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, gradient: gradientbackground),
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: SvgPicture.asset(
                 "assets/icons/home/Profile.svg",
                 width: 28,
               ),
             ),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle, gradient: gradientbackground),
-          )
-          // mini: false,
-          //backgroundColor: Color.fromARGB(138, 225, 8, 142),
-
-          ),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -86,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             : "assets/icons/home/compassof.svg",
                         width: 28,
                       ),
+
                       Text(
                         'Découvrir',
                         style: TextStyle(

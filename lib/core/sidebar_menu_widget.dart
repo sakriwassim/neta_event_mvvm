@@ -1,8 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../features/authentification/authentification_repositories/authentification_api.dart';
 import '../features/authentification/view_model_authentification/authentification_view_model.dart';
 import '../features/authentification/views_authentification/login_authentification_view.dart';
@@ -12,7 +12,9 @@ import '../features/users/view_model_events/events_view_model.dart';
 import '../features/users/view_model_events/one_event_view_model.dart';
 import '../features/users/view_profil/one_user_view.dart';
 import '../features/users/views_events/events_view.dart';
+import 'colors.dart';
 import 'string.dart';
+import 'widgets/text_widget_text1.dart';
 
 class SideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
@@ -46,7 +48,8 @@ class SideBarMenu extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.purple, Colors.pink]),
+              color: Colors.white,
+              // gradient: gradientbackground,
             ),
             child: Stack(
               children: <Widget>[
@@ -70,20 +73,22 @@ class SideBarMenu extends StatelessWidget {
                     }),
                   ),
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'Alec Reynolds',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  child: TextAirbnbCereal(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    size: 19,
+                    title: 'Alec Reynolds',
                   ),
                 ),
                 Align(
-                  alignment: Alignment.centerRight + const Alignment(0, .3),
-                  child: const Text(
-                    'Client',
-                    style: TextStyle(
-                      color: Colors.white70,
-                    ),
+                  alignment: const Alignment(0, .3),
+                  child: TextAirbnbCereal(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w500,
+                    size: 14,
+                    title: 'Client',
                   ),
                 ),
               ],
@@ -91,11 +96,12 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(Profile), //Favoris
-            title: Text('Profile',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Profile',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => OneUserView()));
@@ -103,11 +109,12 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(calendarside),
-            title: Text('Eléments',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Eléments',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () {
               Navigator.push(
                   context,
@@ -117,47 +124,52 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(Favoris), //Favoris
-            title: Text('Favorites',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Favorites',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () => null,
           ),
           ListTile(
             leading: SvgPicture.asset(message), //Favoris
-            title: Text('Contacter-nous',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Contacter-nous',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () => null,
           ),
           ListTile(
             leading: SvgPicture.asset(helpcircle),
-            title: Text('aide & FAQs',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'aide & FAQs',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () => null,
           ),
           ListTile(
             leading: SvgPicture.asset(Tontin),
-            title: Text('Don',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Don',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             onTap: () => null,
           ),
           ListTile(
               leading: SvgPicture.asset(Tontin), //Tontin
-              title: Text('Tontine',
-                  style: GoogleFonts.lato(
-                      fontStyle: FontStyle.normal,
-                      fontSize: 15,
-                      color: Colors.black)),
+              title: TextAirbnbCereal(
+                title: 'Tontine',
+                color: Colors.black,
+                size: 16,
+                fontWeight: FontWeight.w400,
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -166,21 +178,23 @@ class SideBarMenu extends StatelessWidget {
               }),
           ListTile(
               leading: SvgPicture.asset(calendarside),
-              title: Text('Enquete',
-                  style: GoogleFonts.lato(
-                      fontStyle: FontStyle.normal,
-                      fontSize: 15,
-                      color: Colors.black)),
+              title: TextAirbnbCereal(
+                title: 'Enquete',
+                color: Colors.black,
+                size: 16,
+                fontWeight: FontWeight.w400,
+              ),
               onTap: () {
                 //  Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => const GetAllTontineView()));
               }),
           ListTile(
-            title: Text('Se deconnecter',
-                style: GoogleFonts.lato(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black)),
+            title: TextAirbnbCereal(
+              title: 'Se deconnecter',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
             leading: SvgPicture.asset(Deconnect),
             onTap: () {
               data2.Cleanpref();

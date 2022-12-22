@@ -1,9 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-class TextWidgetText1 extends StatelessWidget {
+class TextAirbnbCereal extends StatelessWidget {
   String title;
-   TextWidgetText1({
-    Key? key,required this.title
+  double size;
+  Color? color;
+  FontWeight fontWeight; //Profile
+  TextAirbnbCereal({
+    Key? key,
+    required this.title,
+    required this.size,
+    required this.color,
+    required this.fontWeight,
   }) : super(key: key);
 
   @override
@@ -11,7 +19,10 @@ class TextWidgetText1 extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Colors.black,
+        fontFamily: 'AirbnbCereal',
+        fontWeight: fontWeight,
+        fontSize: size,
+        color: color,
       ),
     );
   }

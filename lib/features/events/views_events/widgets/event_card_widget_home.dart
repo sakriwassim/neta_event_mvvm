@@ -35,7 +35,7 @@ class EventCardWidget extends StatelessWidget {
         ),
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +57,6 @@ class EventCardWidget extends StatelessWidget {
                       height: getProportionateScreenHeight(93),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             date_heure!,
@@ -67,6 +66,9 @@ class EventCardWidget extends StatelessWidget {
                               fontSize: 12.0,
                               foreground: Paint()..shader = linearGradient,
                             ),
+                          ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(10),
                           ),
                           TextAirbnbCereal(
                             color: Color.fromARGB(255, 0, 0, 0),
@@ -79,19 +81,37 @@ class EventCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextAirbnbCereal(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w400,
-                      size: 12,
-                      title: adresse!,
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(25),
-                    )
-                  ],
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        children: [
+                          TextAirbnbCereal(
+                            color: Color.fromRGBO(79, 79, 79, 1),
+                            fontWeight: FontWeight.w500,
+                            size: 12,
+                            title: "prix : ",
+                          ),
+                          TextAirbnbCereal(
+                            color: Color.fromRGBO(79, 79, 79, 1),
+                            fontWeight: FontWeight.w500,
+                            size: 12,
+                            title: prix!,
+                          ),
+                          TextAirbnbCereal(
+                            color: Color.fromRGBO(79, 79, 79, 1),
+                            fontWeight: FontWeight.w500,
+                            size: 12,
+                            title: "€",
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(20),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

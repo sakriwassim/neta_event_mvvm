@@ -23,6 +23,8 @@ const Notif = "assets/icons/home/Notification.svg";
 const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin
 const filtercircle = "assets/icons/home/filtercircle.svg"; //Tontin
 const Tontin = "assets/icons/home/Tontin.svg";
+const search2 = "assets/icons/home/search2.svg";
+//search2.svg
 const search = "assets/icons/home/search.svg";
 const Deconnect = "assets/icons/home/Deconnect.svg"; //Vector1
 const Vector1 = "assets/icons/home/Vector1.svg";

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../Categories/views_categories/categories_view.dart';
 
@@ -16,8 +17,10 @@ class VoirTout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
       child: Row(
         children: [
           Text(

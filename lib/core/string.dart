@@ -9,11 +9,14 @@ const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
 ///LoginView
-//SvgPicture.asset(Date),
+//SvgPicture.asset(Locationcard),
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
 const hiddenicon = "assets/icons/authentification/hidden.svg";
+
+const Hiddencolor = "assets/icons/authentification/Hiddencolor.svg";
+//Hiddencolor
 const message = "assets/icons/authentification/message.svg";
 const Profile = "assets/icons/authentification/Profile.svg";
 const Favoris = "assets/icons/home/Favoris.svg";
@@ -35,8 +38,9 @@ const Deconnect = "assets/icons/home/Deconnect.svg"; //Vector1
 const Vector1 = "assets/icons/home/Vector1.svg";
 const Line = "assets/icons/home/Line.svg";
 const Locationoff = "assets/icons/home/Locationoff.svg";
-
+//Hiddencolor
 const Location = "assets/icons/home/Location.svg";
+const Locationcard = "assets/icons/home/Locationcard.svg";
 
 const CombinedShape = "assets/icons/home/CombinedShape.svg";
 const patternstring =

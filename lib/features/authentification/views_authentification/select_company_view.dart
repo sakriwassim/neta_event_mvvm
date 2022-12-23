@@ -4,6 +4,7 @@ import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 
 import '../../../core/colors.dart';
+import '../../../core/size_config.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../home/bottom_navigation_bar.dart';
@@ -58,6 +59,7 @@ class _SelectCompanyState extends State<SelectCompany> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -70,7 +72,8 @@ class _SelectCompanyState extends State<SelectCompany> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(15)),
                       child: TextWidget(
                         title: "S'inscrire",
                         fontSize: 24,
@@ -91,7 +94,8 @@ class _SelectCompanyState extends State<SelectCompany> {
                         });
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            vertical: getProportionateScreenHeight(10)),
                         child: SelectButton(
                           isSelected: selectIndex == index
                               ? buttonselected = true

@@ -17,7 +17,7 @@ class PackCardWidget extends StatelessWidget {
         child: Container(
           width: 300,
           child: Stack(children: <Widget>[
-            Image.asset("assets/packs_bg/$libelle.png"),
+            // Image.asset("assets/packs_bg/$libelle.png"),
             //Image.asset("assets/packs_bg/gold.png"),
             Container(
               height: 250,
@@ -33,23 +33,23 @@ class PackCardWidget extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.w500),
                   ),
-                 const Text(
+                  const Text(
                     '10 euro',
                     style: TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 30,
                         fontWeight: FontWeight.w300),
                   ),
-                 const Text(
+                  const Text(
                     '3 évenèments',
-                    style:  TextStyle(
+                    style: TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
                   const Text(
                     '7 jours de publicité',
-                    style:  TextStyle(
+                    style: TextStyle(
                         fontFamily: 'AirbnbCereal',
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
@@ -64,11 +64,15 @@ class PackCardWidget extends StatelessWidget {
                   //       fontWeight: FontWeight.w400),
                   // ),
                   InkWell(
-                      onTap: () {}, child: Button(text: "ACHETER",  fontSize: fontSizeminibutton,
-                  gradientbackground: gradientbackground,
-                  height: heightminibutton,
-                  width: widthminibutton,
-                      fontWeight: FontWeight.normal,)),
+                      onTap: () {},
+                      child: Button(
+                        text: "ACHETER",
+                        fontSize: fontSizeminibutton,
+                        gradientbackground: gradientbackground,
+                        height: heightminibutton,
+                        width: widthminibutton,
+                        fontWeight: FontWeight.normal,
+                      )),
                 ],
               ),
             ),

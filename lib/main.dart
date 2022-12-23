@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: themedata(),
       // home: IntoScreen(),
-      // home: LoginView(),
+       home: LoginView(),
       //home: SplashScreen(),
-      home: const MyHomePage(),
+      //home: const MyHomePage(),
       //  home: RegisterView(),
     );
   }

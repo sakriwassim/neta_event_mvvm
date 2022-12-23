@@ -25,13 +25,10 @@ import '../events/view_model_events/one_event_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../events/views_events/one_event_view.dart';
 import '../events/views_events/widgets/event_card_widget.dart';
-import '../events/views_events/widgets/event_card_widget_home.dart';
 import '../packs/packs_repositories/packs_api.dart';
-import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
 import '../packs/views_packs/get_all_pack_view_body.dart';
 import '../packs/views_packs/packs_view.dart';
-import '../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../tontines/tontines_repositories/tontines_api.dart';
 import '../tontines/view_model_tickets/one_tontine_view_model.dart';
 import '../tontines/view_model_tickets/tontines_view_model.dart';
@@ -115,8 +112,9 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  padding: EdgeInsets.symmetric(
+                      vertical: getProportionateScreenHeight(20),
+                      horizontal: getProportionateScreenWidth(10)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +149,7 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -162,7 +160,7 @@ class _HomeViewState extends State<HomeView> {
                           },
                           child: SvgPicture.asset(search)),
                       SvgPicture.asset(Line),
-                      Container(
+                      SizedBox(
                         width: getProportionateScreenWidth(180),
                         child: const TextField(
                           decoration: InputDecoration(
@@ -227,8 +225,12 @@ class _HomeViewState extends State<HomeView> {
                         child: SingleChildScrollView(
                             child: Column(
                           children: [
+                            SizedBox(
+                              height: getProportionateScreenHeight(10),
+                            ),
                             Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getProportionateScreenWidth(10)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,8 +312,6 @@ class _HomeViewState extends State<HomeView> {
                                                   InkWell(
                                                     onTap: () {
                                                       indexCategories = index;
-                                                      print(
-                                                          "AAAAAAAAAAAAAAAAAA$indexCategories");
 
                                                       setState(() {
                                                         data.GetEventByCategorie(
@@ -431,7 +431,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   SizedBox(
                                       height: getProportionateScreenHeight(350),
-                                      child: GetAllPackViewBody()),
+                                      child: const GetAllPackViewBody()),
                                   VoirTout(
                                     text: 'Tontine',
                                     callbackfonction: navGetAllTontineView,

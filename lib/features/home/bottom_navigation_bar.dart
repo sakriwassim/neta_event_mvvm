@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Expanded(
                 child: MaterialButton(
-                  minWidth: 40,
+                  minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
                     setState(() {
                       currentScreen = Screen[0];
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _currentIndex == 0
                               ? "assets/icons/home/compass.svg" //  "assets/icons/home/Calendar.svg"
                               : "assets/icons/home/compassof.svg",
-                          width: 28,
+                          width: getProportionateScreenWidth(28),
                         ),
                       ),
 
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: MaterialButton(
-                  minWidth: 40,
+                  minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
                     setState(() {
                       currentScreen = Screen[1];
@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _currentIndex == 1
                               ? "assets/icons/home/Calendar.svg"
                               : "assets/icons/home/Calendaroff.svg",
-                          width: 28,
+                          width: getProportionateScreenWidth(28),
                         ),
                       ),
                       Text(
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: MaterialButton(
-                  minWidth: 40,
+                  minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
                     setState(() {
                       currentScreen = Screen[2];
@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _currentIndex == 2
                               ? "assets/icons/home/Location.svg"
                               : "assets/icons/home/Locationoff.svg", //Profile
-                          width: 28,
+                          width: getProportionateScreenWidth(28),
                         ),
                       ),
                       Text(
@@ -184,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: MaterialButton(
-                  minWidth: 40,
+                  minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
                     setState(() {
                       currentScreen = Screen[3];
@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _currentIndex == 3
                               ? "assets/icons/home/Tontin.svg" //  "assets/icons/home/Calendar.svg"
                               : "assets/icons/home/Tontinoff.svg",
-                          width: 28,
+                          width: getProportionateScreenWidth(28),
                         ),
                       ),
                       Text(

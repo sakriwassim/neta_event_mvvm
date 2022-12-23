@@ -55,7 +55,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -75,7 +75,8 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(15)),
                       child: TextWidget(
                         title: 'Se connecter',
                         fontSize: 24,
@@ -88,7 +89,8 @@ class _LoginViewState extends State<LoginView> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithicon(
                       "entre le email",
@@ -118,7 +120,8 @@ class _LoginViewState extends State<LoginView> {
                   height: 15,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithTowicon(
                       "Mot de passe",
@@ -148,8 +151,8 @@ class _LoginViewState extends State<LoginView> {
                   height: getProportionateScreenHeight(20),
                 ),
                 const ForgetpasswordRow(),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 InkWell(
                     onTap: () async {

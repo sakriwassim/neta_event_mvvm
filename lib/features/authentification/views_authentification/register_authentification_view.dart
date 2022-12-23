@@ -58,7 +58,8 @@ class _RegisterViewState extends State<RegisterView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(100)),
                       child: TextWidget(
                         title: "S'inscrire",
                         fontSize: 24,
@@ -71,7 +72,8 @@ class _RegisterViewState extends State<RegisterView> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithicon(
                       "entre le ",
@@ -95,7 +97,8 @@ class _RegisterViewState extends State<RegisterView> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithicon(
                       "entre le email",
@@ -124,7 +127,8 @@ class _RegisterViewState extends State<RegisterView> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithTowicon(
                       "Mot de passe",
@@ -154,7 +158,8 @@ class _RegisterViewState extends State<RegisterView> {
                   height: getProportionateScreenHeight(20),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
                     decoration: textFieldDecorationWithTowicon(
                       "Mot de passe",

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
+
+import '../size_config.dart';
+import '../string.dart';
 
 class ExclusiveCardWidget extends StatelessWidget {
   String? adresse;
@@ -15,80 +20,88 @@ class ExclusiveCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Card(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      elevation: 2,
+      elevation: 3,
       shadowColor: Colors.grey,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(image!),
-            const SizedBox(
-              height: 6,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                "$libelle",
-                style: const TextStyle(
-                  fontFamily: 'AirbnbCereal',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+        padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(10),
+          vertical: getProportionateScreenHeight(10),
+        ),
+        child: Container(
+          width: getProportionateScreenWidth(220),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  width: getProportionateScreenWidth(210),
+                  height: getProportionateScreenHeight(130),
+                  color: Colors.blue,
+                  child: Image.asset(image!)),
+              SizedBox(
+                height: getProportionateScreenHeight(6),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextAirbnbCereal(
+                    color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                    fontWeight: FontWeight.w500,
+                    size: 18,
+                    title: libelle!,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(5),
+              ),
+              Container(
+                color: Colors.black54,
+                width: getProportionateScreenWidth(210),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: const [
+                        Icon(Icons.star, color: Colors.pink, size: 15),
+                        Icon(Icons.star, color: Colors.pink, size: 15),
+                        Icon(Icons.star, color: Colors.pink, size: 15),
+                        Icon(Icons.star, color: Colors.pink, size: 15),
+                        Icon(Icons.star, color: Colors.grey, size: 15),
+                      ],
+                    ),
+                    TextAirbnbCereal(
+                      color: Color(0xff4F4F4F), //4F4F4F
+                      fontWeight: FontWeight.w500,
+                      size: 12,
+                      title: 'Prix :$prix fcfa',
+                    )
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: const [
-                      Icon(Icons.star, color: Colors.pink, size: 15),
-                      Icon(Icons.star, color: Colors.pink, size: 15),
-                      Icon(Icons.star, color: Colors.pink, size: 15),
-                      Icon(Icons.star, color: Colors.pink, size: 15),
-                      Icon(Icons.star, color: Colors.grey, size: 15),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 80,
-                  ),
-                  Text(
-                    "Prix :$prix",
-                    style: const TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ],
+              SizedBox(
+                height: getProportionateScreenHeight(5),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Row(
+              Row(
                 children: [
-                  const Icon(Icons.location_on_outlined, color: Colors.grey),
-                  const SizedBox(
-                    width: 5,
+                  SvgPicture.asset(Locationcard),
+                  SizedBox(
+                    width: getProportionateScreenWidth(5),
                   ),
-                  Text(
-                    adresse!,
-                    style: const TextStyle(
-                      fontFamily: 'AirbnbCereal',
-                      color: Colors.grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    ),
+                  TextAirbnbCereal(
+                    color: Color(0xFF2B2849), //4F4F4F
+                    fontWeight: FontWeight.w500,
+                    size: 12,
+                    title: adresse!,
                   )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

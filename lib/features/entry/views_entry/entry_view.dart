@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
 import '../../authentification/authentification_repositories/authentification_api.dart';
 import '../../authentification/view_model_authentification/authentification_view_model.dart';
 import '../../into_screen/view/home_page.dart';
@@ -63,7 +65,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Image.asset(
+        //assets/icons/splashScreen
+        child:
+            //SvgPicture.asset(splashScreenString),
+            Image.asset(
           'assets/SlashScreen/netaLogo.png',
           width: MediaQuery.of(context).size.width * 0.4,
           height: MediaQuery.of(context).size.height * 0.2,

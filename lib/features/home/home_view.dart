@@ -24,6 +24,7 @@ import '../events/view_model_events/events_view_model.dart';
 import '../events/view_model_events/one_event_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../events/views_events/one_event_view.dart';
+import '../events/views_events/widgets/event_card_widget.dart';
 import '../events/views_events/widgets/event_card_widget_home.dart';
 import '../packs/packs_repositories/packs_api.dart';
 import '../packs/view_model_packs/one_pack_view_model.dart';
@@ -50,7 +51,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
-
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
@@ -333,10 +333,98 @@ class _HomeViewState extends State<HomeView> {
                                     callbackfonction: navGetAllEventView,
                                   ),
                                   SizedBox(
-                                      height: getProportionateScreenHeight(250),
-                                      child: GetEventByCategorisView(
-                                        categorieid: indexCategories,
-                                      )),
+                                    height: getProportionateScreenHeight(250),
+                                    child: OfflineBuilder(
+                                      connectivityBuilder: (
+                                        BuildContext context,
+                                        ConnectivityResult connectivity,
+                                        Widget child,
+                                      ) {
+                                        final bool connected = connectivity !=
+                                            ConnectivityResult.none;
+                                        if (connected) {
+                                          return RefreshIndicator(
+                                            onRefresh: () async {
+                                              setState(() {
+                                                data.GetEventByCategorie(
+                                                    indexCategories);
+                                              });
+
+                                              return Future.delayed(
+                                                  const Duration(seconds: 2));
+                                            },
+                                            child: Center(
+                                              child: FutureBuilder<
+                                                  List<OneEventViewModel>>(
+                                                future:
+                                                    data.GetEventByCategorie(
+                                                        indexCategories),
+                                                builder: ((context, snapshot) {
+                                                  if (snapshot
+                                                          .connectionState ==
+                                                      ConnectionState.waiting) {
+                                                    return const CircularProgressIndicator();
+                                                  } else {
+                                                    var events = snapshot.data;
+                                                    return ListView.builder(
+                                                        itemCount:
+                                                            events?.length,
+                                                        itemBuilder: (context,
+                                                                index) =>
+                                                            GestureDetector(
+                                                                onTap: () {
+                                                                  Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder: (context) =>
+                                                                            OnEventView(
+                                                                              id: events[index].id,
+                                                                            )),
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    EventCardWidgetHome(
+                                                                  description: events![
+                                                                          index]
+                                                                      .description,
+                                                                  events:
+                                                                      events,
+                                                                  date_heure: events[
+                                                                          index]
+                                                                      .date_heure,
+                                                                  libelle: events[
+                                                                          index]
+                                                                      .libelle,
+                                                                  adresse: events[
+                                                                          index]
+                                                                      .adresse,
+                                                                )));
+                                                  }
+                                                }),
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          return const Center(
+                                            child: Text("no connection"),
+                                          );
+                                        }
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: const <Widget>[
+                                          Text(
+                                            'There are no bottons to push :)',
+                                          ),
+                                          Text(
+                                            'Just turn off your internet.',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   VoirTout(
                                     text: 'Packs',
                                     callbackfonction: navGetAllPackView,

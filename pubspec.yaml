@@ -66,6 +66,8 @@ flutter:
     - assets/intro/2.png
     - assets/intro/3.png
     - assets/icons/home/
+    - assets/icons/splashScreen/ 
+    - assets/icons/event/Date.svg        
     - assets/home/
   fonts:
     - family: AirbnbCereal

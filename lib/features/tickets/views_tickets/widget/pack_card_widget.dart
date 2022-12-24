@@ -1,82 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 
 import '../../../../core/colors.dart';
+import '../../../../core/size_config.dart';
+import '../../../../core/string.dart';
 import '../../../../core/widgets/small_button_style.dart';
+import '../../../../core/widgets/text_widget_text1.dart';
 
 class PackCardWidget extends StatelessWidget {
   String libelle;
-  PackCardWidget({Key? key, required this.libelle}) : super(key: key);
+  String montant;
+  String nbre_events;
+  String nbre_jr_pubs;
+  PackCardWidget({
+    Key? key,
+    required this.libelle,
+    required this.montant,
+    required this.nbre_events,
+    required this.nbre_jr_pubs,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          width: 300,
-          child: Stack(children: <Widget>[
-            // Image.asset("assets/packs_bg/$libelle.png"),
-            //Image.asset("assets/packs_bg/gold.png"),
-            Container(
-              height: 250,
-              width: 300,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    libelle,
-                    style: const TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
+    SizeConfig().init(context);
+    return Container(
+      color: Colors.blue,
+      // height: 300,
+      width: getProportionateScreenWidth(250),
+      child: Card(
+        elevation: 5,
+        shadowColor: Colors.grey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        color: Colors.white,
+        child: SizedBox(
+          height: getProportionateScreenHeight(300),
+          width: getProportionateScreenWidth(260),
+          // color: Colors.red,
+          child: Container(
+            child: Stack(
+              children: [
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        child: SvgPicture.asset(
+                          Vector,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
                   ),
-                  const Text(
-                    '10 euro',
-                    style: TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //mainAxisSize: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextAirbnbCereal(
+                        color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                        fontWeight: FontWeight.w500,
+                        size: 20,
+                        title: libelle,
+                      ),
+                      TextAirbnbCereal(
+                        color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                        fontWeight: FontWeight.w400,
+                        size: 30,
+                        title: '$montant euro',
+                      ),
+                      TextAirbnbCereal(
+                        color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                        fontWeight: FontWeight.w400,
+                        size: 16,
+                        title: '$nbre_events évenèments',
+                      ),
+                      TextAirbnbCereal(
+                        color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                        fontWeight: FontWeight.w400,
+                        size: 16,
+                        title: '$nbre_jr_pubs jours de publicité',
+                      ),
+                      InkWell(
+                          onTap: () {},
+                          child: Button(
+                            text: "ACHETER",
+                            fontSize: fontSizeminibutton,
+                            gradientbackground: gradientbackground,
+                            height: heightminibutton,
+                            width: widthminibutton,
+                            fontWeight: FontWeight.normal,
+                          )),
+                    ],
                   ),
-                  const Text(
-                    '3 évenèments',
-                    style: TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  const Text(
-                    '7 jours de publicité',
-                    style: TextStyle(
-                        fontFamily: 'AirbnbCereal',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  // Text(
-                  //   textAlign: TextAlign.center,
-                  //   'Acheter',
-                  //   style: TextStyle(
-                  //       fontFamily: 'AirbnbCereal',
-                  //       fontSize: 14,
-                  //       color: Colors.black,
-                  //       fontWeight: FontWeight.w400),
-                  // ),
-                  InkWell(
-                      onTap: () {},
-                      child: Button(
-                        text: "ACHETER",
-                        fontSize: fontSizeminibutton,
-                        gradientbackground: gradientbackground,
-                        height: heightminibutton,
-                        width: widthminibutton,
-                        fontWeight: FontWeight.normal,
-                      )),
-                ],
-              ),
+                ),
+              ],
             ),
-          ]),
+          ),
         ),
       ),
     );

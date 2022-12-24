@@ -26,9 +26,11 @@ import '../events/views_events/events_view.dart';
 import '../events/views_events/one_event_view.dart';
 import '../events/views_events/widgets/event_card_widget.dart';
 import '../packs/packs_repositories/packs_api.dart';
+import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
 import '../packs/views_packs/get_all_pack_view_body.dart';
 import '../packs/views_packs/packs_view.dart';
+import '../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../tontines/tontines_repositories/tontines_api.dart';
 import '../tontines/view_model_tickets/one_tontine_view_model.dart';
 import '../tontines/view_model_tickets/tontines_view_model.dart';
@@ -48,6 +50,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
@@ -274,6 +277,8 @@ class _HomeViewState extends State<HomeView> {
                                                         },
                                                         child:
                                                             ExclusiveCardWidget(
+                                                          date:
+                                                              "${categories![index].date_heure}",
                                                           image:
                                                               "${categories![index].image}",
                                                           adresse:
@@ -338,97 +343,51 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   SizedBox(
                                     height: getProportionateScreenHeight(250),
-                                    child: OfflineBuilder(
-                                      connectivityBuilder: (
-                                        BuildContext context,
-                                        ConnectivityResult connectivity,
-                                        Widget child,
-                                      ) {
-                                        final bool connected = connectivity !=
-                                            ConnectivityResult.none;
-                                        if (connected) {
-                                          return RefreshIndicator(
-                                            onRefresh: () async {
-                                              setState(() {
-                                                data.GetEventByCategorie(
-                                                    indexCategories);
-                                              });
-
-                                              return Future.delayed(
-                                                  const Duration(seconds: 2));
-                                            },
-                                            child: Center(
-                                              child: FutureBuilder<
-                                                  List<OneEventViewModel>>(
-                                                future:
-                                                    data.GetEventByCategorie(
-                                                        indexCategories),
-                                                builder: ((context, snapshot) {
-                                                  if (snapshot
-                                                          .connectionState ==
-                                                      ConnectionState.waiting) {
-                                                    return const CircularProgressIndicator();
-                                                  } else {
-                                                    var events = snapshot.data;
-                                                    return ListView.builder(
-                                                        itemCount:
-                                                            events?.length,
-                                                        itemBuilder: (context,
-                                                                index) =>
-                                                            GestureDetector(
-                                                                onTap: () {
-                                                                  Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            OneEventView(
-                                                                              id: events[index].id,
-                                                                            )),
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    EventCardWidgetHome(
-                                                                  description: events![
-                                                                          index]
-                                                                      .description,
-                                                                  events:
-                                                                      events,
-                                                                  date_heure: events[
-                                                                          index]
-                                                                      .date_heure,
-                                                                  libelle: events[
-                                                                          index]
-                                                                      .libelle,
-                                                                  adresse: events[
-                                                                          index]
-                                                                      .adresse,
-                                                                  image: events![
-                                                                          index]
-                                                                      .image,
-                                                                )));
-                                                  }
-                                                }),
-                                              ),
-                                            ),
-                                          );
-                                        } else {
-                                          return const Center(
-                                            child: Text("no connection"),
-                                          );
-                                        }
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const <Widget>[
-                                          Text(
-                                            'There are no bottons to push :)',
-                                          ),
-                                          Text(
-                                            'Just turn off your internet.',
-                                          ),
-                                        ],
+                                    child: Center(
+                                      child: FutureBuilder<
+                                          List<OneEventViewModel>>(
+                                        future: data.GetEventByCategorie(
+                                            indexCategories),
+                                        builder: ((context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return const CircularProgressIndicator();
+                                          } else {
+                                            var events = snapshot.data;
+                                            return ListView.builder(
+                                                itemCount: events?.length,
+                                                itemBuilder: (context, index) =>
+                                                    GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        OneEventView(
+                                                                          id: events[index]
+                                                                              .id,
+                                                                        )),
+                                                          );
+                                                        },
+                                                        child:
+                                                            EventCardWidgetHome(
+                                                          description:
+                                                              events![index]
+                                                                  .description,
+                                                          events: events,
+                                                          date_heure:
+                                                              events[index]
+                                                                  .date_heure,
+                                                          libelle: events[index]
+                                                              .libelle,
+                                                          adresse: events[index]
+                                                              .adresse,
+                                                          image: events![index]
+                                                              .image,
+                                                        )));
+                                          }
+                                        }),
                                       ),
                                     ),
                                   ),
@@ -437,8 +396,41 @@ class _HomeViewState extends State<HomeView> {
                                     callbackfonction: navGetAllPackView,
                                   ),
                                   SizedBox(
-                                      height: getProportionateScreenHeight(350),
-                                      child: const GetAllPackViewBody()),
+                                    height: getProportionateScreenHeight(350),
+                                    child: Center(
+                                      child:
+                                          FutureBuilder<List<OnePackViewModel>>(
+                                        future: datapack.FetchAllPacks(),
+                                        builder: ((context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return const CircularProgressIndicator();
+                                          } else {
+                                            var events = snapshot.data;
+                                            return ListView.builder(
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: events?.length,
+                                                itemBuilder: (context, index) =>
+                                                    GestureDetector(
+                                                      onTap: () {},
+                                                      child: PackCardWidget(
+                                                        libelle:
+                                                            '${events![index].libelle}',
+                                                        montant:
+                                                            '${events![index].montant}',
+                                                        nbre_events:
+                                                            '${events![index].nbre_events}',
+                                                        nbre_jr_pubs:
+                                                            '${events![index].nbre_jr_pubs}',
+                                                      ),
+                                                    ));
+                                          }
+                                        }),
+                                      ),
+                                    ),
+                                  ),
                                   VoirTout(
                                     text: 'Tontine',
                                     callbackfonction: navGetAllTontineView,

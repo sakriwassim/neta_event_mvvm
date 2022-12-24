@@ -65,7 +65,8 @@ flutter:
     - assets/intro/1.png
     - assets/intro/2.png
     - assets/intro/3.png
-    - assets/icons/home/
+    - assets/icons/home/ 
+    - assets/icons/packe/  
     - assets/icons/splashScreen/ 
     - assets/icons/event/       
     - assets/home/

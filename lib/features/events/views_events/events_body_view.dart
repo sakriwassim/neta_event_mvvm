@@ -36,19 +36,19 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
             child: Row(
               children: [
                 Container(
-                  height: 30,
-                  width: 30,
-                  color: Colors.blueGrey,
+                  height: getProportionateScreenHeight(30),
+                  width: getProportionateScreenWidth(30),
                   child: InkWell(
-                      onTap: () {
-                        showSearch(context: context, delegate: SearchElement());
-                      },
-                      child: SvgPicture.asset(search2)),
+                    onTap: () {
+                      showSearch(context: context, delegate: SearchElement());
+                    },
+                    child: SvgPicture.asset(searchcolor),
+                  ),
                 ),
                 SizedBox(
                   width: getProportionateScreenWidth(10),
                 ),
-                SvgPicture.asset(Line),
+                SvgPicture.asset(Lineevent),
                 SizedBox(
                   width: getProportionateScreenWidth(10),
                 ),

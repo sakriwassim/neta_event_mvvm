@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
+import '../../../core/size_config.dart';
 import '../../tickets/views_tickets/widget/pack_card_widget.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/one_pack_view_model.dart';
@@ -17,6 +18,7 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
   var data = PacksViewModel(packsRepository: PacksApi());
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: OfflineBuilder(
@@ -35,24 +37,35 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
 
                   return Future.delayed(const Duration(seconds: 2));
                 },
-                child: Center(
-                  child: FutureBuilder<List<OnePackViewModel>>(
-                    future: data.FetchAllPacks(),
-                    builder: ((context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      } else {
-                        var events = snapshot.data;
-                        return ListView.builder(
-                            itemCount: events?.length,
-                            itemBuilder: (context, index) => GestureDetector(
-                                  onTap: () {},
-                                  child: PackCardWidget(
-                                    libelle: '${events![index].libelle}',
-                                  ),
-                                ));
-                      }
-                    }),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(30),
+                  ),
+                  child: Center(
+                    child: FutureBuilder<List<OnePackViewModel>>(
+                      future: data.FetchAllPacks(),
+                      builder: ((context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          var events = snapshot.data;
+                          return ListView.builder(
+                              itemCount: events?.length,
+                              itemBuilder: (context, index) => GestureDetector(
+                                    onTap: () {},
+                                    child: PackCardWidget(
+                                      libelle: '${events![index].libelle}',
+                                      montant: '${events![index].montant}',
+                                      nbre_events:
+                                          '${events![index].nbre_events}',
+                                      nbre_jr_pubs:
+                                          '${events![index].nbre_jr_pubs}',
+                                    ),
+                                  ));
+                        }
+                      }),
+                    ),
                   ),
                 ),
               );

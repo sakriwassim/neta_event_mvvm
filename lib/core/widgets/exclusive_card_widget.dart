@@ -10,12 +10,14 @@ class ExclusiveCardWidget extends StatelessWidget {
   String? image;
   String? prix;
   String? libelle;
+  String? date;
   ExclusiveCardWidget({
     Key? key,
     required this.adresse,
     required this.image,
     required this.prix,
     required this.libelle,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -78,15 +80,16 @@ class ExclusiveCardWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: const [
-                            Icon(Icons.star, color: Colors.pink, size: 15),
-                            Icon(Icons.star, color: Colors.pink, size: 15),
-                            Icon(Icons.star, color: Colors.pink, size: 15),
-                            Icon(Icons.star, color: Colors.pink, size: 15),
-                            Icon(Icons.star, color: Colors.grey, size: 15),
-                          ],
-                        ),
+                        Spacer(),
+                        // Row(
+                        //   children: const [
+                        //     Icon(Icons.star, color: Colors.pink, size: 15),
+                        //     Icon(Icons.star, color: Colors.pink, size: 15),
+                        //     Icon(Icons.star, color: Colors.pink, size: 15),
+                        //     Icon(Icons.star, color: Colors.pink, size: 15),
+                        //     Icon(Icons.star, color: Colors.grey, size: 15),
+                        //   ],
+                        // ),
                         TextAirbnbCereal(
                           color: Color(0xff4F4F4F), //4F4F4F
                           fontWeight: FontWeight.w500,
@@ -130,34 +133,34 @@ class ExclusiveCardWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    favori,
-                    height: 40,
-                  ),
                   Container(
-                    height: getProportionateScreenHeight(40),
-                    width: getProportionateScreenWidth(40),
+                    height: getProportionateScreenHeight(50),
+                    width: getProportionateScreenWidth(50),
                     child: Stack(
                       children: [
                         Center(
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color.fromRGBO(255, 255, 255, 0.7),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
+                                  BorderRadius.all(Radius.circular(5)),
                             ),
                           ),
                         ),
-                        Center(
-                          child: TextAirbnbCereal(
-                            color: Color(0xFF2B2849), //4F4F4F
-                            fontWeight: FontWeight.w500,
-                            size: 20,
-                            title: "10",
-                          ),
-                        ),
+                        // Center(
+                        //   child: TextAirbnbCereal(
+                        //     color: Color.fromARGB(255, 221, 3, 163), //4F4F4F
+                        //     fontWeight: FontWeight.bold,
+                        //     size: 25,
+                        //     title: "$date",
+                        //   ),
+                        // ),
                       ],
                     ),
+                  ),
+                  SvgPicture.asset(
+                    favori,
+                    height: 40,
                   ),
                 ],
               ),

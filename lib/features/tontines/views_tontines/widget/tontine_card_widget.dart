@@ -30,12 +30,7 @@ class TontineCardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              // decoration: const BoxDecoration(boxShadow: [
-              //   BoxShadow(
-              //       // blurRadius: 1000.0,
-              //       ),
-              // ]),
-              height: getProportionateScreenHeight(50),
+              height: getProportionateScreenHeight(60),
               width: getProportionateScreenWidth(200),
               child: CustomPaint(
                 painter: TrianglePainter(
@@ -47,7 +42,7 @@ class TontineCardWidget extends StatelessWidget {
               ),
             ),
             Container(
-              //color: Colors.blue,
+              height: getProportionateScreenHeight(220),
               decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   blurRadius: 5.0,
@@ -71,90 +66,116 @@ class TontineCardWidget extends StatelessWidget {
                   ],
                 ),
 
-                //height: 180,
+                // height: double.infinity,
                 width: getProportionateScreenWidth(180),
-                // color: Colors.white,
-                child: Column(children: [
-                  FadeInImage.assetNetwork(
-                    width: 230,
-                    placeholder: 'assets/lod.gif',
-                    image: "$image",
-                    fit: BoxFit.fill,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextAirbnbCereal(
-                          color: Color(0xffE28541),
-                          fontWeight: FontWeight.w500,
-                          size: 8,
-                          title: '$libelle',
-                        ),
-                      ],
+
+                child: Center(
+                  child: Column(children: <Widget>[
+                    FadeInImage.assetNetwork(
+                      placeholder: 'assets/lod.gif',
+                      image: "$image",
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextAirbnbCereal(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w500,
-                          size: 10,
-                          title: '$libelle',
-                        ),
-                      ],
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextAirbnbCereal(
-                          color: Color(0xff4F4F4F),
-                          fontWeight: FontWeight.w400,
-                          size: 10,
-                          title: '$montant_regulier\$ Chaque trimestre',
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextAirbnbCereal(
+                            color: Color(0xffE28541),
+                            fontWeight: FontWeight.w500,
+                            size: 8,
+                            title: '$libelle',
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextAirbnbCereal(
-                          color: Color.fromRGBO(79, 79, 79, 1),
-                          fontWeight: FontWeight.w500,
-                          size: 10,
-                          title: '$nbr_participant participants',
-                        ),
-                      ],
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 8),
-                        child: Button(
-                          fontWeight: FontWeight.normal,
-                          text: "Participer",
-                          fontSize: fontSizeminibutton,
-                          gradientbackground: gradientbackground,
-                          height: heightminibutton,
-                          width: widthminibutton,
-                          textcolor: Colors.white,
-                        ),
-                      )
-                    ],
-                  )
-                ]),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenHeight(5),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextAirbnbCereal(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w500,
+                            size: 10,
+                            title: '$libelle',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenHeight(5),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextAirbnbCereal(
+                            color: Color(0xff4F4F4F),
+                            fontWeight: FontWeight.w400,
+                            size: 10,
+                            title: '$montant_regulier\$ Chaque trimestre',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenHeight(5),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextAirbnbCereal(
+                            color: Color.fromRGBO(79, 79, 79, 1),
+                            fontWeight: FontWeight.w500,
+                            size: 10,
+                            title: '$nbr_participant participants',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(right: 8),
+                            child: Button(
+                              fontWeight: FontWeight.normal,
+                              text: "Participer",
+                              fontSize: fontSizeminibutton,
+                              gradientbackground: gradientbackground,
+                              height: heightminibutton,
+                              width: widthminibutton,
+                              textcolor: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                ),
               ),
             ),
           ],

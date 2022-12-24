@@ -1,10 +1,17 @@
-     "id": 1,
-        "user_id": "1",
-        "libelle": "Libelle",
-        "periode": "periode",
-        "nbr_participant": "15000",
-        "montant_regulier": "1000",
-        "status": "statut",
-        "image": "htpps://LienDeLimage",
-        "created_at": "2022-10-11T12:27:41.000000Z",
-        "updated_at": "2022-10-11T12:27:41.000000Z"
+
+           decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),

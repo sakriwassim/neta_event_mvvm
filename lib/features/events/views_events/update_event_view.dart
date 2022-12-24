@@ -145,6 +145,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
                   height: heightmediumbutton,
                   width: widthmediumbutton,
                   fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
                 ),
               ),
             ),

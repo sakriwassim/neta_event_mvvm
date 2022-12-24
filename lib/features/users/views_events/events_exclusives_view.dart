@@ -53,7 +53,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                   width: 100,
                   fontSize: 15,
                   gradientbackground: gradientbackground,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.normal, textcolor:  Colors.white,
                 )),
           ],
         ),

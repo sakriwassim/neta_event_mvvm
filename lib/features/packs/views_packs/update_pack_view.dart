@@ -133,7 +133,7 @@ class _UpdatePackViewState extends State<UpdatePackView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal,),
+                      fontWeight: FontWeight.normal, textcolor:  Colors.white,),
             ),
           ],
         ),

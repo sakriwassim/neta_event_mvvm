@@ -136,7 +136,7 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal,),
+                      fontWeight: FontWeight.normal, textcolor:  Colors.white,),
               ),
             ),
           ],

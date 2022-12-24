@@ -269,7 +269,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor:  Colors.white,
                                           )),
                                       InkWell(
                                           onTap: () {
@@ -282,7 +282,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor:  Colors.white,
                                           )),
                                       InkWell(
                                           onTap: () {
@@ -295,7 +295,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor:  Colors.white,
                                           )),
                                     ],
                                   ),
@@ -314,7 +314,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor:  Colors.white,
                                           )),
                                       InkWell(
                                           onTap: () {
@@ -327,7 +327,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor:  Colors.white,
                                           )),
                                       InkWell(
                                           onTap: () {
@@ -340,7 +340,7 @@ class _AddTontineViewState extends State<AddTontineView>
                                             width: 100,
                                             fontSize: 15,
                                             gradientbackground:
-                                                gradientbackground,
+                                                gradientbackground, textcolor: null,
                                           )),
                                     ],
                                   ),
@@ -400,7 +400,7 @@ class _AddTontineViewState extends State<AddTontineView>
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal,)),
+                      fontWeight: FontWeight.normal, textcolor:  Colors.white,)),
                           ],
                         ),
                       ),

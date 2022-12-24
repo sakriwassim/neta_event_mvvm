@@ -126,7 +126,7 @@ class _OnUserViewState extends State<OnUserView> {
                             fontSize: 20,
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
-                            width: widthbigbutton,
+                            width: widthbigbutton, textcolor:  Colors.white,
                           )),
                       InkWell(
                           onTap: () async {
@@ -147,7 +147,7 @@ class _OnUserViewState extends State<OnUserView> {
                             fontSize: 20,
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
-                            width: widthbigbutton,
+                            width: widthbigbutton, textcolor:  Colors.white,
                           )),
                     ],
                   )

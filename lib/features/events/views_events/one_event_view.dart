@@ -230,7 +230,7 @@ class _OneEventViewState extends State<OneEventView> {
                           gradientbackground: gradientbackground,
                           height: heightbigbutton,
                           width: widthbigbutton,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.normal, textcolor:  Colors.white,
                         ))
                   ],
                 );

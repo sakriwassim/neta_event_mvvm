@@ -77,7 +77,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                   width: 100,
                   fontSize: 15,
                   gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.normal, textcolor:  Colors.white,
                 )),
           ],
         ),

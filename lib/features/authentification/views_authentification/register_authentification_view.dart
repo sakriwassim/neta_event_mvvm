@@ -209,7 +209,7 @@ class _RegisterViewState extends State<RegisterView> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w500, textcolor:  Colors.white,
                     )),
                 SizedBox(
                   height: getProportionateScreenHeight(10),

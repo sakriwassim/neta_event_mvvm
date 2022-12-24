@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../../core/size_config.dart';
-import '../../tickets/views_tickets/widget/pack_card_widget.dart';
+import '../widget/pack_card_widget.dart';
 import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/one_pack_view_model.dart';
 import '../view_model_packs/packs_view_model.dart';
@@ -39,7 +39,7 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(30),
+                    horizontal: getProportionateScreenWidth(40),
                   ),
                   child: Center(
                     child: FutureBuilder<List<OnePackViewModel>>(

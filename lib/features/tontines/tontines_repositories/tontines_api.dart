@@ -13,8 +13,7 @@ class TontinesApi extends TontinesRepository {
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       // try {
       var headersa = {'Authorization': 'Bearer $TOKEN'};
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine/' + "${id}";
+      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
@@ -40,7 +39,7 @@ class TontinesApi extends TontinesRepository {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine';
+      String link = 'https://admin.saitech-group.com/api/v1/Tontine';
 
       var url = Uri.parse(link);
 
@@ -50,7 +49,7 @@ class TontinesApi extends TontinesRepository {
       var list = responsebody as List;
       ticketsList =
           list.map((ticket) => TontineModel.fromJson(ticket)).toList();
-     // print(responsebody);
+      // print(responsebody);
       return ticketsList;
     } catch (e) {
       print(e);
@@ -68,8 +67,7 @@ class TontinesApi extends TontinesRepository {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine/' + "${id}";
+      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -94,7 +92,7 @@ class TontinesApi extends TontinesRepository {
 
       final body = jsonEncode(eventModelJson);
 
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine';
+      String link = 'https://admin.saitech-group.com/api/v1/Tontine';
 
       var url = Uri.parse(link);
 
@@ -102,7 +100,7 @@ class TontinesApi extends TontinesRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
-    //  print(responsebody);
+      //  print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -125,8 +123,7 @@ class TontinesApi extends TontinesRepository {
 
       final body = eventModelJson;
 
-      String link =
-          'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine/$eventId';
+      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$eventId';
 
       var url = Uri.parse(link);
 
@@ -134,7 +131,7 @@ class TontinesApi extends TontinesRepository {
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
       // print(eventModelJson);
-     // print(responsebody);
+      // print(responsebody);
     } catch (e) {
       print(e);
     }

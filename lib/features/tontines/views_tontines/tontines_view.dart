@@ -53,12 +53,13 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                           builder: (context) => AddTontineView()));
                 },
                 child: Button(
-                      fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.normal,
                   text: "ADD EVENT",
                   height: 40,
                   width: 100,
                   fontSize: 15,
                   gradientbackground: gradientbackground,
+                  textcolor: Colors.white,
                 )),
           ],
         ),
@@ -99,7 +100,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                             )));
                               },
                               child: TontineCardWidgetH(
-                                image: "assets/125.png",
+                                image: '${tickets![index].image}',
                                 libelle: '${tickets![index].libelle}',
                                 montant_regulier:
                                     "${tickets[index].montant_regulier}\$",

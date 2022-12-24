@@ -132,6 +132,7 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
+                  textcolor: Colors.white,
                 ),
               ),
             ),

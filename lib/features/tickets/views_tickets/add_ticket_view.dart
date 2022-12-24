@@ -131,7 +131,7 @@ class _AddTicketViewState extends State<AddTicketView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.normal, textcolor:  Colors.white,
                 )),
           ],
         ),

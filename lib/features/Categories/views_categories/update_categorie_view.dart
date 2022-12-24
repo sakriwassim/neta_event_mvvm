@@ -140,6 +140,7 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
                 height: heightmediumbutton,
                 width: widthmediumbutton,
                 fontWeight: FontWeight.normal,
+                textcolor: Colors.white,
               ),
             ),
           ],

@@ -44,10 +44,17 @@ class TontineCardWidgetH extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Image.asset(
-                    "$image",
+                Container(
+                  height: double.infinity,
+                  //color: Colors.blue,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: FadeInImage.assetNetwork(
+                      width: 50,
+                      placeholder: 'assets/lod.gif',
+                      image: "$image",
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -122,12 +129,13 @@ class TontineCardWidgetH extends StatelessWidget {
                       callbackFunction!(id);
                     },
                     child: Button(
-                          fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.normal,
                       text: "Supprimer",
                       fontSize: fontSizeminibutton,
                       gradientbackground: gradientbackground,
                       height: heightminibutton,
                       width: widthminibutton,
+                      textcolor: Colors.white,
                     ),
                   ),
                 ],

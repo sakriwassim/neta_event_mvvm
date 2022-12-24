@@ -48,7 +48,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   width: 100,
                   fontSize: 15,
                   gradientbackground: gradientbackground,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.normal, textcolor:  Colors.white,
                 )),
           ],
         ),

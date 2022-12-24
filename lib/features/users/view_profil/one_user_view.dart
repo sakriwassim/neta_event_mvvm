@@ -124,7 +124,7 @@ class _OneUserViewState extends State<OneUserView> {
                               text: "Edit Profile",  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
-                  width: widthmediumbutton,
+                  width: widthmediumbutton, textcolor:  Colors.white,
                             )),
                       ],
                     ),

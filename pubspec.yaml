@@ -68,7 +68,8 @@ flutter:
     - assets/icons/home/ 
     - assets/icons/packe/  
     - assets/icons/splashScreen/ 
-    - assets/icons/event/       
+    - assets/icons/event/
+    - assets/icons/tontine/          
     - assets/home/
   fonts:
     - family: AirbnbCereal
@@ -77,6 +78,13 @@ flutter:
           weight: 500 
         - asset: fonts/AirbnbCereal_W_Bk.otf
           weight: 400 
+        - asset: fonts/AirbnbCereal_W_Lt.otf
+          weight: 300 
+
+
+
+
+
          # style: italic
     # - family: Trajan Pro
     #   fonts:

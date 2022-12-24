@@ -136,7 +136,7 @@ class _AddPackViewState extends State<AddPackView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.normal, textcolor: Colors.white,
                 )),
           ],
         ),

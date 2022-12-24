@@ -30,7 +30,7 @@ import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
 import '../packs/views_packs/get_all_pack_view_body.dart';
 import '../packs/views_packs/packs_view.dart';
-import '../tickets/views_tickets/widget/pack_card_widget.dart';
+import '../packs/widget/pack_card_widget.dart';
 import '../tontines/tontines_repositories/tontines_api.dart';
 import '../tontines/view_model_tickets/one_tontine_view_model.dart';
 import '../tontines/view_model_tickets/tontines_view_model.dart';
@@ -251,8 +251,9 @@ class _HomeViewState extends State<HomeView> {
                                       builder: ((context, snapshot) {
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return const Center(
+                                          return Center(
                                               child:
+                                                  //Container()
                                                   CircularProgressIndicator());
                                         } else {
                                           var categories = snapshot.data;
@@ -293,9 +294,23 @@ class _HomeViewState extends State<HomeView> {
                                       }),
                                     ),
                                   ),
-                                  VoirTout(
-                                    text: 'Catégories',
-                                    callbackfonction: navGetAllCategorieView,
+                                  SizedBox(
+                                    height: getProportionateScreenHeight(10),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          getProportionateScreenWidth(15),
+                                    ),
+                                    child: const Text(
+                                      "Catégories",
+                                      style: TextStyle(
+                                        fontFamily: 'AirbnbCereal',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18,
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(
                                     height: getProportionateScreenHeight(150),
@@ -306,8 +321,9 @@ class _HomeViewState extends State<HomeView> {
                                       builder: ((context, snapshot) {
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return const Center(
+                                          return Center(
                                               child:
+                                                  // Container()
                                                   CircularProgressIndicator());
                                         } else {
                                           var categories = snapshot.data;
@@ -342,7 +358,7 @@ class _HomeViewState extends State<HomeView> {
                                     callbackfonction: navGetAllEventView,
                                   ),
                                   SizedBox(
-                                    height: getProportionateScreenHeight(250),
+                                    height: getProportionateScreenHeight(300),
                                     child: Center(
                                       child: FutureBuilder<
                                           List<OneEventViewModel>>(
@@ -396,7 +412,7 @@ class _HomeViewState extends State<HomeView> {
                                     callbackfonction: navGetAllPackView,
                                   ),
                                   SizedBox(
-                                    height: getProportionateScreenHeight(350),
+                                    height: getProportionateScreenHeight(300),
                                     child: Center(
                                       child:
                                           FutureBuilder<List<OnePackViewModel>>(
@@ -467,6 +483,8 @@ class _HomeViewState extends State<HomeView> {
                                                       );
                                                     },
                                                     child: TontineCardWidget(
+                                                      image:
+                                                          packs![index].image,
                                                       libelle:
                                                           packs![index].libelle,
                                                       montant_regulier:
@@ -475,6 +493,7 @@ class _HomeViewState extends State<HomeView> {
                                                       nbr_participant:
                                                           packs[index]
                                                               .nbr_participant,
+                                                      // image: packs[index].image,
                                                     ),
                                                   ));
                                         }

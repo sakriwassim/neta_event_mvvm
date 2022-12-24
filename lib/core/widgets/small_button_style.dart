@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 
+import 'text_widget_text1.dart';
+
 class Button extends StatelessWidget {
   String text;
   double height;
   double width;
   double fontSize;
   dynamic fontWeight;
-  LinearGradient gradientbackground;
+  LinearGradient? gradientbackground;
+  Color? backgroundcolor;
+  Color? textcolor;
 
   Button(
       {Key? key,
       required this.text,
+      required this.textcolor,
       required this.height,
       required this.width,
       required this.fontSize,
-      required this.gradientbackground,
-      required this.fontWeight})
+      this.gradientbackground,
+      required this.fontWeight,
+      this.backgroundcolor})
       : super(key: key);
 
   @override
@@ -24,17 +30,16 @@ class Button extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        color: backgroundcolor,
+        borderRadius: BorderRadius.circular(5.0),
         gradient: gradientbackground,
       ),
       child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            color: Colors.white,
-          ),
+        child: TextAirbnbCereal(
+          color: textcolor,
+          fontWeight: fontWeight,
+          size: fontSize,
+          title: text,
         ),
       ),
     );

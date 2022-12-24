@@ -136,7 +136,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   fontWeight: FontWeight.normal,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
-                  width: widthmediumbutton,),
+                  width: widthmediumbutton, textcolor:  Colors.white,),
             ),
           ],
         ),

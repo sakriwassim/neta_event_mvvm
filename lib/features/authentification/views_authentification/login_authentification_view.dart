@@ -188,7 +188,7 @@ class _LoginViewState extends State<LoginView> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w500, textcolor:  Colors.white,
                     )),
                 SizedBox(
                   height: getProportionateScreenHeight(10),

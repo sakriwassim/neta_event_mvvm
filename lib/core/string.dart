@@ -9,12 +9,11 @@ const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
 ///LoginView
-//SvgPicture.asset(tringle),
+//SvgPicture.asset(Mask),
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
 const hiddenicon = "assets/icons/authentification/hidden.svg";
-
 
 const tringle = "assets/icons/tontine/tringle.svg";
 //Mask
@@ -60,6 +59,10 @@ const Locationoff = "assets/icons/home/Locationoff.svg";
 
 const Location = "assets/icons/home/Location.svg";
 const Locationcard = "assets/icons/home/Locationcard.svg";
+
+const Mask = "assets/icons/tontine/Mask.svg";
+
+//SvgPicture.asset(Mask),
 
 const CombinedShape = "assets/icons/home/CombinedShape.svg";
 const patternstring =

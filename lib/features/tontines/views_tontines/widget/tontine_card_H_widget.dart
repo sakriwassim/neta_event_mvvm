@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
+import '../../../../core/size_config.dart';
 import '../../../../core/widgets/small_button_style.dart';
+import '../../../../core/widgets/text_widget_text1.dart';
 import '../../view_model_tickets/one_tontine_view_model.dart';
 
 class TontineCardWidgetH extends StatelessWidget {
@@ -31,16 +33,32 @@ class TontineCardWidgetH extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
-      child: Card(
-        margin: const EdgeInsets.only(top: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+    SizeConfig().init(context);
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenHeight(5),
+          vertical: getProportionateScreenWidth(5)),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
-        color: Colors.white,
+        width: double.infinity,
+        height: getProportionateScreenHeight(120), //120,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -49,58 +67,50 @@ class TontineCardWidgetH extends StatelessWidget {
                   //color: Colors.blue,
                   child: Padding(
                     padding: const EdgeInsets.all(5),
-                    child: FadeInImage.assetNetwork(
-                      width: 50,
-                      placeholder: 'assets/lod.gif',
-                      image: "$image",
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: FadeInImage.assetNetwork(
+                        width: getProportionateScreenWidth(60),
+                        placeholder: 'assets/lod.gif',
+                        image: "$image",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
+                SizedBox(width: getProportionateScreenWidth(10)),
                 SizedBox(
-                  height: 150,
+                  // height: 150,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(
+                        vertical: getProportionateScreenHeight(10)),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("$status",
-                            style: const TextStyle(
-                                fontFamily: 'AirbnbCereal',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.blue)),
-                        Text("$libelle",
-                            style: const TextStyle(
-                              fontFamily: 'AirbnbCereal',
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                const Text("Chaque trimestre",
-                                    style: TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      color: Colors.grey,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Text("$nbr_participant participants",
-                                    style: const TextStyle(
-                                      fontFamily: 'AirbnbCereal',
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                              ],
-                            ),
-                          ],
+                        TextAirbnbCereal(
+                          color: Color.fromRGBO(226, 133, 65, 1),
+                          fontWeight: FontWeight.w500,
+                          size: 8,
+                          title: "$status",
+                        ),
+                        TextAirbnbCereal(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontWeight: FontWeight.w500,
+                          size: 8,
+                          title: "$libelle",
+                        ),
+                        TextAirbnbCereal(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                          size: 13,
+                          title: "Chaque trimestre",
+                        ),
+                        TextAirbnbCereal(
+                          color: Color.fromRGBO(79, 79, 79, 1),
+                          fontWeight: FontWeight.w500,
+                          size: 15,
+                          title: "$nbr_participant participants",
                         ),
                       ],
                     ),
@@ -108,20 +118,37 @@ class TontineCardWidgetH extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(),
             Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(10)),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Color.fromARGB(203, 171, 3, 168),
-                    radius: 25,
-                    child: Text(
-                      '$montant_regulier',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: Colors.white),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(203, 171, 3, 168),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: getProportionateScreenHeight(30), // 30,
+                    width: getProportionateScreenWidth(60), //60,
+
+                    /*
+                    
+                      color: backgroundcolor,
+        borderRadius: BorderRadius.circular(5.0),
+        gradient: gradientbackground,
+                    
+                     */
+                    //color: Color.fromARGB(203, 171, 3, 168),
+                    child: Center(
+                      child: Text(
+                        '$montant_regulier',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: Colors.white),
+                      ),
                     ), //Text
                   ), //C
                   InkWell(
@@ -130,7 +157,7 @@ class TontineCardWidgetH extends StatelessWidget {
                     },
                     child: Button(
                       fontWeight: FontWeight.normal,
-                      text: "Supprimer",
+                      text: "Participer",
                       fontSize: fontSizeminibutton,
                       gradientbackground: gradientbackground,
                       height: heightminibutton,

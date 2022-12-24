@@ -86,7 +86,7 @@ class TontineCardWidget extends StatelessWidget {
 
                   child: Center(
                     child: Column(children: <Widget>[
-                      SizedBox(
+                      Container(
                         width: double.infinity,
                         height: getProportionateScreenHeight(100),
                         child: FadeInImage.assetNetwork(

@@ -12,6 +12,7 @@ class EventCardWidget extends StatelessWidget {
   String? libelle;
   String? prix;
   String? adresse;
+  String? image;
   EventCardWidget({
     Key? key,
     required this.events,
@@ -20,6 +21,7 @@ class EventCardWidget extends StatelessWidget {
     required this.libelle,
     required this.prix,
     required this.adresse,
+    required this.image,
   }) : super(key: key);
 
   final List<OneEventViewModel>? events;
@@ -41,14 +43,30 @@ class EventCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    height: getProportionateScreenHeight(120),
-                    // width: getProportionateScreenWidth(),
-                    // child: Center(
-                    //   child: Image.network(
-                    //       "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                    // ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: SizedBox(
+                      width: getProportionateScreenHeight(100),
+                      height: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/lod.gif',
+                          image: "$image",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
+
+                  /**
+                   ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.network(
+            'https://mfiles.alphacoders.com/847/847991.jpg',
+            fit: BoxFit.contain,
+          ),
+                   */
                   SizedBox(
                     width: getProportionateScreenWidth(10),
                   ),

@@ -7,6 +7,7 @@ class CategorieModel {
   String? nbre_jr_pubs;
   String? created_at;
   String? updated_at;
+  String? image;
 
   CategorieModel(
       {this.id,
@@ -16,7 +17,8 @@ class CategorieModel {
       this.nbre_events,
       this.nbre_jr_pubs,
       this.created_at,
-      this.updated_at});
+      this.updated_at,
+      this.image});
 
   CategorieModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,6 +29,7 @@ class CategorieModel {
     nbre_jr_pubs = json['nbre_jr_pubs'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJSON() {
@@ -38,7 +41,8 @@ class CategorieModel {
       "nbre_events": nbre_events,
       "nbre_jr_pubs": nbre_jr_pubs,
       "created_at": created_at,
-      "updated_at": updated_at
+      "updated_at": updated_at,
+      "image": image
     };
   }
 }

@@ -257,31 +257,33 @@ class _HomeViewState extends State<HomeView> {
                                               shrinkWrap: true,
                                               scrollDirection: Axis.horizontal,
                                               itemCount: categories?.length,
-                                              itemBuilder: (context, index) =>
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder:
-                                                                (context) =>
-                                                                    OnEventView(
-                                                                      id: categories[
-                                                                              index]
-                                                                          .id,
-                                                                    )),
-                                                      );
-                                                    },
-                                                    child: ExclusiveCardWidget(
-                                                      image: 'assets/122.png',
-                                                      adresse:
-                                                          "${categories![index].adresse}",
-                                                      libelle:
-                                                          "${categories[index].libelle}",
-                                                      prix:
-                                                          "${categories[index].prix}",
-                                                    ),
-                                                  ));
+                                              itemBuilder:
+                                                  (context, index) =>
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        OneEventView(
+                                                                          id: categories[index]
+                                                                              .id,
+                                                                        )),
+                                                          );
+                                                        },
+                                                        child:
+                                                            ExclusiveCardWidget(
+                                                          image:
+                                                              "${categories![index].image}",
+                                                          adresse:
+                                                              "${categories![index].adresse}",
+                                                          libelle:
+                                                              "${categories[index].libelle}",
+                                                          prix:
+                                                              "${categories[index].prix}",
+                                                        ),
+                                                      ));
                                         }
                                       }),
                                     ),
@@ -322,6 +324,8 @@ class _HomeViewState extends State<HomeView> {
                                                       libelle:
                                                           categories![index]
                                                               .libelle,
+                                                      image: categories![index]
+                                                          .image,
                                                     ),
                                                   ));
                                         }
@@ -378,7 +382,7 @@ class _HomeViewState extends State<HomeView> {
                                                                     context,
                                                                     MaterialPageRoute(
                                                                         builder: (context) =>
-                                                                            OnEventView(
+                                                                            OneEventView(
                                                                               id: events[index].id,
                                                                             )),
                                                                   );
@@ -399,6 +403,9 @@ class _HomeViewState extends State<HomeView> {
                                                                   adresse: events[
                                                                           index]
                                                                       .adresse,
+                                                                  image: events![
+                                                                          index]
+                                                                      .image,
                                                                 )));
                                                   }
                                                 }),

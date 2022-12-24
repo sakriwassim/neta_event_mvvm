@@ -58,7 +58,7 @@ class SearchElement extends SearchDelegate {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => OnEventView(
+                                    builder: (context) => OneEventView(
                                           id: events[index].id,
                                         )),
                               );
@@ -69,6 +69,7 @@ class SearchElement extends SearchDelegate {
                               date_heure: events[index].date_heure,
                               libelle: events[index].libelle,
                               adresse: events[index].adresse,
+                              image: events[index].image,
                             )));
                   }
                 }),

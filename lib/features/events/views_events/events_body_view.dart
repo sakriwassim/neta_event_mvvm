@@ -104,7 +104,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => OnEventView(
+                                          builder: (context) => OneEventView(
                                                 id: events[index].id,
                                               )),
                                     );
@@ -116,6 +116,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                     libelle: events[index].libelle,
                                     adresse: events[index].adresse,
                                     prix: events[index].prix,
+                                    image: events[index].image,
                                   )));
                         }
                       }),

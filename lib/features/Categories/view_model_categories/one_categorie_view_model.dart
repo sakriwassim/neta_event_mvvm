@@ -11,4 +11,5 @@ class OneCategorieViewModel {
   get nbre_jr_pubs => categorieModel?.nbre_jr_pubs;
   get created_at => categorieModel?.created_at;
   get updated_at => categorieModel?.updated_at;
+  get image => categorieModel?.image;
 }

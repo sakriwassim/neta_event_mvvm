@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/int.dart';
-import 'package:neta_event_mvvm/features/authentification/models_authentification/response_model.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
-import 'package:neta_event_mvvm/features/events/views_events/events_view.dart';
 import 'package:neta_event_mvvm/features/events/views_events/update_event_view.dart';
 
 import '../../../core/colors.dart';
@@ -14,15 +12,15 @@ import '../../../core/widgets/text_widget_text1.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
-class OnEventView extends StatefulWidget {
+class OneEventView extends StatefulWidget {
   final int id;
-  OnEventView({super.key, required this.id});
+  OneEventView({super.key, required this.id});
 
   @override
-  State<OnEventView> createState() => _OnEventViewState();
+  State<OneEventView> createState() => _OneEventViewState();
 }
 
-class _OnEventViewState extends State<OnEventView> {
+class _OneEventViewState extends State<OneEventView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override
@@ -44,11 +42,9 @@ class _OnEventViewState extends State<OnEventView> {
             iconTheme: const IconThemeData(
               color: Colors.white,
             ),
-            flexibleSpace: Container(
-              child: Image(
-                image: AssetImage('assets/130.png'),
-                fit: BoxFit.cover,
-              ),
+            flexibleSpace: const Image(
+              image: AssetImage('assets/130.png'),
+              fit: BoxFit.cover,
             ),
             backgroundColor: Colors.transparent,
           )),
@@ -60,7 +56,7 @@ class _OnEventViewState extends State<OnEventView> {
               if (snapshot.hasData) {
                 return Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: getProportionateScreenHeight(100),
                       child: TextAirbnbCereal(
                         color: Colors.black,
@@ -70,65 +66,128 @@ class _OnEventViewState extends State<OnEventView> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(Datecala),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
+                                  ),
+                                  TextAirbnbCereal(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    size: 16,
+                                    title: '${snapshot.data!.date_heure}',
+                                  ),
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(locationcolor),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
+                                  ),
+                                  TextAirbnbCereal(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    size: 16,
+                                    title: '${snapshot.data!.adresse}',
+                                  ),
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(132, 210, 40, 105),
-                                  // border: Border.all(
-                                  //   color: Color.fromRGBO(210, 40, 106, 1),
-                                  // ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20))),
-                              height: 50,
-                              width: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(Calendar),
-                              )),
-                          TextAirbnbCereal(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            size: 16,
-                            title: '${snapshot.data!.date_heure}',
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              color: Colors.redAccent,
+                            ),
+                            height: 50,
+                            width: 50,
+                            child: FadeInImage.assetNetwork(
+                              height: 60,
+                              width: 60,
+                              placeholder: 'assets/lod.gif',
+                              image: '${snapshot.data!.image}',
+                            ),
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
+                                  ),
+                                  Column(
+                                    children: [
+                                      TextAirbnbCereal(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        size: 16,
+                                        title: '${snapshot.data!.libelle}',
+                                      ),
+                                      TextAirbnbCereal(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w400,
+                                        size: 16,
+                                        title: '${snapshot.data!.status}',
+                                      ),
+                                    ],
+                                  ),
+                                ]),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(132, 210, 40, 105),
-                                  // border: Border.all(
-                                  //   color: Color.fromRGBO(210, 40, 106, 1),
-                                  // ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20))),
-                              height: 50,
-                              width: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(Location),
-                              )),
-                          TextAirbnbCereal(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            size: 16,
-                            title: '${snapshot.data!.adresse}',
-                          ),
-                        ],
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text("participants actuels"),
                           Text("${snapshot.data!.status}"),
@@ -137,16 +196,22 @@ class _OnEventViewState extends State<OnEventView> {
                     ),
                     const Text("Next Owner"),
                     SizedBox(
-                      width: 100,
-                      height: 100,
+                      width: getProportionateScreenWidth(100),
+                      height: getProportionateScreenHeight(100),
                       child: CircleAvatar(
                         child: ClipOval(
-                          child: Image.network(
-                            'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                            fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/lod.gif',
+                            image:
+                                'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
                           ),
+
+                          //  Image.network(
+                          //   'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                          //   fit: BoxFit.cover,
+                          //   width: getProportionateScreenWidth(100),
+                          //   height: getProportionateScreenHeight(100),
+                          // ),
                         ),
                       ),
                     ),

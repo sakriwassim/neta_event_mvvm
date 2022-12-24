@@ -60,7 +60,7 @@ class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => OnEventView(
+                                      builder: (context) => OneEventView(
                                             id: events[index].id,
                                           )),
                                 );
@@ -71,6 +71,7 @@ class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
                                 date_heure: events[index].date_heure,
                                 libelle: events[index].libelle,
                                 adresse: events[index].adresse,
+                                image: events[index].image,
                               )));
                     }
                   }),

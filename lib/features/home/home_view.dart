@@ -483,6 +483,8 @@ class _HomeViewState extends State<HomeView> {
                                                                   id: packs[
                                                                           index]
                                                                       .id,
+                                                                  image:
+                                                                      '${packs[index].image}',
                                                                 )),
                                                       );
                                                     },

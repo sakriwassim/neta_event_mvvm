@@ -97,6 +97,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                     MaterialPageRoute(
                                         builder: (context) => OnTontineView(
                                               id: tickets[index].id,
+                                              image: '${tickets[index].image}',
                                             )));
                               },
                               child: TontineCardWidgetH(

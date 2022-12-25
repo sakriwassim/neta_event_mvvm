@@ -64,8 +64,10 @@ const Location = "assets/icons/home/Location.svg";
 const Locationcard = "assets/icons/home/Locationcard.svg";
 
 const Mask = "assets/icons/tontine/Mask.svg";
+const arrowleft = "assets/icons/tontine/arrow-left.svg";
+//arrow-left
 
-//SvgPicture.asset(Rectangle),
+//SvgPicture.asset(arrowleft),
 //Rectangle
 const CombinedShape = "assets/icons/home/CombinedShape.svg";
 const patternstring =

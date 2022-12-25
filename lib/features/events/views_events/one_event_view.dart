@@ -7,6 +7,7 @@ import 'package:neta_event_mvvm/features/events/views_events/update_event_view.d
 import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
+import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../evants_repositories/events_api.dart';
@@ -30,27 +31,14 @@ class _OneEventViewState extends State<OneEventView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(getProportionateScreenHeight(150)),
-          child: AppBar(
-            elevation: 0.0,
-            shadowColor: Colors.white,
-            title: TextAirbnbCereal(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              size: 24,
+        preferredSize: Size.fromHeight(getProportionateScreenHeight(150)),
+        child: PreferredSize(
+            preferredSize: const Size.fromHeight(150.0),
+            child: AppBarDetails(
+              image: '${widget.image}',
               title: 'Event details',
-            ),
-            iconTheme: const IconThemeData(
-              color: Colors.white,
-            ),
-            flexibleSpace: const Center(
-              child: Image(
-                image: AssetImage('assets/130.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-          )),
+            )),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: FutureBuilder<OneEventViewModel>(
@@ -59,6 +47,49 @@ class _OneEventViewState extends State<OneEventView> {
               if (snapshot.hasData) {
                 return Column(
                   children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(60),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        height: getProportionateScreenHeight(60),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextAirbnbCereal(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              size: 16,
+                              title: '${snapshot.data!.libelle}',
+                            ),
+                            Button(
+                                gradientbackground: gradientbackground,
+                                text: "Favoris",
+                                textcolor: Colors.white,
+                                height: heightminibutton,
+                                width: widthminibutton,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400)
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
+                    ),
                     SizedBox(
                       height: getProportionateScreenHeight(100),
                       child: TextAirbnbCereal(

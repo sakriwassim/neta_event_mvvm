@@ -1,4 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
 import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
@@ -6,14 +9,18 @@ import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
+import '../../../core/string.dart';
+import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 
 class OnTontineView extends StatefulWidget {
   final int id;
-  OnTontineView({super.key, required this.id});
+  final String image;
+  OnTontineView({super.key, required this.id, required this.image});
 
   @override
   State<OnTontineView> createState() => _OnTontineViewState();
@@ -29,25 +36,9 @@ class _OnTontineViewState extends State<OnTontineView> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(150.0),
-          child: AppBar(
-            elevation: 0.0,
-            shadowColor: Colors.white,
-            title: Text(
-              "Tontine details",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            iconTheme: const IconThemeData(
-              color: Colors.white,
-            ),
-            flexibleSpace: const Center(
-              child: Image(
-                image: AssetImage('assets/130.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
+          child: AppBarDetails(
+            image: '${widget.image}',
+            title: 'Tontine details',
           )),
       body: Center(
         child: FutureBuilder<OneTontineViewModel>(

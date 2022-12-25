@@ -9,7 +9,7 @@ import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
 class AddTicketView extends StatefulWidget {
-  AddTicketView({
+  const AddTicketView({
     super.key,
   });
 
@@ -30,7 +30,7 @@ class _AddTicketViewState extends State<AddTicketView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           shadowColor: Colors.white,
@@ -118,7 +118,7 @@ class _AddTicketViewState extends State<AddTicketView> {
 
                     AddTicketModel ticketformJson =
                         AddTicketModel.fromJson(ticket);
-                    print(ticketformJson);
+                    //print(ticketformJson);
 
                     setState(() {
                       data.AddTicket(ticketformJson);
@@ -131,7 +131,8 @@ class _AddTicketViewState extends State<AddTicketView> {
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                  fontWeight: FontWeight.normal, textcolor:  Colors.white,
+                  fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
                 )),
           ],
         ),

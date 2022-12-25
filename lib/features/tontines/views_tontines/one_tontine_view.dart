@@ -1,15 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
-import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
-import '../../../core/string.dart';
 import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
@@ -20,7 +14,7 @@ import '../view_model_tickets/tontines_view_model.dart';
 class OnTontineView extends StatefulWidget {
   final int id;
   final String image;
-  OnTontineView({super.key, required this.id, required this.image});
+  const OnTontineView({super.key, required this.id, required this.image});
 
   @override
   State<OnTontineView> createState() => _OnTontineViewState();
@@ -37,217 +31,227 @@ class _OnTontineViewState extends State<OnTontineView> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(150.0),
           child: AppBarDetails(
-            image: '${widget.image}',
+            image: widget.image,
             title: 'Tontine details',
           )),
       body: Center(
-        child: FutureBuilder<OneTontineViewModel>(
-          future: data.GetTontineByID(widget.id),
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return Container(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(15),
+        child: SingleChildScrollView(
+          child: FutureBuilder<OneTontineViewModel>(
+            future: data.GetTontineByID(widget.id),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: Row(
-                        children: [
-                          Text(snapshot.data!.libelle),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(25),
+                        ),
+                        child: Row(
+                          children: [
+                            TextAirbnbCereal(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              size: 18,
+                              title: snapshot.data!.libelle,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(15),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            title: "Participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          TextWidget(
-                            title:
-                                "${snapshot.data!.nbr_participant} participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(25),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextAirbnbCereal(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                size: 10,
+                                title: "Chaque ${snapshot.data!.periode}"),
+                            TextAirbnbCereal(
+                                color: const Color(0xFFFE28541),
+                                fontWeight: FontWeight.w500,
+                                size: 10,
+                                title: "Chaque ${snapshot.data!.libelle}"),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(15),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            title: "Participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          TextWidget(
-                            title:
-                                "${snapshot.data!.nbr_participant} participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(25),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextAirbnbCereal(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              size: 18,
+                              title: "Participants",
+                            ),
+                            TextAirbnbCereal(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                fontWeight: FontWeight.w500,
+                                size: 10,
+                                title:
+                                    "${snapshot.data!.nbr_participant} participants"),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(15),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            title: "Participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          TextWidget(
-                            title:
-                                "${snapshot.data!.nbr_participant} participants",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(25),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextAirbnbCereal(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              size: 18,
+                              title: "Montants",
+                            ),
+                            TextAirbnbCereal(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                fontWeight: FontWeight.w500,
+                                size: 10,
+                                title:
+                                    "${snapshot.data!.montant_regulier} fcfa"),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextWidget(
-                            title: "Monatnt",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          TextWidget(
-                            title: "${snapshot.data!.montant_regulier} \$",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextWidget(
-                            title: "participants actuels",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          Text("${snapshot.data!.status}"),
-                        ],
+                      TextAirbnbCereal(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        size: 18,
+                        title: "Next Owner",
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextWidget(
-                      title: "Next Owner",
-                      fontSize: 18.00,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: Image.network(
-                            'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/lod.gif',
+                            image:
+                                "https://soflutter.com/wp-content/uploads/2021/02/girl-profile.png",
                             fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
                           ),
                         ),
+
+                        // CircleAvatar(
+                        //   child: ClipOval(
+                        //     child: ClipRRect(
+                        //       borderRadius: BorderRadius.circular(5),
+                        //       child: FadeInImage.assetNetwork(
+                        //         placeholder: 'assets/lod.gif',
+                        //         image: "simage",
+                        //         fit: BoxFit.cover,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextWidget(
-                          title: "participants actuels",
-                          fontSize: 18.00,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        Text("${snapshot.data!.status}"),
-                      ],
-                    ),
-                    Text("${snapshot.data!.status}"),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(15),
-                      ),
-                      child: Row(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(snapshot.data!.libelle),
+                          TextAirbnbCereal(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            size: 20,
+                            title: snapshot.data!.libelle,
+                          ),
+                          TextAirbnbCereal(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            size: 20,
+                            title: snapshot.data!.libelle,
+                          ),
                         ],
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(snapshot.data!.libelle),
-                        InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => UpdateTontineView(
-                                            ticketObj: snapshot.data!,
-                                          )));
-                            },
-                            child: Button(
-                              fontWeight: FontWeight.w500,
-                              text: "PAYER",
-                              fontSize: 20,
-                              gradientbackground: gradientbackground,
-                              height: heightmediumbutton,
-                              width: widthmediumbutton,
-                              textcolor: Colors.white,
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            return const CircularProgressIndicator();
-          }),
+                      TextAirbnbCereal(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        size: 20,
+                        title: snapshot.data!.libelle,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(15),
+                        ),
+                        child: Row(
+                          children: [
+                            TextAirbnbCereal(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              size: 20,
+                              title: snapshot.data!.libelle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextAirbnbCereal(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            size: 20,
+                            title: snapshot.data!.libelle,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UpdateTontineView(
+                                              ticketObj: snapshot.data!,
+                                            )));
+                              },
+                              child: Button(
+                                fontWeight: FontWeight.w500,
+                                text: "PAYER",
+                                fontSize: 20,
+                                gradientbackground: gradientbackground,
+                                height: heightmediumbutton,
+                                width: widthmediumbutton,
+                                textcolor: Colors.white,
+                              )),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return const CircularProgressIndicator();
+            }),
+          ),
         ),
       ),
     );

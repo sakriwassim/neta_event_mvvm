@@ -56,11 +56,11 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
                                     onTap: () {},
                                     child: PackCardWidget(
                                       libelle: '${events![index].libelle}',
-                                      montant: '${events![index].montant}',
+                                      montant: '${events[index].montant}',
                                       nbre_events:
-                                          '${events![index].nbre_events}',
+                                          '${events[index].nbre_events}',
                                       nbre_jr_pubs:
-                                          '${events![index].nbre_jr_pubs}',
+                                          '${events[index].nbre_jr_pubs}',
                                     ),
                                   ));
                         }

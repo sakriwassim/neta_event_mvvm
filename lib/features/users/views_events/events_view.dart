@@ -24,9 +24,9 @@ class _GetAllUserViewState extends State<GetAllUserView> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: Text("Users")),
+      appBar: AppBar(title: const Text("Users")),
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: screenHeight,
         child: OfflineBuilder(
           connectivityBuilder: (

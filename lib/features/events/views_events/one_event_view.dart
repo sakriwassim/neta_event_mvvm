@@ -19,7 +19,7 @@ import '../view_model_events/events_view_model.dart';
 class OneEventView extends StatefulWidget {
   final int id;
   final String? image;
-  OneEventView({super.key, required this.id, required this.image});
+  const OneEventView({super.key, required this.id, required this.image});
 
   @override
   State<OneEventView> createState() => _OneEventViewState();
@@ -57,7 +57,8 @@ class _OneEventViewState extends State<OneEventView> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -173,7 +174,7 @@ class _OneEventViewState extends State<OneEventView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8.0)),
                               color: Colors.redAccent,
@@ -216,11 +217,11 @@ class _OneEventViewState extends State<OneEventView> {
                                   ),
                                 ]),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                               height: heightmediumbutton,
                               width: widthmediumbutton,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color.fromARGB(31, 255, 83, 249),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15)),
@@ -245,13 +246,13 @@ class _OneEventViewState extends State<OneEventView> {
                             horizontal: getProportionateScreenWidth(50),
                           ),
                           child: TextAirbnbCereal(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(255, 0, 0, 0),
                             fontWeight: FontWeight.w500,
                             size: 25,
                             title: 'A propos',
                           ),
                         ),
-                        Spacer()
+                        const Spacer()
                       ],
                     ),
                     const SizedBox(
@@ -264,13 +265,13 @@ class _OneEventViewState extends State<OneEventView> {
                             horizontal: getProportionateScreenWidth(50),
                           ),
                           child: TextAirbnbCereal(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(255, 0, 0, 0),
                             fontWeight: FontWeight.w400,
                             size: 25,
                             title: '${snapshot.data!.description}',
                           ),
                         ),
-                        Spacer()
+                        const Spacer()
                       ],
                     ),
                     const SizedBox(

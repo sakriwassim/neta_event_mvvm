@@ -26,7 +26,7 @@ class SinscrireRow extends StatelessWidget {
             style: GoogleFonts.lato(
                 fontStyle: FontStyle.normal,
                 fontSize: 15,
-                color: Color.fromRGBO(194, 32, 124, 1)),
+                color: const Color.fromRGBO(194, 32, 124, 1)),
           ),
         ),
       ],

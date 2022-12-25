@@ -63,7 +63,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextAirbnbCereal(
-                          color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
+                          color: const Color.fromARGB(255, 0, 0, 0), //4F4F4F
                           fontWeight: FontWeight.w500,
                           size: 18,
                           title: libelle!,
@@ -80,7 +80,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         // Row(
                         //   children: const [
                         //     Icon(Icons.star, color: Colors.pink, size: 15),
@@ -91,7 +91,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                         //   ],
                         // ),
                         TextAirbnbCereal(
-                          color: Color(0xff4F4F4F), //4F4F4F
+                          color: const Color(0xff4F4F4F), //4F4F4F
                           fontWeight: FontWeight.w500,
                           size: 12,
                           title: 'Prix :$prix fcfa',

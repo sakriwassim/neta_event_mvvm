@@ -107,33 +107,31 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    var event = {
-                      "image": "image8888888888888888888",
-                      "created_at": "2022-09-30T15:11:08.000000Z",
-                      "updated_at": "2022-09-30T15:11:08.000000Z"
-                    };
+            InkWell(
+              onTap: () {
+                if (formkey.currentState!.validate()) {
+                  var event = {
+                    "image": "image8888888888888888888",
+                    "created_at": "2022-09-30T15:11:08.000000Z",
+                    "updated_at": "2022-09-30T15:11:08.000000Z"
+                  };
 
-                    AddUserModel eventformJson = AddUserModel.fromJson(event);
-                    //   print(eventformJson);
+                  AddUserModel eventformJson = AddUserModel.fromJson(event);
+                  //   print(eventformJson);
 
-                    setState(() {
-                      data.UpdateUserByID(eventformJson);
-                    });
-                  }
-                },
-                child: Button(
-                  text: "MODIFIER",
-                  fontSize: fontSizemediumbutton,
-                  fontWeight: FontWeight.normal,
-                  gradientbackground: gradientbackground,
-                  height: heightmediumbutton,
-                  width: widthmediumbutton,
-                  textcolor: Colors.white,
-                ),
+                  setState(() {
+                    data.UpdateUserByID(eventformJson);
+                  });
+                }
+              },
+              child: Button(
+                text: "MODIFIER",
+                fontSize: fontSizemediumbutton,
+                fontWeight: FontWeight.normal,
+                gradientbackground: gradientbackground,
+                height: heightmediumbutton,
+                width: widthmediumbutton,
+                textcolor: Colors.white,
               ),
             ),
           ],

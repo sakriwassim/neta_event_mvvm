@@ -53,7 +53,7 @@ class _SelectCompanyState extends State<SelectCompany> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RegisterView(),
+          builder: (context) => const RegisterView(),
         ));
   }
 
@@ -120,7 +120,7 @@ class _SelectCompanyState extends State<SelectCompany> {
                 ),
                 InkWell(
                     onTap: () async {
-                      print("il button ti5dem ");
+                      //print("il button ti5dem ");
                       var event = {
                         "role_id": selectIndex,
                         "packs_id": 1,
@@ -151,7 +151,8 @@ class _SelectCompanyState extends State<SelectCompany> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500, textcolor:  Colors.white,
+                      fontWeight: FontWeight.w500,
+                      textcolor: Colors.white,
                     )),
               ],
             ),

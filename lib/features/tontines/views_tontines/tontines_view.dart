@@ -50,7 +50,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AddTontineView()));
+                          builder: (context) => const AddTontineView()));
                 },
                 child: Button(
                   fontWeight: FontWeight.normal,
@@ -102,7 +102,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                               },
                               child: TontineCardWidgetH(
                                 image: '${tickets![index].image}',
-                                libelle: '${tickets![index].libelle}',
+                                libelle: '${tickets[index].libelle}',
                                 montant_regulier:
                                     "${tickets[index].montant_regulier}\$",
                                 nbr_participant:

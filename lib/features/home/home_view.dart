@@ -251,7 +251,7 @@ class _HomeViewState extends State<HomeView> {
                                       builder: ((context, snapshot) {
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return Center(
+                                          return const Center(
                                               child:
                                                   //Container()
                                                   CircularProgressIndicator());
@@ -283,9 +283,9 @@ class _HomeViewState extends State<HomeView> {
                                                           date:
                                                               "${categories![index].date_heure}",
                                                           image:
-                                                              "${categories![index].image}",
+                                                              "${categories[index].image}",
                                                           adresse:
-                                                              "${categories![index].adresse}",
+                                                              "${categories[index].adresse}",
                                                           libelle:
                                                               "${categories[index].libelle}",
                                                           prix:
@@ -323,9 +323,8 @@ class _HomeViewState extends State<HomeView> {
                                       builder: ((context, snapshot) {
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return Center(
+                                          return const Center(
                                               child:
-                                                  // Container()
                                                   CircularProgressIndicator());
                                         } else {
                                           var categories = snapshot.data;
@@ -403,7 +402,7 @@ class _HomeViewState extends State<HomeView> {
                                                               .libelle,
                                                           adresse: events[index]
                                                               .adresse,
-                                                          image: events![index]
+                                                          image: events[index]
                                                               .image,
                                                         )));
                                           }
@@ -439,11 +438,11 @@ class _HomeViewState extends State<HomeView> {
                                                         libelle:
                                                             '${events![index].libelle}',
                                                         montant:
-                                                            '${events![index].montant}',
+                                                            '${events[index].montant}',
                                                         nbre_events:
-                                                            '${events![index].nbre_events}',
+                                                            '${events[index].nbre_events}',
                                                         nbre_jr_pubs:
-                                                            '${events![index].nbre_jr_pubs}',
+                                                            '${events[index].nbre_jr_pubs}',
                                                       ),
                                                     ));
                                           }

@@ -59,7 +59,7 @@ class SearchElement extends SearchDelegate {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => OneEventView(
-                                          id: events[index].id,
+                                          id: events[index].id, image: '',
                                         )),
                               );
                             },

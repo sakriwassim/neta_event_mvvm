@@ -5,6 +5,7 @@ import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
+import '../../../core/size_config.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
@@ -23,6 +24,7 @@ class _OnTontineViewState extends State<OnTontineView> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -52,51 +54,157 @@ class _OnTontineViewState extends State<OnTontineView> {
           future: data.GetTontineByID(widget.id),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
-                children: [
-                  // Image.asset("assets/130.png"),
-                  Text(snapshot.data!.libelle),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextWidget(
-                          title: "Participants",
-                          fontSize: 18.00,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        TextWidget(
-                          title:
-                              "${snapshot.data!.nbr_participant} participants",
-                              fontSize: 18.00,
-                              fontWeight: FontWeight.normal,
-                        ),
-                      ],
+              return Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextWidget(
-                          title: "Monatnt",
-                          fontSize: 18.00,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        TextWidget(
-                          title: "${snapshot.data!.montant_regulier} \$",
-                          fontSize: 18.00,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(snapshot.data!.libelle),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextWidget(
+                            title: "Participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          TextWidget(
+                            title:
+                                "${snapshot.data!.nbr_participant} participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextWidget(
+                            title: "Participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          TextWidget(
+                            title:
+                                "${snapshot.data!.nbr_participant} participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextWidget(
+                            title: "Participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          TextWidget(
+                            title:
+                                "${snapshot.data!.nbr_participant} participants",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextWidget(
+                            title: "Monatnt",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          TextWidget(
+                            title: "${snapshot.data!.montant_regulier} \$",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextWidget(
+                            title: "participants actuels",
+                            fontSize: 18.00,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          Text("${snapshot.data!.status}"),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextWidget(
+                      title: "Next Owner",
+                      fontSize: 18.00,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.network(
+                            'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                            fit: BoxFit.cover,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextWidget(
                           title: "participants actuels",
@@ -106,70 +214,43 @@ class _OnTontineViewState extends State<OnTontineView> {
                         Text("${snapshot.data!.status}"),
                       ],
                     ),
-                  ),
-                  TextWidget(
-                    title: "Next Owner",
-                    fontSize: 18.00,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: CircleAvatar(
-                      child: ClipOval(
-                        child: Image.network(
-                          'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
-                        ),
+                    Text("${snapshot.data!.status}"),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(snapshot.data!.libelle),
+                        ],
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UpdateTontineView(
-                                          ticketObj: snapshot.data!,
-                                        )));
-                          },
-                          child: Button(
-                                fontWeight: FontWeight.normal,
-                            text: "MODIFIER",
-                            fontSize: 20,
-                            gradientbackground: gradientbackground,
-                            height: heightbigbutton,
-                            width: widthbigbutton, textcolor:  Colors.white,
-                          )),
-                      InkWell(
-                          onTap: () async {
-                            var delete =
-                                await data.DeleteTontineByID(snapshot.data!.id);
-
-                            if (delete == true) {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(snapshot.data!.libelle),
+                        InkWell(
+                            onTap: () {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GetAllTontineView()));
-                            }
-                          },
-                          child: Button(
-                                fontWeight: FontWeight.normal,
-                            text: "SUPPRIMER",
-                            fontSize: fontSizeminibutton,
-                            gradientbackground: gradientbackground,
-                            height: heightminibutton,
-                            width: widthminibutton, textcolor: null,
-                          )),
-                    ],
-                  )
-                ],
+                                      builder: (context) => UpdateTontineView(
+                                            ticketObj: snapshot.data!,
+                                          )));
+                            },
+                            child: Button(
+                              fontWeight: FontWeight.w500,
+                              text: "PAYER",
+                              fontSize: 20,
+                              gradientbackground: gradientbackground,
+                              height: heightmediumbutton,
+                              width: widthmediumbutton,
+                              textcolor: Colors.white,
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
               );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");

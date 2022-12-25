@@ -38,6 +38,9 @@ const favori = "assets/icons/home/favori.svg";
 
 const locationcolor = "assets/icons/event/Locationcolor.svg";
 
+const Rectangle = "assets/icons/event/Rectangle.svg";
+
+//Rectangle
 const Lineevent = "assets/icons/event/Line.svg";
 
 //locationcolor
@@ -62,8 +65,8 @@ const Locationcard = "assets/icons/home/Locationcard.svg";
 
 const Mask = "assets/icons/tontine/Mask.svg";
 
-//SvgPicture.asset(Mask),
-
+//SvgPicture.asset(Rectangle),
+//Rectangle
 const CombinedShape = "assets/icons/home/CombinedShape.svg";
 const patternstring =
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';

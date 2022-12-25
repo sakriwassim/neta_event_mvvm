@@ -14,7 +14,8 @@ import '../view_model_events/events_view_model.dart';
 
 class OneEventView extends StatefulWidget {
   final int id;
-  OneEventView({super.key, required this.id});
+  final String? image;
+  OneEventView({super.key, required this.id, required this.image});
 
   @override
   State<OneEventView> createState() => _OneEventViewState();
@@ -42,9 +43,11 @@ class _OneEventViewState extends State<OneEventView> {
             iconTheme: const IconThemeData(
               color: Colors.white,
             ),
-            flexibleSpace: const Image(
-              image: AssetImage('assets/130.png'),
-              fit: BoxFit.cover,
+            flexibleSpace: const Center(
+              child: Image(
+                image: AssetImage('assets/130.png'),
+                fit: BoxFit.cover,
+              ),
             ),
             backgroundColor: Colors.transparent,
           )),
@@ -149,6 +152,7 @@ class _OneEventViewState extends State<OneEventView> {
                               width: 60,
                               placeholder: 'assets/lod.gif',
                               image: '${snapshot.data!.image}',
+                              fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(
@@ -179,41 +183,60 @@ class _OneEventViewState extends State<OneEventView> {
                                   ),
                                 ]),
                           ),
+                          Spacer(),
+                          Container(
+                            child: Center(
+                              child: Container(
+                                  child: SvgPicture.asset(
+                                width: 100,
+                                Rectangle,
+                                fit: BoxFit.cover,
+                              )),
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(50),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text("participants actuels"),
-                          Text("${snapshot.data!.status}"),
-                        ],
-                      ),
+                    const SizedBox(
+                      height: 20,
                     ),
-                    const Text("Next Owner"),
-                    SizedBox(
-                      width: getProportionateScreenWidth(100),
-                      height: getProportionateScreenHeight(100),
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/lod.gif',
-                            image:
-                                'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(50),
                           ),
-
-                          //  Image.network(
-                          //   'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                          //   fit: BoxFit.cover,
-                          //   width: getProportionateScreenWidth(100),
-                          //   height: getProportionateScreenHeight(100),
-                          // ),
+                          child: TextAirbnbCereal(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w500,
+                            size: 25,
+                            title: 'A propos',
+                          ),
                         ),
-                      ),
+                        Spacer()
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(50),
+                          ),
+                          child: TextAirbnbCereal(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w400,
+                            size: 25,
+                            title: '${snapshot.data!.description}',
+                          ),
+                        ),
+                        Spacer()
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     InkWell(
                         onTap: () {
@@ -230,7 +253,8 @@ class _OneEventViewState extends State<OneEventView> {
                           gradientbackground: gradientbackground,
                           height: heightbigbutton,
                           width: widthbigbutton,
-                          fontWeight: FontWeight.normal, textcolor:  Colors.white,
+                          fontWeight: FontWeight.normal,
+                          textcolor: Colors.white,
                         ))
                   ],
                 );

@@ -106,6 +106,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                       MaterialPageRoute(
                                           builder: (context) => OneEventView(
                                                 id: events[index].id,
+                                                image:events[index].image,
                                               )),
                                     );
                                   },

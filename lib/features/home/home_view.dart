@@ -273,6 +273,8 @@ class _HomeViewState extends State<HomeView> {
                                                                         OneEventView(
                                                                           id: categories[index]
                                                                               .id,
+                                                                          image:
+                                                                              '${categories[index].image}',
                                                                         )),
                                                           );
                                                         },
@@ -383,6 +385,8 @@ class _HomeViewState extends State<HomeView> {
                                                                         OneEventView(
                                                                           id: events[index]
                                                                               .id,
+                                                                          image:
+                                                                              '${events[index].image}',
                                                                         )),
                                                           );
                                                         },

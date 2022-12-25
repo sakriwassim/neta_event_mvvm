@@ -62,6 +62,7 @@ class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
                                   MaterialPageRoute(
                                       builder: (context) => OneEventView(
                                             id: events[index].id,
+                                            image: "${events[index].image}",
                                           )),
                                 );
                               },

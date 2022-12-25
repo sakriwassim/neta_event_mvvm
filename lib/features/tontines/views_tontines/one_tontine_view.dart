@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
@@ -150,14 +152,15 @@ class _OnTontineViewState extends State<OnTontineView> {
                       SizedBox(
                         width: 100,
                         height: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/lod.gif',
-                            image:
-                                "https://soflutter.com/wp-content/uploads/2021/02/girl-profile.png",
-                            fit: BoxFit.cover,
-                          ),
+                        child: CachedNetworkImage(
+                          key: UniqueKey(),
+                          imageUrl: '${widget.image}',
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              new Icon(Icons.error),
                         ),
 
                         // CircleAvatar(

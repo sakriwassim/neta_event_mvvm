@@ -1,32 +1,28 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
 
-class TextAirbnbCereal extends StatelessWidget {
-  String title;
+class GradientTextWidget extends StatelessWidget {
+  String text;
   double size;
-  Color? color;
   FontWeight fontWeight;
-
-  TextAirbnbCereal({
+  GradientTextWidget({
     Key? key,
-    required this.title,
+    required this.text,
     required this.size,
-    required this.color,
     required this.fontWeight,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      text,
       style: TextStyle(
-        //foreground: (Paint()..shader = linearGradient),
+        foreground: (Paint()..shader = linearGradient),
         //foreground: foreground,
         fontFamily: 'AirbnbCereal',
-        fontWeight: fontWeight,
-        fontSize: size,
-        color: color,
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+        //color: Colors.black,
       ),
     );
   }

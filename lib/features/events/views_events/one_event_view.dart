@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/update_event_view.dart';
@@ -8,6 +10,7 @@ import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/app_bar_details.dart';
+import '../../../core/widgets/gradient_text_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../evants_repositories/events_api.dart';
@@ -69,11 +72,10 @@ class _OneEventViewState extends State<OneEventView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            TextAirbnbCereal(
-                              color: Colors.black,
+                            GradientTextWidget(
                               fontWeight: FontWeight.w500,
-                              size: 16,
-                              title: '${snapshot.data!.libelle}',
+                              size: 12,
+                              text: snapshot.data!.libelle,
                             ),
                             Button(
                                 gradientbackground: gradientbackground,
@@ -216,15 +218,20 @@ class _OneEventViewState extends State<OneEventView> {
                           ),
                           Spacer(),
                           Container(
-                            child: Center(
-                              child: Container(
-                                  child: SvgPicture.asset(
-                                width: 100,
-                                Rectangle,
-                                fit: BoxFit.cover,
-                              )),
-                            ),
-                          )
+                              height: heightmediumbutton,
+                              width: widthmediumbutton,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(31, 255, 83, 249),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              child: Center(
+                                child: GradientTextWidget(
+                                  fontWeight: FontWeight.w400,
+                                  size: 12,
+                                  text: 'Découvrir',
+                                ),
+                              ))
                         ],
                       ),
                     ),

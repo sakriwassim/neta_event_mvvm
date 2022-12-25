@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/size_config.dart';
+import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 
 class CategorieCardWidget extends StatelessWidget {
@@ -25,11 +26,14 @@ class CategorieCardWidget extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/lod.gif',
-                  image: "$image",
-                  fit: BoxFit.fill,
-                ),
+                child: ImageCachedInternet(
+          height: MediaQuery.of(context).size.height,
+          imageUrl: '$image',
+          width: MediaQuery.of(context).size.width,
+        ),
+
+
+              
               ),
               Center(
                 child: Padding(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/string.dart';
+import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../../view_model_events/one_event_view_model.dart';
 
@@ -50,11 +51,11 @@ class EventCardWidget extends StatelessWidget {
                       height: double.infinity,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/lod.gif',
-                          image: "$image",
-                          fit: BoxFit.cover,
-                        ),
+                        child: ImageCachedInternet(
+          height: MediaQuery.of(context).size.height,
+          imageUrl: '$image',
+          width: MediaQuery.of(context).size.width,
+        ),
                       ),
                     ),
                   ),

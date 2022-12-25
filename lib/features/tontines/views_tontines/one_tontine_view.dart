@@ -1,12 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/app_bar_details.dart';
+import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../tontines_repositories/tontines_api.dart';
@@ -149,32 +150,21 @@ class _OnTontineViewState extends State<OnTontineView> {
                       const SizedBox(
                         height: 20,
                       ),
-                      SizedBox(
+                      Container(
                         width: 100,
                         height: 100,
-                        child: CachedNetworkImage(
-                          key: UniqueKey(),
-                          imageUrl: '${widget.image}',
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              new Icon(Icons.error),
+                        child: CircleAvatar(
+                          child: ClipOval(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: ImageCachedInternet(
+                                height: MediaQuery.of(context).size.height,
+                                imageUrl: '${snapshot.data!.image}',
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                            ),
+                          ),
                         ),
-
-                        // CircleAvatar(
-                        //   child: ClipOval(
-                        //     child: ClipRRect(
-                        //       borderRadius: BorderRadius.circular(5),
-                        //       child: FadeInImage.assetNetwork(
-                        //         placeholder: 'assets/lod.gif',
-                        //         image: "simage",
-                        //         fit: BoxFit.cover,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

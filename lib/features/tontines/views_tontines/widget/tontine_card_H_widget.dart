@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
+import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../../view_model_tickets/one_tontine_view_model.dart';
@@ -69,11 +70,10 @@ class TontineCardWidgetH extends StatelessWidget {
                     padding: const EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: FadeInImage.assetNetwork(
+                      child: ImageCachedInternet(
+                        height: MediaQuery.of(context).size.height,
+                        imageUrl: '$image',
                         width: getProportionateScreenWidth(60),
-                        placeholder: 'assets/lod.gif',
-                        image: "$image",
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

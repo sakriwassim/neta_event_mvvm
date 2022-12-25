@@ -5,6 +5,7 @@ import 'package:neta_event_mvvm/core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/string.dart';
+import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../triangle_painter.dart';
@@ -89,10 +90,10 @@ class TontineCardWidget extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         height: getProportionateScreenHeight(100),
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/lod.gif',
-                          image: "$image",
-                          fit: BoxFit.fill,
+                        child: ImageCachedInternet(
+                          height: MediaQuery.of(context).size.height,
+                          imageUrl: '$image',
+                          width: MediaQuery.of(context).size.width,
                         ),
                       ),
                       SizedBox(

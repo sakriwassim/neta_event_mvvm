@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
-import '../../Categories/views_categories/categories_view.dart';
 
 class VoirTout extends StatelessWidget {
   String text;

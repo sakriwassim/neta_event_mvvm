@@ -203,12 +203,16 @@ class _OneEventViewState extends State<OneEventView> {
                                           Radius.circular(8.0)),
                                       color: Colors.redAccent,
                                     ),
-                                    height: 50,
-                                    width: 50,
-                                    child: ImageCachedInternet(
-                                      height: 60,
-                                      imageUrl: '${snapshot.data!.image}',
-                                      width: 60,
+                                    height: getProportionateScreenHeight(50),
+                                    width: getProportionateScreenWidth(50),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: ImageCachedInternet(
+                                        height:
+                                            getProportionateScreenHeight(50),
+                                        imageUrl: '${snapshot.data!.image}',
+                                        width: getProportionateScreenWidth(50),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(

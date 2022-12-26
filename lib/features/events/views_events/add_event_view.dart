@@ -199,7 +199,7 @@ class _AddEventViewState extends State<AddEventView> {
                 child: FutureBuilder<List<OneCategorieViewModel>>(
                   future: datacategorie.FetchAllCategories(),
                   builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
                       categories = snapshot.data;

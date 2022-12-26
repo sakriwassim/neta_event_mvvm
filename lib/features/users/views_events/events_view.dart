@@ -48,7 +48,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
                   child: FutureBuilder<List<OneUserViewModel>>(
                     future: data.FetchAllUsers(),
                     builder: ((context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      if (!snapshot.hasData) {
                         return const CircularProgressIndicator();
                       } else {
                         var events = snapshot.data;

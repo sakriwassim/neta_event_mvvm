@@ -102,7 +102,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                 child: FutureBuilder<List<OneCategorieViewModel>>(
                   future: data.FetchAllCategories(),
                   builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (!snapshot.hasData) {
                       return const CircularProgressIndicator();
                     } else {
                       var tickets = snapshot.data;

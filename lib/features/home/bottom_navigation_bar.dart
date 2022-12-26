@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/colors.dart';
+import '../../core/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
@@ -32,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeView();
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -40,6 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitDown,
     ]);
     return Scaffold(
+      key: _scaffoldState,
+      drawer: SideBarMenu(
+        callbackFunctionlogout: null,
+      ),
       backgroundColor: Colors.white,
       body: PageStorage(
         bucket: bucket,
@@ -73,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: MaterialButton(
                   minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
+                    _scaffoldState.currentState!.openDrawer();
                     setState(() {
                       currentScreen = Screen[0];
                       _currentIndex = 0;
@@ -97,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                           fontFamily: 'AirbnbCereal',
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                           foreground: _currentIndex == 0
                               ? (Paint()..shader = linearGradient)
                               : Paint()
@@ -134,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                           fontFamily: 'AirbnbCereal',
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                           foreground: _currentIndex == 1
                               ? (Paint()..shader = linearGradient)
                               : Paint()
@@ -171,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                           fontFamily: 'AirbnbCereal',
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                           foreground: _currentIndex == 2
                               ? (Paint()..shader = linearGradient)
                               : Paint()
@@ -212,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ..color = Colors.grey,
                           fontFamily: 'AirbnbCereal',
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                         ),
                       )
                     ],

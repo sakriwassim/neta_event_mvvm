@@ -92,8 +92,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                     child: FutureBuilder<List<OneEventViewModel>>(
                       future: data.FetchAllEvents(query: "gdg"),
                       builder: ((context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (!snapshot.hasData) {
                           return const CircularProgressIndicator();
                         } else {
                           var events = snapshot.data;

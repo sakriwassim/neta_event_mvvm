@@ -1,30 +1,27 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_offline/flutter_offline.dart';
 
 import 'package:neta_event_mvvm/features/events/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/events_view_model.dart';
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
-import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
 import '../../../core/size_config.dart';
-import 'one_event_view.dart';
-import 'widgets/event_card_widget.dart';
+import '../../events/views_events/one_event_view.dart';
+import '../../events/views_events/widgets/event_card_widget.dart';
 
-class GetEventByCategorisView extends StatefulWidget {
-  //final Function callbackFunction;
+class GetEventByCategorisWidget extends StatefulWidget {
   int categorieid;
-  GetEventByCategorisView({
+  GetEventByCategorisWidget({
     Key? key,
     required this.categorieid,
   }) : super(key: key);
 
   @override
-  State<GetEventByCategorisView> createState() =>
-      _GetEventByCategorisViewState();
+  State<GetEventByCategorisWidget> createState() =>
+      _GetEventByCategorisWidgetState();
 }
 
-class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
+class _GetEventByCategorisWidgetState extends State<GetEventByCategorisWidget> {
   var data = EventsViewModel(eventsRepository: EventsApi());
 
   @override
@@ -35,7 +32,7 @@ class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
         child: FutureBuilder<List<OneEventViewModel>>(
           future: data.GetEventByCategorie(widget.categorieid),
           builder: ((context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (!snapshot.hasData) {
               return const CircularProgressIndicator();
             } else {
               var events = snapshot.data;

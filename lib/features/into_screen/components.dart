@@ -19,7 +19,7 @@ class GetStartBtn extends StatelessWidget {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginView(),
+              builder: (context) => const LoginView(),
             ));
       },
       child: Container(
@@ -27,7 +27,7 @@ class GetStartBtn extends StatelessWidget {
         width: size.width / 1.5,
         height: size.height / 13,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.purple, Colors.pink])
+            gradient: const LinearGradient(colors: [Colors.purple, Colors.pink])
             //  color: MyColors.btnColor,
             ,
             borderRadius: BorderRadius.circular(15)),

@@ -84,7 +84,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 child: FutureBuilder<List<OneTontineViewModel>>(
                   future: data.FetchAllTontines(),
                   builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (!snapshot.hasData) {
                       return const CircularProgressIndicator();
                     } else {
                       var tickets = snapshot.data;

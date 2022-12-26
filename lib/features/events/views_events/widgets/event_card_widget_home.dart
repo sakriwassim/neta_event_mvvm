@@ -52,22 +52,13 @@ class EventCardWidget extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: ImageCachedInternet(
-          height: MediaQuery.of(context).size.height,
-          imageUrl: '$image',
-          width: MediaQuery.of(context).size.width,
-        ),
+                          height: MediaQuery.of(context).size.height,
+                          imageUrl: '$image',
+                          width: MediaQuery.of(context).size.width,
+                        ),
                       ),
                     ),
                   ),
-
-                  /**
-                   ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Image.network(
-            'https://mfiles.alphacoders.com/847/847991.jpg',
-            fit: BoxFit.contain,
-          ),
-                   */
                   SizedBox(
                     width: getProportionateScreenWidth(10),
                   ),

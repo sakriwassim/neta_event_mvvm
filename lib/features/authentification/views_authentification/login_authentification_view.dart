@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
@@ -15,7 +14,6 @@ import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
-import 'select_company_view.dart';
 import 'widgets/sinscrire_row_widget.dart';
 
 //****** */
@@ -48,7 +46,7 @@ class _LoginViewState extends State<LoginView> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RegisterView(),
+          builder: (context) => const RegisterView(),
         ));
   }
 
@@ -177,7 +175,7 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MyHomePage(),
+                                builder: (context) => const MyHomePage(),
                               ));
                         }
                       }
@@ -188,7 +186,8 @@ class _LoginViewState extends State<LoginView> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500, textcolor:  Colors.white,
+                      fontWeight: FontWeight.w500,
+                      textcolor: Colors.white,
                     )),
                 SizedBox(
                   height: getProportionateScreenHeight(10),

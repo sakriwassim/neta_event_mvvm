@@ -8,6 +8,7 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:neta_event_mvvm/search.dart';
 
+import '../../core/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/exclusive_card_widget.dart';
@@ -22,7 +23,7 @@ import '../authentification/view_model_authentification/authentification_view_mo
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../events/view_model_events/one_event_view_model.dart';
-import '../events/views_events/events_bycategoris_view.dart';
+import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
 import '../events/views_events/one_event_view.dart';
 import '../events/views_events/widgets/event_card_widget.dart';
@@ -37,6 +38,7 @@ import '../tontines/view_model_tickets/tontines_view_model.dart';
 import '../tontines/views_tontines/one_tontine_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
 import '../tontines/views_tontines/widget/tontine_card_widget.dart';
+import 'widget/events_exclusives_widget.dart';
 import 'widget/voirtout.dart';
 
 class HomeView extends StatefulWidget {
@@ -103,8 +105,13 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
+    
     return Scaffold(
+      
+
+      // drawer: SideBarMenu(
+      //   callbackFunctionlogout: null,
+      // ),
       body: SafeArea(
         child: Column(children: [
           Container(
@@ -151,7 +158,10 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                       IconButton(
-                          icon: SvgPicture.asset(Notif), onPressed: () {}),
+                          icon: SvgPicture.asset(Notif),
+                          onPressed: () {
+                         
+                          }),
                     ],
                   ),
                 ),
@@ -168,8 +178,12 @@ class _HomeViewState extends State<HomeView> {
                       SvgPicture.asset(Line),
                       SizedBox(
                         width: getProportionateScreenWidth(180),
-                        child: const TextField(
-                          decoration: InputDecoration(
+                        child: TextField(
+                          onTap: (() {
+                            showSearch(
+                                context: context, delegate: SearchElement());
+                          }),
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Chercher',
                             hintStyle: TextStyle(
@@ -244,58 +258,7 @@ class _HomeViewState extends State<HomeView> {
                                   text: 'Exclusives',
                                   callbackfonction: navGetAllEventView,
                                 ),
-                                SizedBox(
-                                  height: getProportionateScreenHeight(250),
-                                  child: FutureBuilder<List<OneEventViewModel>>(
-                                    future: data.GetEventByCategorie(2),
-                                    builder:
-                                        ((context, AsyncSnapshot snapshot) {
-                                      if (!snapshot.hasData) {
-                                        return const Center(
-                                            child:
-                                                //Container()
-                                                CircularProgressIndicator());
-                                      } else {
-                                        var categories = snapshot.data;
-                                        return ListView.builder(
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: categories?.length,
-                                            itemBuilder:
-                                                (context, index) =>
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      OneEventView(
-                                                                        id: categories[index]
-                                                                            .id,
-                                                                        image:
-                                                                            '${categories[index].image}',
-                                                                      )),
-                                                        );
-                                                      },
-                                                      child:
-                                                          ExclusiveCardWidget(
-                                                        date:
-                                                            "${categories![index].date_heure}",
-                                                        image:
-                                                            "${categories[index].image}",
-                                                        adresse:
-                                                            "${categories[index].adresse}",
-                                                        libelle:
-                                                            "${categories[index].libelle}",
-                                                        prix:
-                                                            "${categories[index].prix}",
-                                                      ),
-                                                    ));
-                                      }
-                                    }),
-                                  ),
-                                ),
+                                EventsExclusivesWidget(),
                                 SizedBox(
                                   height: getProportionateScreenHeight(10),
                                 ),
@@ -342,8 +305,8 @@ class _HomeViewState extends State<HomeView> {
                                                   child: CategorieCardWidget(
                                                     libelle: categories![index]
                                                         .libelle,
-                                                    image: categories![index]
-                                                        .image,
+                                                    image:
+                                                        categories[index].image,
                                                   ),
                                                 ));
                                       }
@@ -354,7 +317,7 @@ class _HomeViewState extends State<HomeView> {
                                   text: 'Evènements',
                                   callbackfonction: navGetAllEventView,
                                 ),
-                                GetEventByCategorisView(
+                                GetEventByCategorisWidget(
                                   categorieid: indexCategories,
                                 ),
                                 VoirTout(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/size_config.dart';
+
 class CategorieIconWidget extends StatelessWidget {
   String libelle;
   Color backgroundColor;
@@ -8,12 +10,13 @@ class CategorieIconWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    SizeConfig().init(context);
+    return Container(
+      width: getProportionateScreenWidth(150),
       child: Column(
         children: [
           SizedBox(
-            height: 80,
+            height: getProportionateScreenHeight(80),
             child: CircleAvatar(
               backgroundColor: backgroundColor,
               child: Image.asset('assets/icon_add_event/Art.png'),
@@ -21,10 +24,10 @@ class CategorieIconWidget extends StatelessWidget {
           ),
           Text(
             libelle,
-            style:const TextStyle(
+            style: const TextStyle(
                 color: Colors.black,
                 fontFamily: 'AirbnbCereal',
-                fontSize: 20,
+                fontSize: 12,
                 fontWeight: FontWeight.w500),
           )
         ],

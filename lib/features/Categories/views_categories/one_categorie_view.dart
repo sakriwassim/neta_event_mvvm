@@ -22,7 +22,7 @@ class _OnCategorieViewState extends State<OnCategorieView> {
         child: FutureBuilder<OneCategorieViewModel>(
           future: data.GetCategorieByID(2),
           builder: ((context, snapshot) {
-            if (snapshot.hasData) {
+            if (!snapshot.hasData) {
               return Text(snapshot.data!.libelle);
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");

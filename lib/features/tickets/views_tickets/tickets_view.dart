@@ -99,8 +99,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                             child: FutureBuilder<List<OneTicketViewModel>>(
                               future: data.FetchAllTickets(),
                               builder: ((context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
+                                if (!snapshot.hasData) {
                                   return const CircularProgressIndicator();
                                 } else {
                                   var tickets = snapshot.data;
@@ -199,8 +198,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                               child: FutureBuilder<List<OneTicketViewModel>>(
                                 future: data.FetchAllTickets(),
                                 builder: ((context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
+                                  if (!snapshot.hasData) {
                                     return const CircularProgressIndicator();
                                   } else {
                                     var tickets = snapshot.data;

@@ -78,7 +78,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                 child: FutureBuilder<List<OneUserViewModel>>(
                   future: data.GetUserByCategorie(2),
                   builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (!snapshot.hasData) {
                       return const CircularProgressIndicator();
                     } else {
                       var events = snapshot.data;

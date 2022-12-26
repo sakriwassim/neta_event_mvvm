@@ -45,8 +45,7 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
                     child: FutureBuilder<List<OnePackViewModel>>(
                       future: data.FetchAllPacks(),
                       builder: ((context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (!snapshot.hasData) {
                           return const CircularProgressIndicator();
                         } else {
                           var events = snapshot.data;

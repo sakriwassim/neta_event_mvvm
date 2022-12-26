@@ -3,7 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
+
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
@@ -11,6 +13,8 @@ import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
+import '../../users/evants_repositories/events_api.dart';
+import '../../users/view_model_events/events_view_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
@@ -18,14 +22,20 @@ import '../view_model_tickets/tontines_view_model.dart';
 class OnTontineView extends StatefulWidget {
   final int id;
   final String image;
-  const OnTontineView({super.key, required this.id, required this.image});
+  OnTontineView({
+    Key? key,
+    required this.id,
+    required this.image,
+  }) : super(key: key);
 
   @override
   State<OnTontineView> createState() => _OnTontineViewState();
 }
 
 class _OnTontineViewState extends State<OnTontineView> {
-  var data = TontinesViewModel(ticketsRepository: TontinesApi());
+  //user_id
+  var dataTontines = TontinesViewModel(ticketsRepository: TontinesApi());
+  var dataUser = UsersViewModel(eventsRepository: UsersApi());
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +64,12 @@ class _OnTontineViewState extends State<OnTontineView> {
               },
               child: Center(
                 child: SingleChildScrollView(
-                  child: FutureBuilder<OneTontineViewModel>(
-                    future: data.GetTontineByID(widget.id),
-                    builder: ((context, snapshot) {
+                  child: FutureBuilder(
+                    future: Future.wait([
+                      dataTontines.GetTontineByID(widget.id),
+                      dataUser.GetUserByID(widget.id)
+                    ]),
+                    builder: ((context, AsyncSnapshot<List<dynamic>> snapshot) {
                       if (snapshot.hasData) {
                         return SizedBox(
                           width: double.infinity,
@@ -75,7 +88,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                       color: Colors.black,
                                       fontWeight: FontWeight.w700,
                                       size: 18,
-                                      title: snapshot.data!.libelle,
+                                      title: snapshot.data![0].libelle,
                                     ),
                                   ],
                                 ),
@@ -96,13 +109,13 @@ class _OnTontineViewState extends State<OnTontineView> {
                                         fontWeight: FontWeight.w400,
                                         size: 10,
                                         title:
-                                            "Chaque ${snapshot.data!.periode}"),
+                                            "Chaque ${snapshot.data![0].periode}"),
                                     TextAirbnbCereal(
                                         color: const Color(0xFFFE28541),
                                         fontWeight: FontWeight.w500,
                                         size: 10,
                                         title:
-                                            "Chaque ${snapshot.data!.libelle}"),
+                                            "Chaque ${snapshot.data![0].libelle}"),
                                   ],
                                 ),
                               ),
@@ -129,7 +142,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                         fontWeight: FontWeight.w500,
                                         size: 10,
                                         title:
-                                            "${snapshot.data!.nbr_participant} participants"),
+                                            "${snapshot.data![0].nbr_participant} participants"),
                                   ],
                                 ),
                               ),
@@ -156,7 +169,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                         fontWeight: FontWeight.w500,
                                         size: 10,
                                         title:
-                                            "${snapshot.data!.montant_regulier} fcfa"),
+                                            "${snapshot.data![0].montant_regulier} fcfa"),
                                   ],
                                 ),
                               ),
@@ -182,7 +195,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                                       child: ImageCachedInternet(
                                         height:
                                             MediaQuery.of(context).size.height,
-                                        imageUrl: '${snapshot.data!.image}',
+                                        imageUrl: '${snapshot.data![1].image}',
                                         width:
                                             MediaQuery.of(context).size.width,
                                       ),
@@ -190,40 +203,32 @@ class _OnTontineViewState extends State<OnTontineView> {
                                   ),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  TextAirbnbCereal(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    size: 20,
-                                    title: snapshot.data!.libelle,
-                                  ),
-                                  TextAirbnbCereal(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    size: 20,
-                                    title: snapshot.data!.libelle,
-                                  ),
-                                ],
+                              const SizedBox(
+                                height: 20,
                               ),
                               TextAirbnbCereal(
-                                color: Colors.black,
+                                color: const Color(0xFF777777),
                                 fontWeight: FontWeight.w400,
-                                size: 20,
-                                title: snapshot.data!.libelle,
+                                size: 16,
+                                title: "${snapshot.data![1].nom_complet}",
+                              ),
+                              TextAirbnbCereal(
+                                color: const Color(0xFF777777),
+                                fontWeight: FontWeight.w400,
+                                size: 16,
+                                title: "Next Owner",
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: getProportionateScreenWidth(15),
+                                  horizontal: getProportionateScreenWidth(25),
                                 ),
                                 child: Row(
                                   children: [
                                     TextAirbnbCereal(
                                       color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                      size: 20,
-                                      title: snapshot.data!.libelle,
+                                      fontWeight: FontWeight.w500,
+                                      size: 25,
+                                      title: "Participants",
                                     ),
                                   ],
                                 ),
@@ -234,9 +239,9 @@ class _OnTontineViewState extends State<OnTontineView> {
                                 children: [
                                   TextAirbnbCereal(
                                     color: Colors.black,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w500,
                                     size: 20,
-                                    title: snapshot.data!.libelle,
+                                    title: "Payer ${snapshot.data![0].libelle}",
                                   ),
                                   InkWell(
                                       onTap: () {
@@ -245,7 +250,8 @@ class _OnTontineViewState extends State<OnTontineView> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     UpdateTontineView(
-                                                      ticketObj: snapshot.data!,
+                                                      ticketObj:
+                                                          snapshot.data![0],
                                                     )));
                                       },
                                       child: Button(

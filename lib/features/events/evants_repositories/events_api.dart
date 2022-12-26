@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,7 @@ class EventsApi extends EventsRepository {
       var token = prefs.getString("token");
       var TOKEN =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
+
       // try {
       var headersa = {'Authorization': 'Bearer $token'};
       String link = '$baseUrl/Events/$id';

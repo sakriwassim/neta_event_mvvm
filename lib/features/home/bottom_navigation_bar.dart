@@ -55,7 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
-          onPressed: () {},
+          onPressed: () {
+            _scaffoldState.currentState!.openDrawer();
+          },
           child: Container(
             decoration: const BoxDecoration(
                 shape: BoxShape.circle, gradient: gradientbackground),
@@ -80,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: MaterialButton(
                   minWidth: getProportionateScreenWidth(40),
                   onPressed: () {
-                    _scaffoldState.currentState!.openDrawer();
                     setState(() {
                       currentScreen = Screen[0];
                       _currentIndex = 0;

@@ -91,4 +91,19 @@ class AuthentificationApi extends AuthentificationRepository {
       return false;
     }
   }
+
+  // @override
+  // Future<List<EventModel>> getAllEvents({String? query}) async {
+  //   Map<String, dynamic> payload = Jwt.parseJwt(TOKEN);
+
+  //   print("*************Token Decode **********${payload}");
+  //   DateTime? expiryDate = Jwt.getExpiryDate(TOKEN);
+
+  //   print(expiryDate);
+  // }
 }
+
+/**
+ 
+ iss: http://frozen-refuge-80965.herokuapp.com/api/v1/Login, iat: 1664550523, exp: 1664554123, nbf: 1664550523, jti: I5vDCKosgQUaXz6l, sub: 3, prv: 23bd5c8949f600adb39e701c400872db7a5976f7, user_id: 3, email: wassiml@email.com
+ */

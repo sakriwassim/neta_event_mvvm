@@ -50,7 +50,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AddTontineView()));
+                          builder: (context) => AddTontineView()));
                 },
                 child: Button(
                   fontWeight: FontWeight.normal,
@@ -97,12 +97,12 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                     MaterialPageRoute(
                                         builder: (context) => OnTontineView(
                                               id: tickets[index].id,
-                                              image: '${tickets[index].image}',
+                                              image: tickets[index].image,
                                             )));
                               },
                               child: TontineCardWidgetH(
                                 image: '${tickets![index].image}',
-                                libelle: '${tickets[index].libelle}',
+                                libelle: '${tickets![index].libelle}',
                                 montant_regulier:
                                     "${tickets[index].montant_regulier}\$",
                                 nbr_participant:
@@ -124,17 +124,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
             );
           }
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'There are no bottons to push :)',
-            ),
-            Text(
-              'Just turn off your internet.',
-            ),
-          ],
-        ),
+        child: const CircularProgressIndicator(),
       ),
     );
   }

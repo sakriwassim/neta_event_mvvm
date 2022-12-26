@@ -7,10 +7,12 @@ import 'package:neta_event_mvvm/features/events/view_model_events/events_view_mo
 import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
+import '../../../core/size_config.dart';
 import 'one_event_view.dart';
 import 'widgets/event_card_widget.dart';
 
 class GetEventByCategorisView extends StatefulWidget {
+  //final Function callbackFunction;
   int categorieid;
   GetEventByCategorisView({
     Key? key,
@@ -27,74 +29,39 @@ class _GetEventByCategorisViewState extends State<GetEventByCategorisView> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OfflineBuilder(
-        connectivityBuilder: (
-          BuildContext context,
-          ConnectivityResult connectivity,
-          Widget child,
-        ) {
-          final bool connected = connectivity != ConnectivityResult.none;
-          if (connected) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                setState(() {
-                  data.GetEventByCategorie(widget.categorieid);
-                });
-
-                return Future.delayed(const Duration(seconds: 2));
-              },
-              child: Center(
-                child: FutureBuilder<List<OneEventViewModel>>(
-                  future: data.GetEventByCategorie(widget.categorieid),
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      var events = snapshot.data;
-                      return ListView.builder(
-                          itemCount: events?.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OneEventView(
-                                            id: events[index].id,
-                                            image: "${events[index].image}",
-                                          )),
-                                );
-                              },
-                              child: EventCardWidgetHome(
-                                description: events![index].description,
-                                events: events,
-                                date_heure: events[index].date_heure,
-                                libelle: events[index].libelle,
-                                adresse: events[index].adresse,
-                                image: events[index].image,
-                              )));
-                    }
-                  }),
-                ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: Text("no connection"),
-            );
-          }
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'There are no bottons to push :)',
-            ),
-            Text(
-              'Just turn off your internet.',
-            ),
-          ],
+    return SizedBox(
+      height: getProportionateScreenHeight(300),
+      child: Center(
+        child: FutureBuilder<List<OneEventViewModel>>(
+          future: data.GetEventByCategorie(widget.categorieid),
+          builder: ((context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else {
+              var events = snapshot.data;
+              return ListView.builder(
+                  itemCount: events?.length,
+                  itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OneEventView(
+                                    id: events[index].id,
+                                    image: '${events[index].image}',
+                                  )),
+                        );
+                      },
+                      child: EventCardWidgetHome(
+                        description: events![index].description,
+                        events: events,
+                        date_heure: events[index].date_heure,
+                        libelle: events[index].libelle,
+                        adresse: events[index].adresse,
+                        image: events[index].image,
+                      )));
+            }
+          }),
         ),
       ),
     );

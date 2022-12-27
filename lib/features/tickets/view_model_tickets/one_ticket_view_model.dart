@@ -11,4 +11,5 @@ class OneTicketViewModel {
   get qr_code => ticketModel?.Qr_code;
   get date => ticketModel?.date;
   get statut => ticketModel?.statut;
+  get date_expire => ticketModel?.date_expire;
 }

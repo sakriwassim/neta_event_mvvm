@@ -6,6 +6,7 @@ class TicketModel {
   String? prix;
   String? Qr_code;
   String? date;
+  String? date_expire;
   String? statut;
   String? created_at;
   String? updated_at;
@@ -18,6 +19,7 @@ class TicketModel {
       this.prix,
       this.Qr_code,
       this.date,
+      this.date_expire,
       this.statut,
       this.created_at,
       this.updated_at});
@@ -30,6 +32,7 @@ class TicketModel {
     prix = json['prix'];
     Qr_code = json['qr_code'];
     date = json['date'];
+    date_expire = json['date_expire'];
     statut = json['statut'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
@@ -44,6 +47,7 @@ class TicketModel {
       "prix": prix,
       "Qr_code": Qr_code,
       "date": date,
+      "date_expire": date_expire,
       "statut": statut,
       "created_at": created_at,
       "updated_at": updated_at

@@ -7,29 +7,28 @@ import '../../../../core/size_config.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
+import '../../../events/evants_repositories/events_api.dart';
+import '../../../events/view_model_events/events_view_model.dart';
 import '../../view_model_tickets/one_ticket_view_model.dart';
 
 class TicketCardWidget extends StatelessWidget {
-  // "prix": "15000",
-  // "QR_code": "qr_code",
-  // "date": "19/09/2021",
-  // "date_expire": "20/09/2021",
-  // "statut": "Valide",
-  // "created_at": "2022-12-23T10:19:34.000000Z",
-  // "updated_at": "2022-12-23T10:19:34.000000Z"
+  //event_id
+  String? event_id;
   String? libelle;
   String? prix;
   String? QR_code;
+  String? date;
   String? date_expire;
   String? statut;
-
   int? id;
 
   TicketCardWidget({
     Key? key,
     this.libelle,
+    this.event_id,
     this.prix,
     this.QR_code,
+    this.date,
     this.date_expire,
     this.statut,
     this.events,
@@ -39,6 +38,8 @@ class TicketCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var data = EventsViewModel(eventsRepository: EventsApi());
+
     SizeConfig().init(context);
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -47,11 +48,12 @@ class TicketCardWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)),
+          // borderRadius: const BorderRadius.only(
+          //     topLeft: Radius.circular(10),
+          //     topRight: Radius.circular(10),
+          //     bottomLeft: Radius.circular(10),
+          //     bottomRight: Radius.circular(10)
+          //     ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -62,118 +64,122 @@ class TicketCardWidget extends StatelessWidget {
           ],
         ),
         width: double.infinity,
-        height: getProportionateScreenHeight(120), //120,
+        height: getProportionateScreenHeight(150), //120,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                // Container(
-                //   height: double.infinity,
-                //   //color: Colors.blue,
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(5),
-                //     child: ClipRRect(
-                //       borderRadius: BorderRadius.circular(5),
-                //       child: ImageCachedInternet(
-                //         height: MediaQuery.of(context).size.height,
-                //         imageUrl: '$QR_code',
-                //         width: getProportionateScreenWidth(60),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                SizedBox(width: getProportionateScreenWidth(10)),
-                SizedBox(
-                  // height: 150,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: getProportionateScreenHeight(10)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextAirbnbCereal(
-                          color: Color.fromRGBO(226, 133, 65, 1),
-                          fontWeight: FontWeight.w500,
-                          size: 8,
-                          title: "$statut",
+            FutureBuilder(
+              future: data.GetEventByID(int.parse('$event_id')),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    height: getProportionateScreenHeight(60),
+                    // height: double.infinity,
+                    //color: Colors.blue,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenHeight(20),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: ImageCachedInternet(
+                          height: MediaQuery.of(context).size.height,
+                          imageUrl: '${snapshot.data?.image}',
+                          width: getProportionateScreenWidth(60),
                         ),
-                        TextAirbnbCereal(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w500,
-                          size: 8,
-                          title: "$libelle",
-                        ),
-                        TextAirbnbCereal(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w400,
-                          size: 13,
-                          title: "Chaque trimestre",
-                        ),
-                        TextAirbnbCereal(
-                          color: Color.fromRGBO(79, 79, 79, 1),
-                          fontWeight: FontWeight.w500,
-                          size: 15,
-                          title: " participants",
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return const CircularProgressIndicator();
+              },
+            ),
+            SizedBox(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(10)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextAirbnbCereal(
+                      color: Color.fromRGBO(226, 133, 65, 1),
+                      fontWeight: FontWeight.w400,
+                      size: 25,
+                      title: "$libelle",
+                    ),
+                    TextAirbnbCereal(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w400,
+                      size: 25,
+                      title: "$date",
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
             Spacer(),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(203, 171, 3, 168),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    height: getProportionateScreenHeight(30), // 30,
-                    width: getProportionateScreenWidth(60), //60,
-
-                    /*
-                    
-                      color: backgroundcolor,
-        borderRadius: BorderRadius.circular(5.0),
-        gradient: gradientbackground,
-                    
-                     */
-                    //color: Color.fromARGB(203, 171, 3, 168),
-                    child: Center(
-                      child: Text(
-                        '$prix',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: Colors.white),
-                      ),
-                    ), //Text
-                  ), //C
-                  InkWell(
-                    onTap: () {},
-                    child: Button(
-                      fontWeight: FontWeight.normal,
-                      text: "Participer",
-                      fontSize: fontSizeminibutton,
-                      gradientbackground: gradientbackground,
-                      height: heightminibutton,
-                      width: widthminibutton,
-                      textcolor: Colors.white,
-                    ),
+            Container(
+              height: getProportionateScreenHeight(60),
+              // height: double.infinity,
+              //color: Colors.blue,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenHeight(20),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: ImageCachedInternet(
+                    height: MediaQuery.of(context).size.height,
+                    imageUrl:
+                        'https://admin.saitech-group.com/api_event/public/Images/1671792684.png',
+                    width: getProportionateScreenWidth(60),
                   ),
-                ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+
+/**
+ 
+
+ FutureBuilder(
+              future: data.FetchAllTickets(),
+              builder: ((context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const CircularProgressIndicator();
+                } else {
+                  var tickets = snapshot.data;
+                  return ListView.builder(
+                      itemCount: tickets?.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => OnTicketView(
+                                          id: tickets![index].id,
+                                          // image: tickets[index].image,
+                                        )));
+                          },
+                          child: TicketCardWidget(
+                            QR_code: '${tickets![index].qr_code}',
+                            date_expire: '${tickets![index].date}',
+                            libelle: '${tickets![index].libelle}',
+                            prix: '${tickets![index].prix}',
+                            statut: '${tickets![index].statut}',
+                          )));
+                }
+              }),
+            ),
+
+
+ */

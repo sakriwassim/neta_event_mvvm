@@ -1,41 +1,45 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
-import '../../view_model_tickets/one_tontine_view_model.dart';
+import '../../view_model_tickets/one_ticket_view_model.dart';
 
-class TontineCardWidgetH extends StatelessWidget {
-  String? image;
+class TicketCardWidget extends StatelessWidget {
+  // "prix": "15000",
+  // "QR_code": "qr_code",
+  // "date": "19/09/2021",
+  // "date_expire": "20/09/2021",
+  // "statut": "Valide",
+  // "created_at": "2022-12-23T10:19:34.000000Z",
+  // "updated_at": "2022-12-23T10:19:34.000000Z"
   String? libelle;
-  String? periode;
-  String? nbr_participant;
-  String? montant_regulier;
-  String? status;
-  int? id;
-  Function? callbackFunction;
+  String? prix;
+  String? QR_code;
+  String? date_expire;
+  String? statut;
 
-  TontineCardWidgetH({
+  int? id;
+
+  TicketCardWidget({
     Key? key,
-    required this.id,
-    required this.image,
-    required this.libelle,
-    required this.periode,
-    required this.nbr_participant,
-    required this.montant_regulier,
-    required this.status,
-    required this.events,
-    required this.callbackFunction,
+    this.libelle,
+    this.prix,
+    this.QR_code,
+    this.date_expire,
+    this.statut,
+    this.events,
   }) : super(key: key);
 
-  final List<OneTontineViewModel>? events;
+  final List<OneTicketViewModel>? events;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    //horizontal: getProportionateScreenHeight(5),
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenHeight(5),
@@ -64,21 +68,21 @@ class TontineCardWidgetH extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  height: double.infinity,
-                  //color: Colors.blue,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: ImageCachedInternet(
-                        height: MediaQuery.of(context).size.height,
-                        imageUrl: '$image',
-                        width: getProportionateScreenWidth(60),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   height: double.infinity,
+                //   //color: Colors.blue,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(5),
+                //     child: ClipRRect(
+                //       borderRadius: BorderRadius.circular(5),
+                //       child: ImageCachedInternet(
+                //         height: MediaQuery.of(context).size.height,
+                //         imageUrl: '$QR_code',
+                //         width: getProportionateScreenWidth(60),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(width: getProportionateScreenWidth(10)),
                 SizedBox(
                   // height: 150,
@@ -93,7 +97,7 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(226, 133, 65, 1),
                           fontWeight: FontWeight.w500,
                           size: 8,
-                          title: "$status",
+                          title: "$statut",
                         ),
                         TextAirbnbCereal(
                           color: Color.fromARGB(255, 0, 0, 0),
@@ -111,7 +115,7 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(79, 79, 79, 1),
                           fontWeight: FontWeight.w500,
                           size: 15,
-                          title: "$nbr_participant participants",
+                          title: " participants",
                         ),
                       ],
                     ),
@@ -144,7 +148,7 @@ class TontineCardWidgetH extends StatelessWidget {
                     //color: Color.fromARGB(203, 171, 3, 168),
                     child: Center(
                       child: Text(
-                        '$montant_regulier',
+                        '$prix',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -153,9 +157,7 @@ class TontineCardWidgetH extends StatelessWidget {
                     ), //Text
                   ), //C
                   InkWell(
-                    onTap: () {
-                      callbackFunction!(id);
-                    },
+                    onTap: () {},
                     child: Button(
                       fontWeight: FontWeight.normal,
                       text: "Participer",
@@ -175,8 +177,3 @@ class TontineCardWidgetH extends StatelessWidget {
     );
   }
 }
-
-
-/**
- *  
- */

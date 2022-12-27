@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../tickets/views_tickets/one_ticket_view.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
@@ -47,10 +48,10 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
             ),
             InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AddTontineView()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => AddTontineView()));
                 },
                 child: Button(
                   fontWeight: FontWeight.normal,
@@ -95,9 +96,9 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => OnTontineView(
+                                        builder: (context) => OnTicketView(
                                               id: tickets[index].id,
-                                              image: tickets[index].image,
+                                              //image: tickets[index].image,
                                             )));
                               },
                               child: TontineCardWidgetH(

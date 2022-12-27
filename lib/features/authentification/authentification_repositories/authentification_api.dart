@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
+import '../models_authentification/token_model.dart';
 import 'authentification_repository.dart';
 
 class AuthentificationApi extends AuthentificationRepository {
@@ -36,18 +38,18 @@ class AuthentificationApi extends AuthentificationRepository {
           AuthentificationResponseModel.fromJson(responsebodydecode);
 
       var token = authentificationResponseModel.data.token;
-      //var iduser = authentificationResponseModel.code;
       var code = authentificationResponseModel.code;
 
-      // print(token);
-      // print(code);
+      Map<String, dynamic> payload = Jwt.parseJwt(token);
+      var tokenModel = TokenModel.fromJson(payload);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
       prefs.setString("token", authentificationtoken.toString());
-      //  prefs.setString("iduser", authentificationtoken.toString());
-      //  print("Seccess");
+      prefs.setString("userconnectedid", tokenModel.userId.toString());
 
+      print("Seccess");
+      print("*********userconnectedid**********  ${tokenModel.userId}");
       return true;
     } catch (e) {
       print("PROBLEM  sur login $e");
@@ -92,15 +94,14 @@ class AuthentificationApi extends AuthentificationRepository {
     }
   }
 
-  // @override
-  // Future<List<EventModel>> getAllEvents({String? query}) async {
-  //   Map<String, dynamic> payload = Jwt.parseJwt(TOKEN);
-
-  //   print("*************Token Decode **********${payload}");
-  //   DateTime? expiryDate = Jwt.getExpiryDate(TOKEN);
-
-  //   print(expiryDate);
-  // }
+  @override
+  Future<TokenModel> gettokenmodel() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("token");
+    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+    var tokenModel = TokenModel.fromJson(payload);
+    return tokenModel;
+  }
 }
 
 /**

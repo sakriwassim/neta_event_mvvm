@@ -70,14 +70,14 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
           elevation: 0.0,
           backgroundColor: Colors.white,
           title: const Text(
-            "Profile",
+            "Profile Edit ",
             style: TextStyle(
               color: Colors.black,
             ),
           )),
       body: Center(
         child: FutureBuilder<OneUserViewModel>(
-          future: data.GetUserByID(1),
+          future: data.GetUserConnected(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
               return SingleChildScrollView(
@@ -332,7 +332,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       fontSize: fontSizemediumbutton,
                                       gradientbackground: gradientbackground,
                                       height: heightmediumbutton,
-                                      width: widthmediumbutton, textcolor: null,
+                                      width: widthmediumbutton,
+                                      textcolor: null,
                                     )),
                               ],
                             ),
@@ -615,7 +616,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         fontSize: fontSizemediumbutton,
                                         gradientbackground: gradientbackground,
                                         height: heightmediumbutton,
-                                        width: widthmediumbutton, textcolor:  Colors.white,
+                                        width: widthmediumbutton,
+                                        textcolor: Colors.white,
                                       )),
                                 ),
                               ],

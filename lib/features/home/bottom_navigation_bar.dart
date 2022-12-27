@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/colors.dart';
-import '../../core/sidebar_menu_widget.dart';
+import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';

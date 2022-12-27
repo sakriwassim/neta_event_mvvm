@@ -5,16 +5,18 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
+import '../../authentification/models_authentification/token_model.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
 import 'event_repository.dart';
 
 class UsersApi extends UsersRepository {
   @override
-  Future<UserModel> getUserByID(int id) async {
+  Future<UserModel> getUserByID(int? id) async {
     try {
       var TOKEN =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
@@ -171,4 +173,5 @@ class UsersApi extends UsersRepository {
       return false;
     }
   }
+
 }

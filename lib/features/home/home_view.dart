@@ -8,7 +8,7 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:neta_event_mvvm/search.dart';
 
-import '../../core/sidebar_menu_widget.dart';
+import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/exclusive_card_widget.dart';

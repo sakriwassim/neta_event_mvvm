@@ -1,5 +1,9 @@
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../authentification_repositories/authentification_repository.dart';
 import '../models_authentification/login_authentification_model.dart';
+import '../models_authentification/token_model.dart';
 
 class AuthentificationViewModel {
   String title = "Event Page ";
@@ -10,7 +14,6 @@ class AuthentificationViewModel {
   Future<bool> Login(AuthentificationModel authentificationModel) async {
     var authentification =
         await authentificationRepository!.login(authentificationModel);
-
 
     return authentification;
   }
@@ -28,5 +31,10 @@ class AuthentificationViewModel {
     } catch (e) {
       return false;
     }
+  }
+
+  Future<TokenModel> Gettokenmodel() async {
+    var tokenmodel = await authentificationRepository!.gettokenmodel();
+    return tokenmodel;
   }
 }

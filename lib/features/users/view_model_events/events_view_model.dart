@@ -1,4 +1,6 @@
 import 'package:image_picker/image_picker.dart';
+import 'package:neta_event_mvvm/features/authentification/models_authentification/token_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../evants_repositories/event_repository.dart';
 import '../models_events/add_event_model.dart';
@@ -41,8 +43,16 @@ class UsersViewModel {
     return true;
   }
 
-  Future<OneUserViewModel> GetUserByID(int id) async {
+  Future<OneUserViewModel> GetUserByID(int? id) async {
     var eventModel = await eventsRepository!.getUserByID(id);
+    return OneUserViewModel(eventModel: eventModel);
+  }
+
+  Future<OneUserViewModel> GetUserConnected() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var userid = prefs.getString("userconnectedid");
+    var useridint = int.parse(userid!);
+    var eventModel = await eventsRepository!.getUserByID(useridint);
     return OneUserViewModel(eventModel: eventModel);
   }
 }

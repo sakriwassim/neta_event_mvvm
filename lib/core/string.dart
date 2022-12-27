@@ -9,7 +9,7 @@ const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
 ///LoginView
-//SvgPicture.asset(Mask),
+//SvgPicture.asset(Line2),
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
@@ -30,6 +30,9 @@ const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin
 const filtercircle = "assets/icons/home/filtercircle.svg"; //Tontin
 const Tontin = "assets/icons/home/Tontin.svg";
 const search2 = "assets/icons/home/search2.svg";
+const Tontinoff = "assets/icons/home/Tontinoff.svg";
+
+const Tontinoffsidebar = "assets/icons/home/Tontinoffsidebar.svg";
 
 const Vector = "assets/icons/packe/Vector.svg"; //check
 
@@ -50,6 +53,9 @@ const splashScreenString = "assets/icons/splashScreen/SplashScreen.svg";
 //SplashScreen
 //Date
 //Vector.svg
+
+//Line
+const Line2 = "assets/icons/user/Line.svg";
 const search = "assets/icons/home/search.svg";
 const Datecala = "assets/icons/event/Date.svg";
 

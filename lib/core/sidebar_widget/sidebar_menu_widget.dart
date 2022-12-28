@@ -9,7 +9,6 @@ import '../../features/tontines/views_tontines/tontines_view.dart';
 import '../../features/users/evants_repositories/events_api.dart';
 import '../../features/users/view_model_events/events_view_model.dart';
 import '../../features/users/view_profil/one_user_view.dart';
-import '../../features/users/views_events/events_view.dart';
 import '../size_config.dart';
 import '../string.dart';
 import '../widgets/text_widget_text1.dart';

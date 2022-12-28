@@ -8,7 +8,7 @@ import '../../../core/int.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text2.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import 'select_company_view.dart';
@@ -60,10 +60,11 @@ class _RegisterViewState extends State<RegisterView> {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: getProportionateScreenWidth(100)),
-                      child: TextWidget(
+                      child: TextAirbnbCereal(
                         title: "S'inscrire",
-                        fontSize: 24,
                         fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        size: 24,
                       ),
                     ),
                   ],
@@ -209,7 +210,8 @@ class _RegisterViewState extends State<RegisterView> {
                       height: heightbigbutton,
                       width: widthbigbutton,
                       gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.w500, textcolor:  Colors.white,
+                      fontWeight: FontWeight.w500,
+                      textcolor: Colors.white,
                     )),
                 SizedBox(
                   height: getProportionateScreenHeight(10),

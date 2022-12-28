@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
-import 'features/authentification/views_authentification/login_authentification_view.dart';
-import 'features/authentification/views_authentification/register_authentification_view.dart';
-import 'features/entry/views_entry/entry_view.dart';
+import 'core/widgets/payment_screen.dart';
 import 'features/home/bottom_navigation_bar.dart';
-import 'features/into_screen/view/home_page.dart';
-import 'features/tickets/views_tickets/tickets_view.dart';
+import 'features/tontines/views_tontines/add_tontine_view.dart';
+import 'features/users/view_profil/one_user_view.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -22,11 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      // home: IntoScreen(),
-      //  home: LoginView(),
+      home: OneUserView(),
+      //home: PaymentScreen(),
       //home: SplashScreen(),
       //home: const MyHomePage(),
-      home: GetAllTicketView(),
+      //home: GetAllTicketView(),
     );
   }
 }

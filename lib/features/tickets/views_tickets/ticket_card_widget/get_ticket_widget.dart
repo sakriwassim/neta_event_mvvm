@@ -54,7 +54,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                                         )));
                           },
                           child: TicketCardWidget(
-                            event_id :'${tickets![index].event_id}',
+                            event_id: '${tickets![index].event_id}',
                             QR_code: '${tickets![index].qr_code}',
                             date_expire: '${tickets![index].date}',
                             libelle: '${tickets![index].libelle}',

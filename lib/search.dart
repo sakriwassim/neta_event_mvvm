@@ -59,7 +59,8 @@ class SearchElement extends SearchDelegate {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => OneEventView(
-                                          id: events[index].id, image: '',
+                                          id: events[index].id,
+                                          image: '',
                                         )),
                               );
                             },
@@ -81,17 +82,7 @@ class SearchElement extends SearchDelegate {
             );
           }
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'There are no bottons to push :)',
-            ),
-            Text(
-              'Just turn off your internet.',
-            ),
-          ],
-        ),
+        child: CircularProgressIndicator(),
       ),
     );
   }

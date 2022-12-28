@@ -57,7 +57,6 @@ flutter:
     - assets/icon_add_event/
     - assets/icon_user/
     - assets/packs_bg/
-    - assets/ticket/
     - assets/splash_screen/
     - assets/intro/
     - assets/tontine/
@@ -68,7 +67,7 @@ flutter:
     - assets/icons/event/
     - assets/icons/tontine/    
     - assets/icons/user/        
-    - assets/home/
+    
   fonts:
     - family: AirbnbCereal
       fonts:

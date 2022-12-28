@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage_2/provider.dart';
-import 'package:neta_event_mvvm/core/string.dart';
-
+import 'package:neta_event_mvvm/core/widgets/circle_image.dart';
 import '../../features/users/evants_repositories/events_api.dart';
 import '../../features/users/view_model_events/events_view_model.dart';
 import '../size_config.dart';
-import '../widgets/image_cached_internet.dart';
 import '../widgets/text_widget_text1.dart';
 
 class SideHeader extends StatefulWidget {
@@ -33,18 +30,10 @@ class _SideHeaderState extends State<SideHeader> {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
+                    CircleImage(
+                      image: '${snapshot.data!.image}',
                       height: getProportionateScreenHeight(60),
                       width: getProportionateScreenWidth(60),
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: ImageCachedInternet(
-                            height: MediaQuery.of(context).size.height,
-                            imageUrl: '${snapshot.data!.image}',
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                        ),
-                      ),
                     ),
                     SizedBox(
                       width: getProportionateScreenWidth(10),

@@ -13,6 +13,7 @@ import '../../../core/string.dart';
 import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/gradient_text_widget.dart';
 import '../../../core/widgets/image_cached_internet.dart';
+import '../../../core/widgets/payment_screen.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../evants_repositories/events_api.dart';
@@ -249,8 +250,10 @@ class _OneEventViewState extends State<OneEventView> {
                                   ),
                                   const Spacer(),
                                   Container(
-                                      height: heightmediumbutton,
-                                      width: widthmediumbutton,
+                                      height: getProportionateScreenHeight(
+                                          heightmediumbutton),
+                                      width: getProportionateScreenWidth(
+                                          widthmediumbutton),
                                       decoration: const BoxDecoration(
                                         color: Color.fromARGB(31, 255, 83, 249),
                                         borderRadius: BorderRadius.all(
@@ -259,7 +262,7 @@ class _OneEventViewState extends State<OneEventView> {
                                       child: Center(
                                         child: GradientTextWidget(
                                           fontWeight: FontWeight.w400,
-                                          size: 12,
+                                          size: fontSizemediumbutton,
                                           text: 'Découvrir',
                                         ),
                                       ))
@@ -312,9 +315,8 @@ class _OneEventViewState extends State<OneEventView> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => UpdateEventView(
-                                                eventObj: snapshot.data!,
-                                              )));
+                                          builder: (context) =>
+                                              const PaymentScreen()));
                                 },
                                 child: Button(
                                   text: "PASSER LA COMMANDE",

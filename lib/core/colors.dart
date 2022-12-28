@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 const gradientbackground = LinearGradient(
   colors: [Color.fromRGBO(131, 1, 188, 1), Color.fromRGBO(210, 40, 106, 1)],
 );
+const gradientbackgroundticket = LinearGradient(
+  colors: [Color.fromARGB(255, 25, 1, 204), Color.fromARGB(255, 6, 2, 83)],
+);
 
 final Shader linearGradient = const LinearGradient(
   colors: <Color>[

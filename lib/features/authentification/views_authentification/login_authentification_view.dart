@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
-import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
 
@@ -10,6 +9,7 @@ import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -75,10 +75,11 @@ class _LoginViewState extends State<LoginView> {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: getProportionateScreenWidth(15)),
-                      child: TextWidget(
+                      child: TextAirbnbCereal(
                         title: 'Se connecter',
-                        fontSize: 24,
                         fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        size: 24,
                       ),
                     ),
                   ],

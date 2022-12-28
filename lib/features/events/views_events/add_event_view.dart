@@ -5,7 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
-import '../../../core/widgets/text_widget_text2.dart';
+
+import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
@@ -363,10 +364,11 @@ class _AddEventViewState extends State<AddEventView> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextWidget(
+                child: TextAirbnbCereal(
                   title: "choisir une photo de levenement ",
-                  fontSize: 18.00,
                   fontWeight: FontWeight.w200,
+                  color: Colors.black,
+                  size: 18,
                 ),
               ),
               Column(

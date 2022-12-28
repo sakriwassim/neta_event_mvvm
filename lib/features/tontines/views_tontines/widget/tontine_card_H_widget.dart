@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/rectangle_image.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
@@ -57,27 +58,16 @@ class TontineCardWidgetH extends StatelessWidget {
             ),
           ],
         ),
-        width: double.infinity,
-        height: getProportionateScreenHeight(120), //120,
+        height: getProportionateScreenHeight(120),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               children: [
-                Container(
-                  height: double.infinity,
-                  //color: Colors.blue,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: ImageCachedInternet(
-                        height: MediaQuery.of(context).size.height,
-                        imageUrl: '$image',
-                        width: getProportionateScreenWidth(60),
-                      ),
-                    ),
-                  ),
+                RectangleImage(
+                  height: 120,
+                  image: '$image',
+                  width: 120,
                 ),
                 SizedBox(width: getProportionateScreenWidth(10)),
                 SizedBox(
@@ -134,14 +124,7 @@ class TontineCardWidgetH extends StatelessWidget {
                     height: getProportionateScreenHeight(30), // 30,
                     width: getProportionateScreenWidth(60), //60,
 
-                    /*
-                    
-                      color: backgroundcolor,
-        borderRadius: BorderRadius.circular(5.0),
-        gradient: gradientbackground,
-                    
-                     */
-                    //color: Color.fromARGB(203, 171, 3, 168),
+                  
                     child: Center(
                       child: Text(
                         '$montant_regulier',
@@ -176,7 +159,3 @@ class TontineCardWidgetH extends StatelessWidget {
   }
 }
 
-
-/**
- *  
- */

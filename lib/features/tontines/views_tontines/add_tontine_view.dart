@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/core/widgets/text_widget_text2.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
@@ -53,10 +53,11 @@ class _AddTontineViewState extends State<AddTontineView>
           shadowColor: Colors.white,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: TextWidget(
+          title: TextAirbnbCereal(
             title: 'Ajout Tontine',
-            fontSize: 15,
             fontWeight: FontWeight.normal,
+            size: 15,
+            color: Colors.white,
           )),
       body: SingleChildScrollView(
         child: Form(
@@ -93,10 +94,11 @@ class _AddTontineViewState extends State<AddTontineView>
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: 'Nom de la tontine',
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: null,
+                            size: 18,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
@@ -117,10 +119,11 @@ class _AddTontineViewState extends State<AddTontineView>
                               },
                             ),
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: 'Montant regulier',
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            size: 18,
+                            color: Colors.black,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
@@ -141,10 +144,11 @@ class _AddTontineViewState extends State<AddTontineView>
                               },
                             ),
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: 'choisir une photo de l evenement',
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            size: 18,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10, top: 10),
@@ -155,10 +159,11 @@ class _AddTontineViewState extends State<AddTontineView>
                                 child: SvgPicture.asset(
                                     "assets/icon_user/GalleryButton.svg")),
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: 'Type',
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            size: 18,
                           ),
                           SizedBox(
                             height: getProportionateScreenHeight(200),
@@ -205,10 +210,11 @@ class _AddTontineViewState extends State<AddTontineView>
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           bottom: 10, top: 10),
-                                      child: TextWidget(
+                                      child: TextAirbnbCereal(
                                         title: 'Personnes',
-                                        fontSize: 18.00,
                                         fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                        size: 18,
                                       ),
                                     ),
                                     Padding(
@@ -244,10 +250,11 @@ class _AddTontineViewState extends State<AddTontineView>
                               ],
                             ),
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: 'Periode',
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            size: 18,
                           ),
                           SizedBox(
                             height: 120,
@@ -361,10 +368,11 @@ class _AddTontineViewState extends State<AddTontineView>
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       bottom: 10, top: 10),
-                                  child: TextWidget(
+                                  child: TextAirbnbCereal(
                                     title: 'Publicite',
-                                    fontSize: 18.00,
                                     fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                    size: 18,
                                   ),
                                 ),
                                 const Padding(

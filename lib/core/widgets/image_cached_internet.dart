@@ -16,13 +16,13 @@ class ImageCachedInternet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      key: UniqueKey(),
-      imageUrl: imageUrl,
-      fit: BoxFit.cover,
-      width: width,
       height: height,
-      placeholder: (context, url) => CircularProgressIndicator(),
+      width: height,
+      imageUrl: "$imageUrl",
+      placeholder: (context, url) =>
+          Center(child: new CircularProgressIndicator()),
       errorWidget: (context, url, error) => new Icon(Icons.error),
+      fit: BoxFit.cover,
     );
   }
 }

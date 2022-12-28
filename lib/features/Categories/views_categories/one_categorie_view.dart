@@ -12,7 +12,6 @@ class OnCategorieView extends StatefulWidget {
 
 class _OnCategorieViewState extends State<OnCategorieView> {
   var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
-  //var api = EventsApi().getEventByID(2);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class _OnCategorieViewState extends State<OnCategorieView> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return const  CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }),
         ),
       ),

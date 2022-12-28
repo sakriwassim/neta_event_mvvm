@@ -105,10 +105,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    
-    return Scaffold(
-      
 
+    return Scaffold(
       // drawer: SideBarMenu(
       //   callbackFunctionlogout: null,
       // ),
@@ -134,7 +132,9 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       IconButton(
                           icon: SvgPicture.asset(CombinedShape),
-                          onPressed: () {}),
+                          onPressed: () {
+                            print("object");
+                          }),
                       Column(
                         children: const [
                           Text(
@@ -158,10 +158,7 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                       IconButton(
-                          icon: SvgPicture.asset(Notif),
-                          onPressed: () {
-                         
-                          }),
+                          icon: SvgPicture.asset(Notif), onPressed: () {}),
                     ],
                   ),
                 ),

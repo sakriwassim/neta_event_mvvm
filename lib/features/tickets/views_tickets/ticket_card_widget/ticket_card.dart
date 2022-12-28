@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
+import '../../../../core/widgets/circle_image.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
+import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../../../events/evants_repositories/events_api.dart';
@@ -47,13 +49,7 @@ class TicketCardWidget extends StatelessWidget {
           vertical: getProportionateScreenWidth(5)),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          // borderRadius: const BorderRadius.only(
-          //     topLeft: Radius.circular(10),
-          //     topRight: Radius.circular(10),
-          //     bottomLeft: Radius.circular(10),
-          //     bottomRight: Radius.circular(10)
-          //     ),
+          gradient: gradientbackgroundticket,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -63,89 +59,86 @@ class TicketCardWidget extends StatelessWidget {
             ),
           ],
         ),
-        width: double.infinity,
+
         height: getProportionateScreenHeight(150), //120,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FutureBuilder(
-              future: data.GetEventByID(int.parse('$event_id')),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Container(
-                    height: getProportionateScreenHeight(60),
-                    // height: double.infinity,
-                    //color: Colors.blue,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenHeight(20),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: ImageCachedInternet(
-                          height: MediaQuery.of(context).size.height,
-                          imageUrl: '${snapshot.data?.image}',
-                          width: getProportionateScreenWidth(60),
-                        ),
-                      ),
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-            SizedBox(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(10)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextAirbnbCereal(
-                      color: Color.fromRGBO(226, 133, 65, 1),
-                      fontWeight: FontWeight.w400,
-                      size: 25,
-                      title: "$libelle",
-                    ),
-                    TextAirbnbCereal(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w400,
-                      size: 25,
-                      title: "$date",
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Spacer(),
-            Container(
-              height: getProportionateScreenHeight(60),
-              // height: double.infinity,
-              //color: Colors.blue,
-              child: Padding(
+        child: FutureBuilder(
+          future: data.GetEventByID(int.parse('$event_id')),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenHeight(20),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: ImageCachedInternet(
-                    height: MediaQuery.of(context).size.height,
-                    imageUrl:
-                        'https://admin.saitech-group.com/api_event/public/Images/1671792684.png',
-                    width: getProportionateScreenWidth(60),
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleImage(
+                      height: 100,
+                      image: '${snapshot.data!.image}',
+                      width: 100,
+                    ),
+                    // Spacer(),
+                    SizedBox(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: getProportionateScreenHeight(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextAirbnbCereal(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontWeight: FontWeight.w400,
+                                size: 25,
+                                title: "${snapshot.data!.libelle}"),
+                            TextAirbnbCereal(
+                                color: Color.fromARGB(255, 11, 205, 235),
+                                fontWeight: FontWeight.w500,
+                                size: 12,
+                                title: "${snapshot.data!.date_heure}"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    //Spacer(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: getProportionateScreenHeight(60),
+                          // height: double.infinity,
+                          //color: Colors.blue,
+                          child: RectangleImage(
+                            height: 60,
+                            width: 20,
+                            image: "$QR_code",
+                          ),
+                        ),
+                        SizedBox(
+                          height: getProportionateScreenHeight(10),
+                        ),
+                        TextAirbnbCereal(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontWeight: FontWeight.w500,
+                            size: 12,
+                            title: "${snapshot.data!.prix} fcfa"),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ],
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return Center(child: const CircularProgressIndicator());
+          },
         ),
       ),
     );
   }
 }
+
+
 
 
 /**

@@ -121,12 +121,13 @@ class _OnUserViewState extends State<OnUserView> {
                                         )));
                           },
                           child: Button(
-                                fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.normal,
                             text: "MODIFIER",
                             fontSize: 20,
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
-                            width: widthbigbutton, textcolor:  Colors.white,
+                            width: widthbigbutton,
+                            textcolor: Colors.white,
                           )),
                       InkWell(
                           onTap: () async {
@@ -142,12 +143,13 @@ class _OnUserViewState extends State<OnUserView> {
                             }
                           },
                           child: Button(
-                                fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.normal,
                             text: "SUPPRIMER",
                             fontSize: 20,
                             gradientbackground: gradientbackground,
                             height: heightbigbutton,
-                            width: widthbigbutton, textcolor:  Colors.white,
+                            width: widthbigbutton,
+                            textcolor: Colors.white,
                           )),
                     ],
                   )

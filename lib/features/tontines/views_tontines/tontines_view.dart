@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../tickets/views_tickets/one_ticket_view.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
-import 'add_tontine_view.dart';
 import 'one_tontine_view.dart';
 import 'widget/tontine_card_H_widget.dart';
 
@@ -96,9 +94,9 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => OnTicketView(
+                                        builder: (context) => OnTontineView(
                                               id: tickets[index].id,
-                                              //image: tickets[index].image,
+                                              image: tickets[index].image,
                                             )));
                               },
                               child: TontineCardWidgetH(

@@ -11,7 +11,7 @@ import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text2.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../../authentification/models_authentification/token_model.dart';
 import '../../authentification/view_model_authentification/authentification_view_model.dart';
 import '../evants_repositories/events_api.dart';
@@ -94,10 +94,11 @@ class _OneUserViewState extends State<OneUserView> {
                         padding: const EdgeInsets.only(right: 10, left: 10),
                         child: Column(
                           children: [
-                            TextWidget(
+                            TextAirbnbCereal(
                               title: "420",
-                              fontSize: 18.00,
                               fontWeight: FontWeight.normal,
+                              size: 18,
+                              color: Colors.black,
                             ),
                             const Text(
                               "ticket",
@@ -111,10 +112,11 @@ class _OneUserViewState extends State<OneUserView> {
                         padding: const EdgeInsets.only(right: 10, left: 10),
                         child: Column(
                           children: [
-                            TextWidget(
+                            TextAirbnbCereal(
                               title: "1800\$",
-                              fontSize: 18.00,
                               fontWeight: FontWeight.normal,
+                              size: 18,
+                              color: Colors.black,
                             ),
                             const Text(
                               "spent",
@@ -153,10 +155,10 @@ class _OneUserViewState extends State<OneUserView> {
                         horizontal: getProportionateScreenWidth(50)),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.person_outline_sharp,
-                          color: Colors.grey,
-                          size: 40.0,
+                        SvgPicture.asset(
+                            Profile), //message // SvgPicture.asset(Locationoff),
+                        SizedBox(
+                          width: getProportionateScreenWidth(20),
                         ),
                         Text(
                           snapshot.data!.nom_complet,
@@ -166,17 +168,16 @@ class _OneUserViewState extends State<OneUserView> {
                     ),
                   ),
                   SizedBox(
-                    height: getProportionateScreenHeight(10),
+                    height: getProportionateScreenHeight(20),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(50)),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.mail,
-                          color: Colors.grey,
-                          size: 40.0,
+                        SvgPicture.asset(message),
+                        SizedBox(
+                          width: getProportionateScreenWidth(20),
                         ),
                         Text(
                           snapshot.data!.email,
@@ -186,17 +187,16 @@ class _OneUserViewState extends State<OneUserView> {
                     ),
                   ),
                   SizedBox(
-                    height: getProportionateScreenHeight(10),
+                    height: getProportionateScreenHeight(20),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(50)),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.map,
-                          color: Colors.grey,
-                          size: 40.0,
+                        SvgPicture.asset(Locationoff),
+                        SizedBox(
+                          width: getProportionateScreenWidth(20),
                         ),
                         Text(
                           snapshot.data!.adresse,
@@ -206,17 +206,16 @@ class _OneUserViewState extends State<OneUserView> {
                     ),
                   ),
                   SizedBox(
-                    height: getProportionateScreenHeight(10),
+                    height: getProportionateScreenHeight(20),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(50)),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.phone,
-                          color: Colors.grey,
-                          size: 40.0,
+                        SvgPicture.asset(Chat),
+                        SizedBox(
+                          width: getProportionateScreenWidth(20),
                         ),
                         Text(
                           snapshot.data!.telephone,

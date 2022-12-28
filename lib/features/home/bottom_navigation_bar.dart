@@ -10,6 +10,7 @@ import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
+import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -56,7 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
           onPressed: () {
-            _scaffoldState.currentState!.openDrawer();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OneUserView()),
+            );
+
+            //_scaffoldState.currentState!.openDrawer();
           },
           child: Container(
             decoration: const BoxDecoration(

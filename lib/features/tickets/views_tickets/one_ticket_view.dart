@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
+import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text2.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
@@ -57,15 +58,17 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "qr_code",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.w400,
+                            color: null,
+                            size: 18,
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "${snapshot.data!.qr_code.toString()}",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.w400,
+                            color: null,
+                            size: 18,
                           ),
                         ],
                       ),
@@ -77,15 +80,17 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "prix",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.w400,
+                            color: null,
+                            size: 18,
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "${snapshot.data!.prix}",
-                            fontSize: 18.00,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.w400,
+                            color: null,
+                            size: 18,
                           ),
                         ],
                       ),
@@ -97,15 +102,17 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "date",
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: null,
+                            size: 18,
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "${snapshot.data!.date}",
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: null,
+                            size: 18,
                           ),
                         ],
                       ),
@@ -117,15 +124,17 @@ class _OnTicketViewState extends State<OnTicketView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "libelle",
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            size: 18,
                           ),
-                          TextWidget(
+                          TextAirbnbCereal(
                             title: "${snapshot.data!.libelle}",
-                            fontSize: 18.00,
                             fontWeight: FontWeight.normal,
+                            size: 18,
+                            color: Colors.black,
                           ),
                         ],
                       ),
@@ -142,7 +151,8 @@ class _OnTicketViewState extends State<OnTicketView> {
                           gradientbackground: gradientbackground,
                           height: heightmediumbutton,
                           width: widthmediumbutton,
-                              fontWeight: FontWeight.normal, textcolor:  Colors.white,
+                          fontWeight: FontWeight.normal,
+                          textcolor: Colors.white,
                         ),
                       ),
                     ),

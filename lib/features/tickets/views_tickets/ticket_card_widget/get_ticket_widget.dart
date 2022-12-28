@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tickets/views_tickets/ticket_card_widget/ticket_card.dart';
-import 'package:r_scan/r_scan.dart';
-import 'package:scan/scan.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/entry/views_entry/entry_view.dart';
 import 'core/Screen/payment_screen.dart';
 import 'features/home/bottom_navigation_bar.dart';
@@ -21,10 +22,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
+      home: LoginView(),
+
       // home: OneUserView(),
       //home: PaymentScreen(),
-      //home: SplashScreen(),
-      home: const MyHomePage(),
+      // home: SplashScreen(),
+      // home: const MyHomePage(),
       //home: GetAllTicketView(),
     );
   }

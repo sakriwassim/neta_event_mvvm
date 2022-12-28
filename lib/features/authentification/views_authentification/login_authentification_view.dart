@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
@@ -62,9 +63,16 @@ class _LoginViewState extends State<LoginView> {
             key: formkey,
             child: Column(
               children: [
-                Image.asset(
-                  LoginImage,
-                  height: getProportionateScreenHeight(100),
+                SvgPicture.asset(
+                  splashScreen1,
+                  height: getProportionateScreenHeight(50),
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                SvgPicture.asset(
+                  splashScreen2,
+                  height: getProportionateScreenHeight(15),
                 ),
                 SizedBox(
                   height: getProportionateScreenHeight(20),

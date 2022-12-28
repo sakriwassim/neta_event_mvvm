@@ -67,6 +67,7 @@ class _RegisterViewState extends State<RegisterView> {
                         size: 24,
                       ),
                     ),
+                    Spacer()
                   ],
                 ),
                 SizedBox(

@@ -583,6 +583,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.3"
+  r_scan:
+    dependency: "direct main"
+    description:
+      name: r_scan
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6+1"
   rxdart:
     dependency: transitive
     description:
@@ -590,6 +597,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.7"
+  scan:
+    dependency: "direct main"
+    description:
+      name: scan
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.6.0"
   shared_preferences:
     dependency: "direct main"
     description:

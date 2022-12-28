@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tickets/views_tickets/ticket_card_widget/ticket_card.dart';
+import 'package:r_scan/r_scan.dart';
+import 'package:scan/scan.dart';
 
+import '../../../../core/colors.dart';
+import '../../../../core/int.dart';
+import '../../../../core/size_config.dart';
+import '../../../../core/widgets/rectangle_image.dart';
+import '../../../../core/widgets/small_button_style.dart';
 import '../../../events/evants_repositories/events_api.dart';
 import '../../../events/view_model_events/events_view_model.dart';
 import '../../tickets_repositories/tickets_api.dart';
@@ -19,6 +26,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
   var dataEvents = EventsViewModel(eventsRepository: EventsApi());
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: double.maxFinite,
@@ -45,13 +53,90 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                       itemCount: tickets?.length,
                       itemBuilder: (context, index) => GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => OnTicketView(
-                                          id: tickets![index].id,
-                                          // image: tickets[index].image,
-                                        )));
+                            showGeneralDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              barrierLabel: MaterialLocalizations.of(context)
+                                  .modalBarrierDismissLabel,
+                              barrierColor: Colors.black54,
+                              pageBuilder: (context, anim1, anim2) {
+                                return Center(
+                                  child: Container(
+                                    //color: Colors.blue,
+                                    width: getProportionateScreenWidth(200),
+                                    height: getProportionateScreenHeight(250),
+                                    child: StatefulBuilder(
+                                      builder: (context, snapshot) {
+                                        return Card(
+                                          elevation: 0,
+                                          color: Colors.transparent,
+                                          //color: Color.fromARGB(255, 228, 9, 9),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                RectangleImage(
+                                                  height:
+                                                      getProportionateScreenHeight(
+                                                          150),
+                                                  // image:
+                                                  //     '${tickets[index].qr_code}',
+                                                  image:
+                                                      "https://admin.saitech-group.com/api_event/public/Images/1672243424.png",
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      getProportionateScreenHeight(
+                                                          20),
+                                                ),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    print(
+                                                        "dlhskjfdshflkjsdhfjds");
+                                                    // var result = await RScan
+                                                    //     .scanImagePath(
+                                                    //         'https://admin.saitech-group.com/api_event/public/Images/1672243424.png');
+                                                    // setState(() {
+                                                    //   print(
+                                                    //       "**************Scanresalt********$result");
+                                                    //   //this.result = result;
+                                                    // });
+                                                  },
+                                                  child: Button(
+                                                    text: "Scan Qr",
+                                                    fontSize:
+                                                        fontSizemediumbutton,
+                                                    gradientbackground:
+                                                        gradientbackground,
+                                                    height: heightmediumbutton,
+                                                    width:
+                                                        getProportionateScreenWidth(
+                                                            80),
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textcolor: Colors.white,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => OnTicketView(
+                            //               id: tickets![index].id,
+                            //               // image: tickets[index].image,
+                            //             )));
                           },
                           child: TicketCardWidget(
                             event_id: '${tickets![index].event_id}',

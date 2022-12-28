@@ -64,14 +64,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        //assets/icons/splashScreen
-        child:
-            //SvgPicture.asset(splashScreenString),
-            Image.asset(
-          'assets/SlashScreen/netaLogo.png',
-          width: MediaQuery.of(context).size.width * 0.4,
-          height: MediaQuery.of(context).size.height * 0.2,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  // color: Colors.blue,
+                  child: SvgPicture.asset(splashScreen1)),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                  // color: Colors.red,
+                  child: SvgPicture.asset(splashScreen2)),
+            ],
+          ),
         ),
       ),
     );

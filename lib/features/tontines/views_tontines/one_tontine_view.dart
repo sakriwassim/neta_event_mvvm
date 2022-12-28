@@ -11,7 +11,7 @@ import '../../../core/int.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/image_cached_internet.dart';
-import '../../../core/widgets/payment_screen.dart';
+import '../../../core/Screen/payment_screen.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../users/evants_repositories/events_api.dart';

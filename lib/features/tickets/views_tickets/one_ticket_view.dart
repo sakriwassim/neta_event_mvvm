@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/widgets/rectangle_image.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/app_bar_details.dart';
@@ -21,127 +22,46 @@ class _OnTicketViewState extends State<OnTicketView> {
 
   @override
   Widget build(BuildContext context) {
+   // SizeConfig().init(context);
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(150.0),
-          child: AppBar(
-            elevation: 0.0,
-            shadowColor: Colors.white,
-            title: const Text(
-              "Tickts",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            iconTheme: const IconThemeData(
-              color: Colors.white,
-            ),
-            flexibleSpace: const Center(
-              child: Image(
-                //assets/ticket/imageticket.png
-                image: AssetImage('assets/ticket/imageticket.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-          )),
-      body: Center(
-        child: FutureBuilder<OneTicketViewModel>(
-          future: data.GetTicketByID(widget.id),
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextAirbnbCereal(
-                            title: "qr_code",
-                            fontWeight: FontWeight.w400,
-                            color: null,
-                            size: 18,
-                          ),
-                          TextAirbnbCereal(
-                            title: "${snapshot.data!.qr_code.toString()}",
-                            fontWeight: FontWeight.w400,
-                            color: null,
-                            size: 18,
-                          ),
-                        ],
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        title: const Text(
+          "Tickts",
+          style: TextStyle(
+            color: Color.fromARGB(255, 208, 10, 10),
+          ),
+        ),
+        iconTheme: const IconThemeData(
+          color: Color.fromARGB(255, 228, 9, 9),
+        ),
+        backgroundColor: Colors.transparent,
+      ),
+      body: Container(
+        //backgroundColor: Colors.transparent,
+        child: Center(
+          child: FutureBuilder<OneTicketViewModel>(
+            future: data.GetTicketByID(widget.id),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: Colors.blue,
+                      child: RectangleImage(
+                        height: 150,
+                        //image: '${snapshot.data!.qr_code}',
+                        image: "https://picsum.photos/250?image=9",
+                        width: 150,
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextAirbnbCereal(
-                            title: "prix",
-                            fontWeight: FontWeight.w400,
-                            color: null,
-                            size: 18,
-                          ),
-                          TextAirbnbCereal(
-                            title: "${snapshot.data!.prix}",
-                            fontWeight: FontWeight.w400,
-                            color: null,
-                            size: 18,
-                          ),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextAirbnbCereal(
-                            title: "date",
-                            fontWeight: FontWeight.normal,
-                            color: null,
-                            size: 18,
-                          ),
-                          TextAirbnbCereal(
-                            title: "${snapshot.data!.date}",
-                            fontWeight: FontWeight.normal,
-                            color: null,
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextAirbnbCereal(
-                            title: "libelle",
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black,
-                            size: 18,
-                          ),
-                          TextAirbnbCereal(
-                            title: "${snapshot.data!.libelle}",
-                            fontWeight: FontWeight.normal,
-                            size: 18,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
+                    Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {},
@@ -156,14 +76,14 @@ class _OnTicketViewState extends State<OnTicketView> {
                         ),
                       ),
                     ),
-                  )
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            return const CircularProgressIndicator();
-          }),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return const CircularProgressIndicator();
+            }),
+          ),
         ),
       ),
     );

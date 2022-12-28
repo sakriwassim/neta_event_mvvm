@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 const baseUrl = "https://admin.saitech-group.com/api/v1";
-const defaultImage = "assets/intro/3.png";
+const defaultImage = "assets/image/intro/3.png";
 const LoginImage = "assets/SlashScreen/netaLogo.png";
 const nameApp = "Neta-event V 1.1.0";
 
@@ -57,7 +57,8 @@ const searchcolor = "assets/icons/event/search.svg";
 
 //locationcolor
 /*****************************splashScreen************** */
-const splashScreenString = "assets/icons/splashScreen/SplashScreen.svg";
+const splashScreen1 = "assets/icons/splashScreen/LogoPart1.svg";
+const splashScreen2 = "assets/icons/splashScreen/LogoPart2.svg";
 
 /*****************************User************** */
 const Line2 = "assets/icons/user/Line.svg";
@@ -67,6 +68,13 @@ const Chat = "assets/icons/user/Chat.svg";
 const Mask = "assets/icons/tontine/Mask.svg";
 const arrowleft = "assets/icons/tontine/arrow-left.svg";
 
+/********************************payment******************** */
+
+const PayoneerLogo = "assets/icons/payment/PayoneerLogo.svg";
+const paypalLogo = "assets/icons/payment/paypalLogo.svg";
+const visaLogo = "assets/icons/payment/visaLogo.svg";
+
+/****************************************************** */
 const patternstring =
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 

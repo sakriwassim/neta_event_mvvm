@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../core/size_config.dart';
@@ -9,7 +8,7 @@ import '../../events/view_model_events/one_event_view_model.dart';
 import '../../events/views_events/one_event_view.dart';
 
 class EventsExclusivesWidget extends StatelessWidget {
-   EventsExclusivesWidget({
+  EventsExclusivesWidget({
     Key? key,
   }) : super(key: key);
 
@@ -50,6 +49,8 @@ class EventsExclusivesWidget extends StatelessWidget {
                         adresse: "${categories[index].adresse}",
                         libelle: "${categories[index].libelle}",
                         prix: "${categories[index].prix}",
+                        height: getProportionateScreenHeight(250),
+                        width: getProportionateScreenWidth(250),
                       ),
                     ));
           }

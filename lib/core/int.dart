@@ -20,7 +20,7 @@ const fontSizeminibutton = 10.00;
 //size mediumbutton
 const heightmediumbutton = 40.00;
 const widthmediumbutton = 80.00;
-const fontSizemediumbutton = 8.00;
+const fontSizemediumbutton = 12.00;
 
 //size fliterbutton
 const heightfliterbutton = 40.00;

@@ -139,7 +139,7 @@ class _OneUserViewState extends State<OneUserView> {
                             ));
                       },
                       child: Button(
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.w500,
                         text: "Edit Profile",
                         fontSize: fontSizemediumbutton,
                         gradientbackground: gradientbackground,

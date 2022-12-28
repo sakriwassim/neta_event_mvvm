@@ -33,7 +33,7 @@ class CardGoogle extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Container(
                     child: SvgPicture.asset("$image"),
                   ),
@@ -47,7 +47,6 @@ class CardGoogle extends StatelessWidget {
                           fontStyle: FontStyle.normal,
                           fontSize: 20,
                           color: Colors.black),
-
                     ),
                   ),
                 ),

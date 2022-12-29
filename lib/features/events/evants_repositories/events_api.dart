@@ -22,11 +22,11 @@ class EventsApi extends EventsRepository {
       String link = '$baseUrl/Events/$id';
       var url = Uri.parse(link);
 
-      http.Response response = await http.get(url, headers: headersa);
-
       //var responsebody = jsonDecode(response.body);
 
       // print(eventData);
+
+      http.Response response = await http.get(url, headers: headersa);
       EventModel.fromJson(json.decode(response.body));
       var eventDate = EventModel.fromJson(json.decode(response.body));
 
@@ -163,15 +163,11 @@ class EventsApi extends EventsRepository {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
     } catch (e) {
       print(e);
     }
 
     return true;
-
-    //throw UnimplementedError();
   }
 
   @override

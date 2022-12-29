@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:neta_event_mvvm/core/widgets/circle_image.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/widget/head_widget.dart';
+import 'package:neta_event_mvvm/features/users/view_profil/widget/tab_bar.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
@@ -49,14 +50,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   final ImagePicker _picker = ImagePicker();
   List<XFile>? _imageFileList;
   dynamic _pickImageError;
-
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context}) async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
         source: source,
       );
-
       imagepath = await dataimage.addImage(pickedFile);
     } catch (e) {
       setState(() {
@@ -99,18 +98,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                         heightimage: 100,
                         widthimage: 100,
                       ),
-                      TabBar(
-                        indicatorColor: const Color.fromARGB(255, 214, 9, 204),
-                        isScrollable: true,
-                        controller: _tabController,
-                        labelColor: const Color.fromARGB(255, 214, 9, 204),
-                        unselectedLabelColor: Colors.grey,
-                        tabs: const [
-                          Tab(text: "DONNEES"),
-                          Tab(text: "PHOTO"),
-                          Tab(text: "MOT DE PASSE"),
-                        ],
-                      ),
+                      TabBarWidget(tabController: _tabController),
                       SizedBox(
                         width: double.maxFinite,
                         height: 500,
@@ -239,7 +227,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       gradientbackground: gradientbackground,
                                       height: heightmediumbutton,
                                       width: widthmediumbutton,
-                                      textcolor: null,
+                                      textcolor: Colors.white,
                                     )),
                               ],
                             ),
@@ -323,7 +311,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                                 '${snapshot.data!.telephone}'),
                                             "adresse": snapshot.data!.adresse
                                                 .toString(),
-                                            "image": imagepath,
+                                            "image":
+                                                "https://admin.saitech-group.com/api_event/public/Images/$imagepath",
                                             "password": snapshot.data!.password
                                                 .toString()
                                           };
@@ -599,7 +588,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         gradientbackground: gradientbackground,
                                         height: heightmediumbutton,
                                         width: widthmediumbutton,
-                                        textcolor: Colors.white,
+                                        textcolor:
+                                            Color.fromARGB(255, 255, 255, 255),
                                       )),
                                 ),
                               ],

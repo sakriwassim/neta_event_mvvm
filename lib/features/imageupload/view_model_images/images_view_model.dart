@@ -12,6 +12,8 @@ class ImagesViewModel {
 
   Future<String?> addImage(XFile? pickedFile) async {
     var imageurl = await imagesRepository!.addImage(pickedFile);
-    return imageurl.fileUrl;
+
+    print("**************imagenammeee************$imageurl");
+    return imageurl;
   }
 }

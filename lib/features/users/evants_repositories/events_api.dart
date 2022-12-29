@@ -1,15 +1,9 @@
 import 'dart:convert';
 
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
-import '../../authentification/models_authentification/token_model.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
 import 'event_repository.dart';
@@ -19,17 +13,14 @@ class UsersApi extends UsersRepository {
   Future<UserModel> getUserByID(int? id) async {
     try {
       var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
-      // try {
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
+
       var headersa = {'Authorization': 'Bearer $TOKEN'};
       String link = '$baseUrl/User/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.get(url, headers: headersa);
 
-      //var responsebody = jsonDecode(response.body);
-
-      // print(eventData);
       UserModel.fromJson(json.decode(response.body));
       var eventDate = UserModel.fromJson(json.decode(response.body));
 
@@ -94,7 +85,10 @@ class UsersApi extends UsersRepository {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      // final eventId = eventModel.;
+
+         var TOKEN =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
+
       final eventModelJson = eventModel.toJson();
 
       var headers = {
@@ -112,8 +106,6 @@ class UsersApi extends UsersRepository {
       http.Response response = await http.put(url,
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
     } catch (e) {
       print(e);
     }
@@ -126,6 +118,10 @@ class UsersApi extends UsersRepository {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
+
+      var TOKEN =
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
+
       final eventModelJson = addUserModel.toJson();
 
       Map<String, String> headers = {
@@ -142,15 +138,11 @@ class UsersApi extends UsersRepository {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
     } catch (e) {
       print(e);
     }
 
     return true;
-
-    //throw UnimplementedError();
   }
 
   @override
@@ -173,5 +165,4 @@ class UsersApi extends UsersRepository {
       return false;
     }
   }
-
 }

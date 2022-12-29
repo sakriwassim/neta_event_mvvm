@@ -5,7 +5,7 @@ import 'image_repository.dart';
 
 class ImagesLocal extends ImagesRepository {
   @override
-  Future<ImageModel> addImage(XFile? pickedFile) {
+  Future<String> addImage(XFile? pickedFile) {
     // TODO: implement uploadImage
     throw UnimplementedError();
   }

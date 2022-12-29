@@ -31,7 +31,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
       child: RefreshIndicator(
         onRefresh: () async {
           setState(() {
-            data.FetchAllTickets();
+            data.GetTicketsUserConnected();
           });
 
           return Future.delayed(const Duration(seconds: 2));
@@ -41,7 +41,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
           height: MediaQuery.of(context).size.height,
           child: Center(
             child: FutureBuilder(
-              future: data.FetchAllTickets(),
+              future: data.GetTicketsUserConnected(),
               builder: ((context, snapshot) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator();

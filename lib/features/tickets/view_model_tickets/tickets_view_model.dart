@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
@@ -36,4 +37,30 @@ class TicketsViewModel {
     var ticketModel = await ticketsRepository!.deleteTicketByID(id);
     return true;
   }
+
+  Future<List<OneTicketViewModel>> GetTicketsUserConnected() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var userid = prefs.getString("userconnectedid");
+    var useridint = int.parse(userid!);
+
+    List<TicketModel> list =
+        await ticketsRepository!.getTicketsByUser(useridint);
+    return list
+        .map((listTicket) => OneTicketViewModel(ticketModel: listTicket))
+        .toList();
+  }
+
+  Future<List<OneTicketViewModel>> GetTicketsByUser(int id) async {
+    List<TicketModel> list = await ticketsRepository!.getTicketsByUser(id);
+    return list
+        .map((listTicket) => OneTicketViewModel(ticketModel: listTicket))
+        .toList();
+  }
 }
+
+/**
+ * 
+
+
+ 
+ */

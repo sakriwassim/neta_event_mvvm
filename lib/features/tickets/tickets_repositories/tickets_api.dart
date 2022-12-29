@@ -32,6 +32,34 @@ class TicketsApi extends TicketsRepository {
     }
   }
 
+//https://admin.saitech-group.com/api/v1/TicketsByUser/10
+
+  @override
+  Future<List<TicketModel>> getTicketsByUser(int id) async {
+    try {
+      List<TicketModel> ticketsList = [];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+
+      var headersa = {'Authorization': 'Bearer ${token!}'};
+
+      String link = '$baseUrl/TicketsByUser/$id';
+
+      var url = Uri.parse(link);
+
+      var response = await http.get(url, headers: headersa);
+      var responsebody = jsonDecode(response.body);
+
+      var list = responsebody as List;
+      ticketsList = list.map((ticket) => TicketModel.fromJson(ticket)).toList();
+      print(responsebody);
+      return ticketsList;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
   @override
   Future<List<TicketModel>> getAllTickets() async {
     try {
@@ -124,8 +152,7 @@ class TicketsApi extends TicketsRepository {
 
       final body = eventModelJson;
 
-      String link =
-          '$baseUrl/Tickets/$eventId';
+      String link = '$baseUrl/Tickets/$eventId';
 
       var url = Uri.parse(link);
 

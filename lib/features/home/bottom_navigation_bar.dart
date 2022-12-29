@@ -57,12 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => OneUserView()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => OneUserView()),
+            // );
 
-            //_scaffoldState.currentState!.openDrawer();
+            _scaffoldState.currentState!.openDrawer();
           },
           child: Container(
             decoration: const BoxDecoration(

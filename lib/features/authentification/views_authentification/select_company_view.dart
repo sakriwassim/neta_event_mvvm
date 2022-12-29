@@ -50,7 +50,7 @@ class _SelectCompanyState extends State<SelectCompany> {
   }
 
   navtoRegisterView() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const RegisterView(),

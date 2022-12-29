@@ -62,7 +62,7 @@ class _RegisterViewState extends State<RegisterView> {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(100)),
+                          horizontal: getProportionateScreenWidth(15)),
                       child: TextAirbnbCereal(
                         title: "S'inscrire",
                         fontWeight: FontWeight.w500,
@@ -132,133 +132,147 @@ class _RegisterViewState extends State<RegisterView> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(15)),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: "labelText",
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: SvgPicture.asset(lockicon),
-                      ),
-                      labelStyle: const TextStyle(
-                        color: Colors.grey, //<-- SEE HERE
-                      ),
-                      hintText: "hintText",
-                      suffixIcon: IconButton(
-                        icon: _obscureText
-                            ? SvgPicture.asset(
-                                hiddenicon,
-                                height: 24,
-                                width: 24,
-                              )
-                            : SvgPicture.asset(
-                                hiddeniconoff,
-                                height: 24,
-                                width: 24,
-                              ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                      ),
-                    ),
-                    validator: (value) {
-                      String pattern = patternstring;
-                      RegExp regex = RegExp(pattern);
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(15)),
+                    child: StatefulBuilder(
+                      builder: (BuildContext context,
+                          void Function(void Function()) setState) {
+                        return TextFormField(
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            focusedBorder: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color.fromARGB(255, 255, 0, 208)),
+                            ),
+                            border: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                borderSide: BorderSide(
+                                  width: 1,
+                                )),
+                            labelText: "labelText",
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: SvgPicture.asset(lockicon),
+                            ),
+                            labelStyle: const TextStyle(
+                              color: Colors.grey, //<-- SEE HERE
+                            ),
+                            hintText: "hintText",
+                            suffixIcon: IconButton(
+                              icon: _obscureText
+                                  ? SvgPicture.asset(
+                                      hiddenicon,
+                                      height: 24,
+                                      width: 24,
+                                    )
+                                  : SvgPicture.asset(
+                                      hiddeniconoff,
+                                      height: 24,
+                                      width: 24,
+                                    ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
+                          ),
+                          validator: (value) {
+                            String pattern = patternstring;
+                            RegExp regex = RegExp(pattern);
 
-                      if (value == null ||
-                          value.isEmpty ||
-                          !regex.hasMatch(value)) {
-                        return "Enter a valid mot de pass";
-                      } else {
-                        return null;
-                      }
-                    },
-                    onChanged: (text) {
-                      passwordfield = text;
-                    },
-                  ),
-                ),
+                            if (value == null ||
+                                value.isEmpty ||
+                                !regex.hasMatch(value)) {
+                              return "Enter a valid mot de pass";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (text) {
+                            passwordfield = text;
+                          },
+                        );
+                      },
+                    )),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: getProportionateScreenWidth(15)),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-                      ),
-                      border: const OutlineInputBorder(
+                  child: StatefulBuilder(builder: (BuildContext context,
+                      void Function(void Function()) setState) {
+                    return TextFormField(
+                      // password1
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                           borderSide: BorderSide(
-                            width: 1,
-                          )),
-                      labelText: "labelText",
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: SvgPicture.asset(lockicon),
+                              width: 1,
+                              color: Color.fromARGB(255, 255, 0, 208)),
+                        ),
+                        border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                            borderSide: BorderSide(
+                              width: 1,
+                            )),
+                        labelText: "labelText",
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: SvgPicture.asset(lockicon),
+                        ),
+                        labelStyle: const TextStyle(
+                          color: Colors.grey, //<-- SEE HERE
+                        ),
+                        hintText: "hintText",
+                        suffixIcon: IconButton(
+                          icon: _obscureText
+                              ? SvgPicture.asset(
+                                  hiddenicon,
+                                  height: 24,
+                                  width: 24,
+                                )
+                              : SvgPicture.asset(
+                                  hiddeniconoff,
+                                  height: 24,
+                                  width: 24,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
                       ),
-                      labelStyle: const TextStyle(
-                        color: Colors.grey, //<-- SEE HERE
-                      ),
-                      hintText: "hintText",
-                      suffixIcon: IconButton(
-                        icon: _obscureText
-                            ? SvgPicture.asset(
-                                hiddenicon,
-                                height: 24,
-                                width: 24,
-                              )
-                            : SvgPicture.asset(
-                                hiddeniconoff,
-                                height: 24,
-                                width: 24,
-                              ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                      ),
-                    ),
-                    validator: (value) {
-                      String pattern = patternstring;
-                      RegExp regex = RegExp(pattern);
+                      validator: (value) {
+                        String pattern = patternstring;
+                        RegExp regex = RegExp(pattern);
 
-                      if (value == null ||
-                          value.isEmpty ||
-                          !regex.hasMatch(value)) {
-                        return "Enter a valid mot de pass";
-                      } else if (passwordfield == passwordfield2) {
-                        return null;
-                      } else {
-                        return "vérifier votre mot de passe";
-                      }
-                    },
-                    onChanged: (text) {
-                      passwordfield2 = text;
-                    },
-                  ),
+                        if (value == null ||
+                            value.isEmpty ||
+                            !regex.hasMatch(value)) {
+                          return "Enter a valid mot de pass";
+                        } else if (passwordfield == passwordfield2) {
+                          return null;
+                        } else {
+                          return "vérifier votre mot de passe";
+                        }
+                      },
+                      onChanged: (text) {
+                        passwordfield2 = text;
+                      },
+                    );
+                  }),
                 ),
                 SizedBox(
                   height: getProportionateScreenHeight(20),

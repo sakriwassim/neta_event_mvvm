@@ -3,6 +3,7 @@ import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/entry/views_entry/entry_view.dart';
 import 'core/Screen/payment_screen.dart';
+import 'features/authentification/views_authentification/register_authentification_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/tontines/views_tontines/add_tontine_view.dart';
 import 'features/users/view_profil/one_user_view.dart';
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      home: LoginView(),
 
+      //    home: LoginView(),
+      home: RegisterView(),
       // home: OneUserView(),
       //home: PaymentScreen(),
       // home: SplashScreen(),

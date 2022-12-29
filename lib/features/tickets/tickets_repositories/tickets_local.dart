@@ -24,8 +24,18 @@ class TicketsLocal extends TicketsRepository {
     throw UnimplementedError();
   }
 
+ 
+
+  
+
   @override
   Future<AddTicketModel> updateTicketByID(AddTicketModel addTicketModel) {
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<TicketModel>> getTicketsByUser(int id) {
+    // TODO: implement getTicketsByUser
     throw UnimplementedError();
   }
 }

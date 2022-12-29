@@ -1,12 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:neta_event_mvvm/core/widgets/circle_image.dart';
+import 'package:neta_event_mvvm/features/users/view_profil/widget/head_widget.dart';
+
 import '../../../core/colors.dart';
+import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../evants_repositories/events_api.dart';
@@ -32,6 +38,8 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   late String ancienpasswordfield;
   late String nouveaupasswordfield;
   late String confirmerpasswordfield;
+  bool _obscureText = false;
+
   String? imagepath;
 
   var data = UsersViewModel(eventsRepository: UsersApi());
@@ -85,25 +93,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                   key: formkey,
                   child: Column(
                     children: [
-                      Column(
-                        children: [
-                          /********** */
-                          CircleAvatar(
-                            radius: 60.0,
-                            backgroundImage: AdvancedNetworkImage(
-                                snapshot.data!.image,
-                                fallbackAssetImage: defaultImage),
-                            backgroundColor: Colors.transparent,
-                          ),
-
-/**/ /////////////// */
-
-                          Text(
-                            snapshot.data!.nom_complet,
-                            style: const TextStyle(
-                                color: Colors.black, fontSize: 20),
-                          ),
-                        ],
+                      HeadWidget(
+                        title: snapshot.data!.nom_complet,
+                        image: snapshot.data!.image,
+                        heightimage: 100,
+                        widthimage: 100,
                       ),
                       TabBar(
                         indicatorColor: const Color.fromARGB(255, 214, 9, 204),
@@ -128,32 +122,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: 'Sakri wassim',
-                                      prefixIcon: Icon(
-                                        Icons.person,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(255, 114, 59, 3),
-                                      ),
-                                      hintText: 'entre le email',
+                                    decoration: textFieldDecorationWithicon(
+                                      "entre le ",
+                                      "Sanogo Yaya",
+                                      Colors.grey,
+                                      Profile,
                                     ),
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -172,35 +145,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
                                     //controller: TextEditingController(text: widget.eventObj.prix),
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: 'Adresse e-mail',
-                                      prefixIcon: Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le email',
+                                    decoration: textFieldDecorationWithicon(
+                                      "entre le email",
+                                      "Adresse e-mail",
+                                      Colors.grey,
+                                      message,
                                     ),
-
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "entre le email";
@@ -217,33 +167,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: 'Address',
-                                      prefixIcon: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le Address',
+                                    decoration: textFieldDecorationWithicon(
+                                      "entre le Address",
+                                      "Address",
+                                      Colors.grey,
+                                      Locationoff,
                                     ),
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -260,33 +188,11 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.all(15),
                                   child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: ' phone nbr',
-                                      prefixIcon: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le phone nbr',
+                                    decoration: textFieldDecorationWithicon(
+                                      "entre le phone nbr",
+                                      "phone nbr",
+                                      Colors.grey,
+                                      Chat,
                                     ),
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -447,130 +353,206 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 const ColumnOfTestWidget(),
                                 Padding(
                                   padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: ' Ancien mot de passe',
-                                      prefixIcon: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le ancien password',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "entre le ancien password";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    onChanged: (text) {
-                                      ancienpasswordfield = text;
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: ' Nouveau mot de passe',
-                                      prefixIcon: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le nouveau password',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "entre le nouveau password";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    onChanged: (text) {
-                                      nouveaupasswordfield = text;
+                                  child: StatefulBuilder(
+                                    builder: (BuildContext context,
+                                        void Function(void Function())
+                                            setState) {
+                                      return TextFormField(
+                                        obscureText: _obscureText,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            borderSide: BorderSide(
+                                                width: 1,
+                                                color: Color.fromARGB(
+                                                    255, 255, 0, 208)),
+                                          ),
+                                          border: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12)),
+                                              borderSide: BorderSide(
+                                                width: 1,
+                                              )),
+                                          labelText: "Mot de passe",
+                                          prefixIcon: Padding(
+                                            padding: const EdgeInsets.all(15),
+                                            child: SvgPicture.asset(lockicon),
+                                          ),
+                                          labelStyle: const TextStyle(
+                                            color: Colors.grey, //<-- SEE HERE
+                                          ),
+                                          hintText: "entre le password",
+                                          suffixIcon: IconButton(
+                                            icon: _obscureText
+                                                ? SvgPicture.asset(
+                                                    hiddenicon,
+                                                    height: 24,
+                                                    width: 24,
+                                                  )
+                                                : SvgPicture.asset(
+                                                    hiddeniconoff,
+                                                    height: 24,
+                                                    width: 24,
+                                                  ),
+                                            onPressed: () {
+                                              setState(() {
+                                                print(_obscureText);
+                                                _obscureText = !_obscureText;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "entre le ancien password";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        onChanged: (text) {
+                                          ancienpasswordfield = text;
+                                        },
+                                      );
                                     },
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF2F2F2),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: Color.fromARGB(
-                                                255, 255, 0, 208)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                          )),
-                                      labelText: '  Confirmer mot de passe',
-                                      prefixIcon: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.grey,
-                                      ),
-                                      labelStyle: TextStyle(
-                                        color: Color.fromARGB(
-                                            255, 114, 59, 3), //<-- SEE HERE
-                                      ),
-                                      hintText: 'entre le password',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "entre le password";
-                                      } else {
-                                        return null;
-                                      }
+                                  child: StatefulBuilder(
+                                    builder: (BuildContext context,
+                                        void Function(void Function())
+                                            setState) {
+                                      return TextFormField(
+                                        obscureText: _obscureText,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            borderSide: BorderSide(
+                                                width: 1,
+                                                color: Color.fromARGB(
+                                                    255, 255, 0, 208)),
+                                          ),
+                                          border: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12)),
+                                              borderSide: BorderSide(
+                                                width: 1,
+                                              )),
+                                          labelText: "Mot de passe",
+                                          prefixIcon: Padding(
+                                            padding: const EdgeInsets.all(15),
+                                            child: SvgPicture.asset(lockicon),
+                                          ),
+                                          labelStyle: const TextStyle(
+                                            color: Colors.grey, //<-- SEE HERE
+                                          ),
+                                          hintText: "entre le password",
+                                          suffixIcon: IconButton(
+                                            icon: _obscureText
+                                                ? SvgPicture.asset(
+                                                    hiddenicon,
+                                                    height: 24,
+                                                    width: 24,
+                                                  )
+                                                : SvgPicture.asset(
+                                                    hiddeniconoff,
+                                                    height: 24,
+                                                    width: 24,
+                                                  ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _obscureText = !_obscureText;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "entre le nouveau password";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        onChanged: (text) {
+                                          nouveaupasswordfield = text;
+                                        },
+                                      );
                                     },
-                                    onChanged: (text) {
-                                      confirmerpasswordfield = text;
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: StatefulBuilder(
+                                    builder: (BuildContext context,
+                                        void Function(void Function())
+                                            setState) {
+                                      return TextFormField(
+                                        obscureText: _obscureText,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            borderSide: BorderSide(
+                                                width: 1,
+                                                color: Color.fromARGB(
+                                                    255, 255, 0, 208)),
+                                          ),
+                                          border: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12)),
+                                              borderSide: BorderSide(
+                                                width: 1,
+                                              )),
+                                          labelText: "Mot de passe",
+                                          prefixIcon: Padding(
+                                            padding: const EdgeInsets.all(15),
+                                            child: SvgPicture.asset(lockicon),
+                                          ),
+                                          labelStyle: const TextStyle(
+                                            color: Colors.grey, //<-- SEE HERE
+                                          ),
+                                          hintText: "entre le password",
+                                          suffixIcon: IconButton(
+                                            icon: _obscureText
+                                                ? SvgPicture.asset(
+                                                    hiddenicon,
+                                                    height: 24,
+                                                    width: 24,
+                                                  )
+                                                : SvgPicture.asset(
+                                                    hiddeniconoff,
+                                                    height: 24,
+                                                    width: 24,
+                                                  ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _obscureText = !_obscureText;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "entre le password";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        onChanged: (text) {
+                                          confirmerpasswordfield = text;
+                                        },
+                                      );
                                     },
                                   ),
                                 ),

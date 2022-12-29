@@ -30,7 +30,7 @@ class _LoginViewState extends State<LoginView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
-//  final bool _isObscure = true;
+  bool _obscureText = true;
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -126,34 +126,7 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(
                   height: 15,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(15)),
-                  child: TextFormField(
-                    decoration: textFieldDecorationWithTowicon(
-                      "Mot de passe",
-                      "entre le password",
-                      Colors.grey,
-                      lockicon,
-                      hiddenicon,
-                    ),
-                    validator: (value) {
-                      String pattern = patternstring;
-                      RegExp regex = RegExp(pattern);
-
-                      if (value == null ||
-                          value.isEmpty ||
-                          !regex.hasMatch(value)) {
-                        return "Enter a valid mot de pass";
-                      } else {
-                        return null;
-                      }
-                    },
-                    onChanged: (text) {
-                      passwordfield = text;
-                    },
-                  ),
-                ),
+                PasswordField(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
@@ -239,6 +212,74 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Padding PasswordField() {
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+      child: TextFormField(
+        keyboardType: TextInputType.text,
+        // controller: _userPasswordController,
+        obscureText: _obscureText,
+
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide:
+                BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
+          ),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderSide: BorderSide(
+                width: 1,
+              )),
+          labelText: "Mot de passe",
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(15),
+            child: SvgPicture.asset(lockicon),
+          ),
+          labelStyle: const TextStyle(
+            color: Colors.grey, //<-- SEE HERE
+          ),
+          hintText: "entre le password",
+          suffixIcon: IconButton(
+            icon: _obscureText
+                ? SvgPicture.asset(
+                    hiddenicon,
+                    height: 24,
+                    width: 24,
+                  )
+                : SvgPicture.asset(
+                    hiddeniconoff,
+                    height: 24,
+                    width: 24,
+                  ),
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          ),
+        ),
+
+        validator: (value) {
+          String pattern = patternstring;
+          RegExp regex = RegExp(pattern);
+
+          if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+            return "Enter a valid mot de pass";
+          } else {
+            return null;
+          }
+        },
+        onChanged: (text) {
+          passwordfield = text;
+        },
       ),
     );
   }

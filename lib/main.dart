@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themedata(),
-      home: LoginView(),
+      // home: LoginView(),
 
       // home: OneUserView(),
       //home: PaymentScreen(),
       // home: SplashScreen(),
-      // home: const MyHomePage(),
+      home: const MyHomePage(),
       //home: GetAllTicketView(),
     );
   }

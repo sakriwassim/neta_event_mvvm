@@ -14,6 +14,8 @@ const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
 const hiddenicon = "assets/icons/authentification/hidden.svg";
+const hiddeniconoff = "assets/icons/authentification/hiddeniconoff.svg";
+
 const message = "assets/icons/authentification/message.svg";
 const Profile = "assets/icons/authentification/Profile.svg";
 const Hiddencolor = "assets/icons/authentification/Hiddencolor.svg";

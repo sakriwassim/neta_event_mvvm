@@ -1,19 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
-
-import 'package:neta_event_mvvm/core/widgets/circle_image.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/widget/head_widget.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/widget/tab_bar.dart';
-
 import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text1.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../evants_repositories/events_api.dart';

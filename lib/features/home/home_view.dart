@@ -133,7 +133,7 @@ class _HomeViewState extends State<HomeView> {
                       IconButton(
                           icon: SvgPicture.asset(CombinedShape),
                           onPressed: () {
-                            print("object");
+                            Scaffold.of(context).openDrawer();
                           }),
                       Column(
                         children: const [

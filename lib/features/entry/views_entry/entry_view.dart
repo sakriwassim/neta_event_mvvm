@@ -24,14 +24,59 @@ class _SplashScreenState extends State<SplashScreen> {
   static bool _isSet = false;
   var data = EntryViewModel(entryRepository: EntryLocal());
 
+    //  SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   prefs.clear();
+    //   prefs.setString("token", authentificationtoken.toString());
+
   gettoken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     token = prefs.getString("token");
     return token;
   }
 
+  _navigatettologin() async {
+    Timer(const Duration(seconds: 2), () async {
+      print("tokennnnnn***   $token");
+      //var token = "fljghkjgh";
+      if (token.toString().isNotEmpty || token != "" || token != null) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginView(),
+            ));
+      } else {
+        //ScreenOne//MyHomePage
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const IntoScreen(),
+            ));
+      }
+    });
+  }
+
   _navigatettohomepage() async {
-    //print(token);
+    Timer(const Duration(seconds: 2), () async {
+      print("tokennnnnn***   $token");
+      //var token = "fljghkjgh";
+      if (token.toString().isNotEmpty || token != "" || token != null) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const IntoScreen(),
+            ));
+      } else {
+        //ScreenOne//MyHomePage
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const IntoScreen(),
+            ));
+      }
+    });
+  }
+
+  _navigatettointo() async {
     Timer(const Duration(seconds: 2), () async {
       print("tokennnnnn***   $token");
       //var token = "fljghkjgh";
@@ -54,13 +99,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    gettoken();
-    // if (!_isSet) {
-    _navigatettohomepage();
-    // _isSet = true;
-    // }
 
-    print("token :  *****$token");
+
+    // gettoken();
+    if (!_isSet) {
+
+   
+      _navigatettologin();
+      _isSet = true;
+    } else {
+      _navigatettointo();
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,

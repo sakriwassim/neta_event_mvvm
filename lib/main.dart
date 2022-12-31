@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: themedata(),
 
-      //    home: LoginView(),
-      home: RegisterView(),
+      //home: LoginView(),
+      //home: RegisterView(),
       // home: OneUserView(),
       //home: PaymentScreen(),
-      // home: SplashScreen(),
-      // home: const MyHomePage(),
+      //home: SplashScreen(),
+      home: const MyHomePage(),
       //home: GetAllTicketView(),
     );
   }

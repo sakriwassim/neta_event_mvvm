@@ -12,6 +12,7 @@ import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
 import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
+import 'view_model_events/events_view_model.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -34,7 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeView();
+
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
+  openDrawer() {
+    _scaffoldState.currentState!.openDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => OneUserView()),
-            // );
-
-            _scaffoldState.currentState!.openDrawer();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OneUserView()),
+            );
           },
           child: Container(
             decoration: const BoxDecoration(

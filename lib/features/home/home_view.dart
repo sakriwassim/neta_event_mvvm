@@ -5,13 +5,10 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/core/int.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:neta_event_mvvm/search.dart';
 
-import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
-import '../../core/widgets/exclusive_card_widget.dart';
 import '../../core/widgets/text_widget_text1.dart';
 import '../Categories/categories_repositories/categories_api.dart';
 import '../Categories/view_model_categories/categories_view_model.dart';
@@ -22,11 +19,8 @@ import '../authentification/authentification_repositories/authentification_api.d
 import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
-import '../events/view_model_events/one_event_view_model.dart';
 import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
-import '../events/views_events/one_event_view.dart';
-import '../events/views_events/widgets/event_card_widget.dart';
 import '../packs/packs_repositories/packs_api.dart';
 import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
@@ -64,11 +58,11 @@ class _HomeViewState extends State<HomeView> {
   var data2 = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  logout() {
-    setState(() {
-      data2.Cleanpref();
-    });
-  }
+  // logout() {
+  //   setState(() {
+  //     data2.Cleanpref();
+  //   });
+  // }
 
   navGetAllCategorieView() {
     Navigator.push(
@@ -98,18 +92,11 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-// drawer: SideBarMenu(
-  //   callbackFunctionlogout: logout,
-  // ),
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     return Scaffold(
-      // drawer: SideBarMenu(
-      //   callbackFunctionlogout: null,
-      // ),
       body: SafeArea(
         child: Column(children: [
           Container(
@@ -134,7 +121,6 @@ class _HomeViewState extends State<HomeView> {
                           icon: SvgPicture.asset(CombinedShape),
                           onPressed: () {
                             Scaffold.of(context).openDrawer();
-                            print("object");
                           }),
                       Column(
                         children: const [

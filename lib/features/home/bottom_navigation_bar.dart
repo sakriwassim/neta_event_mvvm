@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
+import '../authentification/authentification_repositories/authentification_api.dart';
+import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
@@ -36,8 +40,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
+  var dataAuthentificationViewModel = AuthentificationViewModel(
+      authentificationRepository: AuthentificationApi());
+
   openDrawer() {
     _scaffoldState.currentState!.openDrawer();
+  }
+
+  navtohome() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool("isLoggedIn", false);
+    prefs.remove("token");
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginView()));
   }
 
   @override
@@ -50,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       key: _scaffoldState,
       drawer: SideBarMenu(
-        callbackFunctionlogout: null,
+        callbackFunctionlogout: navtohome,
       ),
       backgroundColor: Colors.white,
       body: PageStorage(

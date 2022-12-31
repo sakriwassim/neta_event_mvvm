@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
 import 'package:neta_event_mvvm/features/into_screen/utils/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetStartBtn extends StatelessWidget {
   const GetStartBtn({
@@ -15,7 +16,9 @@ class GetStartBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setBool("skipinto", true);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(

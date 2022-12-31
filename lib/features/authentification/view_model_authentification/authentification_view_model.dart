@@ -1,4 +1,3 @@
-import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../authentification_repositories/authentification_repository.dart';
@@ -24,17 +23,23 @@ class AuthentificationViewModel {
     return authentification;
   }
 
-  Future<bool> Cleanpref() async {
-    try {
-      var token = await authentificationRepository!.cleanpref();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  // Future<bool> Cleanpref() async {
+  //   try {
+  //     var token = await authentificationRepository!.cleanpref();
+  //     return true;
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
 
   Future<TokenModel> Gettokenmodel() async {
     var tokenmodel = await authentificationRepository!.gettokenmodel();
     return tokenmodel;
+  }
+
+  Future Gettoken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("token");
+    return token;
   }
 }

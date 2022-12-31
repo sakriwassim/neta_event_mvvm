@@ -142,7 +142,8 @@ class SideBarMenu extends StatelessWidget {
             ),
             leading: SvgPicture.asset(Deconnect),
             onTap: () {
-              data2.Cleanpref();
+              callbackFunctionlogout!();
+              // data2.Cleanpref();
               //callbackFunctionlogout;
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LoginView()));

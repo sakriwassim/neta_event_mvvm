@@ -44,7 +44,8 @@ class AuthentificationApi extends AuthentificationRepository {
       var tokenModel = TokenModel.fromJson(payload);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.clear();
+      //prefs.clear();
+      //  prefs.remove("token");
       prefs.setString("token", authentificationtoken.toString());
       prefs.setString("userconnectedid", tokenModel.userId.toString());
 
@@ -88,6 +89,7 @@ class AuthentificationApi extends AuthentificationRepository {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
+     
       return true;
     } catch (e) {
       return false;
@@ -103,8 +105,3 @@ class AuthentificationApi extends AuthentificationRepository {
     return tokenModel;
   }
 }
-
-/**
- 
- iss: http://frozen-refuge-80965.herokuapp.com/api/v1/Login, iat: 1664550523, exp: 1664554123, nbf: 1664550523, jti: I5vDCKosgQUaXz6l, sub: 3, prv: 23bd5c8949f600adb39e701c400872db7a5976f7, user_id: 3, email: wassiml@email.com
- */

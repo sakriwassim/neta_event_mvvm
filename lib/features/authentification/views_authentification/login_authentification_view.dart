@@ -5,6 +5,7 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
@@ -35,13 +36,7 @@ class _LoginViewState extends State<LoginView> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  navtoForgetpasswordRow() {
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => Forgetpassword(),
-    //     ));
-  }
+
 
   navtoRegisterView() {
     Navigator.push(
@@ -153,6 +148,9 @@ class _LoginViewState extends State<LoginView> {
 
                         bool verif = await data.Login(authentificationModel);
                         if (verif == true) {
+                          final prefs = await SharedPreferences.getInstance();
+                          prefs.setBool("isLoggedIn", true);
+
                           // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(
                               context,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:neta_event_mvvm/features/events/views_events/widgets/SearchWidget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
 import '../../../core/size_config.dart';
@@ -25,17 +24,6 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
 
   final searchcontroler = TextEditingController();
 
-  // void searchEvent(String query) async {
-  //   final events = await data.FetchAllEvents(query);
-  //   if (!mounted) return;
-  //   setState(() {
-  //     this.query = query;
-  //    // this.events = events;
-  //   });
-  // }
-
-  // Widget buildSearch() =>
-  //     SearchWidget(text: query, onChanged: searchEvent, hintText: "Chercher");
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +60,8 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                   width: getProportionateScreenWidth(180),
                   child: TextField(
                     controller: searchcontroler,
-                    // onChanged: (value) {
-                    //   data.FetchAllEvents("$value");
-                    // },
-                    decoration: InputDecoration(
+                  
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Chercher',
                       hintStyle: TextStyle(

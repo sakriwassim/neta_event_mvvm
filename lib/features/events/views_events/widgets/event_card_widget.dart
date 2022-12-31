@@ -14,12 +14,11 @@ class EventCardWidgetHome extends StatelessWidget {
   String? image;
   EventCardWidgetHome({
     Key? key,
-    required this.events,
     required this.description,
     required this.date_heure,
     required this.libelle,
     required this.adresse,
-    required this.image,
+    required this.image, this.events,
   }) : super(key: key);
 
   final List<OneEventViewModel>? events;
@@ -49,11 +48,11 @@ class EventCardWidgetHome extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
-                  child:ImageCachedInternet(
-          height: MediaQuery.of(context).size.height,
-          imageUrl: '$image',
-          width: MediaQuery.of(context).size.width,
-        ),
+                  child: ImageCachedInternet(
+                    height: MediaQuery.of(context).size.height,
+                    imageUrl: '$image',
+                    width: MediaQuery.of(context).size.width,
+                  ),
                 ),
               ),
             ),

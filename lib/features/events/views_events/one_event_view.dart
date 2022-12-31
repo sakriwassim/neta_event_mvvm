@@ -56,7 +56,7 @@ class _OneEventViewState extends State<OneEventView> {
             return RefreshIndicator(
               onRefresh: () async {
                 setState(() {
-                  data.FetchAllEvents();
+                  data.FetchAllEvents("");
                 });
 
                 return Future.delayed(const Duration(seconds: 2));

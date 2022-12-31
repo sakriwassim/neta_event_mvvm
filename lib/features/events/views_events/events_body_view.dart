@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:neta_event_mvvm/features/events/views_events/widgets/SearchWidget.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
 import '../../../core/size_config.dart';
@@ -21,6 +22,21 @@ class GetAllEventViewBody extends StatefulWidget {
 
 class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
   var data = EventsViewModel(eventsRepository: EventsApi());
+
+  final searchcontroler = TextEditingController();
+
+  // void searchEvent(String query) async {
+  //   final events = await data.FetchAllEvents(query);
+  //   if (!mounted) return;
+  //   setState(() {
+  //     this.query = query;
+  //    // this.events = events;
+  //   });
+  // }
+
+  // Widget buildSearch() =>
+  //     SearchWidget(text: query, onChanged: searchEvent, hintText: "Chercher");
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -54,7 +70,11 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                 ),
                 Container(
                   width: getProportionateScreenWidth(180),
-                  child: const TextField(
+                  child: TextField(
+                    controller: searchcontroler,
+                    // onChanged: (value) {
+                    //   data.FetchAllEvents("$value");
+                    // },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Chercher',
@@ -83,14 +103,15 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                 return RefreshIndicator(
                   onRefresh: () async {
                     setState(() {
-                      data.GetEventByCategorie(2);
+                      data.FetchAllEvents("${searchcontroler.text.trim()}");
                     });
 
                     return Future.delayed(const Duration(seconds: 2));
                   },
                   child: Center(
                     child: FutureBuilder<List<OneEventViewModel>>(
-                      future: data.FetchAllEvents(query: "gdg"),
+                      future:
+                          data.FetchAllEvents("${searchcontroler.text.trim()}"),
                       builder: ((context, snapshot) {
                         if (!snapshot.hasData) {
                           return const CircularProgressIndicator();
@@ -105,7 +126,7 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                                       MaterialPageRoute(
                                           builder: (context) => OneEventView(
                                                 id: events[index].id,
-                                                image:events[index].image,
+                                                image: events[index].image,
                                               )),
                                     );
                                   },

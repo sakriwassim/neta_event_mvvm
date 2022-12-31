@@ -4,7 +4,7 @@ import 'package:neta_event_mvvm/features/events/evants_repositories/event_reposi
 
 class EventsLocal extends EventsRepository {
   @override
-  Future<List<EventModel>> getAllEvents({String? query}) {
+  Future<List<EventModel>> getAllEvents(String query) {
     throw UnimplementedError();
   }
 

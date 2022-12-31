@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
@@ -37,7 +38,7 @@ class EventsApi extends EventsRepository {
   }
 
   @override
-  Future<List<EventModel>> getAllEvents({String? query}) async {
+  Future<List<EventModel>> getAllEvents(String query) async {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -63,19 +64,30 @@ class EventsApi extends EventsRepository {
       var responsebody = jsonDecode(response.body);
 
       var list = responsebody as List;
-      eventsList = list.map((event) => EventModel.fromJson(event)).toList();
 
-      if (query != null) {
-        eventsList = eventsList
-            .where((element) =>
-                element.libelle!.toLowerCase().contains(query.toLowerCase()))
-            .toList();
-      }
+      eventsList =
+          list.map((event) => EventModel.fromJson(event)).where((element) {
+        final libelleLower = element.libelle!.toLowerCase();
+        final searchLower = query.toLowerCase();
 
+        return libelleLower.contains(searchLower);
+      }).toList();
       return eventsList;
     } catch (e) {
       return [];
     }
+
+    // if (query != null) {
+    //   eventsList = eventsList
+    //       .where((element) =>
+    //           element.libelle!.toLowerCase().contains(query.toLowerCase()))
+    //       .toList();
+    // }
+
+    //   return eventsList;
+    // } catch (e) {
+
+    // }
   }
 
   @override

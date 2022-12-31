@@ -17,8 +17,8 @@ class EventsViewModel {
         .toList();
   }
 
-  Future<List<OneEventViewModel>> FetchAllEvents({String? query}) async {
-    List<EventModel> list = await eventsRepository!.getAllEvents();
+  Future<List<OneEventViewModel>> FetchAllEvents(String query) async {
+    List<EventModel> list = await eventsRepository!.getAllEvents(query);
     return list
         .map((listEvent) => OneEventViewModel(eventModel: listEvent))
         .toList();

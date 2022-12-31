@@ -134,6 +134,7 @@ class _HomeViewState extends State<HomeView> {
                           icon: SvgPicture.asset(CombinedShape),
                           onPressed: () {
                             Scaffold.of(context).openDrawer();
+                            print("object");
                           }),
                       Column(
                         children: const [
@@ -229,7 +230,7 @@ class _HomeViewState extends State<HomeView> {
                       onRefresh: () async {
                         setState(() {
                           data.GetEventByCategorie(indexCategories);
-                          data.FetchAllEvents();
+                          data.FetchAllEvents("");
                           datapack.FetchAllPacks();
                           datatontine.FetchAllTontines();
                           datacategorie.FetchAllCategories();

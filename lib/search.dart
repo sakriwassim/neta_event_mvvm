@@ -45,7 +45,7 @@ class SearchElement extends SearchDelegate {
           if (connected) {
             return Center(
               child: FutureBuilder<List<OneEventViewModel>>(
-                future: data.FetchAllEvents(query: query),
+                future: data.FetchAllEvents(""),
                 builder: ((context, snapshot) {
                   if (!snapshot.hasData) {
                     return const CircularProgressIndicator();

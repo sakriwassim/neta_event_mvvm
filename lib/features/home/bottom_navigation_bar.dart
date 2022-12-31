@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
@@ -12,7 +11,6 @@ import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
 import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
-import 'view_model_events/events_view_model.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

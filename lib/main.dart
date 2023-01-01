@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/home/home_view.dart';
 import 'package:neta_event_mvvm/features/into_screen/view/intro_page.dart';
@@ -37,18 +36,6 @@ class MyApp extends StatelessWidget {
     required this.skipinto,
   }) : super(key: key);
 
-  // StatefulWidget tree() {
-  //   if (this.skipinto) {
-  //     if (this.isLoggedIn) {
-  //       return MyHomePage();
-  //     } else {
-  //       return LoginView();
-  //     }
-  //   } else {
-  //     return IntoScreen();
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,7 +52,6 @@ class MyApp extends StatelessWidget {
                 : LoginView()
             : IntoScreen()
 
-        //  tree()
         // home: const MyHomePage(),
         //home: GetAllTicketView(),
         );

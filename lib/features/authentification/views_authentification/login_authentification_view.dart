@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
@@ -33,10 +35,10 @@ class _LoginViewState extends State<LoginView> {
   late String passwordfield;
   bool _obscureText = true;
 
+  bool isSwitched = true;
+
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
-
-
 
   navtoRegisterView() {
     Navigator.push(
@@ -125,7 +127,45 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                const ForgetpasswordRow(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          CupertinoSwitch(
+                            activeColor: Color(0xFFFC2207C),
+                            thumbColor: Color.fromRGBO(255, 255, 255, 1),
+                            trackColor: Colors.black12,
+                            value: isSwitched,
+                            onChanged: (value) =>
+                                setState(() => isSwitched = value),
+                          ),
+                          Text(
+                            "Se rappeler",
+                            style: GoogleFonts.lato(
+                              fontStyle: FontStyle.normal,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      //authentification
+                      InkWell(
+                        onTap: () {},
+                        child: Text(
+                          "Mot de passe oublié",
+                          style: GoogleFonts.lato(
+                              fontStyle: FontStyle.normal,
+                              fontSize: 15,
+                              color: const Color.fromRGBO(194, 32, 124, 1)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
@@ -149,7 +189,10 @@ class _LoginViewState extends State<LoginView> {
                         bool verif = await data.Login(authentificationModel);
                         if (verif == true) {
                           final prefs = await SharedPreferences.getInstance();
-                          prefs.setBool("isLoggedIn", true);
+
+                          if (isSwitched) {
+                            prefs.setBool("isLoggedIn", true);
+                          }
 
                           // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(

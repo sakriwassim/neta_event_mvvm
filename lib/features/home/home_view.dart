@@ -19,6 +19,7 @@ import '../authentification/authentification_repositories/authentification_api.d
 import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
+import '../notification/views_notifications/notifications_view.dart';
 import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
 import '../packs/packs_repositories/packs_api.dart';
@@ -92,6 +93,15 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  navGetAllNotificationView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GetAllNotificationView()),
+    );
+  }
+
+  //GetAllNotificationView
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -145,7 +155,10 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                       IconButton(
-                          icon: SvgPicture.asset(Notif), onPressed: () {}),
+                          icon: SvgPicture.asset(Notif),
+                          onPressed: () {
+                            navGetAllNotificationView();
+                          }),
                     ],
                   ),
                 ),

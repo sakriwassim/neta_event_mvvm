@@ -24,7 +24,6 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
 
   final searchcontroler = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -60,7 +59,6 @@ class _GetAllEventViewBodyState extends State<GetAllEventViewBody> {
                   width: getProportionateScreenWidth(180),
                   child: TextField(
                     controller: searchcontroler,
-                  
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Chercher',

@@ -26,7 +26,7 @@ class PackCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      width: getProportionateScreenWidth(250),
+      width: getProportionateScreenWidth(200),
       height: getProportionateScreenHeight(300),
       child: Card(
         elevation: 5,

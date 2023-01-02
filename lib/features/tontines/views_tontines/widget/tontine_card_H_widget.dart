@@ -124,7 +124,6 @@ class TontineCardWidgetH extends StatelessWidget {
                     height: getProportionateScreenHeight(30), // 30,
                     width: getProportionateScreenWidth(60), //60,
 
-                  
                     child: Center(
                       child: Text(
                         '$montant_regulier',
@@ -158,4 +157,3 @@ class TontineCardWidgetH extends StatelessWidget {
     );
   }
 }
-

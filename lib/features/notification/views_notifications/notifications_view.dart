@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 import '../../../core/colors.dart';
+import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../tontines/tontines_repositories/tontines_api.dart';
 import '../../tontines/view_model_tickets/one_tontine_view_model.dart';
@@ -89,8 +92,30 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
                       //var tickets = snapshot.data;
                       var tickets = [];
                       if (tickets!.isEmpty) {
-                        return Container(
-                          child: Text("node data "),
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(notification),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextAirbnbCereal(
+                                  title: "Pas de Notification !",
+                                  size: 20,
+                                  color: Color(0xFFF344B67),
+                                  fontWeight: FontWeight.w500),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextAirbnbCereal(
+                                  title:
+                                      "Vous pouvez consulter l'historique de toute notification",
+                                  size: 12,
+                                  color: Color(0xFFF344B67),
+                                  fontWeight: FontWeight.w400)
+                            ],
+                          ),
                         );
                       }
                       return ListView.builder(

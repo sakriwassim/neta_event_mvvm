@@ -8,7 +8,9 @@ const nameApp = "Neta-event V 1.1.0";
 const titleCF = 'Se connecter avec Facebook';
 const titleCG = 'Se connecter avec Google';
 
-//SvgPicture.asset(Chat),
+//SvgPicture.asset(notification),
+/**********************************notification******************** */
+const notification = 'assets/icons/notification/notification.svg';
 /*********************************AUthentification********************* */
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';

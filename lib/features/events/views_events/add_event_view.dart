@@ -2,8 +2,10 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
+import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
 
 import '../../../core/widgets/text_widget_text1.dart';
@@ -80,44 +82,49 @@ class _AddEventViewState extends State<AddEventView> {
                 color: Colors.black,
               ),
             )),
-        body: Stepper(
-          type: StepperType.horizontal,
-          steps: getSteps(),
-          currentStep: currentStep,
-          onStepContinue: () {
-            final isLastStep = currentStep == getSteps().length - 1;
-            if (isLastStep) {
-              //  if (formkey.currentState!.validate()) {
-              var event = {
-                "category_id": categories![selectedIndex].id,
-                // "category_id": 1,
-                "observation_id": 21,
-                "libelle": libellefield,
-                "description": descriptionfield,
-                "prix": _currentSliderValue.toInt(),
-                "date_heure": _dataTime.toString(),
-                "adresse": "Stade du 26 Mars",
-                "nbre_tichet": 1000,
-                "status": "statut",
-                "image": "imagepath"
-              };
-              AddEventModel eventformJson = AddEventModel.fromJson(event);
-              //  print(eventformJson);
-              setState(() {
-                data.AddEvent(eventformJson);
-              });
-              // }
-            } else {
-              setState(() => currentStep += 1);
-            }
-          },
-          onStepCancel: currentStep == 0
-              ? null
-              : () {
-                  setState(() {
-                    currentStep -= 1;
-                  });
-                },
+        body: Theme(
+          data: ThemeData(
+              colorScheme:
+                  ColorScheme.light(primary: Color.fromARGB(255, 242, 0, 255))),
+          child: Stepper(
+            type: StepperType.horizontal,
+            steps: getSteps(),
+            currentStep: currentStep,
+            onStepContinue: () {
+              final isLastStep = currentStep == getSteps().length - 1;
+              if (isLastStep) {
+                //  if (formkey.currentState!.validate()) {
+                var event = {
+                  "category_id": categories![selectedIndex].id,
+                  // "category_id": 1,
+                  "observation_id": 21,
+                  "libelle": libellefield,
+                  "description": descriptionfield,
+                  "prix": _currentSliderValue.toInt(),
+                  "date_heure": _dataTime.toString(),
+                  "adresse": "Stade du 26 Mars",
+                  "nbre_tichet": 1000,
+                  "status": "statut",
+                  "image": "imagepath"
+                };
+                AddEventModel eventformJson = AddEventModel.fromJson(event);
+                //  print(eventformJson);
+                setState(() {
+                  data.AddEvent(eventformJson);
+                });
+                // }
+              } else {
+                setState(() => currentStep += 1);
+              }
+            },
+            onStepCancel: currentStep == 0
+                ? null
+                : () {
+                    setState(() {
+                      currentStep -= 1;
+                    });
+                  },
+          ),
         ));
   }
 
@@ -147,22 +154,33 @@ class _AddEventViewState extends State<AddEventView> {
                   },
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () async {
-                    var _newDate = await showCalendarDatePicker2Dialog(
-                      context: context,
-                      config: CalendarDatePicker2WithActionButtonsConfig(),
-                      dialogSize: const Size(325, 400),
-                      initialValue: [],
-                      borderRadius: BorderRadius.circular(15),
-                    );
-                    if (_newDate != null) {
-                      setState(() {
-                        _dataTime = _newDate;
-                      });
-                    }
-                  },
-                  child: const Text("Parcourire ce calendrier")),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () async {
+                  var _newDate = await showCalendarDatePicker2Dialog(
+                    context: context,
+                    config: CalendarDatePicker2WithActionButtonsConfig(),
+                    dialogSize: const Size(325, 400),
+                    initialValue: [],
+                    borderRadius: BorderRadius.circular(15),
+                  );
+                  if (_newDate != null) {
+                    setState(() {
+                      _dataTime = _newDate;
+                    });
+                  }
+                },
+                child: Button(
+                    gradientbackground: gradientbackground,
+                    text: "Parcourire ce calendrier",
+                    textcolor: Colors.white,
+                    height: 50,
+                    width: 200,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400),
+              ),
               Text('$_dataTime'),
               SizedBox(
                 width: widthbigbutton,

@@ -7,6 +7,7 @@ import '../../../core/size_config.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
+import '../../../main.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -40,14 +41,6 @@ class _SelectCompanyState extends State<SelectCompany> {
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
-
-  navtoForgetpasswordRow() {
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => Forgetpassword(),
-    //     ));
-  }
 
   navtoRegisterView() {
     Navigator.pushReplacement(
@@ -121,15 +114,20 @@ class _SelectCompanyState extends State<SelectCompany> {
                 ),
                 InkWell(
                     onTap: () async {
-                      //print("il button ti5dem ");
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Center(child: CircularProgressIndicator());
+                          });
+
                       var event = {
                         "role_id": selectIndex,
                         "packs_id": 1,
                         "nom_complet": widget.nomcompletfield.toString(),
                         "email": widget.emailfield.toString(),
                         "telephone": 70213645,
-                        "adresse": "Faladiè",
-                        "image": "https://cheminverslimage",
+                        "adresse": "",
+                        "image": "",
                         "password": widget.passwordfield.toString()
                       };
 
@@ -145,6 +143,9 @@ class _SelectCompanyState extends State<SelectCompany> {
                               builder: (context) => const MyHomePage(),
                             ));
                       }
+
+                      navigatorKey.currentState!
+                          .popUntil((route) => route.isFirst);
                     },
                     child: Button(
                       text: "VALIDER",

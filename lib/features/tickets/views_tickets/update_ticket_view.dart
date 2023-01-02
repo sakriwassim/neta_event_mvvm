@@ -1,11 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../main.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/one_ticket_view_model.dart';
@@ -112,6 +111,12 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
             Container(
               child: InkWell(
                 onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Center(child: CircularProgressIndicator());
+                      });
+
                   if (formkey.currentState!.validate()) {
                     var ticket = {
                       "event_id": widget.ticketObj.id,
@@ -125,18 +130,24 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
 
                     AddTicketModel ticketformJson =
                         AddTicketModel.fromJson(ticket);
-                 //   print(ticketformJson);
+                    //   print(ticketformJson);
 
                     setState(() {
                       data.UpdateTicketByID(ticketformJson);
                     });
                   }
+
+                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
                 },
-                child: Button(text: "MODIFIER",  fontSize: fontSizemediumbutton,
+                child: Button(
+                  text: "MODIFIER",
+                  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal, textcolor:  Colors.white,),
+                  fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
+                ),
               ),
             ),
           ],

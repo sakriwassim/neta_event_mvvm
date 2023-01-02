@@ -8,6 +8,7 @@ import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
+import '../../../main.dart';
 import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
@@ -384,6 +385,13 @@ class _AddTontineViewState extends State<AddTontineView>
                           ),
                           InkWell(
                               onTap: () {
+
+                                   showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Center(child: CircularProgressIndicator());
+                          });
+
                                 if (formkey.currentState!.validate()) {
                                   var ticket = {
                                     "id": 1,
@@ -406,6 +414,11 @@ class _AddTontineViewState extends State<AddTontineView>
                                     data.AddTontine(ticketformJson);
                                   });
                                 }
+
+
+
+                            navigatorKey.currentState!
+                          .popUntil((route) => route.isFirst);
                               },
                               child: Button(
                                 text: "APPLIQUER",

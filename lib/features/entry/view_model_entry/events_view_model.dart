@@ -12,8 +12,5 @@ class EntryViewModel {
     return token;
   }
 
-  // Future<bool> Checktoken() async {
-  //   var token = await entryRepository!.checktoken();
-  //   return token;
-  // }
+ 
 }

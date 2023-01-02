@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:neta_event_mvvm/features/home/home_view.dart';
 import 'package:neta_event_mvvm/features/into_screen/view/intro_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,6 +28,10 @@ void main() async {
   ));
 }
 
+
+
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
   final bool skipinto;
@@ -39,6 +44,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: themedata(),
 

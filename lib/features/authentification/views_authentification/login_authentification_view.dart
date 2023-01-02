@@ -14,6 +14,7 @@ import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
+import '../../../main.dart';
 import '../../home/bottom_navigation_bar.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
@@ -36,6 +37,8 @@ class _LoginViewState extends State<LoginView> {
   bool _obscureText = true;
 
   bool isSwitched = true;
+
+  // final navigatorKey = GlobalKey<NavigatorState>();
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -209,7 +212,8 @@ class _LoginViewState extends State<LoginView> {
                         }
                       }
 
-                      //aNavigator.of(context).pop();
+                      navigatorKey.currentState!
+                          .popUntil((route) => route.isFirst);
                     },
                     child: Button(
                       text: "SE CONNECTER",

@@ -8,6 +8,7 @@ import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../main.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../evants_repositories/events_api.dart';
@@ -190,6 +191,14 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                 ),
                                 InkWell(
                                     onTap: () async {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          });
+
                                       if (formkey.currentState!.validate()) {
                                         var event = {
                                           "role_id": int.parse(
@@ -213,6 +222,9 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                           data.UpdateUserByID(eventformJson);
                                         });
                                       }
+
+                                      navigatorKey.currentState!
+                                          .popUntil((route) => route.isFirst);
                                     },
                                     child: Button(
                                       fontWeight: FontWeight.normal,

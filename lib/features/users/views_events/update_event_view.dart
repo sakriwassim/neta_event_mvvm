@@ -4,6 +4,7 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../../main.dart';
 import '../models_events/add_event_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
@@ -109,6 +110,12 @@ class _UpdateUserViewState extends State<UpdateUserView> {
             ),
             InkWell(
               onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Center(child: CircularProgressIndicator());
+                    });
+
                 if (formkey.currentState!.validate()) {
                   var event = {
                     "image": "image8888888888888888888",
@@ -123,6 +130,8 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                     data.UpdateUserByID(eventformJson);
                   });
                 }
+
+                navigatorKey.currentState!.popUntil((route) => route.isFirst);
               },
               child: Button(
                 text: "MODIFIER",

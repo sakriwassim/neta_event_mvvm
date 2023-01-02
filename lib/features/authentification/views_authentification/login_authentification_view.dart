@@ -171,6 +171,12 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 InkWell(
                     onTap: () async {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Center(child: CircularProgressIndicator());
+                          });
+
                       if (formkey.currentState!.validate()) {
                         var event = {
                           "role_id": 1,
@@ -202,6 +208,8 @@ class _LoginViewState extends State<LoginView> {
                               ));
                         }
                       }
+
+                      //aNavigator.of(context).pop();
                     },
                     child: Button(
                       text: "SE CONNECTER",

@@ -51,15 +51,18 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
                           var events = snapshot.data;
                           return ListView.builder(
                               itemCount: events?.length,
-                              itemBuilder: (context, index) => GestureDetector(
-                                    onTap: () {},
-                                    child: PackCardWidget(
-                                      libelle: '${events![index].libelle}',
-                                      montant: '${events[index].montant}',
-                                      nbre_events:
-                                          '${events[index].nbre_events}',
-                                      nbre_jr_pubs:
-                                          '${events[index].nbre_jr_pubs}',
+                              itemBuilder: (context, index) => Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: PackCardWidget(
+                                        libelle: '${events![index].libelle}',
+                                        montant: '${events[index].montant}',
+                                        nbre_events:
+                                            '${events[index].nbre_events}',
+                                        nbre_jr_pubs:
+                                            '${events[index].nbre_jr_pubs}',
+                                      ),
                                     ),
                                   ));
                         }

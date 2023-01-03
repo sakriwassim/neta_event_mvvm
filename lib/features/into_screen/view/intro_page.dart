@@ -159,7 +159,6 @@ class _IntoScreenState extends State<IntoScreen> {
                             textTheme: textTheme,
                             onTap: () {
                               setState(() {
-                                
                                 pageController.animateToPage(2,
                                     duration:
                                         const Duration(milliseconds: 1000),

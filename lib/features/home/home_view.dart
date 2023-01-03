@@ -20,6 +20,9 @@ import '../authentification/view_model_authentification/authentification_view_mo
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../notification/views_notifications/notifications_view.dart';
+import '../users/evants_repositories/events_api.dart';
+import '../users/view_model_events/events_view_model.dart';
+import '../users/view_model_events/one_event_view_model.dart';
 import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
 import '../packs/packs_repositories/packs_api.dart';
@@ -52,18 +55,13 @@ class _HomeViewState extends State<HomeView> {
   int indexCategories = 0;
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
+  var datauser = UsersViewModel(eventsRepository: UsersApi());
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
   var data2 = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
-
-  // logout() {
-  //   setState(() {
-  //     data2.Cleanpref();
-  //   });
-  // }
 
   navGetAllCategorieView() {
     Navigator.push(
@@ -100,8 +98,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  //GetAllNotificationView
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -133,8 +129,8 @@ class _HomeViewState extends State<HomeView> {
                             Scaffold.of(context).openDrawer();
                           }),
                       Column(
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "Hey Bienvenue..",
                             style: TextStyle(
                               fontFamily: 'AirbnbCereal',
@@ -143,15 +139,26 @@ class _HomeViewState extends State<HomeView> {
                               color: Color.fromARGB(135, 255, 255, 255),
                             ),
                           ),
-                          Text(
-                            "Saidou Sawadogo",
-                            style: TextStyle(
-                              fontFamily: 'AirbnbCereal',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 19,
-                              color: Colors.white,
-                            ),
-                          ),
+                          FutureBuilder(
+                              future: datauser.GetUserConnected(),
+                              builder: ((context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return const Center(
+                                      // child: CircularProgressIndicator()
+                                      );
+                                } else {
+                                  var categories = snapshot.data;
+                                  return Text(
+                                    "${categories!.nom_complet}",
+                                    style: const TextStyle(
+                                      fontFamily: 'AirbnbCereal',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 19,
+                                      color: Colors.white,
+                                    ),
+                                  );
+                                }
+                              })),
                         ],
                       ),
                       IconButton(

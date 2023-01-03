@@ -21,8 +21,6 @@ class TextAirbnbCereal extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        //foreground: (Paint()..shader = linearGradient),
-        //foreground: foreground,
         fontFamily: 'AirbnbCereal',
         fontWeight: fontWeight,
         fontSize: size,

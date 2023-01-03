@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 
+import '../../../core/Screen/payment_screen.dart';
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
@@ -30,21 +31,10 @@ class PackCardWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Container(
-          decoration: BoxDecoration(
-            //color: Color.fromARGB(137, 0, 195, 255),
+          decoration: const BoxDecoration(
             borderRadius: const BorderRadius.only(
-                // topLeft: Radius.circular(20),
-                // topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20)),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.grey.withOpacity(0.5),
-            //     spreadRadius: 5,
-            //     blurRadius: 7,
-            //     offset: Offset(0, 3), // changes position of shadow
-            //   ),
-            // ],
           ),
           //color: Colors.green,
           height: double.infinity,
@@ -52,43 +42,21 @@ class PackCardWidget extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    top: 25,
-                    child: SizedBox(
-                      // width: 302,
-                      // height: 200,
-                      child: Container(
-                        width: 302,
-                        decoration: BoxDecoration(
-                          // borderRadius: const BorderRadius.only(
-                          //     topLeft: Radius.circular(20),
-                          //     topRight: Radius.circular(20),
-                          //     bottomLeft: Radius.circular(20),
-                          //     bottomRight: Radius.circular(20)),
-                          borderRadius: BorderRadius.circular(13),
-                          // color: Color.fromARGB(255, 226, 11, 11),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              offset: Offset(0, 5),
-                              blurRadius: 7,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
                   Spacer(),
                   Container(
-                    //  color: Colors.blue,
+                    //color: Colors.blue,
                     child: SvgPicture.asset(Vector),
                   ),
                 ],
               ),
-              SizedBox(
+              Container(
+                decoration: const BoxDecoration(
+                  //   color: Colors.blue,
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)),
+                ),
+                //color: Colors.blue,
                 width: double.infinity,
                 child: Column(
                   children: [
@@ -115,7 +83,6 @@ class PackCardWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       // color: Color.fromARGB(255, 173, 2, 225),
                       child: Center(
                         child: TextAirbnbCereal(
@@ -132,7 +99,7 @@ class PackCardWidget extends StatelessWidget {
                     TextAirbnbCereal(
                       color: Color.fromARGB(255, 0, 0, 0), //4F4F4F
                       fontWeight: FontWeight.w400,
-                      size: 30,
+                      size: 25,
                       title: '$montant fcfa',
                     ),
                     const SizedBox(
@@ -179,7 +146,12 @@ class PackCardWidget extends StatelessWidget {
                       height: 20,
                     ),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PaymentScreen()));
+                        },
                         child: Button(
                           text: "ACHETER",
                           fontSize: fontSizeminibutton,

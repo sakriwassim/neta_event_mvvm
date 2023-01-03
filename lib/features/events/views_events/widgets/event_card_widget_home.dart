@@ -111,7 +111,7 @@ class EventCardWidget extends StatelessWidget {
                         color: const Color.fromRGBO(79, 79, 79, 1),
                         fontWeight: FontWeight.w500,
                         size: 12,
-                        title: "€",
+                        title: " fcfa",
                       ),
                     ],
                   ),

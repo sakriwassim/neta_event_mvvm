@@ -13,7 +13,13 @@ class SearchElement extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () {}, icon: Icon(Icons.close))];
+    return [
+      IconButton(
+          onPressed: () {
+            query = "";
+          },
+          icon: Icon(Icons.close))
+    ];
   }
 
   @override
@@ -23,11 +29,8 @@ class SearchElement extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
     throw UnimplementedError();
   }
-
-  //${searchcontroler.text.trim()}
 
   @override
   Widget buildSuggestions(BuildContext context) {

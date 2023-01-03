@@ -24,6 +24,8 @@ const Hiddencolor = "assets/icons/authentification/Hiddencolor.svg";
 
 /********************************Tontine******************** */
 const tringle = "assets/icons/tontine/tringle.svg";
+
+// Mask
 //Mask
 
 //Hiddencolor
@@ -69,7 +71,7 @@ const Line2 = "assets/icons/user/Line.svg";
 const Chat = "assets/icons/user/Chat.svg";
 
 /*****************************Tontine************** */
-const Mask = "assets/icons/tontine/Mask.svg";
+const Mask = "assets/icons/tontine/Mask.png";
 const arrowleft = "assets/icons/tontine/arrow-left.svg";
 
 /********************************payment******************** */

@@ -19,75 +19,59 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: OfflineBuilder(
-          connectivityBuilder: (
-            BuildContext context,
-            ConnectivityResult connectivity,
-            Widget child,
-          ) {
-            final bool connected = connectivity != ConnectivityResult.none;
-            if (connected) {
-              return RefreshIndicator(
-                onRefresh: () async {
-                  setState(() {
-                    data.FetchAllPacks();
-                  });
+    return Scaffold(
+        body: OfflineBuilder(
+      connectivityBuilder: (
+        BuildContext context,
+        ConnectivityResult connectivity,
+        Widget child,
+      ) {
+        final bool connected = connectivity != ConnectivityResult.none;
+        // if (connected) {
+        return RefreshIndicator(
+          onRefresh: () async {
+            setState(() {
+              data.FetchAllPacks();
+            });
 
-                  return Future.delayed(const Duration(seconds: 2));
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(40),
-                  ),
-                  child: Center(
-                    child: FutureBuilder<List<OnePackViewModel>>(
-                      future: data.FetchAllPacks(),
-                      builder: ((context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          var events = snapshot.data;
-                          return ListView.builder(
-                              itemCount: events?.length,
-                              itemBuilder: (context, index) => Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: GestureDetector(
-                                      onTap: () {},
-                                      child: PackCardWidget(
-                                        libelle: '${events![index].libelle}',
-                                        montant: '${events[index].montant}',
-                                        nbre_events:
-                                            '${events[index].nbre_events}',
-                                        nbre_jr_pubs:
-                                            '${events[index].nbre_jr_pubs}',
-                                      ),
-                                    ),
-                                  ));
-                        }
-                      }),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: Text("no connection"),
-              );
-            }
+            return Future.delayed(const Duration(seconds: 2));
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Text(
-                'There are no bottons to push :)',
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenWidth(40),
+            ),
+            child: Center(
+              child: FutureBuilder<List<OnePackViewModel>>(
+                future: data.FetchAllPacks(),
+                builder: ((context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const CircularProgressIndicator();
+                  } else {
+                    var events = snapshot.data;
+                    return ListView.builder(
+                        itemCount: events?.length,
+                        itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: PackCardWidget(
+                                  libelle: '${events![index].libelle}',
+                                  montant: '${events[index].montant}',
+                                  nbre_events: '${events[index].nbre_events}',
+                                  nbre_jr_pubs: '${events[index].nbre_jr_pubs}',
+                                ),
+                              ),
+                            ));
+                  }
+                }),
               ),
-              Text(
-                'Just turn off your internet.',
-              ),
-            ],
+            ),
           ),
-        ));
+        );
+      },
+      child: Center(
+        child: Text("no connection"),
+      ),
+    ));
   }
 }

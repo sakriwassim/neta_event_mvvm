@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
 
+import '../../../../core/Screen/payment_screen.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/string.dart';
@@ -55,10 +56,12 @@ class TontineCardWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                      // color: Color.fromARGB(255, 0, 255, 38),
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(40),
-                      child: SvgPicture.asset(Locationoff)),
+                    // color: Color.fromARGB(255, 0, 255, 38),
+                    width: getProportionateScreenWidth(40),
+                    height: getProportionateScreenHeight(40),
+
+                    child: Image.asset(Mask),
+                  )
                 ],
               ),
               Padding(
@@ -183,14 +186,23 @@ class TontineCardWidget extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                 horizontal: getProportionateScreenWidth(5),
                               ),
-                              child: Button(
-                                fontWeight: FontWeight.normal,
-                                text: "Participer",
-                                fontSize: fontSizeminibutton,
-                                gradientbackground: gradientbackground,
-                                height: heightminibutton,
-                                width: widthminibutton,
-                                textcolor: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PaymentScreen()));
+                                },
+                                child: Button(
+                                  fontWeight: FontWeight.normal,
+                                  text: "Participer",
+                                  fontSize: fontSizeminibutton,
+                                  gradientbackground: gradientbackground,
+                                  height: heightminibutton,
+                                  width: widthminibutton,
+                                  textcolor: Colors.white,
+                                ),
                               ),
                             )
                           ],

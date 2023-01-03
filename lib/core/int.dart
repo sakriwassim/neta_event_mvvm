@@ -13,7 +13,7 @@ const widthselectbutton = 200.00;
 const fontSizeselectbutton = 20.00;
 
 //size minibutton
-const heightminibutton = 25.00;
+const heightminibutton = 30.00;
 const widthminibutton = 60.00;
 const fontSizeminibutton = 10.00;
 

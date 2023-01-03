@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/rectangle_image.dart';
+import '../../../../core/Screen/payment_screen.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
@@ -136,7 +137,10 @@ class TontineCardWidgetH extends StatelessWidget {
                   ), //C
                   InkWell(
                     onTap: () {
-                      callbackFunction!(id);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentScreen()));
                     },
                     child: Button(
                       fontWeight: FontWeight.normal,

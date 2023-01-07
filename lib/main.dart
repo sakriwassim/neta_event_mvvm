@@ -10,6 +10,7 @@ import 'package:neta_event_mvvm/features/entry/views_entry/entry_view.dart';
 
 import 'core/Screen/payment_screen.dart';
 import 'features/authentification/views_authentification/register_authentification_view.dart';
+import 'features/home/bottom_agent.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/tontines/views_tontines/add_tontine_view.dart';
 import 'features/users/view_profil/one_user_view.dart';
@@ -27,8 +28,6 @@ void main() async {
     skipinto: skipinto,
   ));
 }
-
-
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -52,11 +51,13 @@ class MyApp extends StatelessWidget {
         //home: RegisterView(),
         // home: OneUserView(),
         //home: PaymentScreen(),
-        home: skipinto
-            ? isLoggedIn
-                ? MyHomePage()
-                : LoginView()
-            : IntoScreen()
+        home: MyHomePageAgent()
+
+        //  skipinto
+        //     ? isLoggedIn
+        //         ? MyHomePage()
+        //         : LoginView()
+        //     : IntoScreen()
 
         // home: const MyHomePage(),
         //home: GetAllTicketView(),

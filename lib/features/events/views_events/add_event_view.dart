@@ -19,7 +19,7 @@ import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
 class AddEventView extends StatefulWidget {
-  const AddEventView({
+  AddEventView({
     super.key,
   });
 
@@ -49,6 +49,42 @@ class _AddEventViewState extends State<AddEventView> {
   List<XFile>? _imageFileList;
   dynamic _pickImageError;
 
+  _onStepCancel() {
+    currentStep == 0
+        ? null
+        : setState(() {
+            currentStep -= 1;
+          });
+  }
+
+  _onStepContinue() {
+    final isLastStep = currentStep == getSteps().length - 1;
+    if (isLastStep) {
+      //  if (formkey.currentState!.validate()) {
+      var event = {
+        "category_id": categories![selectedIndex].id,
+        // "category_id": 1,
+        "observation_id": 21,
+        "libelle": libellefield,
+        "description": descriptionfield,
+        "prix": _currentSliderValue.toInt(),
+        "date_heure": _dataTime.toString(),
+        "adresse": "Stade du 26 Mars",
+        "nbre_tichet": 1000,
+        "status": "statut",
+        "image": "imagepath"
+      };
+      AddEventModel eventformJson = AddEventModel.fromJson(event);
+      //  print(eventformJson);
+      setState(() {
+        data.AddEvent(eventformJson);
+      });
+      // }
+    } else {
+      setState(() => currentStep += 1);
+    }
+  }
+
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context}) async {
     try {
@@ -66,7 +102,6 @@ class _AddEventViewState extends State<AddEventView> {
 
   @override
   Widget build(BuildContext context) {
-    // TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -84,46 +119,60 @@ class _AddEventViewState extends State<AddEventView> {
             )),
         body: Theme(
           data: ThemeData(
-              colorScheme:
-                  ColorScheme.light(primary: Color.fromARGB(255, 242, 0, 255))),
+              canvasColor: Colors.white,
+              shadowColor: Colors.white,
+              colorScheme: const ColorScheme.light(
+                  primary: Color.fromARGB(255, 112, 3, 118))),
           child: Stepper(
-            type: StepperType.horizontal,
-            steps: getSteps(),
-            currentStep: currentStep,
-            onStepContinue: () {
-              final isLastStep = currentStep == getSteps().length - 1;
-              if (isLastStep) {
-                //  if (formkey.currentState!.validate()) {
-                var event = {
-                  "category_id": categories![selectedIndex].id,
-                  // "category_id": 1,
-                  "observation_id": 21,
-                  "libelle": libellefield,
-                  "description": descriptionfield,
-                  "prix": _currentSliderValue.toInt(),
-                  "date_heure": _dataTime.toString(),
-                  "adresse": "Stade du 26 Mars",
-                  "nbre_tichet": 1000,
-                  "status": "statut",
-                  "image": "imagepath"
-                };
-                AddEventModel eventformJson = AddEventModel.fromJson(event);
-                //  print(eventformJson);
-                setState(() {
-                  data.AddEvent(eventformJson);
-                });
-                // }
-              } else {
-                setState(() => currentStep += 1);
-              }
+            controlsBuilder: (BuildContext context, ControlsDetails details) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  currentStep != 0
+                      ? Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: InkWell(
+                              onTap: details.onStepCancel,
+                              child: Button(
+                                text: currentStep == 0 ? "CANCEL" : "RETOURN",
+                                fontSize: fontSizemediumbutton,
+                                gradientbackground: gradientbackground,
+                                height: heightmediumbutton,
+                                width: widthmediumbutton,
+                                fontWeight: FontWeight.normal,
+                                textcolor: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: InkWell(
+                        onTap: details.onStepContinue,
+                        child: Button(
+                          text: currentStep == 2 ? "APPLIQUER" : "NEXT",
+                          fontSize: fontSizemediumbutton,
+                          gradientbackground: gradientbackground,
+                          height: heightmediumbutton,
+                          width: widthmediumbutton,
+                          fontWeight: FontWeight.normal,
+                          textcolor: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
             },
-            onStepCancel: currentStep == 0
-                ? null
-                : () {
-                    setState(() {
-                      currentStep -= 1;
-                    });
-                  },
+            steps: getSteps(),
+            elevation: 0,
+            type: StepperType.horizontal,
+            currentStep: currentStep,
+            onStepContinue: _onStepContinue,
+            onStepCancel: _onStepCancel,
           ),
         ));
   }
@@ -154,7 +203,7 @@ class _AddEventViewState extends State<AddEventView> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               InkWell(
@@ -181,7 +230,13 @@ class _AddEventViewState extends State<AddEventView> {
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Text('$_dataTime'),
+              const SizedBox(
+                height: 10,
+              ),
               SizedBox(
                 width: widthbigbutton,
                 height: heightbigbutton,
@@ -202,6 +257,9 @@ class _AddEventViewState extends State<AddEventView> {
                   },
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Container(
                 margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5),
                 alignment: Alignment.topLeft,
@@ -212,6 +270,9 @@ class _AddEventViewState extends State<AddEventView> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                     )),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               SizedBox(
                 height: 120,
@@ -243,104 +304,73 @@ class _AddEventViewState extends State<AddEventView> {
                   }),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 5, bottom: 5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20),
-                          child: Text("Selection le prix",
-                              style: TextStyle(
-                                fontFamily: 'AirbnbCereal',
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: Text("${_currentSliderValue.toInt()}",
-                              style: const TextStyle(
-                                fontFamily: 'AirbnbCereal',
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              )),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Slider(
-                        value: _currentSliderValue,
-                        max: 100,
-                        divisions: 100,
-                        label: _currentSliderValue.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            _currentSliderValue = value;
-                          });
-                        },
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Text("Selection le prix",
+                            style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            )),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text("${_currentSliderValue.toInt()}",
+                            style: const TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Slider(
+                      value: _currentSliderValue,
+                      max: 100,
+                      divisions: 100,
+                      label: _currentSliderValue.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {
+                          _currentSliderValue = value;
+                        });
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 width: widthbigbutton,
                 height: heightbigbutton,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
-                    decoration: textFieldDecoration(
-                      "publicite",
-                      "entre le publicite",
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "entre publicite";
-                      } else {
-                        return null;
-                      }
-                    },
-                    onChanged: (text) {
-                      descriptionfield = text;
-                    },
+                child: TextFormField(
+                  decoration: textFieldDecoration(
+                    "publicite",
+                    "entre le publicite",
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "entre publicite";
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (text) {
+                    descriptionfield = text;
+                  },
                 ),
               ),
-              // InkWell(
-              //     onTap: () {
-              //       if (formkey.currentState!.validate()) {
-              //         var event = {
-              //           "category_id": categories![selectedIndex].id,
-              //           "observation_id": 21,
-              //           "libelle": libellefield,
-              //           "description": descriptionfield,
-              //           "prix": _currentSliderValue.toInt(),
-              //           "date_heure": _dataTime.toString(),
-              //           "adresse": "Stade du 26 Mars",
-              //           "nbre_tichet": 1000,
-              //           "status": "statut",
-              //           "image": "image"
-              //         };
-
-              //         AddEventModel eventformJson =
-              //             AddEventModel.fromJson(event);
-              //         //  print(eventformJson);
-
-              //         setState(() {
-              //           data.AddEvent(eventformJson);
-              //         });
-              //       }
-              //     },
-              //     child: MediumButton(text: "APPLIQUER")
-
-              //     ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
@@ -371,7 +401,9 @@ class _AddEventViewState extends State<AddEventView> {
                   },
                 ),
               ),
-              // InkWell(onTap: () {}, child: MediumButton(text: "APPLIQUER")),
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),

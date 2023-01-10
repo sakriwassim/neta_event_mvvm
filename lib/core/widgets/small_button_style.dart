@@ -5,7 +5,7 @@ import 'text_widget_text1.dart';
 class Button extends StatelessWidget {
   String text;
   double height;
-  double width;
+  double? width;
   double fontSize;
   dynamic fontWeight;
   LinearGradient? gradientbackground;
@@ -17,7 +17,7 @@ class Button extends StatelessWidget {
       required this.text,
       required this.textcolor,
       required this.height,
-      required this.width,
+      this.width,
       required this.fontSize,
       this.gradientbackground,
       required this.fontWeight,

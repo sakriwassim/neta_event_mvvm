@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'package:neta_event_mvvm/features/home/home_view.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginView(),
+              builder: (context) => const AuthView(),
             ));
       } else {
         Navigator.pushReplacement(

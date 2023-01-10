@@ -56,7 +56,7 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
                 },
                 child: Button(
                   fontWeight: FontWeight.normal,
-                  text: "ADD EVENT",
+                  text: "VIDER",
                   height: 40,
                   width: 100,
                   fontSize: 15,

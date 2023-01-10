@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'package:neta_event_mvvm/features/into_screen/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +22,7 @@ class GetStartBtn extends StatelessWidget {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginView(),
+              builder: (context) => const AuthView(),
             ));
       },
       child: Container(

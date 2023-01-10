@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/sidebar_widget/sidebar_head_widget.dart';
 import '../../features/authentification/authentification_repositories/authentification_api.dart';
 import '../../features/authentification/view_model_authentification/authentification_view_model.dart';
-import '../../features/authentification/views_authentification/login_authentification_view.dart';
+import '../../features/authentification/views_authentification/authentification_view.dart';
 import '../../features/events/views_events/events_view.dart';
 import '../../features/tontines/views_tontines/tontines_view.dart';
 import '../../features/users/evants_repositories/events_api.dart';
@@ -146,7 +146,7 @@ class SideBarMenu extends StatelessWidget {
               // data2.Cleanpref();
               //callbackFunctionlogout;
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginView()));
+                  MaterialPageRoute(builder: (context) => const AuthView()));
             },
           ),
         ],

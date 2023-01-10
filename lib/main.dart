@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:neta_event_mvvm/features/home/home_view.dart';
 import 'package:neta_event_mvvm/features/into_screen/view/intro_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:neta_event_mvvm/core/theme_data.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
-import 'package:neta_event_mvvm/features/entry/views_entry/entry_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 
-import 'core/Screen/payment_screen.dart';
-import 'features/authentification/views_authentification/register_authentification_view.dart';
-import 'features/events/views_events/add_event_view.dart';
-import 'features/home/bottom_agent.dart';
 import 'features/home/bottom_navigation_bar.dart';
-import 'features/tontines/views_tontines/add_tontine_view.dart';
-import 'features/users/view_profil/one_user_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,24 +35,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      theme: themedata(),
+        navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        theme: themedata(),
 
-      //home: LoginView(),
-      //home: RegisterView(),
-      // home: OneUserView(),
-      home: MyHomePage(),
-      //  MyHomePageAgent()
+        //home: LoginView(),
+        //home: RegisterView(),
+        // home: OneUserView(),
+        // home: MyHomePage(),
+        //  MyHomePageAgent()
 
-      // home: skipinto
-      //     ? isLoggedIn
-      //         ? MyHomePage()
-      //         : LoginView()
-      //     : IntoScreen()
+        home: skipinto
+            ? isLoggedIn
+                ? MyHomePage()
+                : AuthView()
+            : IntoScreen()
 
-      // home: const MyHomePage(),
-      //home: GetAllTicketView(),
-    );
+        // home: const MyHomePage(),
+        //home: GetAllTicketView(),
+        );
   }
 }

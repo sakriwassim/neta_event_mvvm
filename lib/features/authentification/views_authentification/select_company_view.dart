@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/int.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/register_authentification_view.dart';
-
 import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/select_button.dart';
@@ -42,13 +40,13 @@ class _SelectCompanyState extends State<SelectCompany> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  navtoRegisterView() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const RegisterView(),
-        ));
-  }
+  // navtoRegisterView() {
+  //   Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => const RegisterView(),
+  //       ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,15 +118,28 @@ class _SelectCompanyState extends State<SelectCompany> {
                             return Center(child: CircularProgressIndicator());
                           });
 
+                      var nom_complet = widget.nomcompletfield.toString();
+                      var email = widget.emailfield.toString();
+                      var password = widget.passwordfield.toString();
+
                       var event = {
-                        "role_id": selectIndex,
+                        "role_id": 1,
                         "packs_id": 1,
-                        "nom_complet": widget.nomcompletfield.toString(),
-                        "email": widget.emailfield.toString(),
+                        "nom_complet": "Moddusa Keita",
+                        "email": "sai@email.com",
                         "telephone": 70213645,
-                        "adresse": "",
-                        "image": "",
-                        "password": widget.passwordfield.toString()
+                        "adresse": "Faladiè",
+                        "image": "https://cheminverslimage",
+                        "password": "password@!"
+
+                        // "role_id": 1, //selectIndex,
+                        // "packs_id": 1,
+                        // "nom_complet": nom_complet,
+                        // "email": email,
+                        // "telephone": 70213645,
+                        // "adresse": "",
+                        // "image": "",
+                        // "password": password
                       };
 
                       AuthentificationModel authentificationModel =
@@ -136,6 +147,14 @@ class _SelectCompanyState extends State<SelectCompany> {
 
                       bool verif = await data.Register(authentificationModel);
                       if (verif == true) {
+                        print("HATHAAA IL INDEXXXXXXXX  $selectIndex");
+                        print(
+                            "HATHAAA IL INDEnomcompletfieldXXXXXXXX  ${widget.nomcompletfield.toString()}");
+                        print(
+                            "HATHAAA IL INDEemailfieldXXXXXXXX  ${widget.emailfield.toString()}");
+
+                        print(
+                            "HATHAAA IL INDE  passwordfieldXXXXXXXX  ${widget.passwordfield.toString()}");
                         // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(
                             context,

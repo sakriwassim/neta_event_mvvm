@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:neta_event_mvvm/features/authentification/views_authentification/login_authentification_view.dart';
+import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     prefs.setBool("isLoggedIn", false);
     prefs.remove("token");
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginView()));
+        context, MaterialPageRoute(builder: (context) => AuthView()));
   }
 
   @override

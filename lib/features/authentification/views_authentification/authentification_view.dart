@@ -19,6 +19,7 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../../main.dart';
 import '../../home/bottom_navigation_bar.dart';
+import '../../home/main_home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -412,20 +413,17 @@ class _AuthViewState extends State<AuthView> {
 
       bool verif = await data.Login(authentificationModel);
       if (verif == true) {
-        
         final prefs = await SharedPreferences.getInstance();
 
         if (isSwitched) {
           prefs.setBool("isLoggedIn", true);
         }
 
-        var userrole = await datauser.eventsRepository!.getUserByID(1);
-
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyHomePage(),
+              builder: (context) => const MainHomePage(),
             ));
       }
     }

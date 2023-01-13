@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
+import 'features/home/main_home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
 
         home: skipinto
             ? isLoggedIn
-                ? const MyHomePage()
+                ? const MainHomePage()
                 : const AuthView()
             : const IntoScreen()
 

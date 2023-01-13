@@ -7,6 +7,7 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../../main.dart';
 import '../../home/bottom_navigation_bar.dart';
+import '../../home/main_home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
@@ -159,7 +160,7 @@ class _SelectCompanyState extends State<SelectCompany> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MyHomePage(),
+                              builder: (context) => const MainHomePage(),
                             ));
                       }
 

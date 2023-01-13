@@ -32,8 +32,12 @@ const tringle = "assets/icons/tontine/tringle.svg";
 
 //Hiddencolor
 /// ******************************HOME******************** */
+const CompassOff = "assets/icons/home/compassof.svg";
+const Compass = "assets/icons/home/compass.svg";
+const ProfileBnt = "assets/icons/home/Profile.svg" ;
 const Favoris = "assets/icons/home/Favoris.svg";
 const Calendar = "assets/icons/home/Calendar.svg";
+const Calendaroff = "assets/icons/home/Calendaroff.svg";
 const calendarside = "assets/icons/home/calendarside.svg";
 const Notif = "assets/icons/home/Notification.svg";
 const helpcircle = "assets/icons/home/helpcircle.svg"; //Tontin

@@ -31,7 +31,7 @@ class AppBarDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         child: ImageCachedInternet(
           height: MediaQuery.of(context).size.height,
-          imageUrl: '$image',
+          imageUrl: image,
           width: MediaQuery.of(context).size.width,
         ),
 

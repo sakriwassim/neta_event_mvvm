@@ -58,6 +58,7 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
   var data2 = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
+  
 
   @override
   Widget build(BuildContext context) {

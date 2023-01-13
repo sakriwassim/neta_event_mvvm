@@ -91,35 +91,35 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
                     } else {
                       //var tickets = snapshot.data;
                       var tickets = [];
-                      if (tickets!.isEmpty) {
+                      if (tickets.isEmpty) {
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(notification),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextAirbnbCereal(
                                   title: "Pas de Notification !",
                                   size: 20,
-                                  color: Color(0xFFF344B67),
+                                  color: const Color(0xFFF344B67),
                                   fontWeight: FontWeight.w500),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextAirbnbCereal(
                                   title:
                                       "Vous pouvez consulter l'historique de toute notification",
                                   size: 12,
-                                  color: Color(0xFFF344B67),
+                                  color: const Color(0xfff344b67),
                                   fontWeight: FontWeight.w400)
                             ],
                           ),
                         );
                       }
                       return ListView.builder(
-                          itemCount: tickets?.length,
+                          itemCount: tickets.length,
                           itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -132,8 +132,8 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
                                             )));
                               },
                               child: NotificationCardWidgetH(
-                                image: '${tickets![index].image}',
-                                libelle: '${tickets![index].libelle}',
+                                image: '${tickets[index].image}',
+                                libelle: '${tickets[index].libelle}',
                                 montant_regulier:
                                     "${tickets[index].montant_regulier}\$",
                                 nbr_participant:

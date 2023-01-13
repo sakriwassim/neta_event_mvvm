@@ -77,7 +77,8 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                   width: 100,
                   fontSize: 15,
                   gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.normal, textcolor:  Colors.white,
+                  fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
                 )),
           ],
         ),
@@ -140,8 +141,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                                               MainAxisAlignment.end,
                                           children: [
                                             Text(
-                                                "${tickets[index].categorieModel}" +
-                                                    "€",
+                                                "${tickets[index].categorieModel} €",
                                                 style: const TextStyle(
                                                   fontFamily: 'AirbnbCereal',
                                                   color: Colors.black,

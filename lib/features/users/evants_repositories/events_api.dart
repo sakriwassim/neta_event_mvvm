@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
+import '../view_model_events/events_view_model.dart';
 import 'event_repository.dart';
 
 class UsersApi extends UsersRepository {
@@ -86,6 +87,9 @@ class UsersApi extends UsersRepository {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
 
+      var data = UsersViewModel(eventsRepository: UsersApi());
+      var userconnected = await data.GetUserConnected();
+
       var TOKEN =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
@@ -99,7 +103,7 @@ class UsersApi extends UsersRepository {
 
       final body = eventModelJson;
 
-      String link = '$baseUrl/User/10';
+      String link = '$baseUrl/User/${userconnected.id}';
 
       var url = Uri.parse(link);
 
@@ -126,7 +130,7 @@ class UsersApi extends UsersRepository {
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Basic +$token'
+        'authorization': 'Basic $token'
       };
 
       final body = jsonEncode(eventModelJson);

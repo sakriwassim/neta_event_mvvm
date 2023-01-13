@@ -38,7 +38,7 @@ class SideBarMenu extends StatelessWidget {
       ),
       child: ListView(
         children: [
-          SideHeader(),
+          const SideHeader(),
           ListTile(
             leading: SvgPicture.asset(Profile), //Favoris
             title: TextAirbnbCereal(

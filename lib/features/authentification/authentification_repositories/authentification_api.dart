@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../users/evants_repositories/events_api.dart';
+import '../../users/view_model_events/events_view_model.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
@@ -49,6 +51,10 @@ class AuthentificationApi extends AuthentificationRepository {
       prefs.setString("token", authentificationtoken.toString());
       prefs.setString("userconnectedid", tokenModel.userId.toString());
 
+      var data = UsersViewModel(eventsRepository: UsersApi());
+      var userrole = await data.GetUserByID(tokenModel.userId);
+      prefs.setString("userrole", userrole.role_id.toString());
+
       print("Seccess");
       print("  *********userconnectedid**********  ${tokenModel.userId}");
       return true;
@@ -84,12 +90,18 @@ class AuthentificationApi extends AuthentificationRepository {
     }
   }
 
+  getuserrole() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userrole = prefs.getInt("userrole");
+    return userrole;
+  }
+
   @override
   Future<bool> cleanpref() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
-     
+
       return true;
     } catch (e) {
       return false;

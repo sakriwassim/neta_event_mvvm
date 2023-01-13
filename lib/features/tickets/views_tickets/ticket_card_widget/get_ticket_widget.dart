@@ -10,7 +10,6 @@ import '../../../events/evants_repositories/events_api.dart';
 import '../../../events/view_model_events/events_view_model.dart';
 import '../../tickets_repositories/tickets_api.dart';
 import '../../view_model_tickets/tickets_view_model.dart';
-import '../one_ticket_view.dart';
 
 class GetAllTicketWidget extends StatefulWidget {
   GetAllTicketWidget({super.key});
@@ -36,12 +35,11 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
 
           return Future.delayed(const Duration(seconds: 2));
         },
-        child: Container(
-          // color: Colors.blue,
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Center(
             child: FutureBuilder(
-              future: data.GetTicketsUserConnected(),
+              future: data.GetTicketsByUser(1),
               builder: ((context, snapshot) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator();
@@ -59,7 +57,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                               barrierColor: Colors.black54,
                               pageBuilder: (context, anim1, anim2) {
                                 return Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     //color: Colors.blue,
                                     width: getProportionateScreenWidth(200),
                                     height: getProportionateScreenHeight(250),
@@ -90,18 +88,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                                                           20),
                                                 ),
                                                 InkWell(
-                                                  onTap: () async {
-                                                    print(
-                                                        "dlhskjfdshflkjsdhfjds");
-                                                    // var result = await RScan
-                                                    //     .scanImagePath(
-                                                    //         'https://admin.saitech-group.com/api_event/public/Images/1672243424.png');
-                                                    // setState(() {
-                                                    //   print(
-                                                    //       "**************Scanresalt********$result");
-                                                    //   //this.result = result;
-                                                    // });
-                                                  },
+                                                  onTap: () async {},
                                                   child: Button(
                                                     text: "Scan Qr",
                                                     fontSize:
@@ -138,11 +125,11 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                           },
                           child: TicketCardWidget(
                             event_id: '${tickets![index].event_id}',
-                            QR_code: '${tickets![index].qr_code}',
-                            date_expire: '${tickets![index].date}',
-                            libelle: '${tickets![index].libelle}',
-                            prix: '${tickets![index].prix}',
-                            statut: '${tickets![index].statut}',
+                            QR_code: '${tickets[index].qr_code}',
+                            date_expire: '${tickets[index].date}',
+                            libelle: '${tickets[index].libelle}',
+                            prix: '${tickets[index].prix}',
+                            statut: '${tickets[index].statut}',
                           )));
                 }
               }),

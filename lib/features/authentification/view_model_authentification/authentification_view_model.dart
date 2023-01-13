@@ -33,4 +33,6 @@ class AuthentificationViewModel {
     var token = prefs.getString("token");
     return token;
   }
+
+  
 }

@@ -6,7 +6,7 @@ import '../size_config.dart';
 import '../widgets/text_widget_text1.dart';
 
 class SideHeader extends StatefulWidget {
-  SideHeader({super.key});
+  const SideHeader({super.key});
 
   //var data = UsersViewModel(eventsRepository: UsersApi());
 

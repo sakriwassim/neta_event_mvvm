@@ -7,6 +7,9 @@ import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/select_company_view.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/widgets/forget_row.dart';
+import 'package:neta_event_mvvm/features/users/evants_repositories/event_repository.dart';
+import 'package:neta_event_mvvm/features/users/evants_repositories/events_api.dart';
+import 'package:neta_event_mvvm/features/users/view_model_events/events_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/colors.dart';
@@ -47,7 +50,7 @@ class _AuthViewState extends State<AuthView> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  
+  var datauser = UsersViewModel(eventsRepository: UsersApi());
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +80,7 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ],
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
@@ -98,7 +101,7 @@ class _AuthViewState extends State<AuthView> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     )
                   ],
@@ -127,7 +130,7 @@ class _AuthViewState extends State<AuthView> {
                           },
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(15),
                 ),
@@ -239,7 +242,7 @@ class _AuthViewState extends State<AuthView> {
                           );
                         }),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 isLogin
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -249,8 +252,9 @@ class _AuthViewState extends State<AuthView> {
                             Row(
                               children: [
                                 CupertinoSwitch(
-                                  activeColor: Color(0xFFFC2207C),
-                                  thumbColor: Color.fromRGBO(255, 255, 255, 1),
+                                  activeColor: const Color(0xFFFC2207C),
+                                  thumbColor:
+                                      const Color.fromRGBO(255, 255, 255, 1),
                                   trackColor: Colors.black12,
                                   value: isSwitched,
                                   onChanged: (value) =>
@@ -388,7 +392,7 @@ class _AuthViewState extends State<AuthView> {
     showDialog(
         context: context,
         builder: (context) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         });
 
     if (formkey.currentState!.validate()) {
@@ -408,11 +412,14 @@ class _AuthViewState extends State<AuthView> {
 
       bool verif = await data.Login(authentificationModel);
       if (verif == true) {
+        
         final prefs = await SharedPreferences.getInstance();
 
         if (isSwitched) {
           prefs.setBool("isLoggedIn", true);
         }
+
+        var userrole = await datauser.eventsRepository!.getUserByID(1);
 
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(

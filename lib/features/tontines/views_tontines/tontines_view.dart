@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
+import '../../users/evants_repositories/events_api.dart';
+import '../../users/view_model_events/events_view_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
@@ -18,6 +20,7 @@ class GetAllTontineView extends StatefulWidget {
 class _GetAllTontineViewState extends State<GetAllTontineView> {
   var data = TontinesViewModel(ticketsRepository: TontinesApi());
 
+  var datauser = UsersViewModel(eventsRepository: UsersApi());
   deletetontines(id) {
     setState(() {
       data.DeleteTontineByID(id);
@@ -44,22 +47,34 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 color: Colors.black,
               ),
             ),
-            InkWell(
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => AddTontineView()));
-                },
-                child: Button(
-                  fontWeight: FontWeight.normal,
-                  text: "ADD EVENT",
-                  height: 40,
-                  width: 100,
-                  fontSize: 15,
-                  gradientbackground: gradientbackground,
-                  textcolor: Colors.white,
-                )),
+            FutureBuilder(
+                future: datauser.GetUserConnected(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container();
+                  } else {
+                    //var body = snapshot.data;
+                    var role = snapshot.data!.role_id.toString();
+                    return role == "1"
+                        ? Container()
+                        : InkWell(
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => AddEventView()));
+                            },
+                            child: Button(
+                              text: "ADD EVENT",
+                              height: 40,
+                              width: 100,
+                              fontSize: 15,
+                              gradientbackground: gradientbackground,
+                              fontWeight: FontWeight.normal,
+                              textcolor: Colors.white,
+                            ));
+                  }
+                }),
           ],
         ),
       ),
@@ -101,7 +116,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                               },
                               child: TontineCardWidgetH(
                                 image: '${tickets![index].image}',
-                                libelle: '${tickets![index].libelle}',
+                                libelle: '${tickets[index].libelle}',
                                 montant_regulier:
                                     "${tickets[index].montant_regulier}\$",
                                 nbr_participant:

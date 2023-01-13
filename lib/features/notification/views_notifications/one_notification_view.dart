@@ -22,7 +22,7 @@ import '../../users/view_model_events/events_view_model.dart';
 class OnNotificationView extends StatefulWidget {
   final int id;
   final String image;
-  OnNotificationView({
+  const OnNotificationView({
     Key? key,
     required this.id,
     required this.image,

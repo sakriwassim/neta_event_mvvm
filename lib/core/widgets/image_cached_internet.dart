@@ -18,10 +18,10 @@ class ImageCachedInternet extends StatelessWidget {
     return CachedNetworkImage(
       height: height,
       width: height,
-      imageUrl: "$imageUrl",
+      imageUrl: imageUrl,
       placeholder: (context, url) =>
-          Center(child: new CircularProgressIndicator()),
-      errorWidget: (context, url, error) => new Icon(Icons.error),
+          const Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
       fit: BoxFit.cover,
     );
   }

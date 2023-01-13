@@ -53,7 +53,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: getProportionateScreenHeight(height! * 0.5),
                           child: ClipRRect(
@@ -67,13 +67,13 @@ class ExclusiveCardWidget extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
+                          child: SizedBox(
                             // color: Colors.grey,
                             width: getProportionateScreenWidth(width!),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: getProportionateScreenHeight(50),
                                   width: getProportionateScreenWidth(50),
                                   child: Stack(
@@ -121,7 +121,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                     SizedBox(
                       height: getProportionateScreenHeight(5),
                     ),
-                    Container(
+                    SizedBox(
                       //color: Colors.black54,
                       width: double.infinity,
                       child: Row(
@@ -158,7 +158,7 @@ class ExclusiveCardWidget extends StatelessWidget {
                             width: getProportionateScreenWidth(5),
                           ),
                           TextAirbnbCereal(
-                            color: Color(0xFF2B2849), //4F4F4F
+                            color: const Color(0xFF2B2849), //4F4F4F
                             fontWeight: FontWeight.w500,
                             size: 12,
                             title: adresse!,

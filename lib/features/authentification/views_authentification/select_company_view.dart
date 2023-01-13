@@ -115,7 +115,7 @@ class _SelectCompanyState extends State<SelectCompany> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           });
 
                       var nom_complet = widget.nomcompletfield.toString();

@@ -11,7 +11,7 @@ import '../view_model_categories/categories_view_model.dart';
 
 class UpdateCategorieView extends StatefulWidget {
   final OneCategorieViewModel ticketObj;
-  UpdateCategorieView({super.key, required this.ticketObj});
+  const UpdateCategorieView({super.key, required this.ticketObj});
 
   @override
   State<UpdateCategorieView> createState() => _UpdateCategorieViewState();
@@ -22,10 +22,6 @@ class _UpdateCategorieViewState extends State<UpdateCategorieView> {
   late String libellefield;
   late String prixfield;
   late String descriptionfield;
-
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
 
   var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
 

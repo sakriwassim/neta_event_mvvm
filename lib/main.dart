@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/into_screen/view/intro_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
-
 import 'features/home/bottom_navigation_bar.dart';
 
 void main() async {
@@ -47,9 +45,9 @@ class MyApp extends StatelessWidget {
 
         home: skipinto
             ? isLoggedIn
-                ? MyHomePage()
-                : AuthView()
-            : IntoScreen()
+                ? const MyHomePage()
+                : const AuthView()
+            : const IntoScreen()
 
         // home: const MyHomePage(),
         //home: GetAllTicketView(),

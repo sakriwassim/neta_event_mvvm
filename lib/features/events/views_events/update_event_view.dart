@@ -23,9 +23,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
   late String prixfield;
   late String descriptionfield;
 
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
+
 
   var data = EventsViewModel(eventsRepository: EventsApi());
 

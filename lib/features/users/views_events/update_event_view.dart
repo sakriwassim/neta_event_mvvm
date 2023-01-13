@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 
 import '../../../core/colors.dart';
@@ -24,9 +25,9 @@ class _UpdateUserViewState extends State<UpdateUserView> {
   late String prixfield;
   late String descriptionfield;
 
-  late String Libellefield;
-  late String Prixfield;
-  late String Descriptionfield;
+  //TextEditingController libellefield = TextInputConnection
+
+
 
   var data = UsersViewModel(eventsRepository: UsersApi());
 
@@ -54,6 +55,7 @@ class _UpdateUserViewState extends State<UpdateUserView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
+                
                 decoration: textFieldDecoration(
                   "Mot de passe",
                   "entre le password",
@@ -124,7 +126,6 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                   };
 
                   AddUserModel eventformJson = AddUserModel.fromJson(event);
-                  //   print(eventformJson);
 
                   setState(() {
                     data.UpdateUserByID(eventformJson);

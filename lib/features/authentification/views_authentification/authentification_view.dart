@@ -35,17 +35,17 @@ class AuthView extends StatefulWidget {
 
 class _AuthViewState extends State<AuthView> {
   final formkey = GlobalKey<FormState>();
-  late String nomcompletfield;
-  // late String emailfield;
-  // late String passwordfield;
+  //late String nomcompletfield;
 
-  late String passwordfield2;
   bool _obscureText = true;
   bool isSwitched = true;
   bool isLogin = true;
 
   final emailfield = TextEditingController();
   final passwordfield = TextEditingController();
+  final passwordfieldconfirm = TextEditingController();
+  final nomcompletfield = TextEditingController();
+
   // final navigatorKey = GlobalKey<NavigatorState>();
 
   var data = AuthentificationViewModel(
@@ -113,6 +113,7 @@ class _AuthViewState extends State<AuthView> {
                         padding: EdgeInsets.symmetric(
                             horizontal: getProportionateScreenWidth(15)),
                         child: TextFormField(
+                          controller: nomcompletfield,
                           decoration: textFieldDecorationWithicon(
                             "entre le ",
                             "Sanogo Yaya",
@@ -125,9 +126,6 @@ class _AuthViewState extends State<AuthView> {
                             } else {
                               return null;
                             }
-                          },
-                          onChanged: (text) {
-                            nomcompletfield = text;
                           },
                         ),
                       )
@@ -175,6 +173,7 @@ class _AuthViewState extends State<AuthView> {
                         child: StatefulBuilder(builder: (BuildContext context,
                             void Function(void Function()) setState) {
                           return TextFormField(
+                            controller: passwordfieldconfirm,
                             // password1
                             obscureText: _obscureText,
                             decoration: InputDecoration(
@@ -229,14 +228,12 @@ class _AuthViewState extends State<AuthView> {
                                   value.isEmpty ||
                                   !regex.hasMatch(value)) {
                                 return "Enter a valid mot de pass";
-                              } else if (passwordfield == passwordfield2) {
+                              } else if (passwordfield.text ==
+                                  passwordfieldconfirm.text) {
                                 return null;
                               } else {
                                 return "vérifier votre mot de passe";
                               }
-                            },
-                            onChanged: (text) {
-                              passwordfield2 = text;
                             },
                           );
                         }),
@@ -376,11 +373,11 @@ class _AuthViewState extends State<AuthView> {
 
   register() {
     if (formkey.currentState!.validate()) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => SelectCompany(
-                nomcompletfield: nomcompletfield,
+                nomcompletfield: nomcompletfield.text,
                 emailfield: emailfield.text,
                 passwordfield: passwordfield.text),
           ));
@@ -395,13 +392,8 @@ class _AuthViewState extends State<AuthView> {
         });
 
     if (formkey.currentState!.validate()) {
-      final event = {"email": emailfield.text, "password": passwordfield.text};
-
-      AuthentificationModel authentificationModel =
-          AuthentificationModel.fromJson(event);
-
-      AuthentificationResponseModel verif =
-          await data.Login(authentificationModel);
+      LoginResponseModel verif =
+          await data.Login(emailfield.text, passwordfield.text);
       if (verif.code == 200) {
         final prefs = await SharedPreferences.getInstance();
 

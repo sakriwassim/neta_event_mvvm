@@ -11,17 +11,20 @@ class AuthentificationViewModel {
   AuthentificationRepository? authentificationRepository;
   AuthentificationViewModel({this.authentificationRepository});
 
-  Future<AuthentificationResponseModel> Login(
-      AuthentificationModel authentificationModel) async {
+  Future<LoginResponseModel> Login(
+      String mail, String password) async {
     var authentification =
-        await authentificationRepository!.login(authentificationModel);
+        await authentificationRepository!.login(mail, password);
 
     return authentification;
   }
 
-  Future<bool> Register(AuthentificationModel authentificationModel) async {
+  //register(
+    //  int role_id, String nom_complet, String email, String password)
+
+  Future<RegisterResponseModel> Register(int role_id, String nom_complet, String email, String password) async {
     var authentification =
-        await authentificationRepository!.register(authentificationModel);
+        await authentificationRepository!.register( role_id,  nom_complet,  email,  password);
     return authentification;
   }
 

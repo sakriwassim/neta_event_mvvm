@@ -13,10 +13,10 @@ class UsersApi extends UsersRepository {
   @override
   Future<UserModel> getUserByID(int? id) async {
     try {
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
 
-      var headersa = {'Authorization': 'Bearer $TOKEN'};
+      var headersa = {'Authorization': 'Bearer $token'};
       String link = '$baseUrl/User/$id';
       var url = Uri.parse(link);
 
@@ -90,9 +90,6 @@ class UsersApi extends UsersRepository {
       var data = UsersViewModel(eventsRepository: UsersApi());
       var userconnected = await data.GetUserConnected();
 
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
-
       final eventModelJson = eventModel.toJson();
 
       var headers = {
@@ -122,9 +119,6 @@ class UsersApi extends UsersRepository {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
       final eventModelJson = addUserModel.toJson();
 
@@ -157,7 +151,7 @@ class UsersApi extends UsersRepository {
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Basic +$token'
+        'authorization': 'Basic $token'
       };
       String link = '$baseUrl/User/$id';
       var url = Uri.parse(link);

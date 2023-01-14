@@ -12,23 +12,18 @@ import '../models_authentification/token_model.dart';
 import 'authentification_repository.dart';
 
 class AuthentificationApi extends AuthentificationRepository {
-  String? verif;
-  String? authentificationtoken;
-  int? code;
-  String? token;
-
   @override
-  Future<AuthentificationResponseModel> login(
-      AuthentificationModel authentificationModel) async {
-    AuthentificationResponseModel? authentificationResponseModel;
-
+  Future<LoginResponseModel> login(String mail, String password) async {
+    LoginResponseModel? authentificationResponseModel;
+    String? authentificationtoken;
     try {
-      final eventModelJson = authentificationModel.toJson();
+      var userJson = {"email": "$mail", "password": "$password"};
+
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
 
-      final body = jsonEncode(eventModelJson);
+      final body = jsonEncode(userJson);
 
       String link = '$baseUrl/Login';
 
@@ -40,7 +35,7 @@ class AuthentificationApi extends AuthentificationRepository {
       var responsebodydecode = jsonDecode(response.body);
 
       authentificationResponseModel =
-          AuthentificationResponseModel.fromJson(responsebodydecode);
+          LoginResponseModel.fromJson(responsebodydecode);
 
       var token = authentificationResponseModel.data!.token;
       var code = authentificationResponseModel.code;
@@ -50,19 +45,18 @@ class AuthentificationApi extends AuthentificationRepository {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      prefs.setString("token", authentificationtoken.toString());
-      prefs.setString("userconnectedid", tokenModel.userId.toString());
-
       var data = UsersViewModel(eventsRepository: UsersApi());
       var userrole = await data.GetUserByID(tokenModel.userId);
+
       prefs.setString("userrole", userrole.role_id.toString());
+      prefs.setString("token", authentificationtoken.toString());
+      prefs.setString("userconnectedid", tokenModel.userId.toString());
 
       print("Seccess");
       print("  *********userconnectedid**********  ${tokenModel.userId}");
       print(
           "  *********Stateocode **********  ${authentificationResponseModel.code}");
 
-      // if (response.statusCode == 200) {
       return authentificationResponseModel;
     } catch (e) {
       print("PROBLEM  sur login $e");
@@ -71,14 +65,26 @@ class AuthentificationApi extends AuthentificationRepository {
   }
 
   @override
-  Future<bool> register(AuthentificationModel registerModel) async {
+  Future<RegisterResponseModel> register(
+      int role_id, String nom_complet, String email, String password) async {
+    RegisterResponseModel? registerResponseModel;
     try {
-      final eventModelJson = registerModel.toJson();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
 
-      final body = jsonEncode(eventModelJson);
+      var userjdon = {
+        "role_id": role_id,
+        "packs_id": 1,
+        "nom_complet": nom_complet,
+        "email": email,
+        "telephone": 70213645,
+        "adresse": "Faladiè",
+        "image": "https://cheminverslimage",
+        "password": password
+      };
+
+      final body = jsonEncode(userjdon);
 
       String link = '$baseUrl/Register';
 
@@ -87,12 +93,15 @@ class AuthentificationApi extends AuthentificationRepository {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
+      var responsebodydecode = jsonDecode(response.body);
 
-      // print(responsebody);
-      return true;
+      registerResponseModel =
+          RegisterResponseModel.fromJson(responsebodydecode);
+
+      return registerResponseModel;
     } catch (e) {
       print("PROBLEM  sur register $e");
-      return false;
+      throw UnimplementedError();
     }
   }
 
@@ -102,17 +111,17 @@ class AuthentificationApi extends AuthentificationRepository {
     return userrole;
   }
 
-  @override
-  Future<bool> cleanpref() async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.clear();
+  // @override
+  // Future<bool> cleanpref() async {
+  //   try {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.clear();
 
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  //     return true;
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
 
   @override
   Future<TokenModel> gettokenmodel() async {

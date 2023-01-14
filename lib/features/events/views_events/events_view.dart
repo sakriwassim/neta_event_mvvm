@@ -52,7 +52,7 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                     } else {
                       //var body = snapshot.data;
                       var role = snapshot.data!.role_id.toString();
-                      return role == "1"
+                      return role == "0"
                           ? Container()
                           : InkWell(
                               onTap: () {

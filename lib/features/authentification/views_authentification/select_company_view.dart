@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/int.dart';
+import 'package:neta_event_mvvm/features/authentification/models_authentification/response_model.dart';
 import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
+import '../../../core/string.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
@@ -11,6 +14,7 @@ import '../../home/main_home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
+import 'authentification_view.dart';
 
 //****** */
 class SelectCompany extends StatefulWidget {
@@ -41,13 +45,13 @@ class _SelectCompanyState extends State<SelectCompany> {
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
 
-  // navtoRegisterView() {
-  //   Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => const RegisterView(),
-  //       ));
-  // }
+  navtoRegisterView() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AuthView(),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,22 @@ class _SelectCompanyState extends State<SelectCompany> {
             key: formkey,
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: () => navtoRegisterView(),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(15)),
+                        child: SvgPicture.asset(Back),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -116,56 +136,23 @@ class _SelectCompanyState extends State<SelectCompany> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           });
 
-                      var nom_complet = widget.nomcompletfield.toString();
-                      var email = widget.emailfield.toString();
-                      var password = widget.passwordfield.toString();
+                      RegisterResponseModel verif = await data.Register(
+                          selectIndex,
+                          widget.nomcompletfield,
+                          widget.emailfield,
+                          widget.passwordfield);
 
-                      var event = {
-                        "role_id": 1,
-                        "packs_id": 1,
-                        "nom_complet": "Moddusa Keita",
-                        "email": "sai@email.com",
-                        "telephone": 70213645,
-                        "adresse": "Faladiè",
-                        "image": "https://cheminverslimage",
-                        "password": "password@!"
-
-                        // "role_id": 1, //selectIndex,
-                        // "packs_id": 1,
-                        // "nom_complet": nom_complet,
-                        // "email": email,
-                        // "telephone": 70213645,
-                        // "adresse": "",
-                        // "image": "",
-                        // "password": password
-                      };
-
-                      AuthentificationModel authentificationModel =
-                          AuthentificationModel.fromJson(event);
-
-                      bool verif = await data.Register(authentificationModel);
-                      if (verif == true) {
-                        print("HATHAAA IL INDEXXXXXXXX  $selectIndex");
-                        print(
-                            "HATHAAA IL INDEnomcompletfieldXXXXXXXX  ${widget.nomcompletfield.toString()}");
-                        print(
-                            "HATHAAA IL INDEemailfieldXXXXXXXX  ${widget.emailfield.toString()}");
-
-                        print(
-                            "HATHAAA IL INDE  passwordfieldXXXXXXXX  ${widget.passwordfield.toString()}");
-                        // ignore: use_build_context_synchronously
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MainHomePage(),
-                            ));
+                      if (verif.code == 200) {
+                        //Navigator.pop(context);
+                        navtoRegisterView();
                       }
 
-                      navigatorKey.currentState!
-                          .popUntil((route) => route.isFirst);
+                      // navigatorKey.currentState!
+                      //     .popUntil((route) => route.isFirst);
                     },
                     child: Button(
                       text: "VALIDER",

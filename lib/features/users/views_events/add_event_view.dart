@@ -235,8 +235,8 @@ class _AddUserViewState extends State<AddUserView> {
                     var event = {
                       "category_id": categories![selectedIndex].id,
                       "observation_id": 21,
-                      "libelle": libellefield,
-                      "description": descriptionfield,
+                      "libelle": "$libellefield",
+                      "description": "$descriptionfield",
                       "prix": _currentSliderValue.toInt(),
                       "date_heure": _dataTime.toString(),
                       "adresse": "Stade du 26 Mars",

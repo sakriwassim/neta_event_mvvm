@@ -21,9 +21,7 @@ import '../tontines/views_tontines/tontines_view.dart';
 import '../users/evants_repositories/events_api.dart';
 import '../users/view_model_events/events_view_model.dart';
 import '../users/view_profil/one_user_view.dart';
-import 'bottom_agent.dart';
 import 'home_view.dart';
-import 'home_view_agent.dart';
 
 class MyHomePageClient extends StatefulWidget {
   const MyHomePageClient({super.key});
@@ -61,6 +59,9 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", false);
     prefs.remove("token");
+    prefs.remove("token");
+    prefs.remove("userconnectedid");
+
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => AuthView()));
   }

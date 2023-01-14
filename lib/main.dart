@@ -3,6 +3,7 @@ import 'package:neta_event_mvvm/features/into_screen/view/intro_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
+import 'features/authentification/views_authentification/select_company_view.dart';
 import 'features/home/bottom_navigation_bar.dart';
 import 'features/home/main_home_page.dart';
 
@@ -38,20 +39,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: themedata(),
 
-        //home: LoginView(),
-        //home: RegisterView(),
-        // home: OneUserView(),
-        // home: MyHomePage(),
-        //  MyHomePageAgent()
+        home: SelectCompany(nomcompletfield: 's', emailfield: '', passwordfield: '',),
 
-        home: skipinto
-            ? isLoggedIn
-                ? const MainHomePage()
-                : const AuthView()
-            : const IntoScreen()
 
-        // home: const MyHomePage(),
-        //home: GetAllTicketView(),
+        // home: skipinto
+        //     ? isLoggedIn
+        //         ? const MainHomePage()
+        //         : const AuthView()
+        //     : const IntoScreen()
+
         );
   }
 }

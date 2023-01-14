@@ -411,7 +411,7 @@ class _HomeViewState extends State<HomeView> {
                                       GetEventByCategorisWidget(
                                         categorieid: indexCategories,
                                       ),
-                                      role == "1"
+                                      role == "0"
                                           ? Container()
                                           : Column(
                                               children: [

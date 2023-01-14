@@ -26,12 +26,18 @@ class _MainHomePageState extends State<MainHomePage> {
         future: datauser.GetUserConnected(),
         builder: ((context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: const CircularProgressIndicator());
+            return Center(
+                child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: Colors.white,
+              // child: const CircularProgressIndicator()
+            ));
           } else {
             var user = snapshot.data;
             var userrole = user?.role_id.toString();
-            //var userrole = "4";
-            return userrole == "4" ? MyHomePageAgent() : MyHomePageClient();
+
+            return userrole == "3" ? MyHomePageAgent() : MyHomePageClient();
           }
         }));
   }

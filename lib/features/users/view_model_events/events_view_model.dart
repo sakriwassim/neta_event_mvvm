@@ -52,4 +52,5 @@ class UsersViewModel {
     var eventModel = await eventsRepository!.getUserByID(useridint);
     return OneUserViewModel(eventModel: eventModel);
   }
+  
 }

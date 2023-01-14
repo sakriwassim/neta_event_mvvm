@@ -4,9 +4,8 @@ import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
 
 abstract class AuthentificationRepository {
-  Future<bool> register(AuthentificationModel authentificationModel);
-  Future<AuthentificationResponseModel> login(
-      AuthentificationModel authentificationModel);
-  Future<bool> cleanpref();
+  Future<RegisterResponseModel> register(
+      int role_id, String nom_complet, String email, String password);
+  Future<LoginResponseModel> login(String mail, String password);
   Future<TokenModel> gettokenmodel();
 }

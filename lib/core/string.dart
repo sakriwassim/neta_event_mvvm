@@ -14,6 +14,11 @@ const titleCG = 'Se connecter avec Google';
 const notification = 'assets/icons/notification/notification.svg';
 
 /// *******************************AUthentification********************* */
+///
+///
+/// Back
+const Back = 'assets/icons/authentification/Back.svg';
+
 const imagefacebook = 'assets/icons/authentification/facebook.svg';
 const imagegoogle = 'assets/icons/authentification/google.svg';
 const lockicon = "assets/icons/authentification/lock.svg";
@@ -34,7 +39,7 @@ const tringle = "assets/icons/tontine/tringle.svg";
 /// ******************************HOME******************** */
 const CompassOff = "assets/icons/home/compassof.svg";
 const Compass = "assets/icons/home/compass.svg";
-const ProfileBnt = "assets/icons/home/Profile.svg" ;
+const ProfileBnt = "assets/icons/home/Profile.svg";
 const Favoris = "assets/icons/home/Favoris.svg";
 const Calendar = "assets/icons/home/Calendar.svg";
 const Calendaroff = "assets/icons/home/Calendaroff.svg";

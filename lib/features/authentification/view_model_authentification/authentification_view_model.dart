@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../authentification_repositories/authentification_repository.dart';
 import '../models_authentification/login_authentification_model.dart';
+import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
 
 class AuthentificationViewModel {
@@ -10,7 +11,8 @@ class AuthentificationViewModel {
   AuthentificationRepository? authentificationRepository;
   AuthentificationViewModel({this.authentificationRepository});
 
-  Future<bool> Login(AuthentificationModel authentificationModel) async {
+  Future<AuthentificationResponseModel> Login(
+      AuthentificationModel authentificationModel) async {
     var authentification =
         await authentificationRepository!.login(authentificationModel);
 
@@ -33,6 +35,4 @@ class AuthentificationViewModel {
     var token = prefs.getString("token");
     return token;
   }
-
-  
 }

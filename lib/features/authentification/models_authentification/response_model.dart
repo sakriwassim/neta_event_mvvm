@@ -1,45 +1,43 @@
 class AuthentificationResponseModel {
-  AuthentificationResponseModel({
-    required this.data,
-    required this.status,
-    required this.code,
-    required this.message,
-  });
-  late final Data data;
-  late final int status;
-  late final int code;
-  late final String message;
+  Data? data;
+  int? status;
+  int? code;
+  String? message;
+
+  AuthentificationResponseModel(
+      {this.data, this.status, this.code, this.message});
 
   AuthentificationResponseModel.fromJson(Map<String, dynamic> json) {
-    data = Data.fromJson(json['data']);
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     status = json['status'];
     code = json['code'];
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['status'] = status;
-    _data['code'] = code;
-    _data['message'] = message;
-    return _data;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    data['status'] = this.status;
+    data['code'] = this.code;
+    data['message'] = this.message;
+    return data;
   }
 }
 
 class Data {
-  Data({
-    required this.token,
-  });
-  late final String token;
+  String? token;
+
+  Data({this.token});
 
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['token'] = token;
-    return _data;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['token'] = this.token;
+    return data;
   }
 }

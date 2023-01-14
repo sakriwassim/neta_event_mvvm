@@ -23,15 +23,14 @@ class _MainHomePageState extends State<MainHomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      
         future: datauser.GetUserConnected(),
         builder: ((context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: const CircularProgressIndicator());
           } else {
             var user = snapshot.data;
-            // var userrole = user?.role_id.toString();
-            var userrole = "4";
+            var userrole = user?.role_id.toString();
+            //var userrole = "4";
             return userrole == "4" ? MyHomePageAgent() : MyHomePageClient();
           }
         }));

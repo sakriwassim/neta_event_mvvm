@@ -22,6 +22,7 @@ import '../../home/bottom_navigation_bar.dart';
 import '../../home/main_home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/login_authentification_model.dart';
+import '../models_authentification/response_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 
 //****** */
@@ -35,17 +36,16 @@ class AuthView extends StatefulWidget {
 class _AuthViewState extends State<AuthView> {
   final formkey = GlobalKey<FormState>();
   late String nomcompletfield;
-  late String emailfield;
-  late String passwordfield;
+  // late String emailfield;
+  // late String passwordfield;
 
   late String passwordfield2;
-
   bool _obscureText = true;
-
   bool isSwitched = true;
-
   bool isLogin = true;
 
+  final emailfield = TextEditingController();
+  final passwordfield = TextEditingController();
   // final navigatorKey = GlobalKey<NavigatorState>();
 
   var data = AuthentificationViewModel(
@@ -139,6 +139,7 @@ class _AuthViewState extends State<AuthView> {
                   padding: EdgeInsets.symmetric(
                       horizontal: getProportionateScreenWidth(15)),
                   child: TextFormField(
+                    controller: emailfield,
                     decoration: textFieldDecorationWithicon(
                       "entre le email",
                       "Adresse e-mail",
@@ -158,15 +159,12 @@ class _AuthViewState extends State<AuthView> {
                         return null;
                       }
                     },
-                    onChanged: (text) {
-                      emailfield = text;
-                    },
                   ),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                PasswordField(),
+                PasswordFieldwidget(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
@@ -383,8 +381,8 @@ class _AuthViewState extends State<AuthView> {
           MaterialPageRoute(
             builder: (context) => SelectCompany(
                 nomcompletfield: nomcompletfield,
-                emailfield: emailfield,
-                passwordfield: passwordfield),
+                emailfield: emailfield.text,
+                passwordfield: passwordfield.text),
           ));
     }
   }
@@ -397,22 +395,14 @@ class _AuthViewState extends State<AuthView> {
         });
 
     if (formkey.currentState!.validate()) {
-      var event = {
-        "role_id": 1,
-        "packs_id": 1,
-        "nom_complet": " ",
-        "email": emailfield.toString(),
-        "telephone": 70213645,
-        "adresse": " ",
-        "image": " ",
-        "password": passwordfield.toString()
-      };
+      final event = {"email": emailfield.text, "password": passwordfield.text};
 
       AuthentificationModel authentificationModel =
           AuthentificationModel.fromJson(event);
 
-      bool verif = await data.Login(authentificationModel);
-      if (verif == true) {
+      AuthentificationResponseModel verif =
+          await data.Login(authentificationModel);
+      if (verif.code == 200) {
         final prefs = await SharedPreferences.getInstance();
 
         if (isSwitched) {
@@ -425,21 +415,22 @@ class _AuthViewState extends State<AuthView> {
             MaterialPageRoute(
               builder: (context) => const MainHomePage(),
             ));
+
+        //   }
+
+        // navigatorKey.currentState!.popUntil((route) => route.isFirst);
       }
     }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
-  Padding PasswordField() {
+  Widget PasswordFieldwidget() {
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
       child: TextFormField(
+        controller: passwordfield,
         keyboardType: TextInputType.text,
-        // controller: _userPasswordController,
         obscureText: _obscureText,
-
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
@@ -481,7 +472,6 @@ class _AuthViewState extends State<AuthView> {
             },
           ),
         ),
-
         validator: (value) {
           String pattern = patternstring;
           RegExp regex = RegExp(pattern);
@@ -491,9 +481,6 @@ class _AuthViewState extends State<AuthView> {
           } else {
             return null;
           }
-        },
-        onChanged: (text) {
-          passwordfield = text;
         },
       ),
     );

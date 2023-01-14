@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
@@ -17,9 +18,12 @@ class AuthentificationApi extends AuthentificationRepository {
   String? token;
 
   @override
-  Future<bool> login(AuthentificationModel authentificationModel) async {
+  Future<AuthentificationResponseModel> login(
+      AuthentificationModel authentificationModel) async {
+    AuthentificationResponseModel? authentificationResponseModel;
+
     try {
-      final eventModelJson = authentificationModel.toJSON();
+      final eventModelJson = authentificationModel.toJson();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -34,20 +38,18 @@ class AuthentificationApi extends AuthentificationRepository {
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
       var responsebodydecode = jsonDecode(response.body);
-      //print(responsebodydecode);
 
-      AuthentificationResponseModel authentificationResponseModel =
+      authentificationResponseModel =
           AuthentificationResponseModel.fromJson(responsebodydecode);
 
-      var token = authentificationResponseModel.data.token;
+      var token = authentificationResponseModel.data!.token;
       var code = authentificationResponseModel.code;
 
-      Map<String, dynamic> payload = Jwt.parseJwt(token);
+      Map<String, dynamic> payload = Jwt.parseJwt(token!);
       var tokenModel = TokenModel.fromJson(payload);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      //prefs.clear();
-      //  prefs.remove("token");
+
       prefs.setString("token", authentificationtoken.toString());
       prefs.setString("userconnectedid", tokenModel.userId.toString());
 
@@ -57,17 +59,21 @@ class AuthentificationApi extends AuthentificationRepository {
 
       print("Seccess");
       print("  *********userconnectedid**********  ${tokenModel.userId}");
-      return true;
+      print(
+          "  *********Stateocode **********  ${authentificationResponseModel.code}");
+
+      // if (response.statusCode == 200) {
+      return authentificationResponseModel;
     } catch (e) {
       print("PROBLEM  sur login $e");
-      return false;
+      throw UnimplementedError();
     }
   }
 
   @override
   Future<bool> register(AuthentificationModel registerModel) async {
     try {
-      final eventModelJson = registerModel.toJSON();
+      final eventModelJson = registerModel.toJson();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };

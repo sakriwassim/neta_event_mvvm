@@ -39,15 +39,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: themedata(),
 
-        home: SelectCompany(nomcompletfield: 's', emailfield: '', passwordfield: '',),
+        //     home: SelectCompany(nomcompletfield: 's', emailfield: '', passwordfield: '',),
 
-
-        // home: skipinto
-        //     ? isLoggedIn
-        //         ? const MainHomePage()
-        //         : const AuthView()
-        //     : const IntoScreen()
-
-        );
+        home: skipinto
+            ? isLoggedIn
+                ? const MainHomePage()
+                : const AuthView()
+            : const IntoScreen());
   }
 }

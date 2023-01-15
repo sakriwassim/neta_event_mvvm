@@ -5,8 +5,8 @@ import '../../../core/int.dart';
 import '../../../core/widgets/app_bar_details.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
+import '../models_tickets/ticket_model.dart';
 import '../tickets_repositories/tickets_api.dart';
-import '../view_model_tickets/one_ticket_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
 class OnTicketView extends StatefulWidget {
@@ -42,7 +42,7 @@ class _OnTicketViewState extends State<OnTicketView> {
       body: Container(
         //backgroundColor: Colors.transparent,
         child: Center(
-          child: FutureBuilder<OneTicketViewModel>(
+          child: FutureBuilder<TicketModel>(
             future: data.GetTicketByID(widget.id),
             builder: ((context, snapshot) {
               if (snapshot.hasData) {

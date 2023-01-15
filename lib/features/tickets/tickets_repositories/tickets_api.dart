@@ -20,9 +20,6 @@ class TicketsApi extends TicketsRepository {
 
       http.Response response = await http.get(url, headers: headersa);
 
-      //var responsebody = jsonDecode(response.body);
-
-      // print(ticketData);
       TicketModel.fromJson(json.decode(response.body));
       var ticketDate = TicketModel.fromJson(json.decode(response.body));
 
@@ -31,8 +28,6 @@ class TicketsApi extends TicketsRepository {
       throw Exception('can not load ticket data');
     }
   }
-
-//https://admin.saitech-group.com/api/v1/TicketsByUser/10
 
   @override
   Future<List<TicketModel>> getTicketsByUser(int id) async {

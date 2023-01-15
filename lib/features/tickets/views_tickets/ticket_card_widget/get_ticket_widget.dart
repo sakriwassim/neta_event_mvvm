@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tickets/views_tickets/ticket_card_widget/ticket_card.dart';
-
 import '../../../../core/colors.dart';
 import '../../../../core/int.dart';
 import '../../../../core/size_config.dart';
@@ -8,6 +7,7 @@ import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../events/evants_repositories/events_api.dart';
 import '../../../events/view_model_events/events_view_model.dart';
+import '../../models_tickets/ticket_model.dart';
 import '../../tickets_repositories/tickets_api.dart';
 import '../../view_model_tickets/tickets_view_model.dart';
 
@@ -19,10 +19,33 @@ class GetAllTicketWidget extends StatefulWidget {
 }
 
 class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
+  bool loading = true;
   var data = TicketsViewModel(ticketsRepository: TicketsApi());
   var dataEvents = EventsViewModel(eventsRepository: EventsApi());
+
+  // late List<TicketModel> alltickets = [];
+
+  // @override
+  // void initState() {
+  //   var listoftickets = data.FetchAllTickets();
+
+  //   alltickets.addAll();
+  //   // data.FetchAllTickets() == alltickets;
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    List<TicketModel> alltickets = [];
+    // data.listAllTickets
+
+    //  setState(() {
+    // alltickets.add(data.listAllTickets);
+    //alltickets = productIds;
+
+    // print("LISTS +>>>> $_lists");
+//});
+
     SizeConfig().init(context);
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -125,7 +148,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                           },
                           child: TicketCardWidget(
                             event_id: '${tickets![index].event_id}',
-                            QR_code: '${tickets[index].qr_code}',
+                            QR_code: '${tickets[index].Qr_code}',
                             date_expire: '${tickets[index].date}',
                             libelle: '${tickets[index].libelle}',
                             prix: '${tickets[index].prix}',

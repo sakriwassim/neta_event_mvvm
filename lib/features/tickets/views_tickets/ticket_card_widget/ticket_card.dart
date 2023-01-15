@@ -11,7 +11,7 @@ import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
 import '../../../events/evants_repositories/events_api.dart';
 import '../../../events/view_model_events/events_view_model.dart';
-import '../../view_model_tickets/one_ticket_view_model.dart';
+import '../../models_tickets/ticket_model.dart';
 
 class TicketCardWidget extends StatelessWidget {
   //event_id
@@ -36,7 +36,7 @@ class TicketCardWidget extends StatelessWidget {
     this.events,
   }) : super(key: key);
 
-  final List<OneTicketViewModel>? events;
+  final List<TicketModel>? events;
 
   @override
   Widget build(BuildContext context) {

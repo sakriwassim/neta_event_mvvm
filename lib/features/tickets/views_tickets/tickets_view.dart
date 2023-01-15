@@ -17,14 +17,6 @@ class GetAllTicketView extends StatefulWidget {
 
 class _GetAllTicketViewState extends State<GetAllTicketView>
     with TickerProviderStateMixin {
-  // var data = TicketsViewModel(ticketsRepository: TicketsApi());
-
-  deletetontines() {
-    setState(() {
-      //data.DeleteTontineByID(id);
-    });
-  }
-
   var datauser = UsersViewModel(eventsRepository: UsersApi());
 
   @override
@@ -111,7 +103,10 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                         "TICKET VALIDES",
                         style: TextStyle(fontSize: 15),
                       ),
-                      Text("TICKET EXPIRES"),
+                      Text(
+                        "TICKET EXPIRES",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ],
                   ),
                 ),
@@ -122,8 +117,8 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                   child: TabBarView(
                     controller: _tabController,
                     children: const [
-                       GetAllTicketWidget(),
-                       GetAllTicketWidget(),
+                      GetAllTicketWidget(),
+                      GetAllTicketWidget(),
                     ],
                   ),
                 ),

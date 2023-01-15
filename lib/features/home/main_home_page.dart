@@ -37,7 +37,9 @@ class _MainHomePageState extends State<MainHomePage> {
             var user = snapshot.data;
             var userrole = user?.role_id.toString();
 
-            return userrole == "3" ? const MyHomePageAgent() : const MyHomePageClient();
+            return userrole == "3"
+                ? const MyHomePageAgent()
+                : const MyHomePageClient();
           }
         }));
   }

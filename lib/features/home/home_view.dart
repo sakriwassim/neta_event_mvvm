@@ -204,7 +204,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                       child: TontineCardWidget(
                         image: packs![index].image,
-                        libelle: packs![index].libelle,
+                        libelle: packs[index].libelle,
                         montant_regulier: packs[index].montant_regulier,
                         nbr_participant: packs[index].nbr_participant,
                         // image: packs[index].image,

@@ -11,10 +11,10 @@ class CategoriesApi extends CategoriesRepository {
   @override
   Future<CategorieModel> getCategorieByID(int id) async {
     try {
-      var TOKEN =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
-      // try {
-      var headersa = {'Authorization': 'Bearer $TOKEN'};
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("token");
+
+      var headersa = {'Authorization': 'Bearer $token'};
       String link = '$baseUrl/Categories/$id';
       var url = Uri.parse(link);
 
@@ -86,7 +86,7 @@ class CategoriesApi extends CategoriesRepository {
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Basic +$token'
+        'authorization': 'Basic $token'
       };
 
       final body = jsonEncode(eventModelJson);
@@ -98,8 +98,7 @@ class CategoriesApi extends CategoriesRepository {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
+   
     } catch (e) {
       //  print(e);
     }

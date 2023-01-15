@@ -228,7 +228,7 @@ class _AddUserViewState extends State<AddUserView> {
                      showDialog(
                           context: context,
                           builder: (context) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           });
 
                   if (formkey.currentState!.validate()) {

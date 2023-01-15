@@ -136,7 +136,7 @@ class _OneUserViewState extends State<OneUserView> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => UserView(),
+                                builder: (context) => const UserView(),
                               ));
                         },
                         child: Button(

@@ -55,7 +55,7 @@ class TicketCardWidget extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -87,12 +87,12 @@ class TicketCardWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextAirbnbCereal(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: const Color.fromARGB(255, 255, 255, 255),
                                 fontWeight: FontWeight.w400,
                                 size: 25,
                                 title: "${snapshot.data!.libelle}"),
                             TextAirbnbCereal(
-                                color: Color.fromARGB(255, 11, 205, 235),
+                                color: const Color.fromARGB(255, 11, 205, 235),
                                 fontWeight: FontWeight.w500,
                                 size: 12,
                                 title: "${snapshot.data!.date_heure}"),
@@ -104,7 +104,7 @@ class TicketCardWidget extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                           height: getProportionateScreenHeight(60),
                           // height: double.infinity,
                           //color: Colors.blue,
@@ -118,7 +118,7 @@ class TicketCardWidget extends StatelessWidget {
                           height: getProportionateScreenHeight(10),
                         ),
                         TextAirbnbCereal(
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             fontWeight: FontWeight.w500,
                             size: 12,
                             title: "${snapshot.data!.prix} fcfa"),
@@ -130,7 +130,7 @@ class TicketCardWidget extends StatelessWidget {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),

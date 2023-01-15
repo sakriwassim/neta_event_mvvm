@@ -40,7 +40,7 @@ class _GetAllPackViewState extends State<GetAllPackView> {
           ],
         ),
       ),
-      body: GetAllPackViewBody(),
+      body: const GetAllPackViewBody(),
     );
   }
 }

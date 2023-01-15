@@ -58,7 +58,7 @@ class _OnTicketViewState extends State<OnTicketView> {
                         width: 150,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(

@@ -12,7 +12,6 @@ import '../authentification/authentification_repositories/authentification_api.d
 import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
-import '../users/view_profil/one_user_view.dart';
 
 class MyHomePageAgent extends StatefulWidget {
   const MyHomePageAgent({super.key});
@@ -42,8 +41,9 @@ class _MyHomePageAgentState extends State<MyHomePageAgent> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", false);
     prefs.remove("token");
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => AuthView()));
+        context, MaterialPageRoute(builder: (context) => const AuthView()));
   }
 
   Widget bottomwidget(String iconoff, String iconon, String text, int Index) {
@@ -83,7 +83,8 @@ class _MyHomePageAgentState extends State<MyHomePageAgent> {
         child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
+          backgroundColor:
+              const Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
           mini: false,
           onPressed: () {
             // Navigator.push(

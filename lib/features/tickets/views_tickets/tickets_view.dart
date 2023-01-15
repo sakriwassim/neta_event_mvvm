@@ -9,7 +9,7 @@ import '../../users/view_model_events/events_view_model.dart';
 import 'ticket_card_widget/get_ticket_widget.dart';
 
 class GetAllTicketView extends StatefulWidget {
-  GetAllTicketView({super.key});
+  const GetAllTicketView({super.key});
 
   @override
   State<GetAllTicketView> createState() => _GetAllTicketViewState();
@@ -121,9 +121,9 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: [
-                      GetAllTicketWidget(),
-                      GetAllTicketWidget(),
+                    children: const [
+                       GetAllTicketWidget(),
+                       GetAllTicketWidget(),
                     ],
                   ),
                 ),

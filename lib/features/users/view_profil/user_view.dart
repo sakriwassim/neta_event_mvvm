@@ -194,7 +194,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return Center(
+                                            return const Center(
                                                 child:
                                                     CircularProgressIndicator());
                                           });
@@ -595,7 +595,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         height: heightmediumbutton,
                                         width: widthmediumbutton,
                                         textcolor:
-                                            Color.fromARGB(255, 255, 255, 255),
+                                            const Color.fromARGB(255, 255, 255, 255),
                                       )),
                                 ),
                               ],

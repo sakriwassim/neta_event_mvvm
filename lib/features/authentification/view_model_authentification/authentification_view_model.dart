@@ -1,7 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../authentification_repositories/authentification_repository.dart';
-import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
 
@@ -19,8 +18,6 @@ class AuthentificationViewModel {
     return authentification;
   }
 
-  //register(
-    //  int role_id, String nom_complet, String email, String password)
 
   Future<RegisterResponseModel> Register(int role_id, String nom_complet, String email, String password) async {
     var authentification =

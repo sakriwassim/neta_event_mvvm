@@ -389,7 +389,7 @@ class _AddNotificationViewState extends State<AddNotificationView>
                                    showDialog(
                           context: context,
                           builder: (context) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           });
 
                                 if (formkey.currentState!.validate()) {

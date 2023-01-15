@@ -108,46 +108,44 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
                 },
               ),
             ),
-            Container(
-              child: InkWell(
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Center(child: CircularProgressIndicator());
-                      });
-
-                  if (formkey.currentState!.validate()) {
-                    var ticket = {
-                      "event_id": widget.ticketObj.id,
-                      "libelle": libellefield,
-                      "description": descriptionfield,
-                      "prix": prixfield,
-                      "QR_code": "qr_code",
-                      "date": "Date",
-                      "statut": "Statut",
-                    };
-
-                    AddTicketModel ticketformJson =
-                        AddTicketModel.fromJson(ticket);
-                    //   print(ticketformJson);
-
-                    setState(() {
-                      data.UpdateTicketByID(ticketformJson);
+            InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(child: CircularProgressIndicator());
                     });
-                  }
 
-                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
-                },
-                child: Button(
-                  text: "MODIFIER",
-                  fontSize: fontSizemediumbutton,
-                  gradientbackground: gradientbackground,
-                  height: heightmediumbutton,
-                  width: widthmediumbutton,
-                  fontWeight: FontWeight.normal,
-                  textcolor: Colors.white,
-                ),
+                if (formkey.currentState!.validate()) {
+                  var ticket = {
+                    "event_id": widget.ticketObj.id,
+                    "libelle": libellefield,
+                    "description": descriptionfield,
+                    "prix": prixfield,
+                    "QR_code": "qr_code",
+                    "date": "Date",
+                    "statut": "Statut",
+                  };
+
+                  AddTicketModel ticketformJson =
+                      AddTicketModel.fromJson(ticket);
+                  //   print(ticketformJson);
+
+                  setState(() {
+                    data.UpdateTicketByID(ticketformJson);
+                  });
+                }
+
+                navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              },
+              child: Button(
+                text: "MODIFIER",
+                fontSize: fontSizemediumbutton,
+                gradientbackground: gradientbackground,
+                height: heightmediumbutton,
+                width: widthmediumbutton,
+                fontWeight: FontWeight.normal,
+                textcolor: Colors.white,
               ),
             ),
           ],

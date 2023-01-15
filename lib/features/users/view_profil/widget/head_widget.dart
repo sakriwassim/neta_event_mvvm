@@ -22,7 +22,7 @@ class HeadWidget extends StatelessWidget {
       children: [
         /********** */
         CircleImage(image: image, height: heightimage, width: widthimage),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         TextAirbnbCereal(

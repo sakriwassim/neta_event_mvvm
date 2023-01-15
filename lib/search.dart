@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
 import 'features/events/evants_repositories/events_api.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/events/view_model_events/one_event_view_model.dart';
 import 'features/events/views_events/one_event_view.dart';
-import 'features/events/views_events/widgets/event_card_widget.dart';
 
 class SearchElement extends SearchDelegate {
   var data = EventsViewModel(eventsRepository: EventsApi());
@@ -18,7 +16,7 @@ class SearchElement extends SearchDelegate {
           onPressed: () {
             query = "";
           },
-          icon: Icon(Icons.close))
+          icon: const Icon(Icons.close))
     ];
   }
 

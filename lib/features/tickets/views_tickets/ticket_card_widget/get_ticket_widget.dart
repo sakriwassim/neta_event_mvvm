@@ -12,7 +12,7 @@ import '../../tickets_repositories/tickets_api.dart';
 import '../../view_model_tickets/tickets_view_model.dart';
 
 class GetAllTicketWidget extends StatefulWidget {
-  GetAllTicketWidget({super.key});
+  const GetAllTicketWidget({super.key});
 
   @override
   State<GetAllTicketWidget> createState() => _GetAllTicketWidgetState();

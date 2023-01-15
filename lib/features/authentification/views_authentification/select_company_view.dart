@@ -8,15 +8,10 @@ import '../../../core/string.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../../main.dart';
-import '../../home/bottom_navigation_bar.dart';
-import '../../home/main_home_page.dart';
 import '../authentification_repositories/authentification_api.dart';
-import '../models_authentification/login_authentification_model.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import 'authentification_view.dart';
 
-//****** */
 class SelectCompany extends StatefulWidget {
   late String nomcompletfield;
   late String emailfield;
@@ -39,8 +34,6 @@ class _SelectCompanyState extends State<SelectCompany> {
   bool buttonselected = false;
 
   int selectIndex = -1;
-
-//  final bool _isObscure = true;
 
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
@@ -77,7 +70,7 @@ class _SelectCompanyState extends State<SelectCompany> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(

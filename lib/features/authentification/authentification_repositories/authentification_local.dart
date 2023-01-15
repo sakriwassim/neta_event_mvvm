@@ -1,4 +1,3 @@
-import 'package:neta_event_mvvm/features/authentification/models_authentification/login_authentification_model.dart';
 import 'package:neta_event_mvvm/features/authentification/models_authentification/token_model.dart';
 
 import '../models_authentification/response_model.dart';
@@ -12,14 +11,12 @@ class EventsLocal extends AuthentificationRepository {
 
   @override
   Future<LoginResponseModel> login(String mail, String password) {
-    // TODO: implement login
     throw UnimplementedError();
   }
 
   @override
   Future<RegisterResponseModel> register(
       int role_id, String nom_complet, String email, String password) {
-    // TODO: implement register
     throw UnimplementedError();
   }
 }

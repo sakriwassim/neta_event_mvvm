@@ -8,8 +8,6 @@ import '../widgets/text_widget_text1.dart';
 class SideHeader extends StatefulWidget {
   const SideHeader({super.key});
 
-  //var data = UsersViewModel(eventsRepository: UsersApi());
-
   @override
   State<SideHeader> createState() => _SideHeaderState();
 }
@@ -19,7 +17,7 @@ class _SideHeaderState extends State<SideHeader> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
+    return SizedBox(
         height: getProportionateScreenHeight(150),
         child: Container(
           alignment: Alignment.centerLeft,

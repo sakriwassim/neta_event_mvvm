@@ -90,7 +90,7 @@ class TontineCardWidget extends StatelessWidget {
 
                   child: Center(
                     child: Column(children: <Widget>[
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: getProportionateScreenHeight(100),
                         child: ImageCachedInternet(
@@ -192,7 +192,7 @@ class TontineCardWidget extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              PaymentScreen()));
+                                              const PaymentScreen()));
                                 },
                                 child: Button(
                                   fontWeight: FontWeight.normal,

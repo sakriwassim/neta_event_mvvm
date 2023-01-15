@@ -49,7 +49,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
                     future: data.FetchAllUsers(),
                     builder: ((context, snapshot) {
                       if (!snapshot.hasData) {
-                        return Center(child: const CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else {
                         var events = snapshot.data;
                         return ListView.builder(
@@ -83,7 +83,7 @@ class _GetAllUserViewState extends State<GetAllUserView> {
               );
             }
           },
-          child: Center(child: const CircularProgressIndicator()),
+          child: const Center(child: CircularProgressIndicator()),
         ),
       ),
     );

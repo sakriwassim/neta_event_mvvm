@@ -14,9 +14,7 @@ const titleCG = 'Se connecter avec Google';
 const notification = 'assets/icons/notification/notification.svg';
 
 /// *******************************AUthentification********************* */
-///
-///
-/// Back
+
 const Back = 'assets/icons/authentification/Back.svg';
 
 const imagefacebook = 'assets/icons/authentification/facebook.svg';

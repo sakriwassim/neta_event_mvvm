@@ -38,10 +38,8 @@ class _AuthViewState extends State<AuthView> {
   final passwordfield = TextEditingController();
   final passwordfieldconfirm = TextEditingController();
   final nomcompletfield = TextEditingController();
-
   var data = AuthentificationViewModel(
       authentificationRepository: AuthentificationApi());
-
   var datauser = UsersViewModel(eventsRepository: UsersApi());
 
   register() {
@@ -384,7 +382,7 @@ class _AuthViewState extends State<AuthView> {
                           ],
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),

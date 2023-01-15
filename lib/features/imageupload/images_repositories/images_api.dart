@@ -19,7 +19,7 @@ class ImagesApi extends ImagesRepository {
     request.files.add(await http.MultipartFile.fromPath("image", filepath));
     request.headers.addAll({
       'Content-type': 'multipart/form-data',
-      'authorization': 'Bearer ' + '$TOKEN',
+      'authorization': 'Bearer ' '$TOKEN',
     });
 
     var response = await request.send();

@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../users/evants_repositories/events_api.dart';
 import '../../users/view_model_events/events_view_model.dart';
-import '../models_authentification/login_authentification_model.dart';
 import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
 import 'authentification_repository.dart';
@@ -52,10 +50,10 @@ class AuthentificationApi extends AuthentificationRepository {
       prefs.setString("token", authentificationtoken.toString());
       prefs.setString("userconnectedid", tokenModel.userId.toString());
 
-      print("Seccess");
-      print("  *********userconnectedid**********  ${tokenModel.userId}");
-      print(
-          "  *********Stateocode **********  ${authentificationResponseModel.code}");
+      // print("Seccess");
+      // print("  *********userconnectedid**********  ${tokenModel.userId}");
+      // print(
+      //     "  *********Stateocode **********  ${authentificationResponseModel.code}");
 
       return authentificationResponseModel;
     } catch (e) {
@@ -112,17 +110,6 @@ class AuthentificationApi extends AuthentificationRepository {
     return userrole;
   }
 
-  // @override
-  // Future<bool> cleanpref() async {
-  //   try {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.clear();
-
-  //     return true;
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
 
   @override
   Future<TokenModel> gettokenmodel() async {

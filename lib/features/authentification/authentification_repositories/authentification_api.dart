@@ -11,12 +11,9 @@ import 'authentification_repository.dart';
 
 class AuthentificationApi extends AuthentificationRepository {
   @override
-  Future<LoginResponseModel> login(String mail, String password) async {
-    LoginResponseModel? authentificationResponseModel;
-    String? authentificationtoken;
+  Future<void> login(String mail, String password) async {
     try {
       var userJson = {"email": "$mail", "password": "$password"};
-
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -29,33 +26,13 @@ class AuthentificationApi extends AuthentificationRepository {
 
       http.Response response =
           await http.post(url, headers: headers, body: body);
-      var responsebody = jsonEncode(response.body);
-      var responsebodydecode = jsonDecode(response.body);
 
-      authentificationResponseModel =
-          LoginResponseModel.fromJson(responsebodydecode);
-
-      var token = authentificationResponseModel.data!.token;
-      var code = authentificationResponseModel.code;
-
-      Map<String, dynamic> payload = Jwt.parseJwt(token!);
-      var tokenModel = TokenModel.fromJson(payload);
-
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      var data = UsersViewModel(eventsRepository: UsersApi());
-      var userrole = await data.GetUserByID(tokenModel.userId);
-
-      prefs.setString("userrole", userrole.role_id.toString());
-      prefs.setString("token", authentificationtoken.toString());
-      prefs.setString("userconnectedid", tokenModel.userId.toString());
-
-      // print("Seccess");
-      // print("  *********userconnectedid**********  ${tokenModel.userId}");
-      // print(
-      //     "  *********Stateocode **********  ${authentificationResponseModel.code}");
-
-      return authentificationResponseModel;
+      if (response.statusCode == 200) {
+        var responsebodydecode = jsonDecode(response.body);
+        return responsebodydecode;
+      }
+      print("failed");
+      //return null;
     } catch (e) {
       //Future.value();
       print("PROBLEM  sur login $e");
@@ -64,9 +41,8 @@ class AuthentificationApi extends AuthentificationRepository {
   }
 
   @override
-  Future<RegisterResponseModel> register(
+  Future<dynamic> register(
       int role_id, String nom_complet, String email, String password) async {
-    RegisterResponseModel? registerResponseModel;
     try {
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -91,13 +67,13 @@ class AuthentificationApi extends AuthentificationRepository {
 
       http.Response response =
           await http.post(url, headers: headers, body: body);
-      var responsebody = jsonEncode(response.body);
+
       var responsebodydecode = jsonDecode(response.body);
 
-      registerResponseModel =
-          RegisterResponseModel.fromJson(responsebodydecode);
-
-      return registerResponseModel;
+      if (response.statusCode == 200) {
+        return responsebodydecode;
+      }
+      print("failed");
     } catch (e) {
       print("PROBLEM  sur register $e");
       throw UnimplementedError();
@@ -109,7 +85,6 @@ class AuthentificationApi extends AuthentificationRepository {
     final userrole = prefs.getInt("userrole");
     return userrole;
   }
-
 
   @override
   Future<TokenModel> gettokenmodel() async {

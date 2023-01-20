@@ -310,20 +310,54 @@ class _HomeViewState extends State<HomeView> {
                       vertical: getProportionateScreenHeight(20),
                       horizontal: getProportionateScreenWidth(10)),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                          icon: SvgPicture.asset(CombinedShape),
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          }),
+                      InkWell(
+                        onTap: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 2,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              shape: BoxShape.circle,
+                              gradient: gradientbackground),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: SvgPicture.asset(
+                              ProfileBnt,
+                              width: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      // IconButton(
+                      //     icon: SvgPicture.asset(CombinedShape),
+                      //     onPressed: () {
+                      //       Scaffold.of(context).openDrawer();
+                      //     }),
+                      //Spacer(),
                       appbarWidget(),
-                      IconButton(
-                          icon: SvgPicture.asset(Notif),
-                          onPressed: () {
-                            navGetAllNotificationView();
-                          }),
+                      // Spacer(),
+                      Row(
+                        children: [
+                          IconButton(
+                              icon: const Icon(
+                                Icons.favorite_border_sharp,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                // navGetAllNotificationView();
+                              }),
+                          IconButton(
+                              icon: SvgPicture.asset(Notif),
+                              onPressed: () {
+                                navGetAllNotificationView();
+                              }),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -385,12 +385,12 @@ class _AddNotificationViewState extends State<AddNotificationView>
                           ),
                           InkWell(
                               onTap: () {
-
-                                   showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const Center(child: CircularProgressIndicator());
-                          });
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    });
 
                                 if (formkey.currentState!.validate()) {
                                   var ticket = {
@@ -415,10 +415,8 @@ class _AddNotificationViewState extends State<AddNotificationView>
                                   });
                                 }
 
-
-
-                            navigatorKey.currentState!
-                          .popUntil((route) => route.isFirst);
+                                navigatorKey.currentState!
+                                    .popUntil((route) => route.isFirst);
                               },
                               child: Button(
                                 text: "APPLIQUER",

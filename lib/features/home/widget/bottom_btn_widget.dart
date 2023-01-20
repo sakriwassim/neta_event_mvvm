@@ -28,10 +28,15 @@ class bottomBtnwidget extends StatelessWidget {
       children: [
         SizedBox(
           height: getProportionateScreenHeight(27),
-          child: SvgPicture.asset(
-            currentIndex == Index ? "$iconon" : "$iconoff",
-            width: getProportionateScreenWidth(28),
-          ),
+          child: currentIndex == Index
+              ? SvgPicture.asset(
+                  "$iconon",
+                  width: getProportionateScreenWidth(40),
+                )
+              : SvgPicture.asset(
+                  "$iconoff",
+                  width: getProportionateScreenWidth(20),
+                ),
         ),
         Text(
           '$text',
@@ -39,10 +44,10 @@ class bottomBtnwidget extends StatelessWidget {
             foreground: currentIndex == Index
                 ? (Paint()..shader = linearGradient)
                 : Paint()
-              ..color = Colors.grey,
+              ..color = Color(0xFF9E9E9E),
             fontFamily: 'AirbnbCereal',
             fontWeight: FontWeight.w400,
-            fontSize: 12.0,
+            fontSize: 10.0,
           ),
         )
       ],

@@ -42,7 +42,7 @@ InputDecoration textFieldDecorationWithicon(
       child: SvgPicture.asset(pathicon),
     ),
     labelStyle: const TextStyle(
-      color: Colors.grey, //<-- SEE HERE
+      color: Color(0xFF9E9E9E), //<-- SEE HERE
     ),
     hintText: hintText,
   );

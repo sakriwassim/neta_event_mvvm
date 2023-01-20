@@ -11,6 +11,7 @@ import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
+import '../../core/widgets/coming_soon.dart';
 import '../authentification/authentification_repositories/authentification_api.dart';
 import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
@@ -39,8 +40,9 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
   List Screen = [
     HomeView(),
     const GetAllEventView(),
-    GetAllTicketView(),
+    const GetAllTicketView(),
     const GetAllTontineView(),
+    const ComingSoon()
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -104,26 +106,6 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
         bucket: bucket,
         child: currentScreen,
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
-          mini: false,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => OneUserView()),
-            );
-          },
-          child: Container(
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, gradient: gradientbackground),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: SvgPicture.asset(
-                ProfileBnt,
-                width: 28,
-              ),
-            ),
-          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -136,7 +118,8 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
               bottomwidget(CompassOff, Compass, 'Découvrir', 0),
               bottomwidget(Calendaroff, Calendar, 'Events', 1),
               bottomwidget(Locationoff, Location, 'Tickets', 2),
-              bottomwidget(Tontinoff, Tontin, 'Tontine', 3),
+              bottomwidget(tontineoff, tontine, 'Tontine', 3),
+              bottomwidget(Tontinoff, Tontin, 'Donation', 4),
             ],
           ),
         ),

@@ -108,7 +108,11 @@ class SideBarMenu extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-              leading: SvgPicture.asset(Tontinoffsidebar), //Tontin
+              leading: SvgPicture.asset(
+                tontineoff,
+                height: 30,
+                width: 30,
+              ), //Tontin
               title: TextAirbnbCereal(
                 title: 'Tontine',
                 color: Colors.black,

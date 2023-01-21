@@ -76,6 +76,7 @@ flutter:
   assets:
     - assets/icons/authentification/
     - assets/icon_add_event/
+    - assets/gif/
     - assets/icon_user/
     - assets/packs_bg/
     - assets/image/intro/

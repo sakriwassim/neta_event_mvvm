@@ -35,14 +35,14 @@ class _SelectCompanyState extends State<SelectCompany> {
 
   int selectIndex = -1;
 
-  var data = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+  // var data = AuthentificationViewModel(
+  //     authentificationRepository: AuthentificationApi());
 
   navtoRegisterView() {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const AuthView(),
+          builder: (context) => AuthView(),
         ));
   }
 
@@ -133,16 +133,16 @@ class _SelectCompanyState extends State<SelectCompany> {
                                 child: CircularProgressIndicator());
                           });
 
-                      RegisterResponseModel verif = await data.Register(
-                          selectIndex,
-                          widget.nomcompletfield,
-                          widget.emailfield,
-                          widget.passwordfield);
+                      // RegisterResponseModel verif = await data.Register(
+                      //     selectIndex,
+                      //     widget.nomcompletfield,
+                      //     widget.emailfield,
+                      //     widget.passwordfield);
 
-                      if (verif.code == 200) {
-                        //Navigator.pop(context);
-                        navtoRegisterView();
-                      }
+                      // if (verif.code == 200) {
+                      //   //Navigator.pop(context);
+                      //   navtoRegisterView();
+                      // }
 
                       // navigatorKey.currentState!
                       //     .popUntil((route) => route.isFirst);

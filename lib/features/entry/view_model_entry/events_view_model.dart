@@ -2,6 +2,7 @@
 import '../entry_repositories/event_repository.dart';
 
 class EntryViewModel {
+  
   String title = "Event Page ";
 
   EntryRepository? entryRepository;

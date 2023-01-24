@@ -56,8 +56,8 @@ class _HomeViewState extends State<HomeView> {
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
-  var data2 = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+  // var data2 = AuthentificationViewModel(
+  //     authentificationRepository: AuthentificationApi());
 
   navGetAllCategorieView() {
     Navigator.push(

@@ -34,8 +34,8 @@ class _MyHomePageAgentState extends State<MyHomePageAgent> {
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
-  var dataAuthentificationViewModel = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+  // var dataAuthentificationViewModel = AuthentificationViewModel(
+  //     authentificationRepository: AuthentificationApi());
 
   navtologin() async {
     final prefs = await SharedPreferences.getInstance();
@@ -43,7 +43,7 @@ class _MyHomePageAgentState extends State<MyHomePageAgent> {
     prefs.remove("token");
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const AuthView()));
+        context, MaterialPageRoute(builder: (context) =>  AuthView()));
   }
 
   Widget bottomwidget(String iconoff, String iconon, String text, int Index) {

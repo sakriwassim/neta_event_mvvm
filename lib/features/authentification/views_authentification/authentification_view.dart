@@ -8,25 +8,18 @@ import 'package:neta_event_mvvm/core/size_config.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/select_company_view.dart';
 import 'package:neta_event_mvvm/features/users/evants_repositories/events_api.dart';
 import 'package:neta_event_mvvm/features/users/view_model_events/events_view_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../home/main_home_page.dart';
-import '../authentification_repositories/authentification_api.dart';
-import '../models_authentification/response_model.dart';
+
 import '../view_model_authentification/authentification_view_model.dart';
 
-class AuthView extends StatefulWidget {
-  const AuthView({super.key});
+class AuthView extends StatelessWidget {
+  AuthView({super.key});
 
-  @override
-  State<AuthView> createState() => _AuthViewState();
-}
-
-class _AuthViewState extends State<AuthView> {
   final formkey = GlobalKey<FormState>();
 
   bool _obscureText = true;
@@ -38,53 +31,9 @@ class _AuthViewState extends State<AuthView> {
   final passwordfield = TextEditingController();
   final passwordfieldconfirm = TextEditingController();
   final nomcompletfield = TextEditingController();
-  var data = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+
+  AuthentificationViewModel? authentificationViewModel;
   var datauser = UsersViewModel(eventsRepository: UsersApi());
-
-  register() {
-    if (formkey.currentState!.validate()) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SelectCompany(
-                nomcompletfield: nomcompletfield.text,
-                emailfield: emailfield.text,
-                passwordfield: passwordfield.text),
-          ));
-    }
-  }
-
-  login() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        });
-
-    if (formkey.currentState!.validate()) {
-      LoginResponseModel verif =
-          await data.Login(emailfield.text, passwordfield.text);
-      if (verif.code == 200) {
-        final prefs = await SharedPreferences.getInstance();
-
-        if (isSwitched) {
-          prefs.setBool("isLoggedIn", true);
-        }
-
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MainHomePage(),
-            ));
-
-        //   }
-
-        // navigatorKey.currentState!.popUntil((route) => route.isFirst);
-      }
-    }
-  }
 
   Widget headsigin() {
     return Column(
@@ -290,9 +239,9 @@ class _AuthViewState extends State<AuthView> {
                     width: 24,
                   ),
             onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
+              // setState(() {
+              //   _obscureText = !_obscureText;
+              // });
             },
           ),
         ),
@@ -313,6 +262,38 @@ class _AuthViewState extends State<AuthView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    AuthentificationViewModel authentificationViewModel =
+        Provider.of<AuthentificationViewModel>(context, listen: true);
+
+    register() {
+      if (formkey.currentState!.validate()) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SelectCompany(
+                  nomcompletfield: nomcompletfield.text,
+                  emailfield: emailfield.text,
+                  passwordfield: passwordfield.text),
+            ));
+      }
+    }
+
+    login() async {
+      String mail = emailfield.text.trim();
+      String password = passwordfield.text.trim();
+      var provider =
+          Provider.of<AuthentificationViewModel>(context, listen: false);
+      await provider.Login(mail, password);
+      if (provider.isBack) {
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Container(),
+            ));
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -348,15 +329,15 @@ class _AuthViewState extends State<AuthView> {
                           children: [
                             Row(
                               children: [
-                                CupertinoSwitch(
-                                  activeColor: const Color(0xFFFC2207C),
-                                  thumbColor:
-                                      const Color.fromRGBO(255, 255, 255, 1),
-                                  trackColor: Colors.black12,
-                                  value: isSwitched,
-                                  onChanged: (value) =>
-                                      setState(() => isSwitched = value),
-                                ),
+                                // CupertinoSwitch(
+                                //   activeColor: const Color(0xFFFC2207C),
+                                //   thumbColor:
+                                //       const Color.fromRGBO(255, 255, 255, 1),
+                                //   trackColor: Colors.black12,
+                                //   value: isSwitched,
+                                //   onChanged: (value) =>
+                                //       setState(() => isSwitched = value),
+                                // ),
                                 Text(
                                   "Se rappeler",
                                   style: GoogleFonts.lato(
@@ -366,6 +347,7 @@ class _AuthViewState extends State<AuthView> {
                                 ),
                               ],
                             ),
+                            Text(authentificationViewModel.error),
 
                             //authentification
                             InkWell(
@@ -383,6 +365,7 @@ class _AuthViewState extends State<AuthView> {
                         ),
                       )
                     : const SizedBox(),
+                Text(authentificationViewModel.message),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
@@ -445,9 +428,9 @@ class _AuthViewState extends State<AuthView> {
                     ), //authentification
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          isLogin = !isLogin;
-                        });
+                        // setState(() {
+                        //   isLogin = !isLogin;
+                        // });
 
                         // navtoRegisterView();
                       },

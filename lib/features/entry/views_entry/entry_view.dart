@@ -23,8 +23,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   var data = EntryViewModel(entryRepository: EntryLocal());
 
-  var datatoken = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+  // var datatoken = AuthentificationViewModel(
+  //     authentificationRepository: AuthentificationApi());
 
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // token = prefs.getString("token");
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const AuthView(),
+              builder: (context) => AuthView(),
             ));
       } else {
         Navigator.pushReplacement(

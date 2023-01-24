@@ -1,19 +1,21 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../users/evants_repositories/events_api.dart';
-import '../../users/view_model_events/events_view_model.dart';
-import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
 import 'authentification_repository.dart';
 
-class AuthentificationApi extends AuthentificationRepository {
+class AuthentificationApi
+// extends AuthentificationRepository
+{
   @override
-  Future<void> login(String mail, String password) async {
+  Future<Response?> login(String mail, String password) async {
+    http.Response? response;
     try {
-      var userJson = {"email": "$mail", "password": "$password"};
+      var userJson = {"email": mail, "password": password};
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -24,61 +26,49 @@ class AuthentificationApi extends AuthentificationRepository {
 
       var url = Uri.parse(link);
 
-      http.Response response =
-          await http.post(url, headers: headers, body: body);
+      response = await http.post(url, headers: headers, body: body);
 
-      if (response.statusCode == 200) {
-        var responsebodydecode = jsonDecode(response.body);
-        return responsebodydecode;
-      }
-      print("failed");
-      //return null;
+      return response;
     } catch (e) {
-      //Future.value();
-      print("PROBLEM  sur login $e");
-      throw UnimplementedError();
+      log(e.toString());
     }
   }
 
-  @override
-  Future<dynamic> register(
-      int role_id, String nom_complet, String email, String password) async {
-    try {
-      Map<String, String> headers = {
-        'Content-Type': 'application/json; charset=UTF-8',
-      };
+  // @override
+  // Future<http.Response?> register(
+  //     int role_id, String nom_complet, String email, String password) async {
+  //   http.Response? response;
+  //   try {
+  //     Map<String, String> headers = {
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     };
 
-      var userjdon = {
-        "role_id": role_id,
-        "packs_id": 1,
-        "nom_complet": nom_complet,
-        "email": email,
-        "telephone": 70213645,
-        "adresse": "Faladiè",
-        "image": "https://cheminverslimage",
-        "password": password
-      };
+  //     var userjdon = {
+  //       "role_id": role_id,
+  //       "packs_id": 1,
+  //       "nom_complet": nom_complet,
+  //       "email": email,
+  //       "telephone": 70213645,
+  //       "adresse": "Faladiè",
+  //       "image": "https://cheminverslimage",
+  //       "password": password
+  //     };
 
-      final body = jsonEncode(userjdon);
+  //     final body = jsonEncode(userjdon);
 
-      String link = '$baseUrl/Register';
+  //     String link = '$baseUrl/Register';
 
-      var url = Uri.parse(link);
+  //     var url = Uri.parse(link);
 
-      http.Response response =
-          await http.post(url, headers: headers, body: body);
+  //     response = await http.post(url, headers: headers, body: body);
 
-      var responsebodydecode = jsonDecode(response.body);
+  //     var responsebodydecode = jsonDecode(response.body);
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
 
-      if (response.statusCode == 200) {
-        return responsebodydecode;
-      }
-      print("failed");
-    } catch (e) {
-      print("PROBLEM  sur register $e");
-      throw UnimplementedError();
-    }
-  }
+  //   return response;
+  // }
 
   getuserrole() async {
     final prefs = await SharedPreferences.getInstance();

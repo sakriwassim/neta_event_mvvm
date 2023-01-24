@@ -22,7 +22,7 @@ class GetStartBtn extends StatelessWidget {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const AuthView(),
+              builder: (context) => AuthView(),
             ));
       },
       child: Container(

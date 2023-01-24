@@ -24,8 +24,8 @@ class SideBarMenu extends StatelessWidget {
 
   var data = UsersViewModel(eventsRepository: UsersApi());
 
-  var data2 = AuthentificationViewModel(
-      authentificationRepository: AuthentificationApi());
+  // var data2 = AuthentificationViewModel(
+  //     authentificationRepository: AuthentificationApi());
 
   @override
   Widget build(BuildContext context) {
@@ -149,8 +149,8 @@ class SideBarMenu extends StatelessWidget {
               callbackFunctionlogout!();
               // data2.Cleanpref();
               //callbackFunctionlogout;
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AuthView()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AuthView()));
             },
           ),
         ],

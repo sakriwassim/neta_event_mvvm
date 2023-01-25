@@ -6,15 +6,16 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/select_company_view.dart';
-import 'package:neta_event_mvvm/features/users/evants_repositories/events_api.dart';
-import 'package:neta_event_mvvm/features/users/view_model_events/events_view_model.dart';
+
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 
+import '../../home/main_home_page.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 
 class AuthView extends StatelessWidget {
@@ -26,9 +27,6 @@ class AuthView extends StatelessWidget {
   final passwordfield = TextEditingController();
   final passwordfieldconfirm = TextEditingController();
   final nomcompletfield = TextEditingController();
-
-  AuthentificationViewModel? authentificationViewModel;
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
 
   Widget headsigin() {
     return Column(
@@ -247,6 +245,10 @@ class AuthView extends StatelessWidget {
       }
     }
 
+    googlefonction() {
+      print("""object""");
+    }
+
     login() async {
       String mail = emailfield.text.trim();
       String password = passwordfield.text.trim();
@@ -254,11 +256,16 @@ class AuthView extends StatelessWidget {
       await provider.Login(mail, password);
 
       if (provider.isBack) {
+        final prefs = await SharedPreferences.getInstance();
+
+        if (provider.isSwitched) {
+          prefs.setBool("isLoggedIn", true);
+        }
         // ignore: use_build_context_synchronously
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Container(),
+              builder: (context) => MainHomePage(),
             ));
       }
     }
@@ -332,7 +339,6 @@ class AuthView extends StatelessWidget {
                                   value: provider.isSwitched,
                                   onChanged: (value) =>
                                       provider.setisSwitched(),
-                                  // setState(() => isSwitched = value),
                                 ),
                                 Text(
                                   "Se rappeler",
@@ -372,7 +378,7 @@ class AuthView extends StatelessWidget {
                           ),
                         ),
                       )
-                    : SizedBox(
+                    : const SizedBox(
                         height: 20,
                       ),
                 InkWell(
@@ -398,7 +404,10 @@ class AuthView extends StatelessWidget {
                   height: 10,
                 ),
                 InkWell(
-                  onTap: () {},
+                  //InkWell
+                  onTap: () {
+                    //  coming_soon.gif
+                  },
                   child: CardGoogle(
                     image: imagegoogle,
                     title: titleCG,
@@ -410,6 +419,9 @@ class AuthView extends StatelessWidget {
                   height: getProportionateScreenHeight(15),
                 ),
                 InkWell(
+                  onTap: () {
+                    print("tapped");
+                  },
                   child: CardGoogle(
                     image: imagefacebook,
                     title: titleCF,

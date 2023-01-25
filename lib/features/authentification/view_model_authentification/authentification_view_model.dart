@@ -62,6 +62,21 @@ class AuthentificationViewModel extends ChangeNotifier {
       var authentificationResponseModel =
           LoginResponseModel.fromJson(responsebodydecode);
       if (authentificationResponseModel.code == 200) {
+        var token = authentificationResponseModel.data!.token;
+
+        /**********************savedata token *************** */
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+
+        Map<String, dynamic> payload = Jwt.parseJwt(token!);
+        var tokenModel = TokenModel.fromJson(payload);
+
+        var data = UsersViewModel(eventsRepository: UsersApi());
+        var userrole = await data.GetUserByID(tokenModel.userId);
+
+        prefs.setString("userrole", userrole.role_id.toString());
+        prefs.setString("token", token);
+        prefs.setString("userconnectedid", tokenModel.userId.toString());
+        /********************************* */
         isBack = true;
       }
       message = authentificationResponseModel.message!;
@@ -73,24 +88,6 @@ class AuthentificationViewModel extends ChangeNotifier {
     }
     loading = false;
     notifyListeners();
-
-    // var token = authentificationResponseModel!.data!.token;
-    // var code = authentificationResponseModel!.code;
-    // Map<String, dynamic> payload = Jwt.parseJwt(token!);
-    // var tokenModel = TokenModel.fromJson(payload);
-
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // var data = UsersViewModel(eventsRepository: UsersApi());
-    // var userrole = await data.GetUserByID(tokenModel.userId);
-
-    // prefs.setString("userrole", userrole.role_id.toString());
-    // prefs.setString("token", authentificationtoken.toString());
-    // prefs.setString("userconnectedid", tokenModel.userId.toString());
-
-    // notifyListeners();
-
-    //return authentificationResponseModel;
   }
 
   Future<void> Register(
@@ -119,28 +116,5 @@ class AuthentificationViewModel extends ChangeNotifier {
     }
     loading = false;
     notifyListeners();
-  }
-
-  // Future<RegisterResponseModel> Register(
-  //     int role_id, String nom_complet, String email, String password) async {
-  //   RegisterResponseModel? registerResponseModel;
-
-  //   var authentification = await AuthentificationApi()
-  //       .register(role_id, nom_complet, email, password);
-
-  //   // registerResponseModel = RegisterResponseModel.fromJson(authentification);
-
-  //   return registerResponseModel;
-  // }
-
-  // Future<TokenModel> Gettokenmodel() async {
-  //   var tokenmodel = await authentificationRepository!.gettokenmodel();
-  //   return tokenmodel;
-  // }
-
-  Future Gettoken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    return token;
   }
 }

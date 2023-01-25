@@ -9,7 +9,6 @@ import '../../../core/string.dart';
 import '../../../core/widgets/select_button.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../authentification_repositories/authentification_api.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import 'authentification_view.dart';
 
@@ -49,10 +48,11 @@ class SelectCompany extends StatelessWidget {
 
       if (provider.isBack) {
         // ignore: use_build_context_synchronously
-        Navigator.push(
+        provider.isLogin;
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => Container(),
+              builder: (context) => AuthView(),
             ));
       }
     }

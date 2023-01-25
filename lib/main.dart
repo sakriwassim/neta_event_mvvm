@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'features/authentification/view_model_authentification/authentification_view_model.dart';
+import 'features/home/main_home_page.dart';
+import 'features/into_screen/view/intro_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,12 +46,10 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: themedata(),
-        home: AuthView());
-
-    //  skipinto
-    //     ? isLoggedIn
-    //         ? const MainHomePage()
-    //         : const AuthView()
-    //     : const IntoScreen());
+        home: skipinto
+            ? isLoggedIn
+                ? const MainHomePage()
+                : AuthView()
+            : const IntoScreen());
   }
 }

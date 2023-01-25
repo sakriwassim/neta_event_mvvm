@@ -17,6 +17,8 @@ import '../../../core/widgets/text_widget_text1.dart';
 
 import '../../home/main_home_page.dart';
 import '../view_model_authentification/authentification_view_model.dart';
+import '../widgets/headsigin_widget.dart';
+import '../widgets/title_widget.dart';
 
 class AuthView extends StatelessWidget {
   AuthView({super.key});
@@ -27,81 +29,62 @@ class AuthView extends StatelessWidget {
   final passwordfield = TextEditingController();
   final passwordfieldconfirm = TextEditingController();
   final nomcompletfield = TextEditingController();
-
-  Widget headsigin() {
-    return Column(
-      children: [
-        SvgPicture.asset(
-          splashScreen1,
-          height: getProportionateScreenHeight(50),
-        ),
-        SizedBox(
-          height: getProportionateScreenHeight(10),
-        ),
-        SvgPicture.asset(
-          splashScreen2,
-          height: getProportionateScreenHeight(15),
-        ),
-      ],
-    );
-  }
-
-  Widget emailfieldWidget() {
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
-      child: TextFormField(
-        controller: emailfield,
-        decoration: textFieldDecorationWithicon(
-          "entre le email",
-          "Adresse e-mail",
-          Colors.grey,
-          message,
-        ),
-        validator: (value) {
-          String pattern = pattermail;
-
-          RegExp regex = RegExp(pattern);
-
-          if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-            return "Enter a valid email address";
-          } else {
-            return null;
-          }
-        },
-      ),
-    );
-  }
-
-  Widget namefieldWidget() {
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
-      child: TextFormField(
-        controller: nomcompletfield,
-        decoration: textFieldDecorationWithicon(
-          "entre le ",
-          "Sanogo Yaya",
-          Colors.grey,
-          Profile,
-        ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Enter a valid email address";
-          } else {
-            return null;
-          }
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     AuthentificationViewModel provider =
         Provider.of<AuthentificationViewModel>(context, listen: true);
+
+    Widget emailfieldWidget() {
+      return Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+        child: TextFormField(
+          controller: emailfield,
+          decoration: textFieldDecorationWithicon(
+            "entre le email",
+            "Adresse e-mail",
+            Colors.grey,
+            message,
+          ),
+          validator: (value) {
+            String pattern = pattermail;
+
+            RegExp regex = RegExp(pattern);
+
+            if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+              return "Enter a valid email address";
+            } else {
+              return null;
+            }
+          },
+        ),
+      );
+    }
+
+    Widget namefieldWidget() {
+      return Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+        child: TextFormField(
+          controller: nomcompletfield,
+          decoration: textFieldDecorationWithicon(
+            "entre le nom ",
+            "Sanogo Yaya",
+            Colors.grey,
+            Profile,
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Enter a valid email address";
+            } else {
+              return null;
+            }
+          },
+        ),
+      );
+    }
 
     Widget passwordFieldwidget() {
       return Padding(
@@ -187,7 +170,7 @@ class AuthView extends StatelessWidget {
                   borderSide: BorderSide(
                     width: 1,
                   )),
-              labelText: "passsssseord",
+              labelText: "Mot de pass",
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(15),
                 child: SvgPicture.asset(lockicon),
@@ -245,9 +228,9 @@ class AuthView extends StatelessWidget {
       }
     }
 
-    googlefonction() {
-      print("""object""");
-    }
+    // googlefonction() {
+    //   print("""object""");
+    // }
 
     login() async {
       String mail = emailfield.text.trim();
@@ -270,31 +253,6 @@ class AuthView extends StatelessWidget {
       }
     }
 
-    Widget titleWidget() {
-      return Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15)),
-                child: TextAirbnbCereal(
-                  title: provider.isLogin ? 'Se connecter' : "S'inscrire",
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                  size: 24,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: getProportionateScreenHeight(10),
-          ),
-        ],
-      );
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -303,11 +261,13 @@ class AuthView extends StatelessWidget {
             key: formkey,
             child: Column(
               children: [
-                provider.isLogin ? headsigin() : const SizedBox(),
+                provider.isLogin ? Headsigin() : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                titleWidget(),
+                TitleWidget(
+                  isLogin: provider.isLogin,
+                ),
                 !provider.isLogin ? namefieldWidget() : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(15),
@@ -406,6 +366,7 @@ class AuthView extends StatelessWidget {
                 InkWell(
                   //InkWell
                   onTap: () {
+                    print("tapped");
                     //  coming_soon.gif
                   },
                   child: CardGoogle(
@@ -422,7 +383,15 @@ class AuthView extends StatelessWidget {
                   onTap: () {
                     print("tapped");
                   },
-                  child: CardGoogle(
+                  child:
+
+                      //  Container(
+                      //   color: Colors.blue,
+                      //   height: 50,
+                      //   width: 50,
+                      // ),
+
+                      CardGoogle(
                     image: imagefacebook,
                     title: titleCF,
                     height: heightgoogle,

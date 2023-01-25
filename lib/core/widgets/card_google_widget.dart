@@ -21,39 +21,36 @@ class CardGoogle extends StatelessWidget {
       child: SizedBox(
         height: height, //80
         width: width, //300
-        child: InkWell(
-          onTap: () {},
-          child: Card(
-            elevation: 5,
-            shadowColor: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            color: Colors.white,
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 10,
+        child: Card(
+          elevation: 5,
+          shadowColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          color: Colors.white,
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                flex: 1,
+                child: SvgPicture.asset("$image"),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                flex: 4,
+                child: Text(
+                  "$title",
+                  style: GoogleFonts.lato(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 20,
+                      color: Colors.black),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: SvgPicture.asset("$image"),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Text(
-                    "$title",
-                    style: GoogleFonts.lato(
-                        fontStyle: FontStyle.normal,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

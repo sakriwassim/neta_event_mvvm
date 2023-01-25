@@ -23,6 +23,11 @@ class AuthentificationViewModel extends ChangeNotifier {
   String message = "";
   int selectIndex = -1;
 
+  googlefonction() {
+    print("""object""");
+    notifyListeners();
+  }
+
   setobscureText2() {
     obscureText2 = !obscureText2;
     notifyListeners();

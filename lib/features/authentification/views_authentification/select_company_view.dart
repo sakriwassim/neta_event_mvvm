@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/authentification/models_authentification/response_model.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
@@ -12,10 +13,11 @@ import '../authentification_repositories/authentification_api.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import 'authentification_view.dart';
 
-class SelectCompany extends StatefulWidget {
+class SelectCompany extends StatelessWidget {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
+  final formkey = GlobalKey<FormState>();
 
   SelectCompany(
       {super.key,
@@ -23,32 +25,38 @@ class SelectCompany extends StatefulWidget {
       required this.emailfield,
       required this.passwordfield});
 
-  @override
-  State<SelectCompany> createState() => _SelectCompanyState();
-}
-
-class _SelectCompanyState extends State<SelectCompany> {
-  final formkey = GlobalKey<FormState>();
-
   late int valueselected = 1;
   bool buttonselected = false;
-
-  int selectIndex = -1;
-
-  // var data = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
-
-  navtoRegisterView() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AuthView(),
-        ));
-  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    AuthentificationViewModel provider =
+        Provider.of<AuthentificationViewModel>(context, listen: true);
+
+    navtoRegisterView() {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AuthView(),
+          ));
+    }
+
+    register() async {
+      await provider.Register(
+          provider.selectIndex, nomcompletfield, emailfield, passwordfield);
+
+      if (provider.isBack) {
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Container(),
+            ));
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -95,15 +103,13 @@ class _SelectCompanyState extends State<SelectCompany> {
                   children: List.generate(3, (index) {
                     return InkWell(
                       onTap: () {
-                        setState(() {
-                          selectIndex = index;
-                        });
+                        provider.setisIndex(index);
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                             vertical: getProportionateScreenHeight(10)),
                         child: SelectButton(
-                          isSelected: selectIndex == index
+                          isSelected: provider.selectIndex == index
                               ? buttonselected = true
                               : buttonselected = false,
                           text: index == 0
@@ -125,13 +131,14 @@ class _SelectCompanyState extends State<SelectCompany> {
                   height: 30,
                 ),
                 InkWell(
-                    onTap: () async {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          });
+                    onTap: () {
+                      register();
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (context) {
+                      //       return const Center(
+                      //           child: CircularProgressIndicator());
+                      //     });
 
                       // RegisterResponseModel verif = await data.Register(
                       //     selectIndex,

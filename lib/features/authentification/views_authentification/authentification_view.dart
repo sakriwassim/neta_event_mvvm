@@ -22,11 +22,6 @@ class AuthView extends StatelessWidget {
 
   final formkey = GlobalKey<FormState>();
 
-  bool _obscureText = true;
-  bool _obscureText2 = true;
-  bool isSwitched = true;
-  bool isLogin = true;
-
   final emailfield = TextEditingController();
   final passwordfield = TextEditingController();
   final passwordfieldconfirm = TextEditingController();
@@ -48,31 +43,6 @@ class AuthView extends StatelessWidget {
         SvgPicture.asset(
           splashScreen2,
           height: getProportionateScreenHeight(15),
-        ),
-      ],
-    );
-  }
-
-  Widget titleWidget() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(15)),
-              child: TextAirbnbCereal(
-                title: isLogin ? 'Se connecter' : "S'inscrire",
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                size: 24,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: getProportionateScreenHeight(10),
         ),
       ],
     );
@@ -128,16 +98,21 @@ class AuthView extends StatelessWidget {
     );
   }
 
-  Widget passwordFieldwidgetConfirm() {
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
-      child: StatefulBuilder(builder:
-          (BuildContext context, void Function(void Function()) setState) {
-        return TextFormField(
-          controller: passwordfieldconfirm,
-          // password1
-          obscureText: _obscureText2,
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    AuthentificationViewModel provider =
+        Provider.of<AuthentificationViewModel>(context, listen: true);
+
+    Widget passwordFieldwidget() {
+      return Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+        child: TextFormField(
+          controller: passwordfield,
+          keyboardType: TextInputType.text,
+          obscureText: provider.obscureText,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
@@ -151,7 +126,7 @@ class AuthView extends StatelessWidget {
                 borderSide: BorderSide(
                   width: 1,
                 )),
-            labelText: "passsssseord",
+            labelText: "Mot de passe",
             prefixIcon: Padding(
               padding: const EdgeInsets.all(15),
               child: SvgPicture.asset(lockicon),
@@ -159,9 +134,9 @@ class AuthView extends StatelessWidget {
             labelStyle: const TextStyle(
               color: Colors.grey, //<-- SEE HERE
             ),
-            hintText: "hintText",
+            hintText: "entre le password",
             suffixIcon: IconButton(
-              icon: _obscureText2
+              icon: provider.obscureText
                   ? SvgPicture.asset(
                       hiddenicon,
                       height: 24,
@@ -173,9 +148,7 @@ class AuthView extends StatelessWidget {
                       width: 24,
                     ),
               onPressed: () {
-                setState(() {
-                  _obscureText2 = !_obscureText2;
-                });
+                provider.setobscureText();
               },
             ),
           ),
@@ -185,86 +158,81 @@ class AuthView extends StatelessWidget {
 
             if (value == null || value.isEmpty || !regex.hasMatch(value)) {
               return "Enter a valid mot de pass";
-            } else if (passwordfield.text == passwordfieldconfirm.text) {
-              return null;
             } else {
-              return "vérifier votre mot de passe";
+              return null;
             }
           },
-        );
-      }),
-    );
-  }
-
-  Widget passwordFieldwidget() {
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
-      child: TextFormField(
-        controller: passwordfield,
-        keyboardType: TextInputType.text,
-        obscureText: _obscureText,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            borderSide:
-                BorderSide(width: 1, color: Color.fromARGB(255, 255, 0, 208)),
-          ),
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              borderSide: BorderSide(
-                width: 1,
-              )),
-          labelText: "Mot de passe",
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(15),
-            child: SvgPicture.asset(lockicon),
-          ),
-          labelStyle: const TextStyle(
-            color: Colors.grey, //<-- SEE HERE
-          ),
-          hintText: "entre le password",
-          suffixIcon: IconButton(
-            icon: _obscureText
-                ? SvgPicture.asset(
-                    hiddenicon,
-                    height: 24,
-                    width: 24,
-                  )
-                : SvgPicture.asset(
-                    hiddeniconoff,
-                    height: 24,
-                    width: 24,
-                  ),
-            onPressed: () {
-              // setState(() {
-              //   _obscureText = !_obscureText;
-              // });
-            },
-          ),
         ),
-        validator: (value) {
-          String pattern = patternstring;
-          RegExp regex = RegExp(pattern);
+      );
+    }
 
-          if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-            return "Enter a valid mot de pass";
-          } else {
-            return null;
-          }
-        },
-      ),
-    );
-  }
+    Widget passwordFieldwidgetConfirm() {
+      return Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+        child: StatefulBuilder(builder:
+            (BuildContext context, void Function(void Function()) setState) {
+          return TextFormField(
+            controller: passwordfieldconfirm,
+            // password1
+            obscureText: provider.obscureText2,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              focusedBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderSide: BorderSide(
+                    width: 1, color: Color.fromARGB(255, 255, 0, 208)),
+              ),
+              border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide(
+                    width: 1,
+                  )),
+              labelText: "passsssseord",
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SvgPicture.asset(lockicon),
+              ),
+              labelStyle: const TextStyle(
+                color: Colors.grey, //<-- SEE HERE
+              ),
+              hintText: "hintText",
+              suffixIcon: IconButton(
+                icon: provider.obscureText2
+                    ? SvgPicture.asset(
+                        hiddenicon,
+                        height: 24,
+                        width: 24,
+                      )
+                    : SvgPicture.asset(
+                        hiddeniconoff,
+                        height: 24,
+                        width: 24,
+                      ),
+                onPressed: () {
+                  setState(() {
+                    provider.obscureText2 = !provider.obscureText2;
+                  });
+                },
+              ),
+            ),
+            validator: (value) {
+              String pattern = patternstring;
+              RegExp regex = RegExp(pattern);
 
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    AuthentificationViewModel authentificationViewModel =
-        Provider.of<AuthentificationViewModel>(context, listen: true);
+              if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+                return "Enter a valid mot de pass";
+              } else if (passwordfield.text == passwordfieldconfirm.text) {
+                return null;
+              } else {
+                return "vérifier votre mot de passe";
+              }
+            },
+          );
+        }),
+      );
+    }
 
     register() {
       if (formkey.currentState!.validate()) {
@@ -282,9 +250,9 @@ class AuthView extends StatelessWidget {
     login() async {
       String mail = emailfield.text.trim();
       String password = passwordfield.text.trim();
-      var provider =
-          Provider.of<AuthentificationViewModel>(context, listen: false);
+
       await provider.Login(mail, password);
+
       if (provider.isBack) {
         // ignore: use_build_context_synchronously
         Navigator.push(
@@ -295,6 +263,31 @@ class AuthView extends StatelessWidget {
       }
     }
 
+    Widget titleWidget() {
+      return Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(15)),
+                child: TextAirbnbCereal(
+                  title: provider.isLogin ? 'Se connecter' : "S'inscrire",
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  size: 24,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: getProportionateScreenHeight(10),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -303,12 +296,12 @@ class AuthView extends StatelessWidget {
             key: formkey,
             child: Column(
               children: [
-                isLogin ? headsigin() : const SizedBox(),
+                provider.isLogin ? headsigin() : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
                 titleWidget(),
-                !isLogin ? namefieldWidget() : const SizedBox(),
+                !provider.isLogin ? namefieldWidget() : const SizedBox(),
                 SizedBox(
                   height: getProportionateScreenHeight(15),
                 ),
@@ -320,8 +313,10 @@ class AuthView extends StatelessWidget {
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                !isLogin ? passwordFieldwidgetConfirm() : const SizedBox(),
-                isLogin
+                !provider.isLogin
+                    ? passwordFieldwidgetConfirm()
+                    : const SizedBox(),
+                provider.isLogin
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
@@ -329,15 +324,16 @@ class AuthView extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                // CupertinoSwitch(
-                                //   activeColor: const Color(0xFFFC2207C),
-                                //   thumbColor:
-                                //       const Color.fromRGBO(255, 255, 255, 1),
-                                //   trackColor: Colors.black12,
-                                //   value: isSwitched,
-                                //   onChanged: (value) =>
-                                //       setState(() => isSwitched = value),
-                                // ),
+                                CupertinoSwitch(
+                                  activeColor: const Color(0xFFFC2207C),
+                                  thumbColor:
+                                      const Color.fromRGBO(255, 255, 255, 1),
+                                  trackColor: Colors.black12,
+                                  value: provider.isSwitched,
+                                  onChanged: (value) =>
+                                      provider.setisSwitched(),
+                                  // setState(() => isSwitched = value),
+                                ),
                                 Text(
                                   "Se rappeler",
                                   style: GoogleFonts.lato(
@@ -347,9 +343,7 @@ class AuthView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Text(authentificationViewModel.error),
-
-                            //authentification
+                            const SizedBox(height: 20),
                             InkWell(
                               onTap: () {},
                               child: Text(
@@ -365,14 +359,26 @@ class AuthView extends StatelessWidget {
                         ),
                       )
                     : const SizedBox(),
-                Text(authentificationViewModel.message),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
+                provider.message != ""
+                    ? SizedBox(
+                        height: 40,
+                        child: Center(
+                          child: Text(
+                            provider.message,
+                            style: GoogleFonts.lato(
+                                fontStyle: FontStyle.normal,
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 255, 0, 0)),
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: 20,
+                      ),
                 InkWell(
-                    onTap: isLogin ? login : register,
+                    onTap: provider.isLogin ? login : register,
                     child: Button(
-                      text: isLogin ? "SE CONNECTER" : "S'INSCRIRE",
+                      text: provider.isLogin ? "SE CONNECTER" : "S'INSCRIRE",
                       fontSize: fontSizebigbutton,
                       height: heightbigbutton,
                       width: widthbigbutton,
@@ -418,7 +424,7 @@ class AuthView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      isLogin
+                      provider.isLogin
                           ? " Vous n'avez pas un compte ?"
                           : "Vous avez déjà un compte?",
                       style: GoogleFonts.lato(
@@ -428,14 +434,10 @@ class AuthView extends StatelessWidget {
                     ), //authentification
                     InkWell(
                       onTap: () {
-                        // setState(() {
-                        //   isLogin = !isLogin;
-                        // });
-
-                        // navtoRegisterView();
+                        provider.setisLogin();
                       },
                       child: Text(
-                        isLogin ? " S'inscrire" : "Signin",
+                        provider.isLogin ? " S'inscrire" : "Signin",
                         style: GoogleFonts.lato(
                             fontStyle: FontStyle.normal,
                             fontSize: 15,

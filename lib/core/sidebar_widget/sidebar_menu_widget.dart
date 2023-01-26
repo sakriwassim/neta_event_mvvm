@@ -24,11 +24,67 @@ class SideBarMenu extends StatelessWidget {
 
   var data = UsersViewModel(eventsRepository: UsersApi());
 
-  // var data2 = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
-
   @override
   Widget build(BuildContext context) {
+    comingsoon() {
+
+      showGeneralDialog(
+        context: context,
+        barrierLabel: "Barrier",
+        barrierDismissible: true,
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionDuration: const Duration(milliseconds: 700),
+        pageBuilder: (_, __, ___) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              height: 200,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextAirbnbCereal(
+                      color: Color.fromARGB(255, 6, 222, 196), //4F4F4F
+                      fontWeight: FontWeight.w500,
+                      size: 18,
+                      title: "Bientôt Disponible",
+                    ),
+                    Container(
+                      height: 150,
+                      child: Image.asset(
+                        "assets/gif/coming_soon.gif",
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(40)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+        transitionBuilder: (_, anim, __, child) {
+          Tween<Offset> tween;
+          if (anim.status == AnimationStatus.reverse) {
+            tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+          } else {
+            tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+          }
+
+          return SlideTransition(
+            position: tween.animate(anim),
+            child: FadeTransition(
+              opacity: anim,
+              child: child,
+            ),
+          );
+        },
+      );
+    }
+
     SizeConfig().init(context);
     return Drawer(
       width: getProportionateScreenWidth(200),
@@ -55,7 +111,7 @@ class SideBarMenu extends StatelessWidget {
           ListTile(
             leading: SvgPicture.asset(calendarside),
             title: TextAirbnbCereal(
-              title: 'Eléments',
+              title: 'Événements',
               color: Colors.black,
               size: 16,
               fontWeight: FontWeight.w400,
@@ -67,36 +123,7 @@ class SideBarMenu extends StatelessWidget {
                       builder: (context) => const GetAllEventView()));
             },
           ),
-          ListTile(
-            leading: SvgPicture.asset(Favoris), //Favoris
-            title: TextAirbnbCereal(
-              title: 'Favorites',
-              color: Colors.black,
-              size: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: SvgPicture.asset(message), //Favoris
-            title: TextAirbnbCereal(
-              title: 'Contacter-nous',
-              color: Colors.black,
-              size: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: SvgPicture.asset(helpcircle),
-            title: TextAirbnbCereal(
-              title: 'aide & FAQs',
-              color: Colors.black,
-              size: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            onTap: () => null,
-          ),
+
           ListTile(
             leading: SvgPicture.asset(Tontinoffsidebar),
             title: TextAirbnbCereal(
@@ -105,7 +132,7 @@ class SideBarMenu extends StatelessWidget {
               size: 16,
               fontWeight: FontWeight.w400,
             ),
-            onTap: () => null,
+            onTap: () => comingsoon(),
           ),
           ListTile(
               leading: SvgPicture.asset(
@@ -125,21 +152,53 @@ class SideBarMenu extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => const GetAllTontineView()));
               }),
+          // ListTile(
+          //     leading: SvgPicture.asset(calendarside),
+          //     title: TextAirbnbCereal(
+          //       title: 'Enquete',
+          //       color: Colors.black,
+          //       size: 16,
+          //       fontWeight: FontWeight.w400,
+          //     ),
+          //     onTap: () {
+          //       //  Navigator.push(context,
+          //       //     MaterialPageRoute(builder: (context) => const GetAllTontineView()));
+          //     }),
+
           ListTile(
-              leading: SvgPicture.asset(calendarside),
-              title: TextAirbnbCereal(
-                title: 'Enquete',
-                color: Colors.black,
-                size: 16,
-                fontWeight: FontWeight.w400,
-              ),
-              onTap: () {
-                //  Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => const GetAllTontineView()));
-              }),
+            leading: SvgPicture.asset(Favoris), //Favoris
+            title: TextAirbnbCereal(
+              title: 'Favorites',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            onTap: () => comingsoon(),
+          ),
+
+          ListTile(
+            leading: SvgPicture.asset(message), //Favoris
+            title: TextAirbnbCereal(
+              title: 'Contacter-nous',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            onTap: () => comingsoon(),
+          ),
+          ListTile(
+            leading: SvgPicture.asset(helpcircle),
+            title: TextAirbnbCereal(
+              title: 'Aide et Service',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            onTap: () => comingsoon(),
+          ),
           ListTile(
             title: TextAirbnbCereal(
-              title: 'Se deconnecter',
+              title: 'Se déconnecter',
               color: Colors.black,
               size: 16,
               fontWeight: FontWeight.w400,
@@ -147,9 +206,8 @@ class SideBarMenu extends StatelessWidget {
             leading: SvgPicture.asset(Deconnect),
             onTap: () {
               callbackFunctionlogout!();
-              // data2.Cleanpref();
-              //callbackFunctionlogout;
-              Navigator.push(
+
+              Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => AuthView()));
             },
           ),

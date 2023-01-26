@@ -15,14 +15,4 @@ class EntryLocal extends EntryRepository {
     }
   }
 
-  // Future<bool> checktoken() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var token = prefs.getString("token").toString();
-  //   if (token.isNotEmpty || token != "" || token != null) {
-  //     print("tokennnnnnnnnnnnnnnnnnnnnn");
-  //     print(token);
-  //     return false;
-  //   }
-  //   return true;
-  // }
 }

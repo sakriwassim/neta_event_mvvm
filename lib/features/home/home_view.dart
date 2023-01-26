@@ -13,8 +13,6 @@ import '../Categories/view_model_categories/categories_view_model.dart';
 import '../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../Categories/views_categories/categories_view.dart';
 import '../Categories/views_categories/widget/categorie_card_widget.dart';
-import '../authentification/authentification_repositories/authentification_api.dart';
-import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../notification/views_notifications/notifications_view.dart';
@@ -56,8 +54,7 @@ class _HomeViewState extends State<HomeView> {
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
   var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
-  // var data2 = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
+ 
 
   navGetAllCategorieView() {
     Navigator.push(
@@ -94,6 +91,64 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  comingsoon() {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 700),
+      pageBuilder: (_, __, ___) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: 200,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextAirbnbCereal(
+                    color: Color.fromARGB(255, 6, 222, 196), //4F4F4F
+                    fontWeight: FontWeight.w500,
+                    size: 18,
+                    title: "Bientôt Disponible",
+                  ),
+                  Container(
+                    height: 150,
+                    child: Image.asset(
+                      "assets/gif/coming_soon.gif",
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(40)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
   Widget SearchWidget() {
     return SizedBox(
       child: Row(
@@ -122,25 +177,28 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
           ),
-          Container(
-              height: heightfliterbutton,
-              width: widthfliterbutton,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50.0),
-                color: const Color(0xFF701D53),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SvgPicture.asset(filtercircle),
-                  TextAirbnbCereal(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    size: 15,
-                    title: 'Filtres',
-                  ),
-                ],
-              )),
+          InkWell(
+            onTap: () => comingsoon(),
+            child: Container(
+                height: heightfliterbutton,
+                width: widthfliterbutton,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50.0),
+                  color: const Color(0xFF701D53),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SvgPicture.asset(filtercircle),
+                    TextAirbnbCereal(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      size: 15,
+                      title: 'Filtres',
+                    ),
+                  ],
+                )),
+          ),
         ],
       ),
     );
@@ -333,14 +391,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ),
                       ),
-                      // IconButton(
-                      //     icon: SvgPicture.asset(CombinedShape),
-                      //     onPressed: () {
-                      //       Scaffold.of(context).openDrawer();
-                      //     }),
-                      //Spacer(),
                       appbarWidget(),
-                      // Spacer(),
                       Row(
                         children: [
                           IconButton(
@@ -349,7 +400,7 @@ class _HomeViewState extends State<HomeView> {
                                 color: Colors.white,
                               ),
                               onPressed: () {
-                                // navGetAllNotificationView();
+                                comingsoon();
                               }),
                           IconButton(
                               icon: SvgPicture.asset(Notif),
@@ -392,7 +443,6 @@ class _HomeViewState extends State<HomeView> {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           } else {
-                            //var body = snapshot.data;
                             var role = snapshot.data!.role_id.toString();
 
                             return SingleChildScrollView(

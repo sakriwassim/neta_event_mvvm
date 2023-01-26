@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage_2/provider.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:neta_event_mvvm/features/authentification/authentification_repositories/authentification_api.dart';
-import 'package:neta_event_mvvm/features/authentification/models_authentification/login_authentification_model.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
@@ -12,11 +8,8 @@ import '../../../core/string.dart';
 import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../authentification/models_authentification/token_model.dart';
-import '../../authentification/view_model_authentification/authentification_view_model.dart';
 import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
-import '../view_model_events/one_event_view_model.dart';
 
 class OneUserView extends StatefulWidget {
   const OneUserView({super.key});
@@ -86,48 +79,48 @@ class _OneUserViewState extends State<OneUserView> {
                       ),
                     ),
                     SizedBox(
-                      height: getProportionateScreenHeight(20),
+                      height: getProportionateScreenHeight(10),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: Column(
-                            children: [
-                              TextAirbnbCereal(
-                                title: "420",
-                                fontWeight: FontWeight.normal,
-                                size: 18,
-                                color: Colors.black,
-                              ),
-                              const Text(
-                                "ticket",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SvgPicture.asset(Line2),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: Column(
-                            children: [
-                              TextAirbnbCereal(
-                                title: "1800\$",
-                                fontWeight: FontWeight.normal,
-                                size: 18,
-                                color: Colors.black,
-                              ),
-                              const Text(
-                                "spent",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Padding(
+                    //       padding: const EdgeInsets.only(right: 10, left: 10),
+                    //       child: Column(
+                    //         children: [
+                    //           TextAirbnbCereal(
+                    //             title: "420",
+                    //             fontWeight: FontWeight.normal,
+                    //             size: 18,
+                    //             color: Colors.black,
+                    //           ),
+                    //           const Text(
+                    //             "ticket",
+                    //             style: TextStyle(color: Colors.grey),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SvgPicture.asset(Line2),
+                    //     Padding(
+                    //       padding: const EdgeInsets.only(right: 10, left: 10),
+                    //       child: Column(
+                    //         children: [
+                    //           TextAirbnbCereal(
+                    //             title: "1800\$",
+                    //             fontWeight: FontWeight.normal,
+                    //             size: 18,
+                    //             color: Colors.black,
+                    //           ),
+                    //           const Text(
+                    //             "spent",
+                    //             style: TextStyle(color: Colors.grey),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(
                       height: getProportionateScreenHeight(20),
                     ),

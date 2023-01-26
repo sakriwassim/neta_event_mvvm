@@ -1,3 +1,5 @@
+import '../../../core/widgets/text_widget_text1.dart';
+
 class Items {
   final String img;
   final String title;
@@ -20,13 +22,13 @@ List<Items> listOfItems = [
       ),
   Items(
       img: "assets/image/intro/2.png",
-      title: "Payer vos un ticket en toute sécurité",
+      title: "Payer en toute sécurité",
       subTitle: ""
       //    "There will be many people who\n want hear your stories and\n experiences",
       ),
   Items(
       img: "assets/image/intro/3.png",
-      title: "Des événements tout au long de l'année",
+      title: "Les événements tout au long de l'année",
       subTitle: ""
       //"Make your friendship and create a\nnew community",
       ),

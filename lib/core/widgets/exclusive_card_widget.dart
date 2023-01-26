@@ -42,7 +42,7 @@ class ExclusiveCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: const BoxDecoration(
-                  // color: Colors.blue,
+                  //color: Colors.blue,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 // color: Colors.blue,
@@ -71,26 +71,26 @@ class ExclusiveCardWidget extends StatelessWidget {
                             // color: Colors.grey,
                             width: getProportionateScreenWidth(width!),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                SizedBox(
-                                  height: getProportionateScreenHeight(50),
-                                  width: getProportionateScreenWidth(50),
-                                  child: Stack(
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0.7),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5)),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // SizedBox(
+                                //   height: getProportionateScreenHeight(50),
+                                //   width: getProportionateScreenWidth(50),
+                                //   child: Stack(
+                                //     children: [
+                                //       Center(
+                                //         child: Container(
+                                //           decoration: const BoxDecoration(
+                                //             color: Color.fromRGBO(
+                                //                 255, 255, 255, 0.7),
+                                //             borderRadius: BorderRadius.all(
+                                //                 Radius.circular(5)),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                                 SvgPicture.asset(
                                   favori,
                                   height: 40,

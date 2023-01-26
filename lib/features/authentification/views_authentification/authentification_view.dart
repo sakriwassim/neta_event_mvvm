@@ -138,7 +138,7 @@ class AuthView extends StatelessWidget {
             RegExp regex = RegExp(pattern);
 
             if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-              return "Enter a valid mot de pass";
+              return "lettre minuscule ,lettre majuscule, caractère spécial ,chiffre";
             } else {
               return null;
             }
@@ -203,7 +203,7 @@ class AuthView extends StatelessWidget {
               RegExp regex = RegExp(pattern);
 
               if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-                return "Enter a valid mot de pass";
+                return "vérifier votre mot de passe";
               } else if (passwordfield.text == passwordfieldconfirm.text) {
                 return null;
               } else {
@@ -221,27 +221,45 @@ class AuthView extends StatelessWidget {
         barrierLabel: "Barrier",
         barrierDismissible: true,
         barrierColor: Colors.black.withOpacity(0.5),
-        transitionDuration: Duration(milliseconds: 700),
+        transitionDuration: const Duration(milliseconds: 700),
         pageBuilder: (_, __, ___) {
-          return Center(
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
             child: Container(
-              height: 240,
-              child: SizedBox.expand(
-                  child: Image.asset(
-                "assets/gif/coming_soon.gif",
-              )),
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(40)),
+              height: 200,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextAirbnbCereal(
+                      color: Color.fromARGB(255, 6, 222, 196), //4F4F4F
+                      fontWeight: FontWeight.w500,
+                      size: 18,
+                      title: "Bientôt Disponible",
+                    ),
+                    Container(
+                      height: 150,
+                      child: Image.asset(
+                        "assets/gif/coming_soon.gif",
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(40)),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
         },
         transitionBuilder: (_, anim, __, child) {
           Tween<Offset> tween;
           if (anim.status == AnimationStatus.reverse) {
-            tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+            tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
           } else {
-            tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+            tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
           }
 
           return SlideTransition(
@@ -268,28 +286,26 @@ class AuthView extends StatelessWidget {
       }
     }
 
-    // googlefonction() {
-    //   print("""object""");
-    // }
-
     login() async {
-      String mail = emailfield.text.trim();
-      String password = passwordfield.text.trim();
+      if (formkey.currentState!.validate()) {
+        String mail = emailfield.text.trim();
+        String password = passwordfield.text.trim();
 
-      await provider.Login(mail, password);
+        await provider.Login(mail, password);
 
-      if (provider.isBack) {
-        final prefs = await SharedPreferences.getInstance();
+        if (provider.isBack) {
+          final prefs = await SharedPreferences.getInstance();
 
-        if (provider.isSwitched) {
-          prefs.setBool("isLoggedIn", true);
+          if (provider.isSwitched) {
+            prefs.setBool("isLoggedIn", true);
+          }
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainHomePage(),
+              ));
         }
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainHomePage(),
-            ));
       }
     }
 

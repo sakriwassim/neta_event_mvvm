@@ -7,9 +7,6 @@ import 'package:neta_event_mvvm/features/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
-import '../../authentification/authentification_repositories/authentification_api.dart';
-import '../../authentification/view_model_authentification/authentification_view_model.dart';
-import '../../into_screen/view/intro_page.dart';
 import '../entry_repositories/events_local.dart';
 import '../view_model_entry/events_view_model.dart';
 
@@ -23,11 +20,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   var data = EntryViewModel(entryRepository: EntryLocal());
 
-  // var datatoken = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
-
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-  // token = prefs.getString("token");
 
   _navigatettohomepage() {
     Timer(const Duration(seconds: 2), () async {

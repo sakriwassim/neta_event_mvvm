@@ -55,7 +55,6 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
-  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
   // var data2 = AuthentificationViewModel(
   //     authentificationRepository: AuthentificationApi());
   

@@ -1,5 +1,3 @@
-import 'package:neta_event_mvvm/features/Categories/categories_repositories/categories_api.dart';
-
 import '../models_categories/add_categories_model.dart';
 import '../models_categories/categories_model.dart';
 import '../categories_repositories/categories_repository.dart';
@@ -8,14 +6,15 @@ import 'one_categorie_view_model.dart';
 class CategoriesViewModel {
   String title = "Categorie Page ";
 
-  List<CategorieModel> categorielist = [];
+  CategoriesRepository? ticketsRepository;
+  CategoriesViewModel({this.ticketsRepository});
 
-  // CategoriesRepository? ticketsRepository;
-  // CategoriesViewModel({this.ticketsRepository});
-
-  Future<void> FetchAllCategories() async {
-    List<CategorieModel> list = await CategoriesApi().getAllCategories();
-    // categorielist = list.map((listCategorie) => OneCategorieViewModel(categorieModel: listCategorie)).toList();
+  Future<List<OneCategorieViewModel>> FetchAllCategories() async {
+    List<CategorieModel> list = await ticketsRepository!.getAllCategories();
+    return list
+        .map((listCategorie) =>
+            OneCategorieViewModel(categorieModel: listCategorie))
+        .toList();
   }
 
   Future<OneCategorieViewModel> GetCategorieByID(int id) async {

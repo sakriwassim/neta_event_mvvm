@@ -40,7 +40,7 @@ class _AddEventViewState extends State<AddEventView> {
   String? imagepath;
   int currentStep = 0;
 
-  // var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
 
   var data = EventsViewModel(eventsRepository: EventsApi());
   var dataimage = ImagesViewModel(imagesRepository: ImagesApi());

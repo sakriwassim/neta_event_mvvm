@@ -7,7 +7,7 @@ import '../models_categories/add_categories_model.dart';
 import '../models_categories/categories_model.dart';
 import 'categories_repository.dart';
 
-class CategoriesApi {
+class CategoriesApi extends CategoriesRepository {
   @override
   Future<CategorieModel> getCategorieByID(int id) async {
     try {
@@ -98,6 +98,7 @@ class CategoriesApi {
       http.Response response =
           await http.post(url, headers: headers, body: body);
       var responsebody = jsonEncode(response.body);
+   
     } catch (e) {
       //  print(e);
     }

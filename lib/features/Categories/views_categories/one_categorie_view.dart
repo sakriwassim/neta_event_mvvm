@@ -11,7 +11,7 @@ class OnCategorieView extends StatefulWidget {
 }
 
 class _OnCategorieViewState extends State<OnCategorieView> {
-  var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  var data = CategoriesViewModel();
 
   @override
   Widget build(BuildContext context) {

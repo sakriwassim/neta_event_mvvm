@@ -4,7 +4,9 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/core/int.dart';
+import 'package:neta_event_mvvm/features/home/widget/categories_widget.dart';
 import 'package:neta_event_mvvm/search.dart';
+import 'package:provider/provider.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/text_widget_text1.dart';
@@ -53,8 +55,14 @@ class _HomeViewState extends State<HomeView> {
   var data = EventsViewModel(eventsRepository: EventsApi());
   var datapack = PacksViewModel(packsRepository: PacksApi());
   var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
-  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
- 
+  var datacategorie = CategoriesViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<CategoriesViewModel>(context, listen: false)
+        .FetchAllCategories();
+  }
 
   navGetAllCategorieView() {
     Navigator.push(
@@ -310,45 +318,47 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget categoriesWidget() {
-    return SizedBox(
-      height: getProportionateScreenHeight(150),
-      child: FutureBuilder<List<OneCategorieViewModel>>(
-        future: datacategorie.FetchAllCategories(),
-        builder: ((context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-                // child: CircularProgressIndicator()
-                );
-          } else {
-            var categories = snapshot.data;
-            return ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: categories?.length,
-                itemBuilder: (context, index) => InkWell(
-                      onTap: () {
-                        indexCategories = index;
+  // Widget categoriesWidget() {
+  //   return SizedBox(
+  //     height: getProportionateScreenHeight(150),
+  //     child: FutureBuilder<List<OneCategorieViewModel>>(
+  //       future: datacategorie.FetchAllCategories(),
+  //       builder: ((context, snapshot) {
+  //         if (!snapshot.hasData) {
+  //           return const Center(
+  //               // child: CircularProgressIndicator()
+  //               );
+  //         } else {
+  //           var categories = snapshot.data;
+  //           return ListView.builder(
+  //               shrinkWrap: true,
+  //               scrollDirection: Axis.horizontal,
+  //               itemCount: categories?.length,
+  //               itemBuilder: (context, index) => InkWell(
+  //                     onTap: () {
+  //                       indexCategories = index;
 
-                        setState(() {
-                          // data.GetEventByCategorie(
-                          //     2);
-                        });
-                      },
-                      child: CategorieCardWidget(
-                        libelle: categories![index].libelle,
-                        image: categories[index].image,
-                      ),
-                    ));
-          }
-        }),
-      ),
-    );
-  }
+  //                       setState(() {
+  //                         // data.GetEventByCategorie(
+  //                         //     2);
+  //                       });
+  //                     },
+  //                     child: CategorieCardWidget(
+  //                       libelle: categories![index].libelle,
+  //                       image: categories[index].image,
+  //                     ),
+  //                   ));
+  //         }
+  //       }),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    var provider = Provider.of<CategoriesViewModel>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -486,7 +496,9 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                       ),
 
-                                      categoriesWidget(),
+                                      CategoriesWidgetHome(
+                                        categories: provider.categories,
+                                      ),
 
                                       VoirTout(
                                         text: 'Evènements',

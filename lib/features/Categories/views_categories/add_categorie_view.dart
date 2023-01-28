@@ -5,8 +5,6 @@ import 'package:neta_event_mvvm/core/int.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../models_categories/add_categories_model.dart';
-import '../categories_repositories/categories_api.dart';
-import '../view_model_categories/categories_view_model.dart';
 
 class AddCategorieView extends StatefulWidget {
   const AddCategorieView({
@@ -23,7 +21,7 @@ class _AddCategorieViewState extends State<AddCategorieView> {
   late String prixfield;
   late String descriptionfield;
 
-  var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
+ // var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +120,7 @@ class _AddCategorieViewState extends State<AddCategorieView> {
                     // print(ticketformJson);
 
                     setState(() {
-                      data.AddCategorie(ticketformJson);
+                      //data.AddCategorie(ticketformJson);
                     });
                   }
                 },

@@ -37,7 +37,7 @@ class _AddNotificationViewState extends State<AddNotificationView>
 
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
-  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  var datacategorie = CategoriesViewModel();
 
   var data = TontinesViewModel(ticketsRepository: TontinesApi());
 

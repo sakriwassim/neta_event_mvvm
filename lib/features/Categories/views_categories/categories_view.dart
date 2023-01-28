@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../categories_repositories/categories_api.dart';
@@ -16,7 +17,14 @@ class GetAllCategorieView extends StatefulWidget {
 }
 
 class _GetAllCategorieViewState extends State<GetAllCategorieView> {
-  var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<CategoriesViewModel>(context, listen: false)
+        .FetchAllCategories();
+  }
+
+  var data = CategoriesViewModel();
 
   alertupdate(OneCategorieViewModel obj) => showDialog<String>(
         context: context,
@@ -40,7 +48,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                 onPressed: () {
                   Navigator.pop(context, 'DELETE');
                   setState(() {
-                    data.DeleteCategorieByID(obj.id);
+                    //data.DeleteCategorieByID(obj.id);
                   });
                 }),
           ],
@@ -49,6 +57,8 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<CategoriesViewModel>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -100,67 +110,53 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
-                child: FutureBuilder<List<OneCategorieViewModel>>(
-                  future: data.FetchAllCategories(),
-                  builder: ((context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      var tickets = snapshot.data;
-                      return ListView.builder(
-                          itemCount: tickets?.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  alertupdate(tickets[index]);
-                                },
-                                child: ListTile(
-                                  title: Text("${tickets![index].montant}",
-                                      style: const TextStyle(
-                                          fontFamily: 'AirbnbCereal',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color.fromARGB(
-                                              255, 211, 7, 194))),
-                                  subtitle: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                child: ListView.builder(
+                    itemCount: provider.categories.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            alertupdate(provider.categories[index]);
+                          },
+                          child: ListTile(
+                            title: Text("${provider.categories[index].montant}",
+                                style: const TextStyle(
+                                    fontFamily: 'AirbnbCereal',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 211, 7, 194))),
+                            subtitle: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${provider.categories[index].libelle}",
+                                    style: const TextStyle(
+                                      fontFamily: 'AirbnbCereal',
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text("${tickets[index].libelle}",
+                                      Text(
+                                          "${provider.categories[index].categorieModel} €",
                                           style: const TextStyle(
                                             fontFamily: 'AirbnbCereal',
                                             color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
                                           )),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                                "${tickets[index].categorieModel} €",
-                                                style: const TextStyle(
-                                                  fontFamily: 'AirbnbCereal',
-                                                  color: Colors.black,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w700,
-                                                )),
-                                          ],
-                                        ),
-                                      ),
                                     ],
                                   ),
-                                  leading: Image.asset(
-                                    "assets/125.png",
-                                  ),
                                 ),
-                              ));
-                    }
-                  }),
-                ),
+                              ],
+                            ),
+                            // leading: Image.asset(
+                            //   "assets/125.png",
+                            // ),
+                          ),
+                        )),
               ),
             );
           } else {

@@ -33,7 +33,7 @@ class _AddUserViewState extends State<AddUserView> {
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
 
-  var datacategorie = CategoriesViewModel(ticketsRepository: CategoriesApi());
+  var datacategorie = CategoriesViewModel();
 
   var data = UsersViewModel(eventsRepository: UsersApi());
 
@@ -224,12 +224,11 @@ class _AddUserViewState extends State<AddUserView> {
             ),
             InkWell(
                 onTap: () {
-
-                     showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const Center(child: CircularProgressIndicator());
-                          });
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(child: CircularProgressIndicator());
+                      });
 
                   if (formkey.currentState!.validate()) {
                     var event = {
@@ -253,17 +252,17 @@ class _AddUserViewState extends State<AddUserView> {
                     });
                   }
 
-
-                     
-
-                            navigatorKey.currentState!
-                          .popUntil((route) => route.isFirst);
+                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
                 },
-                child: Button(text: "APPLIQUER",  fontSize: fontSizemediumbutton,
+                child: Button(
+                  text: "APPLIQUER",
+                  fontSize: fontSizemediumbutton,
                   gradientbackground: gradientbackground,
                   height: heightmediumbutton,
                   width: widthmediumbutton,
-                      fontWeight: FontWeight.normal, textcolor:  Colors.white,)),
+                  fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
+                )),
           ],
         ),
       ),

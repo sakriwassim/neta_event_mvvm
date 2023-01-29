@@ -23,7 +23,7 @@ class _UpdateNotificationViewState extends State<UpdateNotificationView> {
   late String libellefield;
   late String prixfield;
   late String descriptionfield;
-  var data = TontinesViewModel(ticketsRepository: TontinesApi());
+  var data = TontinesViewModel();
 
   @override
   Widget build(BuildContext context) {

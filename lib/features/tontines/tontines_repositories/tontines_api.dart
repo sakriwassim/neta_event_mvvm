@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:neta_event_mvvm/features/tontines/tontines_repositories/tontines_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models_tontines/tontine_model.dart';
 
-class TontinesApi extends TontinesRepository {
+class TontinesApi {
   @override
   Future<TontineModel> getTontineByID(int id) async {
     try {

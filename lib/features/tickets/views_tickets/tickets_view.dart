@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../users/evants_repositories/events_api.dart';
 import '../../users/view_model_events/events_view_model.dart';
-import 'ticket_card_widget/get_ticket_widget.dart';
+import '../view_model_tickets/tickets_view_model.dart';
+import 'ticket_card_widget/ticketswidget.dart';
 
 class GetAllTicketView extends StatefulWidget {
   const GetAllTicketView({super.key});
@@ -20,8 +22,16 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
   var datauser = UsersViewModel(eventsRepository: UsersApi());
 
   @override
+  void initState() {
+    super.initState();
+
+    Provider.of<TicketsViewModel>(context, listen: false).FetchAllTickets();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var providerticket = Provider.of<TicketsViewModel>(context, listen: false);
 
     TabController _tabController = TabController(length: 2, vsync: this);
     return Scaffold(
@@ -116,9 +126,13 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
-                      GetAllTicketWidget(),
-                      GetAllTicketWidget(),
+                    children: [
+                      TicketsWidget(
+                        tickets: providerticket.listAllTickets,
+                      ),
+                      TicketsWidget(
+                        tickets: providerticket.listAllTickets,
+                      ),
                     ],
                   ),
                 ),

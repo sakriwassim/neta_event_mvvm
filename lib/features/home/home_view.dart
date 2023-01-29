@@ -34,6 +34,8 @@ import '../tontines/views_tontines/one_tontine_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
 import '../tontines/views_tontines/widget/tontine_card_widget.dart';
 import 'widget/events_exclusives_widget.dart';
+import 'widget/packs_widget.dart';
+import 'widget/tontines_widget.dart';
 import 'widget/voirtout.dart';
 
 class HomeView extends StatefulWidget {
@@ -53,8 +55,8 @@ class _HomeViewState extends State<HomeView> {
 
   var datauser = UsersViewModel(eventsRepository: UsersApi());
   var data = EventsViewModel(eventsRepository: EventsApi());
-  var datapack = PacksViewModel(packsRepository: PacksApi());
-  var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
+  var datapack = PacksViewModel();
+  var datatontine = TontinesViewModel();
   var datacategorie = CategoriesViewModel();
 
   @override
@@ -62,6 +64,9 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     Provider.of<CategoriesViewModel>(context, listen: false)
         .FetchAllCategories();
+    Provider.of<TontinesViewModel>(context, listen: false).FetchAllTontines();
+
+    Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
   }
 
   navGetAllCategorieView() {
@@ -212,77 +217,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget packsWidget() {
-    return SizedBox(
-      height: getProportionateScreenHeight(300),
-      child: Center(
-        child: FutureBuilder<List<OnePackViewModel>>(
-          future: datapack.FetchAllPacks(),
-          builder: ((context, snapshot) {
-            if (!snapshot.hasData) {
-              return const CircularProgressIndicator();
-            } else {
-              var events = snapshot.data;
-              return ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: events?.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                        onTap: () {},
-                        child: PackCardWidget(
-                          libelle: '${events![index].libelle}',
-                          montant: '${events[index].montant}',
-                          nbre_events: '${events[index].nbre_events}',
-                          nbre_jr_pubs: '${events[index].nbre_jr_pubs}',
-                        ),
-                      ));
-            }
-          }),
-        ),
-      ),
-    );
-  }
-
-  Widget tontinesWidget() {
-    return SizedBox(
-      height: getProportionateScreenHeight(350),
-      child: FutureBuilder<List<OneTontineViewModel>>(
-        future: datatontine.FetchAllTontines(),
-        builder: ((context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            var packs = snapshot.data;
-            return ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: packs?.length,
-                itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OnTontineView(
-                                    id: packs[index].id,
-                                    image: '${packs[index].image}',
-                                  )),
-                        );
-                      },
-                      child: TontineCardWidget(
-                        image: packs![index].image,
-                        libelle: packs[index].libelle,
-                        montant_regulier: packs[index].montant_regulier,
-                        nbr_participant: packs[index].nbr_participant,
-                        // image: packs[index].image,
-                      ),
-                    ));
-          }
-        }),
-      ),
-    );
-  }
-
-  Widget appbarWidget() {
+   Widget appbarWidget() {
     return Column(
       children: [
         const Text(
@@ -318,47 +253,14 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  // Widget categoriesWidget() {
-  //   return SizedBox(
-  //     height: getProportionateScreenHeight(150),
-  //     child: FutureBuilder<List<OneCategorieViewModel>>(
-  //       future: datacategorie.FetchAllCategories(),
-  //       builder: ((context, snapshot) {
-  //         if (!snapshot.hasData) {
-  //           return const Center(
-  //               // child: CircularProgressIndicator()
-  //               );
-  //         } else {
-  //           var categories = snapshot.data;
-  //           return ListView.builder(
-  //               shrinkWrap: true,
-  //               scrollDirection: Axis.horizontal,
-  //               itemCount: categories?.length,
-  //               itemBuilder: (context, index) => InkWell(
-  //                     onTap: () {
-  //                       indexCategories = index;
-
-  //                       setState(() {
-  //                         // data.GetEventByCategorie(
-  //                         //     2);
-  //                       });
-  //                     },
-  //                     child: CategorieCardWidget(
-  //                       libelle: categories![index].libelle,
-  //                       image: categories[index].image,
-  //                     ),
-  //                   ));
-  //         }
-  //       }),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     var provider = Provider.of<CategoriesViewModel>(context, listen: false);
+    var providertontine =
+        Provider.of<TontinesViewModel>(context, listen: false);
+    var providerpack = Provider.of<PacksViewModel>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -516,14 +418,17 @@ class _HomeViewState extends State<HomeView> {
                                                   callbackfonction:
                                                       navGetAllPackView,
                                                 ),
-                                                packsWidget(),
+                                                PacksWidgetHome(
+                                                    packs: providerpack.packs),
                                               ],
                                             ),
                                       VoirTout(
                                         text: 'Tontine',
                                         callbackfonction: navGetAllTontineView,
                                       ),
-                                      tontinesWidget(),
+                                      TontinesWidgetHome(
+                                        tontines: providertontine.tontines,
+                                      ),
                                     ],
                                   ),
                                 ),

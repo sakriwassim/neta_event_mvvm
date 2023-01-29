@@ -34,7 +34,7 @@ class OnNotificationView extends StatefulWidget {
 
 class _OnNotificationViewState extends State<OnNotificationView> {
   //user_id
-  var dataTontines = TontinesViewModel(ticketsRepository: TontinesApi());
+  var dataTontines = TontinesViewModel();
   var dataUser = UsersViewModel(eventsRepository: UsersApi());
 
   @override

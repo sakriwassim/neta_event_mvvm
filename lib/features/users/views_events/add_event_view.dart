@@ -128,7 +128,7 @@ class _AddUserViewState extends State<AddUserView> {
             SizedBox(
               height: 120,
               child: FutureBuilder<List<OneCategorieViewModel>>(
-                future: datacategorie.FetchAllCategories(),
+                // future: datacategorie.FetchAllCategories(),
                 builder: ((context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());

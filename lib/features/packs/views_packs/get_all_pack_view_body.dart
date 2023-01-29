@@ -15,7 +15,7 @@ class GetAllPackViewBody extends StatefulWidget {
 }
 
 class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
-  var data = PacksViewModel(packsRepository: PacksApi());
+  var data = PacksViewModel();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -42,7 +42,7 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
             ),
             child: Center(
               child: FutureBuilder<List<OnePackViewModel>>(
-                future: data.FetchAllPacks(),
+              //  future: data.FetchAllPacks(),
                 builder: ((context, snapshot) {
                   if (!snapshot.hasData) {
                     return const CircularProgressIndicator();

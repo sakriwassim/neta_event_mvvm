@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:neta_event_mvvm/features/tickets/tickets_repositories/tickets_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 
-class TicketsApi extends TicketsRepository {
+class TicketsApi  {
   @override
   Future<TicketModel> getTicketByID(int id) async {
     try {

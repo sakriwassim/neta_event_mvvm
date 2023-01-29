@@ -14,7 +14,7 @@ class GetAllPackView extends StatefulWidget {
 }
 
 class _GetAllPackViewState extends State<GetAllPackView> {
-  var data = PacksViewModel(packsRepository: PacksApi());
+  var data = PacksViewModel();
 
   @override
   Widget build(BuildContext context) {

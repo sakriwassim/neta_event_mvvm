@@ -28,7 +28,7 @@ class _UpdateTicketViewState extends State<UpdateTicketView> {
   late String Prixfield;
   late String Descriptionfield;
 
-  var data = TicketsViewModel(ticketsRepository: TicketsApi());
+  var data = TicketsViewModel();
 
   @override
   Widget build(BuildContext context) {

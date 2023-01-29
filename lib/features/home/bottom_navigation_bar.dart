@@ -50,8 +50,6 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
-  // var dataAuthentificationViewModel = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
 
   openDrawer() {
     _scaffoldState.currentState!.openDrawer();

@@ -18,7 +18,7 @@ class OnTicketView extends StatefulWidget {
 }
 
 class _OnTicketViewState extends State<OnTicketView> {
-  var data = TicketsViewModel(ticketsRepository: TicketsApi());
+  var data = TicketsViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _OnTicketViewState extends State<OnTicketView> {
         //backgroundColor: Colors.transparent,
         child: Center(
           child: FutureBuilder<TicketModel>(
-            future: data.GetTicketByID(widget.id),
+         //   future: data.GetTicketByID(widget.id),
             builder: ((context, snapshot) {
               if (snapshot.hasData) {
                 return Column(

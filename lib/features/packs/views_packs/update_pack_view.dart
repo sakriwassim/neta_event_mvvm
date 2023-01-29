@@ -23,7 +23,7 @@ class _UpdatePackViewState extends State<UpdatePackView> {
   late String prixfield;
   late String descriptionfield;
 
-  var data = PacksViewModel(packsRepository: PacksApi());
+  var data = PacksViewModel();
 
   @override
   Widget build(BuildContext context) {

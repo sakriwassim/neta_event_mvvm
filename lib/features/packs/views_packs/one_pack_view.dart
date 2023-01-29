@@ -11,7 +11,7 @@ class OnPackView extends StatefulWidget {
 }
 
 class _OnPackViewState extends State<OnPackView> {
-  var data = PacksViewModel(packsRepository: PacksApi());
+  var data = PacksViewModel();
   //var api = PacksApi().getPackByID(2);
 //packModel
   @override

@@ -277,7 +277,7 @@ class _AddEventViewState extends State<AddEventView> {
               SizedBox(
                 height: 120,
                 child: FutureBuilder<List<OneCategorieViewModel>>(
-                  future: datacategorie.FetchAllCategories(),
+                 // future: datacategorie.FetchAllCategories(),
                   builder: ((context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());

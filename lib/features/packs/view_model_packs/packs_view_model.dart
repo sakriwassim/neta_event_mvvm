@@ -1,38 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/features/packs/packs_repositories/packs_api.dart';
+
 import '../models_packs/pack_model.dart';
-import '../packs_repositories/pack_repository.dart';
+
 import 'one_pack_view_model.dart';
 
-class PacksViewModel {
+class PacksViewModel extends ChangeNotifier {
   //PackModel
   String title = "Pack Page ";
+  List<OnePackViewModel> packs = [];
 
-  PacksRepository? packsRepository;
-  PacksViewModel({this.packsRepository});
 
-  Future<List<OnePackViewModel>> FetchAllPacks() async {
-    List<PackModel> list = await packsRepository!.getAllPacks();
-    return list
+  Future<void> FetchAllPacks() async {
+    List<PackModel> list = await PacksApi().getAllPacks();
+    packs = list
         .map((listPack) => OnePackViewModel(packModel: listPack))
         .toList();
   }
 
   Future<OnePackViewModel> GetPackByID(int id) async {
-    var eventModel = await packsRepository!.getPackByID(id);
+    var eventModel = await PacksApi().getPackByID(id);
     return OnePackViewModel(packModel: eventModel);
   }
 
   Future<bool> UpdatePackByID(PackModel eventModel) async {
-    var event = await packsRepository!.updatePackByID(eventModel);
+    var event = await PacksApi().updatePackByID(eventModel);
     return true;
   }
 
   Future<bool> AddPack(PackModel packModel) async {
-    var event = await packsRepository!.addPack(packModel);
+    var event = await PacksApi().addPack(packModel);
     return true;
   }
 
   Future<bool> DeletePackByID(int id) async {
-    var eventModel = await packsRepository!.deletePackByID(id);
+    var eventModel = await PacksApi().deletePackByID(id);
     return true;
   }
 }

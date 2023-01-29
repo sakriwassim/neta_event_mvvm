@@ -35,7 +35,7 @@ class OnTontineView extends StatefulWidget {
 
 class _OnTontineViewState extends State<OnTontineView> {
   //user_id
-  var dataTontines = TontinesViewModel(ticketsRepository: TontinesApi());
+  var dataTontines = TontinesViewModel();
   var dataUser = UsersViewModel(eventsRepository: UsersApi());
 
   @override

@@ -39,7 +39,7 @@ class _AddTontineViewState extends State<AddTontineView>
   double _currentSliderValue = 0;
   var datacategorie = CategoriesViewModel();
 
-  var data = TontinesViewModel(ticketsRepository: TontinesApi());
+  var data = TontinesViewModel( );
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +169,7 @@ class _AddTontineViewState extends State<AddTontineView>
                           SizedBox(
                             height: getProportionateScreenHeight(200),
                             child: FutureBuilder<List<OneCategorieViewModel>>(
-                              future: datacategorie.FetchAllCategories(),
+                            //  future: datacategorie.FetchAllCategories(),
                               builder: ((context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return const Center(

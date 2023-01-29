@@ -18,7 +18,7 @@ class GetAllTontineView extends StatefulWidget {
 }
 
 class _GetAllTontineViewState extends State<GetAllTontineView> {
-  var data = TontinesViewModel(ticketsRepository: TontinesApi());
+  var data = TontinesViewModel();
 
   var datauser = UsersViewModel(eventsRepository: UsersApi());
   deletetontines(id) {
@@ -96,7 +96,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
               },
               child: Center(
                 child: FutureBuilder<List<OneTontineViewModel>>(
-                  future: data.FetchAllTontines(),
+                  //future: data.FetchAllTontines(),
                   builder: ((context, snapshot) {
                     if (!snapshot.hasData) {
                       return const CircularProgressIndicator();

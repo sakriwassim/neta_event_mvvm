@@ -53,12 +53,11 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
 
   var datauser = UsersViewModel(eventsRepository: UsersApi());
   var data = EventsViewModel(eventsRepository: EventsApi());
-  var datapack = PacksViewModel(packsRepository: PacksApi());
-  var datatontine = TontinesViewModel(ticketsRepository: TontinesApi());
+  var datapack = PacksViewModel();
+  var datatontine = TontinesViewModel();
   var datacategorie = CategoriesViewModel();
   // var data2 = AuthentificationViewModel(
   //     authentificationRepository: AuthentificationApi());
-  
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +223,7 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
                                   height: getProportionateScreenHeight(150),
                                   child: FutureBuilder<
                                       List<OneCategorieViewModel>>(
-                                    future: datacategorie.FetchAllCategories(),
+                                    //future: datacategorie.FetchAllCategories(),
                                     builder: ((context, snapshot) {
                                       if (!snapshot.hasData) {
                                         return const Center(

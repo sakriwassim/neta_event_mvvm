@@ -23,7 +23,7 @@ class _AddTicketViewState extends State<AddTicketView> {
   late String prixfield;
   late String descriptionfield;
 
-  var data = TicketsViewModel(ticketsRepository: TicketsApi());
+  var data = TicketsViewModel();
 
   @override
   Widget build(BuildContext context) {

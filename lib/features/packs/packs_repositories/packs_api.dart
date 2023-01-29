@@ -4,10 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
 import '../models_packs/pack_model.dart';
-import 'pack_repository.dart';
+
 
 //PackModel
-class PacksApi extends PacksRepository {
+class PacksApi  {
   @override
   Future<PackModel> getPackByID(int id) async {
     try {

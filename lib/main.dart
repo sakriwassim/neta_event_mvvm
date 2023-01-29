@@ -8,6 +8,9 @@ import 'features/Categories/views_categories/categories_view.dart';
 import 'features/authentification/view_model_authentification/authentification_view_model.dart';
 import 'features/home/main_home_page.dart';
 import 'features/into_screen/view/intro_page.dart';
+import 'features/packs/view_model_packs/packs_view_model.dart';
+import 'features/tickets/view_model_tickets/tickets_view_model.dart';
+import 'features/tontines/view_model_tickets/tontines_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,15 @@ void main() async {
       ),
       ChangeNotifierProvider<CategoriesViewModel>(
         create: (_) => CategoriesViewModel(),
+      ),
+      ChangeNotifierProvider<TontinesViewModel>(
+        create: (_) => TontinesViewModel(),
+      ),
+      ChangeNotifierProvider<PacksViewModel>(
+        create: (_) => PacksViewModel(),
+      ),
+       ChangeNotifierProvider<TicketsViewModel>(
+        create: (_) => TicketsViewModel(),
       ),
     ],
     child: MyApp(

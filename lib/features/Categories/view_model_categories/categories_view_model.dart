@@ -9,17 +9,14 @@ class CategoriesViewModel extends ChangeNotifier {
   String title = "Categorie Page ";
   List<OneCategorieViewModel> categories = [];
 
-  Future<List<OneCategorieViewModel>> FetchAllCategories() async {
+  Future<void> FetchAllCategories() async {
     List<CategorieModel> list = await CategoriesApi().getAllCategories();
     categories = list
         .map((listCategorie) =>
             OneCategorieViewModel(categorieModel: listCategorie))
         .toList();
     notifyListeners();
-    return list
-        .map((listCategorie) =>
-            OneCategorieViewModel(categorieModel: listCategorie))
-        .toList();
+   
   }
 
   Future<OneCategorieViewModel> GetCategorieByID(int id) async {

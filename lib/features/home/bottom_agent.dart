@@ -8,8 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/colors.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
-import '../authentification/authentification_repositories/authentification_api.dart';
-import '../authentification/view_model_authentification/authentification_view_model.dart';
 import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 

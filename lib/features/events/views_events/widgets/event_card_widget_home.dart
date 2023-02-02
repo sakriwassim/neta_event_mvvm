@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
-import '../../../../core/string.dart';
+
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
-import '../../view_model_events/one_event_view_model.dart';
 
 class EventCardWidget extends StatelessWidget {
   String? description;
@@ -16,7 +15,6 @@ class EventCardWidget extends StatelessWidget {
   String? image;
   EventCardWidget({
     Key? key,
-    required this.events,
     required this.description,
     required this.date_heure,
     required this.libelle,
@@ -24,8 +22,6 @@ class EventCardWidget extends StatelessWidget {
     required this.adresse,
     required this.image,
   }) : super(key: key);
-
-  final List<OneEventViewModel>? events;
 
   @override
   Widget build(BuildContext context) {

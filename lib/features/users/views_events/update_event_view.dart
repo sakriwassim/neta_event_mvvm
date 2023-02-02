@@ -8,11 +8,12 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../models_events/add_event_model.dart';
 import '../evants_repositories/events_api.dart';
+import '../models_events/event_model.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
 
 class UpdateUserView extends StatefulWidget {
-  final OneUserViewModel eventObj;
+  final UserModel eventObj;
   const UpdateUserView({super.key, required this.eventObj});
 
   @override
@@ -27,9 +28,7 @@ class _UpdateUserViewState extends State<UpdateUserView> {
 
   //TextEditingController libellefield = TextInputConnection
 
-
-
-  var data = UsersViewModel(eventsRepository: UsersApi());
+  var data = UsersViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,6 @@ class _UpdateUserViewState extends State<UpdateUserView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
-                
                 decoration: textFieldDecoration(
                   "Mot de passe",
                   "entre le password",
@@ -128,7 +126,7 @@ class _UpdateUserViewState extends State<UpdateUserView> {
                   AddUserModel eventformJson = AddUserModel.fromJson(event);
 
                   setState(() {
-                    data.UpdateUserByID(eventformJson);
+                    // data.UpdateUserByID(eventformJson);
                   });
                 }
 

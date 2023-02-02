@@ -33,7 +33,7 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    AuthentificationViewModel provider =
+    var provider =
         Provider.of<AuthentificationViewModel>(context, listen: true);
 
     Widget emailfieldWidget() {
@@ -300,11 +300,11 @@ class AuthView extends StatelessWidget {
             prefs.setBool("isLoggedIn", true);
           }
           // ignore: use_build_context_synchronously
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MainHomePage(),
-              ));
+          // Navigator.pushReplacement(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => MainHomePage(),
+          //     ));
         }
       }
     }

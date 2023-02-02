@@ -1,55 +1,45 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/home/widget/bottom_btn_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 
-import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/coming_soon.dart';
-import '../authentification/authentification_repositories/authentification_api.dart';
-import '../authentification/view_model_authentification/authentification_view_model.dart';
-import '../events/evants_repositories/events_api.dart';
-import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
-import '../users/evants_repositories/events_api.dart';
-import '../users/view_model_events/events_view_model.dart';
-import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
 
-class MyHomePageClient extends StatefulWidget {
-  const MyHomePageClient({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  _MyHomePageClientState createState() => _MyHomePageClientState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageClientState extends State<MyHomePageClient> {
-  var data = EventsViewModel(eventsRepository: EventsApi());
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
-
+class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  List Screen = [
+  // List Screen2 = [
+  //   HomeViewAgent(),
+  // ];
+
+  List<Widget> Screen = [
     HomeView(),
     const GetAllEventView(),
-    const GetAllTicketView(),
-    const GetAllTontineView(),
-    const ComingSoon()
+    GetAllTicketView(),
+    GetAllTontineView(),
+    ComingSoon()
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeView();
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
-
 
   openDrawer() {
     _scaffoldState.currentState!.openDrawer();
@@ -90,10 +80,10 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
     return Scaffold(
       key: _scaffoldState,
       drawer: SideBarMenu(
@@ -120,6 +110,14 @@ class _MyHomePageClientState extends State<MyHomePageClient> {
               bottomwidget(Tontinoff, Tontin, 'Donation', 4),
             ],
           ),
+
+//  Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               bottomwidget(CompassOff, Compass, 'Découvrir', 0),
+//               bottomwidget(Deconnect, Deconnect, 'Deconnection', 1),
+//             ],
+//           ),
         ),
       ),
     );

@@ -7,11 +7,10 @@ import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../tontines/models_tontines/tontine_model.dart';
 import '../../tontines/tontines_repositories/tontines_api.dart';
-import '../../tontines/view_model_tickets/one_tontine_view_model.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 
 class UpdateNotificationView extends StatefulWidget {
-  final OneTontineViewModel ticketObj;
+  final TontineModel ticketObj;
   const UpdateNotificationView({super.key, required this.ticketObj});
 
   @override

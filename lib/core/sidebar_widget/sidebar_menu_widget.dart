@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/sidebar_widget/sidebar_head_widget.dart';
-import '../../features/authentification/authentification_repositories/authentification_api.dart';
-import '../../features/authentification/view_model_authentification/authentification_view_model.dart';
 import '../../features/authentification/views_authentification/authentification_view.dart';
 import '../../features/events/views_events/events_view.dart';
 import '../../features/tontines/views_tontines/tontines_view.dart';
@@ -22,12 +20,9 @@ class SideBarMenu extends StatelessWidget {
     required this.callbackFunctionlogout,
   }) : super(key: key);
 
-  var data = UsersViewModel(eventsRepository: UsersApi());
-
   @override
   Widget build(BuildContext context) {
     comingsoon() {
-
       showGeneralDialog(
         context: context,
         barrierLabel: "Barrier",
@@ -123,7 +118,6 @@ class SideBarMenu extends StatelessWidget {
                       builder: (context) => const GetAllEventView()));
             },
           ),
-
           ListTile(
             leading: SvgPicture.asset(Tontinoffsidebar),
             title: TextAirbnbCereal(
@@ -152,19 +146,6 @@ class SideBarMenu extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => const GetAllTontineView()));
               }),
-          // ListTile(
-          //     leading: SvgPicture.asset(calendarside),
-          //     title: TextAirbnbCereal(
-          //       title: 'Enquete',
-          //       color: Colors.black,
-          //       size: 16,
-          //       fontWeight: FontWeight.w400,
-          //     ),
-          //     onTap: () {
-          //       //  Navigator.push(context,
-          //       //     MaterialPageRoute(builder: (context) => const GetAllTontineView()));
-          //     }),
-
           ListTile(
             leading: SvgPicture.asset(Favoris), //Favoris
             title: TextAirbnbCereal(
@@ -175,7 +156,6 @@ class SideBarMenu extends StatelessWidget {
             ),
             onTap: () => comingsoon(),
           ),
-
           ListTile(
             leading: SvgPicture.asset(message), //Favoris
             title: TextAirbnbCereal(

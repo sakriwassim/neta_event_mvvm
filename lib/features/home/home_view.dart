@@ -10,40 +10,25 @@ import 'package:provider/provider.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/text_widget_text1.dart';
-import '../Categories/categories_repositories/categories_api.dart';
 import '../Categories/view_model_categories/categories_view_model.dart';
-import '../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../Categories/views_categories/categories_view.dart';
-import '../Categories/views_categories/widget/categorie_card_widget.dart';
-import '../events/evants_repositories/events_api.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../notification/views_notifications/notifications_view.dart';
-import '../users/evants_repositories/events_api.dart';
 import '../users/view_model_events/events_view_model.dart';
 import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
-import '../packs/packs_repositories/packs_api.dart';
-import '../packs/view_model_packs/one_pack_view_model.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
 import '../packs/views_packs/packs_view.dart';
-import '../packs/widget/pack_card_widget.dart';
-import '../tontines/tontines_repositories/tontines_api.dart';
-import '../tontines/view_model_tickets/one_tontine_view_model.dart';
 import '../tontines/view_model_tickets/tontines_view_model.dart';
-import '../tontines/views_tontines/one_tontine_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
-import '../tontines/views_tontines/widget/tontine_card_widget.dart';
 import 'widget/events_exclusives_widget.dart';
 import 'widget/packs_widget.dart';
 import 'widget/tontines_widget.dart';
 import 'widget/voirtout.dart';
 
 class HomeView extends StatefulWidget {
-  String? userCat;
-
   HomeView({
     Key? key,
-    this.userCat,
   }) : super(key: key);
 
   @override
@@ -51,22 +36,22 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int indexCategories = 0;
-
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
-  var data = EventsViewModel(eventsRepository: EventsApi());
-  var datapack = PacksViewModel();
-  var datatontine = TontinesViewModel();
-  var datacategorie = CategoriesViewModel();
+  // int indexCategories = 0;
 
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoriesViewModel>(context, listen: false)
-        .FetchAllCategories();
-    Provider.of<TontinesViewModel>(context, listen: false).FetchAllTontines();
-
-    Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<CategoriesViewModel>(context, listen: false)
+          .FetchAllCategories();
+      await Provider.of<TontinesViewModel>(context, listen: false)
+          .FetchAllTontines();
+      await Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
+      await Provider.of<EventsViewModel>(context, listen: false)
+          .FetchAllEvents("");
+      await Provider.of<UsersViewModel>(context, listen: false)
+          .GetUserConnected();
+    });
   }
 
   navGetAllCategorieView() {
@@ -217,42 +202,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-   Widget appbarWidget() {
-    return Column(
-      children: [
-        const Text(
-          "Hey Bienvenue..",
-          style: TextStyle(
-            fontFamily: 'AirbnbCereal',
-            fontWeight: FontWeight.w400,
-            fontSize: 15,
-            color: Color.fromARGB(135, 255, 255, 255),
-          ),
-        ),
-        FutureBuilder(
-            future: datauser.GetUserConnected(),
-            builder: ((context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(
-                    // child: CircularProgressIndicator()
-                    );
-              } else {
-                var categories = snapshot.data;
-                return Text(
-                  "${categories!.nom_complet}",
-                  style: const TextStyle(
-                    fontFamily: 'AirbnbCereal',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 19,
-                    color: Colors.white,
-                  ),
-                );
-              }
-            })),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -261,6 +210,8 @@ class _HomeViewState extends State<HomeView> {
     var providertontine =
         Provider.of<TontinesViewModel>(context, listen: false);
     var providerpack = Provider.of<PacksViewModel>(context, listen: false);
+    var provideruser = Provider.of<UsersViewModel>(context, listen: true);
+    var providerevent = Provider.of<EventsViewModel>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -303,7 +254,30 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ),
                       ),
-                      appbarWidget(),
+                      Column(
+                        children: [
+                          const Text(
+                            "Hey Bienvenue..",
+                            style: TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                              color: Color.fromARGB(135, 255, 255, 255),
+                            ),
+                          ),
+                          provideruser.userConnected != null
+                              ? Text(
+                                  "${provideruser.userConnected?.nomComplet}",
+                                  style: const TextStyle(
+                                    fontFamily: 'AirbnbCereal',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 19,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
                       Row(
                         children: [
                           IconButton(
@@ -338,105 +312,87 @@ class _HomeViewState extends State<HomeView> {
                 final bool connected = connectivity != ConnectivityResult.none;
                 if (connected) {
                   return RefreshIndicator(
-                      onRefresh: () async {
-                        setState(() {
-                          data.GetEventByCategorie(indexCategories);
-                          data.FetchAllEvents("");
-                          datapack.FetchAllPacks();
-                          datatontine.FetchAllTontines();
-                          datacategorie.FetchAllCategories();
-                        });
+                    onRefresh: () async {
+                      setState(() {});
 
-                        return Future.delayed(const Duration(seconds: 2));
-                      },
-                      child: FutureBuilder(
-                        future: datauser.GetUserConnected(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const CircularProgressIndicator();
-                          } else {
-                            var role = snapshot.data!.role_id.toString();
-
-                            return SingleChildScrollView(
-                                child: Column(
-                              children: [
-                                SizedBox(
-                                  height: getProportionateScreenHeight(10),
+                      return Future.delayed(const Duration(seconds: 2));
+                    },
+                    child: SingleChildScrollView(
+                        child: Column(
+                      children: [
+                        SizedBox(
+                          height: getProportionateScreenHeight(10),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(10)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //****************** Exclusives*/
+                              VoirTout(
+                                text: 'Exclusives',
+                                callbackfonction: navGetAllEventView,
+                              ),
+                              EventsExclusivesWidget(
+                                eventsexclusives: providerevent.allEvents,
+                              ),
+                              SizedBox(
+                                height: getProportionateScreenHeight(10),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getProportionateScreenWidth(15),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          getProportionateScreenWidth(10)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //****************** Exclusives*/
-                                      VoirTout(
-                                        text: 'Exclusives',
-                                        callbackfonction: navGetAllEventView,
-                                      ),
-                                      EventsExclusivesWidget(),
-                                      SizedBox(
-                                        height:
-                                            getProportionateScreenHeight(10),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              getProportionateScreenWidth(15),
-                                        ),
-                                        child: const Text(
-                                          "Catégories",
-                                          style: TextStyle(
-                                            fontFamily: 'AirbnbCereal',
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 18,
-                                            color: Color.fromARGB(255, 0, 0, 0),
-                                          ),
-                                        ),
-                                      ),
-
-                                      CategoriesWidgetHome(
-                                        categories: provider.categories,
-                                      ),
-
-                                      VoirTout(
-                                        text: 'Evènements',
-                                        callbackfonction: navGetAllEventView,
-                                      ),
-                                      GetEventByCategorisWidget(
-                                        categorieid: indexCategories,
-                                      ),
-                                      role == "0"
-                                          ? Container()
-                                          : Column(
-                                              children: [
-                                                VoirTout(
-                                                  text: 'Packs',
-                                                  callbackfonction:
-                                                      navGetAllPackView,
-                                                ),
-                                                PacksWidgetHome(
-                                                    packs: providerpack.packs),
-                                              ],
-                                            ),
-                                      VoirTout(
-                                        text: 'Tontine',
-                                        callbackfonction: navGetAllTontineView,
-                                      ),
-                                      TontinesWidgetHome(
-                                        tontines: providertontine.tontines,
-                                      ),
-                                    ],
+                                child: const Text(
+                                  "Catégories",
+                                  style: TextStyle(
+                                    fontFamily: 'AirbnbCereal',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                   ),
                                 ),
-                              ],
-                            ));
-                          }
-                        },
-                      ));
+                              ),
+
+                              CategoriesWidgetHome(
+                                categories: provider.categories,
+                              ),
+
+                              VoirTout(
+                                text: 'Evènements',
+                                callbackfonction: navGetAllEventView,
+                              ),
+                              GetEventByCategorisWidget(
+                                categorieid: 0,
+                              ),
+
+                              provideruser.userConnected?.roleId == "0"
+                                  ? Container()
+                                  : Column(
+                                      children: [
+                                        VoirTout(
+                                          text: 'Packs',
+                                          callbackfonction: navGetAllPackView,
+                                        ),
+                                        PacksWidgetHome(
+                                            packs: providerpack.packs),
+                                      ],
+                                    ),
+                              VoirTout(
+                                text: 'Tontine',
+                                callbackfonction: navGetAllTontineView,
+                              ),
+                              TontinesWidgetHome(
+                                tontines: providertontine.tontines,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
+                  );
                 } else {
                   return const Center(
                     child: Text("no connection"),

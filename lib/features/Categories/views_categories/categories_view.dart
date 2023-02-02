@@ -20,11 +20,16 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoriesViewModel>(context, listen: false)
-        .FetchAllCategories();
-  }
 
-  var data = CategoriesViewModel();
+
+
+     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      
+       Provider.of<CategoriesViewModel>(context, listen: false)
+        .FetchAllCategories();
+      
+      });
+  }
 
   alertupdate(OneCategorieViewModel obj) => showDialog<String>(
         context: context,
@@ -69,7 +74,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              data.title,
+              provider.title,
               style: const TextStyle(
                 color: Colors.black,
               ),
@@ -104,7 +109,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
             return RefreshIndicator(
               onRefresh: () async {
                 setState(() {
-                  data.FetchAllCategories();
+                  provider.FetchAllCategories();
                 });
 
                 return Future.delayed(const Duration(seconds: 2));

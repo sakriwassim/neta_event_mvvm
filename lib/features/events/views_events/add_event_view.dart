@@ -42,7 +42,7 @@ class _AddEventViewState extends State<AddEventView> {
 
   var datacategorie = CategoriesViewModel();
 
-  var data = EventsViewModel(eventsRepository: EventsApi());
+  var data = EventsViewModel();
   var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
 
   final ImagePicker _picker = ImagePicker();

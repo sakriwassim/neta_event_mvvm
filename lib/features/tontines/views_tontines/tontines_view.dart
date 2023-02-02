@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../users/evants_repositories/events_api.dart';
 import '../../users/view_model_events/events_view_model.dart';
-import '../tontines_repositories/tontines_api.dart';
-import '../view_model_tickets/one_tontine_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 import 'one_tontine_view.dart';
 import 'widget/tontine_card_H_widget.dart';
@@ -18,17 +16,31 @@ class GetAllTontineView extends StatefulWidget {
 }
 
 class _GetAllTontineViewState extends State<GetAllTontineView> {
-  var data = TontinesViewModel();
+  @override
+  void initState() {
+    super.initState();
 
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<UsersViewModel>(context, listen: false).userConnected;
+      Provider.of<TontinesViewModel>(context, listen: false).FetchAllTontines();
+    });
+  }
+
+  // var data = TontinesViewModel();
+
+  // var datauser = UsersViewModel();
   deletetontines(id) {
     setState(() {
-      data.DeleteTontineByID(id);
+      //  data.DeleteTontineByID(id);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var providertontine =
+        Provider.of<TontinesViewModel>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -42,39 +54,31 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              data.title,
+              "tontine détaille",
               style: const TextStyle(
                 color: Colors.black,
               ),
             ),
-            FutureBuilder(
-                future: datauser.GetUserConnected(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Container();
-                  } else {
-                    //var body = snapshot.data;
-                    var role = snapshot.data!.role_id.toString();
-                    return role == "0"
-                        ? Container()
-                        : InkWell(
-                            onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => AddEventView()));
-                            },
-                            child: Button(
-                              text: "ADD EVENT",
-                              height: 40,
-                              width: 100,
-                              fontSize: 15,
-                              gradientbackground: gradientbackground,
-                              fontWeight: FontWeight.normal,
-                              textcolor: Colors.white,
-                            ));
-                  }
-                }),
+            // provideruser.userConnected!.roleId == "0"
+            //     ? Container()
+            //     :
+
+            InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => AddEventView()));
+                },
+                child: Button(
+                  text: "ADD EVENT",
+                  height: 40,
+                  width: 100,
+                  fontSize: 15,
+                  gradientbackground: gradientbackground,
+                  fontWeight: FontWeight.normal,
+                  textcolor: Colors.white,
+                )),
           ],
         ),
       ),
@@ -88,48 +92,38 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
           if (connected) {
             return RefreshIndicator(
               onRefresh: () async {
-                setState(() {
-                  data.FetchAllTontines();
-                });
-
+                // setState(() {
+                //   data.FetchAllTontines();
+                // });
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
-                child: FutureBuilder<List<OneTontineViewModel>>(
-                  //future: data.FetchAllTontines(),
-                  builder: ((context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      var tickets = snapshot.data;
-                      return ListView.builder(
-                          itemCount: tickets?.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => OnTontineView(
-                                              id: tickets[index].id,
-                                              image: tickets[index].image,
-                                            )));
-                              },
-                              child: TontineCardWidgetH(
-                                image: '${tickets![index].image}',
-                                libelle: '${tickets[index].libelle}',
-                                montant_regulier:
-                                    "${tickets[index].montant_regulier}\$",
-                                nbr_participant:
-                                    '${tickets[index].nbr_participant}',
-                                periode: '',
-                                status: '${tickets[index].status}',
-                                events: tickets,
-                                callbackFunction: deletetontines,
-                                id: tickets[index].id,
-                              )));
-                    }
-                  }),
-                ),
+                child: ListView.builder(
+                    itemCount: providertontine.tontines.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OnTontineView(
+                                        tontine:
+                                            providertontine.tontines[index],
+                                        //  user: null,
+                                      )));
+                        },
+                        child: TontineCardWidgetH(
+                          image: '${providertontine.tontines[index].image}',
+                          libelle: '${providertontine.tontines[index].libelle}',
+                          montant_regulier:
+                              "${providertontine.tontines[index].montant_regulier}\$",
+                          nbr_participant:
+                              '${providertontine.tontines[index].nbr_participant}',
+                          periode: '',
+                          status: '${providertontine.tontines[index].status}',
+                          events: providertontine.tontines,
+                          callbackFunction: deletetontines,
+                          id: providertontine.tontines[index].id,
+                        ))),
               ),
             );
           } else {

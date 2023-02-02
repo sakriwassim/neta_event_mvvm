@@ -6,7 +6,6 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
-import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../models_events/add_event_model.dart';
@@ -35,7 +34,7 @@ class _AddUserViewState extends State<AddUserView> {
 
   var datacategorie = CategoriesViewModel();
 
-  var data = UsersViewModel(eventsRepository: UsersApi());
+  var data = UsersViewModel();
 
   @override
   Widget build(BuildContext context) {

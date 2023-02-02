@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
-import 'package:neta_event_mvvm/features/events/evants_repositories/event_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 
-class EventsApi extends EventsRepository {
+class EventsApi {
   @override
   Future<EventModel> getEventByID(int id) async {
     try {
@@ -42,8 +41,7 @@ class EventsApi extends EventsRepository {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      // var token = prefs.getString("token");
-
+      
       var token =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
@@ -76,18 +74,6 @@ class EventsApi extends EventsRepository {
     } catch (e) {
       return [];
     }
-
-    // if (query != null) {
-    //   eventsList = eventsList
-    //       .where((element) =>
-    //           element.libelle!.toLowerCase().contains(query.toLowerCase()))
-    //       .toList();
-    // }
-
-    //   return eventsList;
-    // } catch (e) {
-
-    // }
   }
 
   @override

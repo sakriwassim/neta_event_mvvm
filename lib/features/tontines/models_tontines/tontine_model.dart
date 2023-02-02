@@ -24,16 +24,16 @@ class TontineModel {
       this.updated_at});
 
   TontineModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    user_id = json['user_id'];
-    libelle = json['libelle'];
-    periode = json['periode'];
-    nbr_participant = json['nbr_participant'];
-    montant_regulier = json['montant_regulier'];
-    status = json['status'];
-    image = json['image'];
-    created_at = json['created_at'];
-    updated_at = json['updated_at'];
+    id = json['id'] ?? "";
+    user_id = json['user_id'] ?? "";
+    libelle = json['libelle'] ?? "";
+    periode = json['periode'] ?? "";
+    nbr_participant = json['nbr_participant'] ?? "";
+    montant_regulier = json['montant_regulier'] ?? "";
+    status = json['status'] ?? "";
+    image = json['image'] ?? "";
+    created_at = json['created_at'] ?? "";
+    updated_at = json['updated_at'] ?? "";
   }
 
   Map<String, dynamic> toJSON() {

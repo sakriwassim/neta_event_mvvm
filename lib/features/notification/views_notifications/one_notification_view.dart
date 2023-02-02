@@ -5,6 +5,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
@@ -35,11 +36,26 @@ class OnNotificationView extends StatefulWidget {
 class _OnNotificationViewState extends State<OnNotificationView> {
   //user_id
   var dataTontines = TontinesViewModel();
-  var dataUser = UsersViewModel(eventsRepository: UsersApi());
+  // var dataUser = UsersViewModel(eventsRepository: UsersApi());
+
+  @override
+  void initState() {
+    super.initState();
+
+    @override
+    void initState() {
+      super.initState();
+
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        Provider.of<UsersViewModel>(context, listen: false).userConnected;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -65,10 +81,10 @@ class _OnNotificationViewState extends State<OnNotificationView> {
               child: Center(
                 child: SingleChildScrollView(
                   child: FutureBuilder(
-                    future: Future.wait([
-                      dataTontines.GetTontineByID(widget.id),
-                      dataUser.GetUserByID(widget.id)
-                    ]),
+                    // future: Future.wait([
+                    //   dataTontines.GetTontineByID(widget.id),
+                    //   dataUser.GetUserByID(widget.id)
+                    // ]),
                     builder: ((context, AsyncSnapshot<List<dynamic>> snapshot) {
                       if (snapshot.hasData) {
                         return SizedBox(

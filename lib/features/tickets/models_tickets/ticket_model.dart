@@ -1,56 +1,60 @@
 class TicketModel {
   int? id;
-  String? event_id;
+  String? eventid;
+  String? iduser;
   String? libelle;
   String? description;
   String? prix;
-  String? Qr_code;
+  String? qRcode;
   String? date;
-  String? date_expire;
+  String? dateexpire;
   String? statut;
-  String? created_at;
-  String? updated_at;
+  DateTime? createdat;
+  DateTime? updatedat;
 
   TicketModel(
       {this.id,
-      this.event_id,
+      this.eventid,
+      this.iduser,
       this.libelle,
       this.description,
       this.prix,
-      this.Qr_code,
+      this.qRcode,
       this.date,
-      this.date_expire,
+      this.dateexpire,
       this.statut,
-      this.created_at,
-      this.updated_at});
+      this.createdat,
+      this.updatedat});
 
   TicketModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    event_id = json['event_id'];
+    eventid = json['event_id'];
+    iduser = json['id_user'];
     libelle = json['libelle'];
     description = json['description'];
     prix = json['prix'];
-    Qr_code = json['qr_code'];
+    qRcode = json['QR_code'];
     date = json['date'];
-    date_expire = json['date_expire'];
+    dateexpire = json['date_expire'];
     statut = json['statut'];
-    created_at = json['created_at'];
-    updated_at = json['updated_at'];
+    createdat = json['created_at'];
+    updatedat = json['updated_at'];
   }
 
-  Map<String, dynamic> toJSON() {
-    return {
-      "id": id,
-      "event_id": event_id,
-      "libelle": libelle,
-      "description": description,
-      "prix": prix,
-      "Qr_code": Qr_code,
-      "date": date,
-      "date_expire": date_expire,
-      "statut": statut,
-      "created_at": created_at,
-      "updated_at": updated_at
-    };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['event_id'] = eventid;
+    data['id_user'] = iduser;
+    data['libelle'] = libelle;
+    data['description'] = description;
+    data['prix'] = prix;
+    data['QR_code'] = qRcode;
+    data['date'] = date;
+    data['date_expire'] = dateexpire;
+    data['statut'] = statut;
+    data['created_at'] = createdat;
+    data['updated_at'] = updatedat;
+    return data;
   }
 }

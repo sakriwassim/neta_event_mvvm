@@ -19,7 +19,7 @@ class MyHomePageAgent extends StatefulWidget {
 }
 
 class _MyHomePageAgentState extends State<MyHomePageAgent> {
-  var data = EventsViewModel(eventsRepository: EventsApi());
+  var data = EventsViewModel();
 
   int _currentIndex = 0;
 

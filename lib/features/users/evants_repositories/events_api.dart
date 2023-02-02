@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
 import '../view_model_events/events_view_model.dart';
-import 'event_repository.dart';
 
-class UsersApi extends UsersRepository {
+class UsersApi {
   @override
   Future<UserModel> getUserByID(int? id) async {
     try {
@@ -82,13 +82,11 @@ class UsersApi extends UsersRepository {
   }
 
   @override
-  Future<AddUserModel> updateUserByID(AddUserModel eventModel) async {
+  Future<AddUserModel> updateUserByID(
+      AddUserModel eventModel, String userconnectedId) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-
-      var data = UsersViewModel(eventsRepository: UsersApi());
-      var userconnected = await data.GetUserConnected();
 
       final eventModelJson = eventModel.toJson();
 
@@ -100,7 +98,7 @@ class UsersApi extends UsersRepository {
 
       final body = eventModelJson;
 
-      String link = '$baseUrl/User/${userconnected.id}';
+      String link = '$baseUrl/User/${userconnectedId}';
 
       var url = Uri.parse(link);
 

@@ -64,18 +64,4 @@ class AuthentificationApi {
     }
   }
 
-  getuserrole() async {
-    final prefs = await SharedPreferences.getInstance();
-    final userrole = prefs.getInt("userrole");
-    return userrole;
-  }
-
-  @override
-  Future<TokenModel> gettokenmodel() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
-    var tokenModel = TokenModel.fromJson(payload);
-    return tokenModel;
-  }
 }

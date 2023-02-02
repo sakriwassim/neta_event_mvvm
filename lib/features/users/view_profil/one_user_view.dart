@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/user_view.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
@@ -23,12 +24,20 @@ class _OneUserViewState extends State<OneUserView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
+
   // late TokenModel userconnectedit;
 
-  var data = UsersViewModel(eventsRepository: UsersApi());
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<UsersViewModel>(context, listen: false).userConnected;
+  }
 
   @override
   Widget build(BuildContext context) {
+    var data =
+        Provider.of<UsersViewModel>(context, listen: false).userConnected;
+
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -47,184 +56,134 @@ class _OneUserViewState extends State<OneUserView> {
           )),
       body: Center(
         child: SingleChildScrollView(
-          child: FutureBuilder(
-            future: data.GetUserConnected(),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: getProportionateScreenHeight(150),
-                      width: getProportionateScreenWidth(150),
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: ImageCachedInternet(
-                            height: MediaQuery.of(context).size.height,
-                            imageUrl: '${snapshot.data!.image}',
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                        ),
-                      ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: getProportionateScreenHeight(150),
+                width: getProportionateScreenWidth(150),
+                child: CircleAvatar(
+                  child: ClipOval(
+                    child: ImageCachedInternet(
+                      height: MediaQuery.of(context).size.height,
+                      imageUrl: '${data!.image}',
+                      width: MediaQuery.of(context).size.width,
                     ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Text(
+                data.nomComplet!,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(10),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserView(),
+                        ));
+                  },
+                  child: Button(
+                    fontWeight: FontWeight.w500,
+                    text: "Edit Profile",
+                    fontSize: fontSizemediumbutton,
+                    gradientbackground: gradientbackground,
+                    height: heightmediumbutton,
+                    width: widthmediumbutton,
+                    textcolor: Colors.white,
+                  )),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(50)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                        Profile), //message // SvgPicture.asset(Locationoff),
                     SizedBox(
-                      height: getProportionateScreenHeight(20),
+                      width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      snapshot.data!.nom_complet,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(right: 10, left: 10),
-                    //       child: Column(
-                    //         children: [
-                    //           TextAirbnbCereal(
-                    //             title: "420",
-                    //             fontWeight: FontWeight.normal,
-                    //             size: 18,
-                    //             color: Colors.black,
-                    //           ),
-                    //           const Text(
-                    //             "ticket",
-                    //             style: TextStyle(color: Colors.grey),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     SvgPicture.asset(Line2),
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(right: 10, left: 10),
-                    //       child: Column(
-                    //         children: [
-                    //           TextAirbnbCereal(
-                    //             title: "1800\$",
-                    //             fontWeight: FontWeight.normal,
-                    //             size: 18,
-                    //             color: Colors.black,
-                    //           ),
-                    //           const Text(
-                    //             "spent",
-                    //             style: TextStyle(color: Colors.grey),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const UserView(),
-                              ));
-                        },
-                        child: Button(
-                          fontWeight: FontWeight.w500,
-                          text: "Edit Profile",
-                          fontSize: fontSizemediumbutton,
-                          gradientbackground: gradientbackground,
-                          height: heightmediumbutton,
-                          width: widthmediumbutton,
-                          textcolor: Colors.white,
-                        )),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50)),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                              Profile), //message // SvgPicture.asset(Locationoff),
-                          SizedBox(
-                            width: getProportionateScreenWidth(20),
-                          ),
-                          Text(
-                            snapshot.data!.nom_complet,
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50)),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(message),
-                          SizedBox(
-                            width: getProportionateScreenWidth(20),
-                          ),
-                          Text(
-                            snapshot.data!.email,
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50)),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(Locationoff),
-                          SizedBox(
-                            width: getProportionateScreenWidth(20),
-                          ),
-                          Text(
-                            snapshot.data!.adresse,
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50)),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(Chat),
-                          SizedBox(
-                            width: getProportionateScreenWidth(20),
-                          ),
-                          Text(
-                            snapshot.data!.telephone,
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
+                      data.nomComplet!,
+                      style: const TextStyle(color: Colors.grey),
                     )
                   ],
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return const CircularProgressIndicator();
-            }),
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(50)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(message),
+                    SizedBox(
+                      width: getProportionateScreenWidth(20),
+                    ),
+                    Text(
+                      data.email!,
+                      style: const TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(50)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Locationoff),
+                    SizedBox(
+                      width: getProportionateScreenWidth(20),
+                    ),
+                    Text(
+                      data.adresse!,
+                      style: const TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(50)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Chat),
+                    SizedBox(
+                      width: getProportionateScreenWidth(20),
+                    ),
+                    Text(
+                      data.telephone!,
+                      style: const TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),

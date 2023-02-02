@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_api.dart';
-import 'one_tontine_view_model.dart';
 
 class TontinesViewModel extends ChangeNotifier {
   String title = "Tontine Page ";
-  List<OneTontineViewModel> tontines = [];
+  List<TontineModel> tontines = [];
+  TontineModel? tontineById;
 
   Future<void> FetchAllTontines() async {
     List<TontineModel> list = await TontinesApi().getAllTontines();
-    tontines = list
-        .map((listTontine) => OneTontineViewModel(tontineModel: listTontine))
-        .toList();
+
+    // ticketsList = list.map((ticket) => TicketModel.fromJson(ticket)).toList();
+
+    tontines = list;
     notifyListeners();
   }
 
-  Future<OneTontineViewModel> GetTontineByID(int id) async {
+  Future<void> GetTontineByID(int id) async {
     var ticketModel = await TontinesApi().getTontineByID(id);
-    return OneTontineViewModel(tontineModel: ticketModel);
+    tontineById = TontineModel();
   }
 
   Future<bool> UpdateTontineByID(TontineModel addTontineModel) async {

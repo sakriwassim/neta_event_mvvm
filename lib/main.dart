@@ -4,13 +4,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neta_event_mvvm/core/theme_data.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
 import 'features/Categories/view_model_categories/categories_view_model.dart';
-import 'features/Categories/views_categories/categories_view.dart';
 import 'features/authentification/view_model_authentification/authentification_view_model.dart';
+import 'features/events/view_model_events/events_view_model.dart';
+import 'features/home/bottom_navigation_bar.dart';
+import 'features/home/home_view.dart';
 import 'features/home/main_home_page.dart';
 import 'features/into_screen/view/intro_page.dart';
 import 'features/packs/view_model_packs/packs_view_model.dart';
 import 'features/tickets/view_model_tickets/tickets_view_model.dart';
 import 'features/tontines/view_model_tickets/tontines_view_model.dart';
+import 'features/users/view_model_events/events_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,8 +38,14 @@ void main() async {
       ChangeNotifierProvider<PacksViewModel>(
         create: (_) => PacksViewModel(),
       ),
-       ChangeNotifierProvider<TicketsViewModel>(
+      ChangeNotifierProvider<TicketsViewModel>(
         create: (_) => TicketsViewModel(),
+      ),
+      ChangeNotifierProvider<EventsViewModel>(
+        create: (_) => EventsViewModel(),
+      ),
+      ChangeNotifierProvider<UsersViewModel>(
+        create: (_) => UsersViewModel(),
       ),
     ],
     child: MyApp(
@@ -63,11 +72,10 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: themedata(),
-        home: //GetAllCategorieView()
-            skipinto
-                ? isLoggedIn
-                    ? const MainHomePage()
-                    : AuthView()
-                : const IntoScreen());
+        home: skipinto
+            ? isLoggedIn
+                ? const MyHomePage()
+                : AuthView()
+            : const IntoScreen());
   }
 }

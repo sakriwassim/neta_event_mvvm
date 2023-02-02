@@ -7,7 +7,6 @@ import '../../../../core/size_config.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
-import '../../../tontines/view_model_tickets/one_tontine_view_model.dart';
 
 class NotificationCardWidgetH extends StatelessWidget {
   String? image;

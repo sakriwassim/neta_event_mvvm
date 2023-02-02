@@ -1,11 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import '../../../core/size_config.dart';
-import '../../Categories/view_model_categories/one_categorie_view_model.dart';
-import '../../Categories/views_categories/widget/categorie_card_widget.dart';
 import '../../packs/view_model_packs/one_pack_view_model.dart';
 import '../../packs/widget/pack_card_widget.dart';
 

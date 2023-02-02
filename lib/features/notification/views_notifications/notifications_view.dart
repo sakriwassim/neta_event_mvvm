@@ -5,8 +5,7 @@ import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 import '../../../core/colors.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../tontines/tontines_repositories/tontines_api.dart';
-import '../../tontines/view_model_tickets/one_tontine_view_model.dart';
+import '../../tontines/models_tontines/tontine_model.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 import 'one_notification_view.dart';
 import 'widget/notification_card_widget.dart';
@@ -83,7 +82,7 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
-                child: FutureBuilder<List<OneTontineViewModel>>(
+                child: FutureBuilder<List<TontineModel>>(
                   //future: data.FetchAllTontines(),
                   builder: ((context, snapshot) {
                     if (!snapshot.hasData) {

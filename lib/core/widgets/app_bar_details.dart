@@ -4,12 +4,13 @@ import 'image_cached_internet.dart';
 import 'text_widget_text1.dart';
 
 class AppBarDetails extends StatelessWidget {
-  String title;
-  String image;
+  String? image;
+  String? title;
+
   AppBarDetails({
     Key? key,
-    required this.title,
     required this.image,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class AppBarDetails extends StatelessWidget {
         color: Colors.white,
         fontWeight: FontWeight.w500,
         size: 24,
-        title: title, //'Tontine details',
+        title: title!, //'Tontine details',
       ),
       // iconTheme: SvgPicture.asset(arrowleft),
       iconTheme: const IconThemeData(
@@ -31,11 +32,9 @@ class AppBarDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         child: ImageCachedInternet(
           height: MediaQuery.of(context).size.height,
-          imageUrl: image,
+          imageUrl: image!,
           width: MediaQuery.of(context).size.width,
         ),
-
-        
       ),
       backgroundColor: Colors.transparent,
     );

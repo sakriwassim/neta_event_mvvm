@@ -4,7 +4,7 @@ import '../../../../core/size_config.dart';
 import '../../../../core/string.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
-import '../../view_model_events/one_event_view_model.dart';
+import '../../models_events/event_model.dart';
 
 class EventCardWidgetHome extends StatelessWidget {
   String? description;
@@ -21,7 +21,7 @@ class EventCardWidgetHome extends StatelessWidget {
     required this.image, this.events,
   }) : super(key: key);
 
-  final List<OneEventViewModel>? events;
+  final List<EventModel>? events;
 
   @override
   Widget build(BuildContext context) {

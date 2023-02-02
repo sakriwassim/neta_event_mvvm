@@ -5,22 +5,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
 
-class TicketsViewModel extends ChangeNotifier{
+class TicketsViewModel extends ChangeNotifier {
   String title = "Ticket Page ";
 
-  List<TicketModel> listAllTickets = [];
+  List<TicketModel> allTickets = [];
   List<TicketModel> listTicketsuserconnected = [];
-  List<TicketModel> ticketsByUser =[];
-
+  List<TicketModel> ticketsByUser = [];
 
   Future<void> FetchAllTickets() async {
-    listAllTickets = await TicketsApi().getAllTickets();
-   
+    List<TicketModel> list = await TicketsApi().getAllTickets();
+    allTickets = list;
   }
 
   Future<void> GetTicketByID(int id) async {
     var ticketModel = await TicketsApi().getTicketByID(id);
-    
   }
 
   Future<bool> UpdateTicketByID(AddTicketModel addTicketModel) async {
@@ -44,12 +42,10 @@ class TicketsViewModel extends ChangeNotifier{
     var useridint = int.parse(userid!);
 
     List<TicketModel> listTicketsuserconnected =
-        await TicketsApi().getTicketsByUser(useridint); 
+        await TicketsApi().getTicketsByUser(useridint);
   }
 
   Future<void> GetTicketsByUser(int id) async {
     List<TicketModel> ticketsByUser = await TicketsApi().getTicketsByUser(id);
-  
   }
 }
-

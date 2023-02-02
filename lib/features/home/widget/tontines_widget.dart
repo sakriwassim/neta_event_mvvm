@@ -6,12 +6,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../../core/size_config.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../Categories/views_categories/widget/categorie_card_widget.dart';
-import '../../tontines/view_model_tickets/one_tontine_view_model.dart';
+import '../../tontines/models_tontines/tontine_model.dart';
 import '../../tontines/views_tontines/one_tontine_view.dart';
 import '../../tontines/views_tontines/widget/tontine_card_widget.dart';
 
 class TontinesWidgetHome extends StatelessWidget {
-  List<OneTontineViewModel>? tontines;
+  List<TontineModel>? tontines;
   TontinesWidgetHome({
     Key? key,
     required this.tontines,
@@ -31,8 +31,9 @@ class TontinesWidgetHome extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => OnTontineView(
-                              id: tontines![index].id,
-                              image: '${tontines![index].image}',
+                              tontine: tontines![index],
+                              // id: tontines![index].id!,
+                              // image: '${tontines![index].image!}',
                             )),
                   );
                 },

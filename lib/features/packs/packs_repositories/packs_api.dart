@@ -5,8 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/string.dart';
 import '../models_packs/pack_model.dart';
 
-
-//PackModel
 class PacksApi  {
   @override
   Future<PackModel> getPackByID(int id) async {

@@ -1,56 +1,63 @@
+import 'package:flutter/cupertino.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../evants_repositories/event_repository.dart';
+import '../../authentification/models_authentification/token_model.dart';
+import '../evants_repositories/events_api.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
 import 'one_event_view_model.dart';
 
-class UsersViewModel {
+class UsersViewModel extends ChangeNotifier {
   String title = "User Page ";
-  OneUserViewModel? eventModel;
+  UserModel? eventModel;
+  List<UserModel> usersByCategorie = [];
+  List<UserModel> users = [];
+  UserModel? userById;
+  UserModel? userConnected;
+  TokenModel? tokenModel;
+  bool loading = false;
+  bool isBack = false;
 
-  UsersRepository? eventsRepository;
-  UsersViewModel({this.eventsRepository});
-
-  Future<List<OneUserViewModel>> GetUserByCategorie(int id) async {
-    List<UserModel> list = await eventsRepository!.getUserByCategorie(id);
-    return list
-        .map((listUser) => OneUserViewModel(eventModel: listUser))
-        .toList();
+  Future<void> GetUserByCategorie(int id) async {
+    List<UserModel> list = await UsersApi().getUserByCategorie(id);
+    usersByCategorie = list;
+    notifyListeners();
   }
 
-  Future<List<OneUserViewModel>> FetchAllUsers() async {
-    List<UserModel> list = await eventsRepository!.getAllUsers();
-    return list
-        .map((listUser) => OneUserViewModel(eventModel: listUser))
-        .toList();
+  Future<void> FetchAllUsers() async {
+    List<UserModel> list = await UsersApi().getAllUsers();
+    users = list;
+    notifyListeners();
   }
 
-  Future<bool> UpdateUserByID(AddUserModel eventModel) async {
-    var event = await eventsRepository!.updateUserByID(eventModel);
+  Future<bool> UpdateUserByID(
+      AddUserModel eventModel, String userconnectedId) async {
+    var event = await UsersApi().updateUserByID(eventModel, userconnectedId);
     return true;
   }
 
   Future<bool> AddUser(AddUserModel addUserModel) async {
-    var event = await eventsRepository!.addUser(addUserModel);
+    var event = await UsersApi().addUser(addUserModel);
     return true;
   }
 
   Future<bool> DeleteUserByID(int id) async {
-    var eventModel = await eventsRepository!.deleteUserByID(id);
+    var eventModel = await UsersApi().deleteUserByID(id);
     return true;
   }
 
-  Future<OneUserViewModel> GetUserByID(int? id) async {
-    var eventModel = await eventsRepository!.getUserByID(id);
-    return OneUserViewModel(eventModel: eventModel);
+  Future<void> GetUserByID(int? id) async {
+    var eventModel = await UsersApi().getUserByID(id);
+    userById = eventModel;
   }
 
-  Future<OneUserViewModel> GetUserConnected() async {
+  Future<void> GetUserConnected() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var userid = prefs.getString("userconnectedid");
-    var useridint = int.parse(userid!);
-    var eventModel = await eventsRepository!.getUserByID(useridint);
-    return OneUserViewModel(eventModel: eventModel);
+    var token = prefs.getString("token");
+    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+    tokenModel = TokenModel.fromJson(payload);
+    var eventModel = await UsersApi().getUserByID(tokenModel!.userId);
+    userConnected = eventModel;
+    notifyListeners();
   }
-  
 }

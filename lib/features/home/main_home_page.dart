@@ -1,46 +1,32 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import '../events/view_model_events/events_view_model.dart';
+// import '../users/view_model_events/events_view_model.dart';
+// import 'bottom_agent.dart';
+// import 'bottom_navigation_bar.dart';
 
-import '../events/evants_repositories/events_api.dart';
-import '../events/view_model_events/events_view_model.dart';
-import '../users/evants_repositories/events_api.dart';
-import '../users/view_model_events/events_view_model.dart';
-import 'bottom_agent.dart';
-import 'bottom_navigation_bar.dart';
+// class MainHomePage extends StatefulWidget {
+//   const MainHomePage({super.key});
 
-class MainHomePage extends StatefulWidget {
-  const MainHomePage({super.key});
+//   @override
+//   State<MainHomePage> createState() => _MainHomePageState();
+// }
 
-  @override
-  State<MainHomePage> createState() => _MainHomePageState();
-}
+// class _MainHomePageState extends State<MainHomePage> {
+//   // @override
+//   // void initState() {
+//   //   super.initState();
+//   //   Provider.of<EventsViewModel>(context, listen: true).FetchAllEvents("");
+//   //   // Provider.of<UsersViewModel>(context, listen: true).GetUserConnected();
+//   // }
 
-class _MainHomePageState extends State<MainHomePage> {
-  var data = EventsViewModel(eventsRepository: EventsApi());
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
+//   @override
+//   Widget build(BuildContext context) {
+//     var provideruser = Provider.of<UsersViewModel>(context, listen: true);
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: datauser.GetUserConnected(),
-        builder: ((context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-                child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              color: Colors.white,
-              // child: const CircularProgressIndicator()
-            ));
-          } else {
-            var user = snapshot.data;
-            var userrole = user?.role_id.toString();
-
-            return userrole == "3"
-                ? const MyHomePageAgent()
-                : const MyHomePageClient();
-          }
-        }));
-  }
-}
+//     return
+//         // provideruser.userConnected!.role_id == "3"
+//         // ? const MyHomePageAgent()
+//         const MyHomePageClient();
+//   }
+// }

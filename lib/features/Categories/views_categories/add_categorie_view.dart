@@ -21,7 +21,6 @@ class _AddCategorieViewState extends State<AddCategorieView> {
   late String prixfield;
   late String descriptionfield;
 
- // var data = CategoriesViewModel(ticketsRepository: CategoriesApi());
 
   @override
   Widget build(BuildContext context) {

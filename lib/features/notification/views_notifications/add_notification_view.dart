@@ -9,12 +9,10 @@ import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../../main.dart';
-import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
 import '../../tontines/models_tontines/tontine_model.dart';
-import '../../tontines/tontines_repositories/tontines_api.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 
 class AddNotificationView extends StatefulWidget {

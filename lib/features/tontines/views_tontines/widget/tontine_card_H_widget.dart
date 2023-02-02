@@ -7,7 +7,7 @@ import '../../../../core/size_config.dart';
 import '../../../../core/widgets/image_cached_internet.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
-import '../../view_model_tickets/one_tontine_view_model.dart';
+import '../../models_tontines/tontine_model.dart';
 
 class TontineCardWidgetH extends StatelessWidget {
   String? image;
@@ -32,7 +32,7 @@ class TontineCardWidgetH extends StatelessWidget {
     required this.callbackFunction,
   }) : super(key: key);
 
-  final List<OneTontineViewModel>? events;
+  final List<TontineModel>? events;
 
   @override
   Widget build(BuildContext context) {

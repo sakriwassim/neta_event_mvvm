@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:neta_event_mvvm/features/events/view_model_events/one_event_view_model.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
@@ -10,7 +9,7 @@ import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
 class UpdateEventView extends StatefulWidget {
-  final OneEventViewModel eventObj;
+  final EventModel eventObj;
   UpdateEventView({super.key, required this.eventObj});
 
   @override
@@ -25,7 +24,7 @@ class _UpdateEventViewState extends State<UpdateEventView> {
 
 
 
-  var data = EventsViewModel(eventsRepository: EventsApi());
+  var data = EventsViewModel();
 
   @override
   Widget build(BuildContext context) {

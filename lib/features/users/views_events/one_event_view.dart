@@ -5,6 +5,7 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../evants_repositories/events_api.dart';
+import '../models_events/event_model.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
 import 'events_view.dart';
@@ -18,7 +19,7 @@ class OnUserView extends StatefulWidget {
 }
 
 class _OnUserViewState extends State<OnUserView> {
-  var data = UsersViewModel(eventsRepository: UsersApi());
+  var data = UsersViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +48,14 @@ class _OnUserViewState extends State<OnUserView> {
             backgroundColor: Colors.transparent,
           )),
       body: Center(
-        child: FutureBuilder<OneUserViewModel>(
-          future: data.GetUserByID(widget.id),
+        child: FutureBuilder<UserModel>(
+          // future: data.GetUserByID(widget.id),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
               return Column(
                 children: [
                   // Image.asset("assets/130.png"),
-                  Text(snapshot.data!.nom_complet),
+                  Text(snapshot.data!.nomComplet!),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Row(
@@ -65,7 +66,7 @@ class _OnUserViewState extends State<OnUserView> {
                           size: 50.0,
                           color: Color.fromARGB(255, 217, 15, 197),
                         ),
-                        Text("${snapshot.data!.nom_complet} "),
+                        Text("${snapshot.data!.nomComplet} "),
                       ],
                     ),
                   ),
@@ -89,7 +90,7 @@ class _OnUserViewState extends State<OnUserView> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const Text("participants actuels"),
-                        Text("${snapshot.data!.nom_complet}"),
+                        Text("${snapshot.data!.nomComplet}"),
                       ],
                     ),
                   ),
@@ -132,7 +133,7 @@ class _OnUserViewState extends State<OnUserView> {
                       InkWell(
                           onTap: () async {
                             var delete =
-                                await data.DeleteUserByID(snapshot.data!.id);
+                                await data.DeleteUserByID(snapshot.data!.id!);
 
                             if (delete == true) {
                               Navigator.pushReplacement(

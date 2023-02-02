@@ -9,12 +9,10 @@ import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../../main.dart';
-import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
 import '../models_tontines/tontine_model.dart';
-import '../tontines_repositories/tontines_api.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 
 class AddTontineView extends StatefulWidget {
@@ -37,9 +35,7 @@ class _AddTontineViewState extends State<AddTontineView>
 
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
-  var datacategorie = CategoriesViewModel();
 
-  var data = TontinesViewModel( );
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +165,7 @@ class _AddTontineViewState extends State<AddTontineView>
                           SizedBox(
                             height: getProportionateScreenHeight(200),
                             child: FutureBuilder<List<OneCategorieViewModel>>(
-                            //  future: datacategorie.FetchAllCategories(),
+                              //  future: datacategorie.FetchAllCategories(),
                               builder: ((context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return const Center(
@@ -385,12 +381,12 @@ class _AddTontineViewState extends State<AddTontineView>
                           ),
                           InkWell(
                               onTap: () {
-
-                                   showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const Center(child: CircularProgressIndicator());
-                          });
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    });
 
                                 if (formkey.currentState!.validate()) {
                                   var ticket = {
@@ -411,14 +407,12 @@ class _AddTontineViewState extends State<AddTontineView>
                                   // print(ticketformJson);
 
                                   setState(() {
-                                    data.AddTontine(ticketformJson);
+                                    //  data.AddTontine(ticketformJson);
                                   });
                                 }
 
-
-
-                            navigatorKey.currentState!
-                          .popUntil((route) => route.isFirst);
+                                navigatorKey.currentState!
+                                    .popUntil((route) => route.isFirst);
                               },
                               child: Button(
                                 text: "APPLIQUER",

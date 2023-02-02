@@ -5,6 +5,7 @@ import 'package:neta_event_mvvm/features/users/views_events/widgets/event_card_w
 
 import '../../../core/colors.dart';
 import '../evants_repositories/events_api.dart';
+import '../models_events/event_model.dart';
 import '../view_model_events/events_view_model.dart';
 import '../view_model_events/one_event_view_model.dart';
 import 'add_event_view.dart';
@@ -18,7 +19,7 @@ class GetExcusivesUserView extends StatefulWidget {
 }
 
 class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
-  var data = UsersViewModel(eventsRepository: UsersApi());
+  var data = UsersViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +76,8 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
-                child: FutureBuilder<List<OneUserViewModel>>(
-                  future: data.GetUserByCategorie(2),
+                child: FutureBuilder<List<UserModel>>(
+                  //future: data.GetUserByCategorie(2),
                   builder: ((context, snapshot) {
                     if (!snapshot.hasData) {
                       return const CircularProgressIndicator();
@@ -90,7 +91,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => OnUserView(
-                                            id: events[index].id,
+                                            id: events[index].id!,
                                           )),
                                 );
                               },
@@ -98,7 +99,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                                 description: events![index].adresse,
                                 events: events,
                                 date_heure: events[index].adresse,
-                                libelle: events[index].nom_complet,
+                                libelle: events[index].nomComplet,
                                 prix: events[index].telephone,
                                 adresse: events[index].adresse,
                               )));

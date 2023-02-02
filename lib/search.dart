@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/event_card_widget_home.dart';
 
-import 'features/events/evants_repositories/events_api.dart';
+import 'features/events/models_events/event_model.dart';
 import 'features/events/view_model_events/events_view_model.dart';
-import 'features/events/view_model_events/one_event_view_model.dart';
 import 'features/events/views_events/one_event_view.dart';
 
 class SearchElement extends SearchDelegate {
-  var data = EventsViewModel(eventsRepository: EventsApi());
+  var data = EventsViewModel();
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -33,8 +32,8 @@ class SearchElement extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Center(
-      child: FutureBuilder<List<OneEventViewModel>>(
-        future: data.FetchAllEvents(query),
+      child: FutureBuilder<List<EventModel>>(
+        // future: data.FetchAllEvents(query),
         builder: ((context, snapshot) {
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();
@@ -48,15 +47,13 @@ class SearchElement extends SearchDelegate {
                         context,
                         MaterialPageRoute(
                             builder: (context) => OneEventView(
-                                  id: events[index].id,
-                                  image: events[index].image,
+                                  eventModel: events[index],
                                 )),
                       );
                     },
                     child: EventCardWidget(
                       description: events![index].description,
-                      events: events,
-                      date_heure: events[index].date_heure,
+                      date_heure: events[index].dateHeure,
                       libelle: events[index].libelle,
                       adresse: events[index].adresse,
                       prix: events[index].prix,

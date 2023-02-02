@@ -3,6 +3,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/home/widget/events_bycategoris_view.dart';
 import 'package:neta_event_mvvm/features/home/widget/voirtout.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/colors.dart';
 import '../../core/int.dart';
@@ -51,16 +52,38 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
 
   int indexCategories = 0;
 
-  var datauser = UsersViewModel(eventsRepository: UsersApi());
-  var data = EventsViewModel(eventsRepository: EventsApi());
-  var datapack = PacksViewModel();
-  var datatontine = TontinesViewModel();
-  var datacategorie = CategoriesViewModel();
-  // var data2 = AuthentificationViewModel(
-  //     authentificationRepository: AuthentificationApi());
+  @override
+  void initState() {
+    super.initState();
+
+    @override
+    void initState() {
+      super.initState();
+
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        Provider.of<CategoriesViewModel>(context, listen: false)
+            .FetchAllCategories();
+        Provider.of<TontinesViewModel>(context, listen: false)
+            .FetchAllTontines();
+        Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
+        Provider.of<EventsViewModel>(context, listen: false).FetchAllEvents("");
+        Provider.of<AuthentificationViewModel>(context, listen: false)
+            .tokenModel;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    var providercategorie =
+        Provider.of<CategoriesViewModel>(context, listen: false);
+    var providertontine =
+        Provider.of<TontinesViewModel>(context, listen: false);
+    var providerpack = Provider.of<PacksViewModel>(context, listen: false);
+    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+
+    var providerevent = Provider.of<EventsViewModel>(context, listen: false);
+
     return Scaffold(
       body: SafeArea(
         child: Column(children: [
@@ -89,26 +112,15 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
                           color: Color.fromARGB(135, 255, 255, 255),
                         ),
                       ),
-                      FutureBuilder(
-                          future: datauser.GetUserConnected(),
-                          builder: ((context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return const Center(
-                                  // child: CircularProgressIndicator()
-                                  );
-                            } else {
-                              var categories = snapshot.data;
-                              return Text(
-                                "${categories!.nom_complet}",
-                                style: const TextStyle(
-                                  fontFamily: 'AirbnbCereal',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                ),
-                              );
-                            }
-                          })),
+                      Text(
+                        "${provideruser.userConnected!.nomComplet}",
+                        style: const TextStyle(
+                          fontFamily: 'AirbnbCereal',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 19,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -177,13 +189,7 @@ class _HomeViewAgentState extends State<HomeViewAgent> {
                 if (connected) {
                   return RefreshIndicator(
                       onRefresh: () async {
-                        setState(() {
-                          data.GetEventByCategorie(indexCategories);
-                          data.FetchAllEvents("");
-                          datapack.FetchAllPacks();
-                          datatontine.FetchAllTontines();
-                          datacategorie.FetchAllCategories();
-                        });
+                        setState(() {});
 
                         return Future.delayed(const Duration(seconds: 2));
                       },

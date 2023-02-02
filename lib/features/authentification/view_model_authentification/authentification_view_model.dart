@@ -23,8 +23,7 @@ class AuthentificationViewModel extends ChangeNotifier {
   String message = "";
   int selectIndex = -1;
 
-  
-
+  TokenModel? tokenModel;
 
   setobscureText2() {
     obscureText2 = !obscureText2;
@@ -52,6 +51,8 @@ class AuthentificationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+ 
+
   Future<void> Login(String mail, String password) async {
     loading = true;
     notifyListeners();
@@ -73,12 +74,10 @@ class AuthentificationViewModel extends ChangeNotifier {
         Map<String, dynamic> payload = Jwt.parseJwt(token!);
         var tokenModel = TokenModel.fromJson(payload);
 
-        var data = UsersViewModel(eventsRepository: UsersApi());
+        var data = UsersViewModel();
         var userrole = await data.GetUserByID(tokenModel.userId);
 
-        prefs.setString("userrole", userrole.role_id.toString());
         prefs.setString("token", token);
-        prefs.setString("userconnectedid", tokenModel.userId.toString());
         /********************************* */
         isBack = true;
       }

@@ -131,7 +131,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                         events: providerevent.allEvents,
                       ),
                       TicketsWidget(
-                        tickets: providerticket.allTickets,
+                        tickets: providerticket.alltickets,
                       ),
                     ],
                   ),

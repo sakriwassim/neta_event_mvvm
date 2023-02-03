@@ -13,20 +13,20 @@
 // }
 
 // class _MainHomePageState extends State<MainHomePage> {
-//   // @override
-//   // void initState() {
-//   //   super.initState();
-//   //   Provider.of<EventsViewModel>(context, listen: true).FetchAllEvents("");
-//   //   // Provider.of<UsersViewModel>(context, listen: true).GetUserConnected();
-//   // }
+//   @override
+//   void initState() {
+//     super.initState();
+//     Provider.of<EventsViewModel>(context, listen: true).FetchAllEvents("");
+//     // Provider.of<UsersViewModel>(context, listen: true).GetUserConnected();
+//   }
 
 //   @override
 //   Widget build(BuildContext context) {
 //     var provideruser = Provider.of<UsersViewModel>(context, listen: true);
 
 //     return
-//         // provideruser.userConnected!.role_id == "3"
-//         // ? const MyHomePageAgent()
+//         provideruser.userConnected!.role_id == "3"
+//         ? const MyHomePageAgent()
 //         const MyHomePageClient();
 //   }
 // }

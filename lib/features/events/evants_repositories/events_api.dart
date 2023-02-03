@@ -41,7 +41,7 @@ class EventsApi {
     try {
       List<EventModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      
+
       var token =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4uc2FpdGVjaC1ncm91cC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjcwNjg1Nzg4LCJleHAiOjE2NzA2ODkzODgsIm5iZiI6MTY3MDY4NTc4OCwianRpIjoiMmlOOFpKY0YxaEVWRmlQQiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjEsImVtYWlsIjoibW9uZW1haWxAZW1haWwuY29tIn0.e7A7ojhXSnETV8hT1nsitagqCXKMZ5iuTJwxAlQTwoY";
 
@@ -49,8 +49,6 @@ class EventsApi {
 
       print("*************Token Decode **********${payload}");
       DateTime? expiryDate = Jwt.getExpiryDate(token);
-
-      print(expiryDate);
 
       var headersa = {'Authorization': 'Bearer $token'};
 

@@ -23,10 +23,10 @@ class _TicketCardWidgetState extends State<TicketCardWidget> {
   void initState() {
     super.initState();
 
-    Provider.of<EventsViewModel>(context, listen: false)
-        .GetEventByID(int.parse(widget.ticket.eventid!));
+    Provider.of<EventsViewModel>(context, listen: false).GetEventByID(1);
   }
 
+//int.parse(widget.ticket.eventId!)
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -97,7 +97,7 @@ class _TicketCardWidgetState extends State<TicketCardWidget> {
                     child: RectangleImage(
                       height: 60,
                       width: 20,
-                      image: widget.ticket.qRcode!,
+                      image: widget.ticket.Qr_code!,
                     ),
                   ),
                   SizedBox(

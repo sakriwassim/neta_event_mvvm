@@ -1,60 +1,56 @@
 class TicketModel {
   int? id;
-  String? eventid;
-  String? iduser;
+  String? event_id;
   String? libelle;
   String? description;
   String? prix;
-  String? qRcode;
+  String? Qr_code;
   String? date;
-  String? dateexpire;
+  String? date_expire;
   String? statut;
-  DateTime? createdat;
-  DateTime? updatedat;
+  String? created_at;
+  String? updated_at;
 
   TicketModel(
       {this.id,
-      this.eventid,
-      this.iduser,
+      this.event_id,
       this.libelle,
       this.description,
       this.prix,
-      this.qRcode,
+      this.Qr_code,
       this.date,
-      this.dateexpire,
+      this.date_expire,
       this.statut,
-      this.createdat,
-      this.updatedat});
+      this.created_at,
+      this.updated_at});
 
   TicketModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    eventid = json['event_id'];
-    iduser = json['id_user'];
+    event_id = json['event_id'];
     libelle = json['libelle'];
     description = json['description'];
     prix = json['prix'];
-    qRcode = json['QR_code'];
+    Qr_code = json['qr_code'];
     date = json['date'];
-    dateexpire = json['date_expire'];
+    date_expire = json['date_expire'];
     statut = json['statut'];
-    createdat = json['created_at'];
-    updatedat = json['updated_at'];
+    created_at = json['created_at'];
+    updated_at = json['updated_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
-    data['event_id'] = eventid;
-    data['id_user'] = iduser;
-    data['libelle'] = libelle;
-    data['description'] = description;
-    data['prix'] = prix;
-    data['QR_code'] = qRcode;
-    data['date'] = date;
-    data['date_expire'] = dateexpire;
-    data['statut'] = statut;
-    data['created_at'] = createdat;
-    data['updated_at'] = updatedat;
-    return data;
+  Map<String, dynamic> toJSON() {
+    return {
+      "id": id,
+      "event_id": event_id,
+      "libelle": libelle,
+      "description": description,
+      "prix": prix,
+      "Qr_code": Qr_code,
+      "date": date,
+      "date_expire": date_expire,
+      "statut": statut,
+      "created_at": created_at,
+      "updated_at": updated_at
+    };
   }
 }

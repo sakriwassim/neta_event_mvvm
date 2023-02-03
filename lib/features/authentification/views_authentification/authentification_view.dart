@@ -14,15 +14,20 @@ import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-
-import '../../home/main_home_page.dart';
+import '../../home/bottom_navigation_bar.dart';
+import '../../home/home_view.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 import '../widgets/headsigin_widget.dart';
 import '../widgets/title_widget.dart';
 
-class AuthView extends StatelessWidget {
-  AuthView({super.key});
+class AuthView extends StatefulWidget {
+  const AuthView({super.key});
 
+  @override
+  State<AuthView> createState() => _AuthViewState();
+}
+
+class _AuthViewState extends State<AuthView> {
   final formkey = GlobalKey<FormState>();
 
   final emailfield = TextEditingController();
@@ -299,12 +304,12 @@ class AuthView extends StatelessWidget {
           if (provider.isSwitched) {
             prefs.setBool("isLoggedIn", true);
           }
-          // ignore: use_build_context_synchronously
-          // Navigator.pushReplacement(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => MainHomePage(),
-          //     ));
+          //ignore: use_build_context_synchronously
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(),
+              ));
         }
       }
     }

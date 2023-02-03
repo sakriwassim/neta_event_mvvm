@@ -2,16 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../users/evants_repositories/events_api.dart';
-import '../../users/view_model_events/events_view_model.dart';
 import '../authentification_repositories/authentification_api.dart';
 import '../models_authentification/response_model.dart';
 import '../models_authentification/token_model.dart';
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 
 class AuthentificationViewModel extends ChangeNotifier {
   bool loading = false;
@@ -51,8 +47,6 @@ class AuthentificationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
- 
-
   Future<void> Login(String mail, String password) async {
     loading = true;
     notifyListeners();
@@ -74,10 +68,12 @@ class AuthentificationViewModel extends ChangeNotifier {
         Map<String, dynamic> payload = Jwt.parseJwt(token!);
         var tokenModel = TokenModel.fromJson(payload);
 
-        var data = UsersViewModel();
-        var userrole = await data.GetUserByID(tokenModel.userId);
+        // var data = UsersViewModel();
+        var userrole = await UsersApi().getUserByID(tokenModel.userId);
 
         prefs.setString("token", token);
+        prefs.setString("role", userrole.roleId!);
+
         /********************************* */
         isBack = true;
       }

@@ -2,10 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 import 'package:neta_event_mvvm/core/string.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../models_authentification/token_model.dart';
 
 class AuthentificationApi {
   @override

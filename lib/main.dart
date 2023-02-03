@@ -7,8 +7,6 @@ import 'features/Categories/view_model_categories/categories_view_model.dart';
 import 'features/authentification/view_model_authentification/authentification_view_model.dart';
 import 'features/events/view_model_events/events_view_model.dart';
 import 'features/home/bottom_navigation_bar.dart';
-import 'features/home/home_view.dart';
-import 'features/home/main_home_page.dart';
 import 'features/into_screen/view/intro_page.dart';
 import 'features/packs/view_model_packs/packs_view_model.dart';
 import 'features/tickets/view_model_tickets/tickets_view_model.dart';
@@ -74,7 +72,7 @@ class MyApp extends StatelessWidget {
         theme: themedata(),
         home: skipinto
             ? isLoggedIn
-                ? const MyHomePage()
+                ? MyHomePage()
                 : AuthView()
             : const IntoScreen());
   }

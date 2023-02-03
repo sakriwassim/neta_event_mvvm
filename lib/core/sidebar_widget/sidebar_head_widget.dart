@@ -18,14 +18,15 @@ class _SideHeaderState extends State<SideHeader> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Provider.of<UsersViewModel>(context, listen: false).userConnected;
+      Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var provideruser =
+        Provider.of<UsersViewModel>(context, listen: false).userConnected;
     return SizedBox(
         height: getProportionateScreenHeight(150),
         child: Container(
@@ -34,7 +35,7 @@ class _SideHeaderState extends State<SideHeader> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleImage(
-                image: '${provideruser.userConnected!.image}',
+                image: '${provideruser!.image}',
                 height: getProportionateScreenHeight(60),
                 width: getProportionateScreenWidth(60),
               ),
@@ -50,7 +51,7 @@ class _SideHeaderState extends State<SideHeader> {
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                       size: 19,
-                      title: "${provideruser.userConnected!.nomComplet}",
+                      title: "${provideruser.nomComplet}",
                     ),
                   ),
                   Align(

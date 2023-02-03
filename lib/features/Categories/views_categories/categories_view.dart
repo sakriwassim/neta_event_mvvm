@@ -20,11 +20,7 @@ class _GetAllCategorieViewState extends State<GetAllCategorieView> {
   @override
   void initState() {
     super.initState();
-
-
-
      WidgetsBinding.instance.addPostFrameCallback((_) async {
-      
        Provider.of<CategoriesViewModel>(context, listen: false)
         .FetchAllCategories();
       

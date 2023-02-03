@@ -8,7 +8,7 @@ class EventsViewModel extends ChangeNotifier {
   String title = "Event Page ";
   List<EventModel> allEvents = [];
   List<EventModel> eventsbyCategorie = [];
-  late EventModel eventsbyID;
+  EventModel? eventsbyID;
 
   Future<void> GetEventByCategorie(int id) async {
     List<EventModel> list = await EventsApi().getEventByCategorie(id);
@@ -24,6 +24,7 @@ class EventsViewModel extends ChangeNotifier {
   Future<void> GetEventByID(int id) async {
     var eventModel = await EventsApi().getEventByID(id);
     eventsbyID = eventModel;
+    notifyListeners();
   }
 
   Future<bool> UpdateEventByID(EventModel eventModel) async {

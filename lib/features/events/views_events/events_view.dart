@@ -26,7 +26,7 @@ class _GetAllEventViewState extends State<GetAllEventView> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       Provider.of<EventsViewModel>(context, listen: false).FetchAllEvents("");
-      Provider.of<UsersViewModel>(context, listen: false).userConnected;
+      Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
     });
   }
 

@@ -13,7 +13,7 @@ import '../widgets/text_widget_text1.dart';
 
 class SideBarMenu extends StatelessWidget {
   Function? callbackFunctionlogout;
-  String? imagepath;
+  String imagepath = "";
 
   SideBarMenu({
     Key? key,

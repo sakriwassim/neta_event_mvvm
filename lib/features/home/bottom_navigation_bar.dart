@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List Screen = [
     HomeView(),
     const GetAllEventView(),
-    const GetAllTicketView(),
+     GetAllTicketView(),
     const GetAllTontineView(),
     const ComingSoon()
   ];

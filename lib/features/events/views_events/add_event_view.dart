@@ -9,13 +9,11 @@ import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
 
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../Categories/categories_repositories/categories_api.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../models_events/add_event_model.dart';
-import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
 class AddEventView extends StatefulWidget {

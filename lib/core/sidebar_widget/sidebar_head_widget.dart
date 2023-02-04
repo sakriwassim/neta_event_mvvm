@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/widgets/circle_image.dart';
 import 'package:provider/provider.dart';
-import '../../features/users/evants_repositories/events_api.dart';
 import '../../features/users/view_model_events/events_view_model.dart';
 import '../size_config.dart';
 import '../widgets/text_widget_text1.dart';
@@ -14,6 +13,8 @@ class SideHeader extends StatefulWidget {
 }
 
 class _SideHeaderState extends State<SideHeader> {
+  String username = "";
+  String userimage = "";
   @override
   void initState() {
     super.initState();
@@ -25,48 +26,53 @@ class _SideHeaderState extends State<SideHeader> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var provider = Provider.of<UsersViewModel>(context, listen: false);
     var provideruser =
         Provider.of<UsersViewModel>(context, listen: false).userConnected!;
-    return SizedBox(
-        height: getProportionateScreenHeight(150),
-        child: Container(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleImage(
-                image: '${provideruser!.image}',
-                height: getProportionateScreenHeight(60),
-                width: getProportionateScreenWidth(60),
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(10),
-              ),
-              Column(
+    username = provideruser.nomComplet.toString();
+    userimage = provideruser.image.toString();
+    return provider.loading == true
+        ? CircularProgressIndicator()
+        : SizedBox(
+            height: getProportionateScreenHeight(150),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextAirbnbCereal(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      size: 19,
-                      title: "${provideruser.nomComplet}",
-                    ),
+                  CircleImage(
+                    image: userimage,
+                    height: getProportionateScreenHeight(60),
+                    width: getProportionateScreenWidth(60),
                   ),
-                  Align(
-                    alignment: const Alignment(0, .3),
-                    child: TextAirbnbCereal(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      size: 14,
-                      title: 'Client',
-                    ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(10),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextAirbnbCereal(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          size: 19,
+                          title: username,
+                        ),
+                      ),
+                      Align(
+                        alignment: const Alignment(0, .3),
+                        child: TextAirbnbCereal(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                          size: 14,
+                          title: 'Client',
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ));
+            ));
   }
 }

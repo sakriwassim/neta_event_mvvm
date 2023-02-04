@@ -1,19 +1,45 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
+import '../../../../core/widgets/circle_image.dart';
 import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
+import '../../../events/view_model_events/events_view_model.dart';
+import '../../models_tickets/ticket_model.dart';
 import '../../models_tickets/ticket_model.dart';
 
-class TicketCardWidget extends StatelessWidget {
+class TicketCardWidget extends StatefulWidget {
   TicketModel? ticketModel;
 
   TicketCardWidget({super.key, required this.ticketModel});
 
   @override
+  State<TicketCardWidget> createState() => _TicketCardWidgetState();
+}
+
+class _TicketCardWidgetState extends State<TicketCardWidget> {
+  String eventimage = '';
+  String dateevent = '';
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<EventsViewModel>(context, listen: false)
+          .GetEventByID(int.parse(widget.ticketModel!.event_id!));
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    eventimage =
+        Provider.of<EventsViewModel>(context, listen: false).eventsbyID!.image!;
+    dateevent = Provider.of<EventsViewModel>(context, listen: false)
+        .eventsbyID!
+        .dateHeure!;
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenHeight(5),
@@ -39,11 +65,11 @@ class TicketCardWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // CircleImage(
-              //   height: 100,
-              //   image: event!.image!,
-              //   width: 100,
-              // ),
+              CircleImage(
+                height: 100,
+                image: eventimage,
+                width: 100,
+              ),
 
               SizedBox(
                 child: Padding(
@@ -57,12 +83,12 @@ class TicketCardWidget extends StatelessWidget {
                           color: const Color.fromARGB(255, 255, 255, 255),
                           fontWeight: FontWeight.w400,
                           size: 25,
-                          title: "${ticketModel!.libelle}"),
-                      // TextAirbnbCereal(
-                      //     color: const Color.fromARGB(255, 11, 205, 235),
-                      //     fontWeight: FontWeight.w500,
-                      //     size: 12,
-                      //     title: event.dateHeure! ?? ""),
+                          title: "${widget.ticketModel!.libelle}" ?? ""),
+                      TextAirbnbCereal(
+                          color: const Color.fromARGB(255, 11, 205, 235),
+                          fontWeight: FontWeight.w500,
+                          size: 12,
+                          title: dateevent),
                     ],
                   ),
                 ),
@@ -78,7 +104,7 @@ class TicketCardWidget extends StatelessWidget {
                     child: RectangleImage(
                       height: 60,
                       width: 20,
-                      image: "${ticketModel!.Qr_code}",
+                      image: "${widget.ticketModel!.Qr_code}",
                     ),
                   ),
                   SizedBox(
@@ -88,7 +114,7 @@ class TicketCardWidget extends StatelessWidget {
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontWeight: FontWeight.w500,
                       size: 12,
-                      title: "${ticketModel!.prix} fcfa"),
+                      title: "${widget.ticketModel!.prix} fcfa"),
                 ],
               ),
             ],

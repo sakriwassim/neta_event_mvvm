@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_offline/flutter_offline.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/colors.dart';
@@ -11,10 +10,8 @@ import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/Screen/payment_screen.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../users/models_events/event_model.dart';
 import '../../users/view_model_events/events_view_model.dart';
 import '../models_tontines/tontine_model.dart';
-import '../view_model_tickets/tontines_view_model.dart';
 
 class OnTontineView extends StatefulWidget {
   TontineModel? tontine;
@@ -32,7 +29,6 @@ class _OnTontineViewState extends State<OnTontineView> {
   @override
   void initState() {
     super.initState();
-
     Provider.of<UsersViewModel>(context, listen: false)
         .GetUserByID(int.parse(widget.tontine!.user_id!));
   }
@@ -239,16 +235,6 @@ class _OnTontineViewState extends State<OnTontineView> {
           ),
         ),
       ),
-
-      //       );
-      //     } else {
-      //       return const Center(
-      //         child: Text("no connection"),
-      //       );
-      //     }
-      //   },
-      //   child: const CircularProgressIndicator(),
-      // ),
     );
   }
 }

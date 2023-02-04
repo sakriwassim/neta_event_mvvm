@@ -56,8 +56,7 @@ class UsersViewModel extends ChangeNotifier {
     var token = prefs.getString("token");
     Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
     tokenModel = TokenModel.fromJson(payload);
-    var eventModel = await UsersApi().getUserByID(tokenModel!.userId);
-    userConnected = eventModel;
+    userConnected = await UsersApi().getUserByID(tokenModel!.userId);
     notifyListeners();
   }
 }

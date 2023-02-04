@@ -7,6 +7,7 @@ import '../../../../core/size_config.dart';
 import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/small_button_style.dart';
 import '../../../events/view_model_events/events_view_model.dart';
+import '../../models_tickets/ticket_model.dart';
 import '../../view_model_tickets/tickets_view_model.dart';
 
 class GetAllTicketWidget extends StatefulWidget {
@@ -15,7 +16,6 @@ class GetAllTicketWidget extends StatefulWidget {
   @override
   State<GetAllTicketWidget> createState() => _GetAllTicketWidgetState();
 }
-
 
 /***
    @override
@@ -40,7 +40,7 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var tickets =
+    List<TicketModel>? tickets =
         Provider.of<TicketsViewModel>(context, listen: true).listAllTickets;
 
     SizeConfig().init(context);

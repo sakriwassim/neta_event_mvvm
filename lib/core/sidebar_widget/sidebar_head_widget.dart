@@ -26,7 +26,7 @@ class _SideHeaderState extends State<SideHeader> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var provideruser =
-        Provider.of<UsersViewModel>(context, listen: false).userConnected;
+        Provider.of<UsersViewModel>(context, listen: false).userConnected!;
     return SizedBox(
         height: getProportionateScreenHeight(150),
         child: Container(

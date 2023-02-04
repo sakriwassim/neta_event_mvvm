@@ -333,7 +333,7 @@ class _HomeViewState extends State<HomeView> {
                                 callbackfonction: navGetAllEventView,
                               ),
                               EventsExclusivesWidget(
-                                eventsexclusives: providerevent.allEvents,
+                                eventsexclusives: providerevent.allEvents!,
                               ),
                               SizedBox(
                                 height: getProportionateScreenHeight(10),

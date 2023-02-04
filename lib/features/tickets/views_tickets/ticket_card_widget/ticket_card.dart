@@ -10,36 +10,16 @@ import '../../../events/view_model_events/events_view_model.dart';
 import '../../models_tickets/ticket_model.dart';
 import '../../models_tickets/ticket_model.dart';
 
-class TicketCardWidget extends StatefulWidget {
+class TicketCardWidget extends StatelessWidget {
   TicketModel? ticketModel;
+  String eventimage = '';
+  String dateevent = '';
 
   TicketCardWidget({super.key, required this.ticketModel});
 
   @override
-  State<TicketCardWidget> createState() => _TicketCardWidgetState();
-}
-
-class _TicketCardWidgetState extends State<TicketCardWidget> {
-  String eventimage = '';
-  String dateevent = '';
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Provider.of<EventsViewModel>(context, listen: false)
-          .GetEventByID(int.parse(widget.ticketModel!.event_id!));
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    eventimage =
-        Provider.of<EventsViewModel>(context, listen: false).eventsbyID!.image!;
-    dateevent = Provider.of<EventsViewModel>(context, listen: false)
-        .eventsbyID!
-        .dateHeure!;
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenHeight(5),
@@ -83,7 +63,7 @@ class _TicketCardWidgetState extends State<TicketCardWidget> {
                           color: const Color.fromARGB(255, 255, 255, 255),
                           fontWeight: FontWeight.w400,
                           size: 25,
-                          title: "${widget.ticketModel!.libelle}" ?? ""),
+                          title: "${ticketModel!.libelle}"),
                       TextAirbnbCereal(
                           color: const Color.fromARGB(255, 11, 205, 235),
                           fontWeight: FontWeight.w500,
@@ -104,7 +84,7 @@ class _TicketCardWidgetState extends State<TicketCardWidget> {
                     child: RectangleImage(
                       height: 60,
                       width: 20,
-                      image: "${widget.ticketModel!.Qr_code}",
+                      image: "${ticketModel!.Qr_code}",
                     ),
                   ),
                   SizedBox(
@@ -114,7 +94,7 @@ class _TicketCardWidgetState extends State<TicketCardWidget> {
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontWeight: FontWeight.w500,
                       size: 12,
-                      title: "${widget.ticketModel!.prix} fcfa"),
+                      title: "${ticketModel!.prix} fcfa"),
                 ],
               ),
             ],

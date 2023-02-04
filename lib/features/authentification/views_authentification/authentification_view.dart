@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/size_config.dart';
@@ -361,25 +360,22 @@ class _AuthViewState extends State<AuthView> {
                                   onChanged: (value) =>
                                       provider.setisSwitched(),
                                 ),
-                                Text(
-                                  "Se rappeler",
-                                  style: GoogleFonts.lato(
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 15,
-                                  ),
+                                TextAirbnbCereal(
+                                  color: Color.fromRGBO(0, 0, 0, 1),
+                                  fontWeight: FontWeight.w300,
+                                  size: 15,
+                                  title: "Se rappeler",
                                 ),
                               ],
                             ),
                             const SizedBox(height: 20),
                             InkWell(
                               onTap: () {},
-                              child: Text(
-                                "Mot de passe oublié",
-                                style: GoogleFonts.lato(
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 15,
-                                    color:
-                                        const Color.fromRGBO(194, 32, 124, 1)),
+                              child: TextAirbnbCereal(
+                                color: Color.fromRGBO(194, 32, 124, 1),
+                                fontWeight: FontWeight.w300,
+                                size: 15,
+                                title: "Mot de passe oublié",
                               ),
                             ),
                           ],
@@ -390,12 +386,11 @@ class _AuthViewState extends State<AuthView> {
                     ? SizedBox(
                         height: 40,
                         child: Center(
-                          child: Text(
-                            provider.message,
-                            style: GoogleFonts.lato(
-                                fontStyle: FontStyle.normal,
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 255, 0, 0)),
+                          child: TextAirbnbCereal(
+                            color: Color.fromRGBO(194, 32, 124, 1),
+                            fontWeight: FontWeight.w300,
+                            size: 15,
+                            title: provider.message,
                           ),
                         ),
                       )
@@ -455,25 +450,23 @@ class _AuthViewState extends State<AuthView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      provider.isLogin
+                    TextAirbnbCereal(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      size: 15,
+                      title: provider.isLogin
                           ? " Vous n'avez pas un compte ?"
                           : "Vous avez déjà un compte?",
-                      style: GoogleFonts.lato(
-                        fontStyle: FontStyle.normal,
-                        fontSize: 15,
-                      ),
-                    ), //authentification
+                    ),
                     InkWell(
                       onTap: () {
                         provider.setisLogin();
                       },
-                      child: Text(
-                        provider.isLogin ? " S'inscrire" : "Signin",
-                        style: GoogleFonts.lato(
-                            fontStyle: FontStyle.normal,
-                            fontSize: 15,
-                            color: const Color.fromRGBO(194, 32, 124, 1)),
+                      child: TextAirbnbCereal(
+                        color: Color.fromRGBO(194, 32, 124, 1),
+                        fontWeight: FontWeight.w300,
+                        size: 15,
+                        title: provider.isLogin ? " S'inscrire" : " Signin",
                       ),
                     ),
                   ],

@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/size_config.dart';
+import '../../../core/widgets/text_widget_text1.dart';
 import '../model/items_model.dart';
 import '../utils/colors.dart';
 import '../components.dart';
@@ -95,12 +95,11 @@ class _IntoScreenState extends State<IntoScreen> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15),
-                                  child: Text(
-                                    listOfItems[index].title,
-                                    style: GoogleFonts.lato(
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 30,
-                                        color: Colors.black),
+                                  child: TextAirbnbCereal(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    size: 30,
+                                    title: listOfItems[index].title,
                                   ),
                                 )),
 

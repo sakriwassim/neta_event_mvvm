@@ -1,13 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../core/string.dart';
 import '../models_events/add_event_model.dart';
 import '../models_events/event_model.dart';
-import '../view_model_events/events_view_model.dart';
 
 class UsersApi {
   @override

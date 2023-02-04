@@ -8,17 +8,17 @@ import '../models_tickets/ticket_model.dart';
 class TicketsViewModel extends ChangeNotifier {
   String title = "Ticket Page ";
 
-  List<TicketModel> listAllTickets = [];
-  List<TicketModel> getTicketsUserConnected = [];
-  List<TicketModel> getTicketsByUser = [];
+  List<TicketModel>? _listAllTickets = [];
+  List<TicketModel>? getTicketsUserConnected = [];
+  TicketModel? getTicketsByUser;
 
   Future<void> FetchAllTickets() async {
-    listAllTickets = await TicketsApi().getAllTickets();
+    _listAllTickets = await TicketsApi().getAllTickets();
     notifyListeners();
   }
 
   Future<void> GetTicketByID(int id) async {
-    var ticketModel = await TicketsApi().getTicketByID(id);
+    getTicketsByUser = await TicketsApi().getTicketByID(id);
     notifyListeners();
   }
 
@@ -51,7 +51,8 @@ class TicketsViewModel extends ChangeNotifier {
   Future<void> GetTicketsByUser(int id) async {
     List<TicketModel> getTicketsByUser =
         await TicketsApi().getTicketsByUser(id);
-
     notifyListeners();
   }
+
+  List<TicketModel>? get listAllTickets => _listAllTickets;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:neta_event_mvvm/core/widgets/text_widget_text1.dart';
 
 class CardGoogle extends StatelessWidget {
   String? image;
@@ -42,12 +42,11 @@ class CardGoogle extends StatelessWidget {
               ),
               Expanded(
                 flex: 4,
-                child: Text(
-                  "$title",
-                  style: GoogleFonts.lato(
-                      fontStyle: FontStyle.normal,
-                      fontSize: 20,
-                      color: Colors.black),
+                child: TextAirbnbCereal(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                  size: 20,
+                  title: "$title",
                 ),
               ),
             ],

@@ -42,15 +42,12 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Provider.of<CategoriesViewModel>(context, listen: false)
+      Provider.of<CategoriesViewModel>(context, listen: false)
           .FetchAllCategories();
-      await Provider.of<TontinesViewModel>(context, listen: false)
-          .FetchAllTontines();
-      await Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
-      await Provider.of<EventsViewModel>(context, listen: false)
-          .FetchAllEvents("");
-      await Provider.of<UsersViewModel>(context, listen: false)
-          .GetUserConnected();
+      Provider.of<TontinesViewModel>(context, listen: false).FetchAllTontines();
+      Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
+      Provider.of<EventsViewModel>(context, listen: false).FetchAllEvents("");
+      Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
     });
   }
 

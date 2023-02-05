@@ -8,9 +8,7 @@ import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../../core/widgets/text_widget_text1.dart';
-import '../evants_repositories/events_api.dart';
-import '../view_model_events/events_view_model.dart';
+import '../view_model_events/users_view_model.dart';
 
 class OneUserView extends StatefulWidget {
   const OneUserView({super.key});
@@ -25,12 +23,10 @@ class _OneUserViewState extends State<OneUserView> {
   late String emailfield;
   late String passwordfield;
 
-  // late TokenModel userconnectedit;
-
   @override
   void initState() {
     super.initState();
-    Provider.of<UsersViewModel>(context, listen: false).userConnected;
+    Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
   }
 
   @override
@@ -114,8 +110,7 @@ class _OneUserViewState extends State<OneUserView> {
                     horizontal: getProportionateScreenWidth(50)),
                 child: Row(
                   children: [
-                    SvgPicture.asset(
-                        Profile), //message // SvgPicture.asset(Locationoff),
+                    SvgPicture.asset(Profile),
                     SizedBox(
                       width: getProportionateScreenWidth(20),
                     ),

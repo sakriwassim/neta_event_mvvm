@@ -10,7 +10,7 @@ import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/Screen/payment_screen.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../users/view_model_events/events_view_model.dart';
+import '../../users/view_model_events/users_view_model.dart';
 import '../models_tontines/tontine_model.dart';
 
 class OnTontineView extends StatefulWidget {

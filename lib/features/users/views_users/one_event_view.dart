@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/users/views_events/update_event_view.dart';
+import 'package:neta_event_mvvm/features/users/views_users/update_event_view.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../evants_repositories/events_api.dart';
-import '../models_events/event_model.dart';
-import '../view_model_events/events_view_model.dart';
-import '../view_model_events/one_event_view_model.dart';
+import '../users_repositories/users_api.dart';
+import '../models_users/event_model.dart';
+import '../view_model_events/users_view_model.dart';
 import 'events_view.dart';
 
 class OnUserView extends StatefulWidget {

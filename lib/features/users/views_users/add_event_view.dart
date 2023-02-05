@@ -8,9 +8,9 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
-import '../models_events/add_event_model.dart';
-import '../evants_repositories/events_api.dart';
-import '../view_model_events/events_view_model.dart';
+import '../models_users/add_event_model.dart';
+import '../users_repositories/users_api.dart';
+import '../view_model_events/users_view_model.dart';
 
 class AddUserView extends StatefulWidget {
   const AddUserView({

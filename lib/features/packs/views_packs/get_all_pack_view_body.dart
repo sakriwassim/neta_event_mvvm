@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-
+import 'package:provider/provider.dart';
 import '../../../core/size_config.dart';
-import '../widget/pack_card_widget.dart';
-import '../packs_repositories/packs_api.dart';
-import '../view_model_packs/one_pack_view_model.dart';
 import '../view_model_packs/packs_view_model.dart';
+import '../widget/packList_widget.dart';
 
 class GetAllPackViewBody extends StatefulWidget {
   const GetAllPackViewBody({super.key});
@@ -15,9 +13,17 @@ class GetAllPackViewBody extends StatefulWidget {
 }
 
 class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
-  var data = PacksViewModel();
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var packs = Provider.of<PacksViewModel>(context, listen: true).packs;
     SizeConfig().init(context);
     return Scaffold(
         body: OfflineBuilder(
@@ -27,45 +33,13 @@ class _GetAllPackViewBodyState extends State<GetAllPackViewBody> {
         Widget child,
       ) {
         final bool connected = connectivity != ConnectivityResult.none;
-        // if (connected) {
-        return RefreshIndicator(
-          onRefresh: () async {
-            setState(() {
-              data.FetchAllPacks();
-            });
-
-            return Future.delayed(const Duration(seconds: 2));
-          },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(40),
-            ),
-            child: Center(
-              child: FutureBuilder<List<OnePackViewModel>>(
-              //  future: data.FetchAllPacks(),
-                builder: ((context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const CircularProgressIndicator();
-                  } else {
-                    var events = snapshot.data;
-                    return ListView.builder(
-                        itemCount: events?.length,
-                        itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: PackCardWidget(
-                                  libelle: '${events![index].libelle}',
-                                  montant: '${events[index].montant}',
-                                  nbre_events: '${events[index].nbre_events}',
-                                  nbre_jr_pubs: '${events[index].nbre_jr_pubs}',
-                                ),
-                              ),
-                            ));
-                  }
-                }),
-              ),
-            ),
+        //  if (connected) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(40),
+          ),
+          child: Center(
+            child: PackListWidget(packs: packs),
           ),
         );
       },

@@ -5,7 +5,7 @@ import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../users/view_model_events/events_view_model.dart';
+import '../../users/view_model_events/users_view_model.dart';
 import 'ticket_card_widget/get_ticket_widget.dart';
 
 class GetAllTicketView extends StatefulWidget {

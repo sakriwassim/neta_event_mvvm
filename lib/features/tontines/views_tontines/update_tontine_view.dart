@@ -18,10 +18,14 @@ class UpdateTontineView extends StatefulWidget {
 
 class _UpdateTontineViewState extends State<UpdateTontineView> {
   final formkey = GlobalKey<FormState>();
-  late String libellefield;
-  late String prixfield;
-  late String descriptionfield;
   var data = TontinesViewModel();
+
+
+  final libellefield = TextEditingController();
+  final prixfield = TextEditingController();
+  final descriptionfield = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +51,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: TextFormField(
+                controller: libellefield,
                 decoration: textFieldDecoration(
                   "Mot de passe",
                   "entre le password",
@@ -54,13 +59,9 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } else {
-                    return null;
-                  }
+                  } 
                 },
-                onChanged: (text) {
-                  libellefield = text;
-                },
+                
               ),
             ),
             Padding(
@@ -73,13 +74,9 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } else {
-                    return null;
-                  }
+                  } 
                 },
-                onChanged: (text) {
-                  prixfield = text;
-                },
+                
               ),
             ),
             Padding(
@@ -92,13 +89,9 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } else {
-                    return null;
-                  }
+                  } 
                 },
-                onChanged: (text) {
-                  descriptionfield = text;
-                },
+              
               ),
             ),
             InkWell(
@@ -118,7 +111,6 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   };
 
                   TontineModel ticketformJson = TontineModel.fromJson(ticket);
-                  //  print(ticketformJson);
 
                   var update = await data.UpdateTontineByID(ticketformJson);
 
@@ -130,11 +122,15 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                   }
                 }
               },
-              child: Button(text: "MODIFIER" , fontSize: fontSizemediumbutton,
-                  fontWeight: FontWeight.normal,
-                  gradientbackground: gradientbackground,
-                  height: heightmediumbutton,
-                  width: widthmediumbutton, textcolor:  Colors.white,),
+              child: Button(
+                text: "MODIFIER",
+                fontSize: fontSizemediumbutton,
+                fontWeight: FontWeight.normal,
+                gradientbackground: gradientbackground,
+                height: heightmediumbutton,
+                width: widthmediumbutton,
+                textcolor: Colors.white,
+              ),
             ),
           ],
         ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:neta_event_mvvm/features/users/views_events/widgets/event_card_widget.dart';
+import 'package:neta_event_mvvm/features/users/views_users/widgets/event_card_widget.dart';
 
 import '../../../core/size_config.dart';
-import '../models_events/event_model.dart';
-import '../view_model_events/events_view_model.dart';
+import '../models_users/event_model.dart';
+import '../view_model_events/users_view_model.dart';
 import 'one_event_view.dart';
 
 class GetAllUserView extends StatefulWidget {

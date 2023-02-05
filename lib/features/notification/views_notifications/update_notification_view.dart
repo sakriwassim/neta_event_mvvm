@@ -6,7 +6,6 @@ import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../tontines/models_tontines/tontine_model.dart';
-import '../../tontines/tontines_repositories/tontines_api.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 
 class UpdateNotificationView extends StatefulWidget {

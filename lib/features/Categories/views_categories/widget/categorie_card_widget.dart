@@ -27,13 +27,10 @@ class CategorieCardWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: ImageCachedInternet(
-          height: MediaQuery.of(context).size.height,
-          imageUrl: '$image',
-          width: MediaQuery.of(context).size.width,
-        ),
-
-
-              
+                  height: MediaQuery.of(context).size.height,
+                  imageUrl: '$image',
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
               Center(
                 child: Padding(

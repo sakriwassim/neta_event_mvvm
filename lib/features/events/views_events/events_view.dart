@@ -9,7 +9,7 @@ import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 import '../../../search.dart';
-import '../../users/view_model_events/events_view_model.dart';
+import '../../users/view_model_events/users_view_model.dart';
 import 'widgets/events_widget.dart';
 
 class GetAllEventView extends StatefulWidget {

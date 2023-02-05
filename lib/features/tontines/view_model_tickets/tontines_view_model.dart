@@ -9,11 +9,7 @@ class TontinesViewModel extends ChangeNotifier {
   TontineModel? tontineById;
 
   Future<void> FetchAllTontines() async {
-    List<TontineModel> list = await TontinesApi().getAllTontines();
-
-    // ticketsList = list.map((ticket) => TicketModel.fromJson(ticket)).toList();
-
-    tontines = list;
+    tontines = await TontinesApi().getAllTontines();
     notifyListeners();
   }
 

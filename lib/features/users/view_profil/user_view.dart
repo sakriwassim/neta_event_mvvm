@@ -12,8 +12,8 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
-import '../models_events/add_event_model.dart';
-import '../view_model_events/events_view_model.dart';
+import '../models_users/add_event_model.dart';
+import '../view_model_events/users_view_model.dart';
 import 'widget/column_of_text.dart';
 
 class UserView extends StatefulWidget {
@@ -37,13 +37,12 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
 
   String? imagepath;
 
-  var data = UsersViewModel();
   var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
 
   @override
   void initState() {
     super.initState();
-    Provider.of<UsersViewModel>(context, listen: false);
+    Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
   }
 
 //***********************************/
@@ -67,7 +66,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
-
+    var provider = Provider.of<UsersViewModel>(context, listen: false);
     var provideruser =
         Provider.of<UsersViewModel>(context, listen: false).userConnected;
 
@@ -221,12 +220,16 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                       AddUserModel.fromJson(event);
 
                                   setState(() {
-                                    //  data.UpdateUserByID(eventformJson , provideruser.id);
+                                    provider.UpdateUserByID(eventformJson,
+                                        provideruser.id.toString());
                                   });
-                                }
+                                  if (provider.isBack = true) {
+                                    print("profile updated");
 
-                                navigatorKey.currentState!
-                                    .popUntil((route) => route.isFirst);
+                                    navigatorKey.currentState!
+                                        .popUntil((route) => route.isFirst);
+                                  }
+                                }
                               },
                               child: Button(
                                 fontWeight: FontWeight.normal,
@@ -540,6 +543,13 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                             child: InkWell(
                                 onTap: () async {
                                   if (formkey.currentState!.validate()) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        });
                                     var event = {
                                       "role_id": int.parse(
                                           '${provideruser.roleId}'), //1,
@@ -561,10 +571,14 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                         AddUserModel.fromJson(event);
 
                                     setState(() {
-                                      //   data.UpdateUserByID(eventformJson,provideruser.id);
+                                      provider.UpdateUserByID(eventformJson,
+                                          provideruser.id.toString());
                                     });
-
-                                    _imageFileList = null;
+                                    if (provider.isBack = false) {
+                                      print("profile updated");
+                                      navigatorKey.currentState!
+                                          .popUntil((route) => route.isFirst);
+                                    }
                                   }
                                 },
                                 child: Button(

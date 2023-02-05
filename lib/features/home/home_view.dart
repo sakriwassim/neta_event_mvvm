@@ -14,7 +14,7 @@ import '../Categories/view_model_categories/categories_view_model.dart';
 import '../Categories/views_categories/categories_view.dart';
 import '../events/view_model_events/events_view_model.dart';
 import '../notification/views_notifications/notifications_view.dart';
-import '../users/view_model_events/events_view_model.dart';
+import '../users/view_model_events/users_view_model.dart';
 import 'widget/events_bycategoris_view.dart';
 import '../events/views_events/events_view.dart';
 import '../packs/view_model_packs/packs_view_model.dart';
@@ -36,7 +36,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // int indexCategories = 0;
+  // int indexCategories = -1;
 
   @override
   void initState() {
@@ -48,6 +48,8 @@ class _HomeViewState extends State<HomeView> {
       Provider.of<PacksViewModel>(context, listen: false).FetchAllPacks();
       Provider.of<EventsViewModel>(context, listen: false).FetchAllEvents("");
       Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
+      Provider.of<EventsViewModel>(context, listen: false)
+          .GetEventByCategorie(1);
     });
   }
 
@@ -208,7 +210,7 @@ class _HomeViewState extends State<HomeView> {
         Provider.of<TontinesViewModel>(context, listen: false);
     var providerpack = Provider.of<PacksViewModel>(context, listen: false);
     var provideruser = Provider.of<UsersViewModel>(context, listen: true);
-    var providerevent = Provider.of<EventsViewModel>(context, listen: false);
+    var providerevent = Provider.of<EventsViewModel>(context, listen: true);
 
     return Scaffold(
       body: SafeArea(
@@ -333,7 +335,7 @@ class _HomeViewState extends State<HomeView> {
                                 callbackfonction: navGetAllEventView,
                               ),
                               EventsExclusivesWidget(
-                                eventsexclusives: providerevent.allEvents!,
+                                eventsexclusives: providerevent.allEvents,
                               ),
                               SizedBox(
                                 height: getProportionateScreenHeight(10),
@@ -362,10 +364,11 @@ class _HomeViewState extends State<HomeView> {
                                 callbackfonction: navGetAllEventView,
                               ),
                               GetEventByCategorisWidget(
-                                categorieid: 0,
+                                eventsbyCategorie:
+                                    providerevent.eventsbyCategorie,
                               ),
 
-                              provideruser.userConnected?.roleId == "0"
+                              provideruser.userConnected?.roleId == "1"
                                   ? Container()
                                   : Column(
                                       children: [

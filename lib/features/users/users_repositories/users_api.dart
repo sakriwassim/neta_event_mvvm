@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/string.dart';
-import '../models_events/add_event_model.dart';
-import '../models_events/event_model.dart';
+import '../models_users/add_event_model.dart';
+import '../models_users/event_model.dart';
 
 class UsersApi {
   @override
@@ -58,9 +58,9 @@ class UsersApi {
     try {
       List<UserModel> eventsList = [];
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString("token");
+      var token = prefs.getString("token") ?? "";
 
-      var headersa = {'Authorization': 'Bearer ${token!}'};
+      var headersa = {'Authorization': 'Bearer ${token}'};
 
       String link = '$baseUrl/UsersByCategorie/$id';
 
@@ -79,7 +79,7 @@ class UsersApi {
   }
 
   @override
-  Future<AddUserModel> updateUserByID(
+  Future<http.Response?> updateUserByID(
       AddUserModel eventModel, String userconnectedId) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -101,12 +101,11 @@ class UsersApi {
 
       http.Response response = await http.put(url,
           headers: headers, body: json.encode(eventModelJson));
-      var responsebody = jsonDecode(response.body);
+
+      return response;
     } catch (e) {
       print(e);
     }
-
-    return eventModel;
   }
 
   @override

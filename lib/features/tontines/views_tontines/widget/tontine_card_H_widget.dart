@@ -10,29 +10,12 @@ import '../../../../core/widgets/text_widget_text1.dart';
 import '../../models_tontines/tontine_model.dart';
 
 class TontineCardWidgetH extends StatelessWidget {
-  String? image;
-  String? libelle;
-  String? periode;
-  String? nbr_participant;
-  String? montant_regulier;
-  String? status;
-  int? id;
-  Function? callbackFunction;
+  TontineModel? tontine;
 
   TontineCardWidgetH({
     Key? key,
-    required this.id,
-    required this.image,
-    required this.libelle,
-    required this.periode,
-    required this.nbr_participant,
-    required this.montant_regulier,
-    required this.status,
-    required this.events,
-    required this.callbackFunction,
+    required this.tontine,
   }) : super(key: key);
-
-  final List<TontineModel>? events;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +50,7 @@ class TontineCardWidgetH extends StatelessWidget {
               children: [
                 RectangleImage(
                   height: 120,
-                  image: '$image',
+                  image: tontine?.image ?? "",
                   width: 120,
                 ),
                 SizedBox(width: getProportionateScreenWidth(10)),
@@ -84,13 +67,13 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(226, 133, 65, 1),
                           fontWeight: FontWeight.w500,
                           size: 8,
-                          title: "$status",
+                          title: "${tontine?.status}",
                         ),
                         TextAirbnbCereal(
                           color: Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.w500,
                           size: 8,
-                          title: "$libelle",
+                          title: "${tontine?.libelle}",
                         ),
                         TextAirbnbCereal(
                           color: Colors.grey,
@@ -102,7 +85,7 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(79, 79, 79, 1),
                           fontWeight: FontWeight.w500,
                           size: 15,
-                          title: "$nbr_participant participants",
+                          title: "${tontine?.nbr_participant} participants",
                         ),
                       ],
                     ),
@@ -127,7 +110,7 @@ class TontineCardWidgetH extends StatelessWidget {
 
                     child: Center(
                       child: Text(
-                        '$montant_regulier',
+                        '${tontine?.montant_regulier}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,

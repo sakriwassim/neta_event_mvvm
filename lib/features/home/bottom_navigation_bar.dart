@@ -19,8 +19,8 @@ import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
-import '../users/evants_repositories/events_api.dart';
-import '../users/view_model_events/events_view_model.dart';
+import '../users/users_repositories/users_api.dart';
+import '../users/view_model_events/users_view_model.dart';
 import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
 

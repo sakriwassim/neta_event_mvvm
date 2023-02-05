@@ -6,11 +6,10 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
-import '../models_events/add_event_model.dart';
-import '../evants_repositories/events_api.dart';
-import '../models_events/event_model.dart';
-import '../view_model_events/events_view_model.dart';
-import '../view_model_events/one_event_view_model.dart';
+import '../models_users/add_event_model.dart';
+import '../users_repositories/users_api.dart';
+import '../models_users/event_model.dart';
+import '../view_model_events/users_view_model.dart';
 
 class UpdateUserView extends StatefulWidget {
   final UserModel eventObj;

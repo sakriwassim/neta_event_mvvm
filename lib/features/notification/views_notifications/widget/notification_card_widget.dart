@@ -16,7 +16,6 @@ class NotificationCardWidgetH extends StatelessWidget {
   String? montant_regulier;
   String? status;
   int? id;
-  Function? callbackFunction;
 
   NotificationCardWidgetH({
     Key? key,
@@ -27,7 +26,6 @@ class NotificationCardWidgetH extends StatelessWidget {
     required this.nbr_participant,
     required this.montant_regulier,
     required this.status,
-    required this.callbackFunction,
   }) : super(key: key);
 
   @override

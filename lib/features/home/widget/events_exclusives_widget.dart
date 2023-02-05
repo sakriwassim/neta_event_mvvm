@@ -15,8 +15,6 @@ class EventsExclusivesWidget extends StatelessWidget {
     required this.eventsexclusives,
   }) : super(key: key);
 
-  var data = EventsViewModel();
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(

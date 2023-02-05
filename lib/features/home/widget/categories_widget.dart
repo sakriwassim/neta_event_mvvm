@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../core/size_config.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../Categories/views_categories/widget/categorie_card_widget.dart';
+import '../../events/view_model_events/events_view_model.dart';
 
 class CategoriesWidgetHome extends StatelessWidget {
   List<OneCategorieViewModel>? categories;
@@ -21,12 +23,8 @@ class CategoriesWidgetHome extends StatelessWidget {
           itemCount: categories?.length,
           itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  // indexCategories = index;
-
-                  // setState(() {
-                  //   // data.GetEventByCategorie(
-                  //   //     2);
-                  // });
+                  Provider.of<EventsViewModel>(context, listen: false)
+                      .GetEventByCategorie(categories![index].id);
                 },
                 child: CategorieCardWidget(
                   libelle: categories![index].libelle,

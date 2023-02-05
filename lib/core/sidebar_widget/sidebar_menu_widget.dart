@@ -4,8 +4,8 @@ import 'package:neta_event_mvvm/core/sidebar_widget/sidebar_head_widget.dart';
 import '../../features/authentification/views_authentification/authentification_view.dart';
 import '../../features/events/views_events/events_view.dart';
 import '../../features/tontines/views_tontines/tontines_view.dart';
-import '../../features/users/evants_repositories/events_api.dart';
-import '../../features/users/view_model_events/events_view_model.dart';
+import '../../features/users/users_repositories/users_api.dart';
+import '../../features/users/view_model_events/users_view_model.dart';
 import '../../features/users/view_profil/one_user_view.dart';
 import '../size_config.dart';
 import '../string.dart';
@@ -185,8 +185,7 @@ class SideBarMenu extends StatelessWidget {
             ),
             leading: SvgPicture.asset(Deconnect),
             onTap: () {
-              callbackFunctionlogout!();
-
+              callbackFunctionlogout;
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => AuthView()));
             },

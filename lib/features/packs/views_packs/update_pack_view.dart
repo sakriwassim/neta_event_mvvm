@@ -5,7 +5,6 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../models_packs/pack_model.dart';
-import '../packs_repositories/packs_api.dart';
 import '../view_model_packs/packs_view_model.dart';
 import '../view_model_packs/one_pack_view_model.dart';
 

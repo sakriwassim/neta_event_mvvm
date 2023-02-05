@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../authentification/models_authentification/token_model.dart';
-import '../evants_repositories/events_api.dart';
-import '../models_events/add_event_model.dart';
-import '../models_events/event_model.dart';
-import 'one_event_view_model.dart';
+import '../users_repositories/users_api.dart';
+import '../models_users/add_event_model.dart';
+import '../models_users/event_model.dart';
 
 class UsersViewModel extends ChangeNotifier {
   String title = "User Page ";
@@ -30,10 +29,15 @@ class UsersViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> UpdateUserByID(
+  Future<void> UpdateUserByID(
       AddUserModel eventModel, String userconnectedId) async {
-    var event = await UsersApi().updateUserByID(eventModel, userconnectedId);
-    return true;
+    loading = true;
+    var response = await UsersApi().updateUserByID(eventModel, userconnectedId);
+
+    if (response?.statusCode == 200) {
+      isBack = true;
+    }
+    loading = false;
   }
 
   Future<bool> AddUser(AddUserModel addUserModel) async {
@@ -56,7 +60,9 @@ class UsersViewModel extends ChangeNotifier {
     var token = prefs.getString("token");
     Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
     tokenModel = TokenModel.fromJson(payload);
-    userConnected = await UsersApi().getUserByID(tokenModel!.userId);
+    if (tokenModel != null) {
+      userConnected = await UsersApi().getUserByID(tokenModel!.userId);
+    }
     notifyListeners();
   }
 }

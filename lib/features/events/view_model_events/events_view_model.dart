@@ -6,8 +6,8 @@ import '../models_events/add_event_model.dart';
 
 class EventsViewModel extends ChangeNotifier {
   String title = "Event Page ";
-  List<EventModel>? allEvents = [];
-  List<EventModel>? eventsbyCategorie = [];
+  List<EventModel> allEvents = [];
+  List<EventModel> eventsbyCategorie = [];
   EventModel? eventsbyID;
   bool loading = false;
 

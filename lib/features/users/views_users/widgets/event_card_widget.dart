@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/size_config.dart';
-import '../../models_events/event_model.dart';
-import '../../view_model_events/one_event_view_model.dart';
+import '../../models_users/event_model.dart';
 
 class UserCardWidget extends StatelessWidget {
   String? description;

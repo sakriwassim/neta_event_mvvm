@@ -1,12 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:neta_event_mvvm/features/tontines/views_tontines/update_tontine_view.dart';
 import 'package:provider/provider.dart';
-
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
@@ -15,10 +9,8 @@ import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/Screen/payment_screen.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../tontines/tontines_repositories/tontines_api.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
-import '../../users/evants_repositories/events_api.dart';
-import '../../users/view_model_events/events_view_model.dart';
+import '../../users/view_model_events/users_view_model.dart';
 
 class OnNotificationView extends StatefulWidget {
   final int id;
@@ -41,15 +33,9 @@ class _OnNotificationViewState extends State<OnNotificationView> {
   @override
   void initState() {
     super.initState();
-
-    @override
-    void initState() {
-      super.initState();
-
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        Provider.of<UsersViewModel>(context, listen: false).userConnected;
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<UsersViewModel>(context, listen: false).userConnected;
+    });
   }
 
   @override

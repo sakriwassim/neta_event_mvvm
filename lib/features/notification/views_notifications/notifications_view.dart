@@ -9,6 +9,7 @@ import '../../tontines/models_tontines/tontine_model.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 import 'one_notification_view.dart';
 import 'widget/notification_card_widget.dart';
+import 'widget/notifications_widget.dart';
 
 class GetAllNotificationView extends StatefulWidget {
   const GetAllNotificationView({super.key});
@@ -18,16 +19,9 @@ class GetAllNotificationView extends StatefulWidget {
 }
 
 class _GetAllNotificationViewState extends State<GetAllNotificationView> {
-  var data = TontinesViewModel();
-
-  deletetontines(id) {
-    setState(() {
-      data.DeleteTontineByID(id);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    var notifications = [];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -41,7 +35,7 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              data.title,
+              "notifications",
               style: const TextStyle(
                 color: Colors.black,
               ),
@@ -73,79 +67,34 @@ class _GetAllNotificationViewState extends State<GetAllNotificationView> {
         ) {
           final bool connected = connectivity != ConnectivityResult.none;
           if (connected) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                setState(() {
-                  data.FetchAllTontines();
-                });
-
-                return Future.delayed(const Duration(seconds: 2));
-              },
-              child: Center(
-                child: FutureBuilder<List<TontineModel>>(
-                  //future: data.FetchAllTontines(),
-                  builder: ((context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      //var tickets = snapshot.data;
-                      var tickets = [];
-                      if (tickets.isEmpty) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(notification),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextAirbnbCereal(
-                                  title: "Pas de Notification !",
-                                  size: 20,
-                                  color: const Color(0xFFF344B67),
-                                  fontWeight: FontWeight.w500),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextAirbnbCereal(
-                                  title:
-                                      "Vous pouvez consulter l'historique de toute notification",
-                                  size: 12,
-                                  color: const Color(0xfff344b67),
-                                  fontWeight: FontWeight.w400)
-                            ],
+            return Center(
+              child: notifications.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(notification),
+                          const SizedBox(
+                            height: 10,
                           ),
-                        );
-                      }
-                      return ListView.builder(
-                          itemCount: tickets.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            OnNotificationView(
-                                              id: tickets[index].id,
-                                              image: tickets[index].image,
-                                            )));
-                              },
-                              child: NotificationCardWidgetH(
-                                image: '${tickets[index].image}',
-                                libelle: '${tickets[index].libelle}',
-                                montant_regulier:
-                                    "${tickets[index].montant_regulier}\$",
-                                nbr_participant:
-                                    '${tickets[index].nbr_participant}',
-                                periode: '',
-                                status: '${tickets[index].status}',
-                                callbackFunction: deletetontines,
-                                id: tickets[index].id,
-                              )));
-                    }
-                  }),
-                ),
-              ),
+                          TextAirbnbCereal(
+                              title: "Pas de Notification !",
+                              size: 20,
+                              color: const Color(0xFFF344B67),
+                              fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextAirbnbCereal(
+                              title:
+                                  "Vous pouvez consulter l'historique de toute notification",
+                              size: 12,
+                              color: const Color(0xfff344b67),
+                              fontWeight: FontWeight.w400)
+                        ],
+                      ),
+                    )
+                  : Notifications(notifications: notifications),
             );
           } else {
             return const Center(

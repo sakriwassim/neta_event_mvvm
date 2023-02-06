@@ -7,9 +7,13 @@ class TontinesViewModel extends ChangeNotifier {
   String title = "Tontine Page ";
   List<TontineModel> tontines = [];
   TontineModel? tontineById;
+  bool? loading = false;
 
   Future<void> FetchAllTontines() async {
+    loading = true;
     tontines = await TontinesApi().getAllTontines();
+    notifyListeners();
+    loading = false;
     notifyListeners();
   }
 

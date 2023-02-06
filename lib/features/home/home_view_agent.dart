@@ -11,22 +11,17 @@
 // import '../../core/string.dart';
 // import '../../core/widgets/text_widget_text1.dart';
 // import '../../search.dart';
-// import '../Categories/categories_repositories/categories_api.dart';
 // import '../Categories/view_model_categories/categories_view_model.dart';
 // import '../Categories/view_model_categories/one_categorie_view_model.dart';
 // import '../Categories/views_categories/categories_view.dart';
 // import '../Categories/views_categories/widget/categorie_card_widget.dart';
-// import '../authentification/authentification_repositories/authentification_api.dart';
 // import '../authentification/view_model_authentification/authentification_view_model.dart';
-// import '../events/evants_repositories/events_api.dart';
+
 // import '../events/view_model_events/events_view_model.dart';
 // import '../events/views_events/events_view.dart';
-// import '../packs/packs_repositories/packs_api.dart';
 // import '../packs/view_model_packs/packs_view_model.dart';
-// import '../tontines/tontines_repositories/tontines_api.dart';
 // import '../tontines/view_model_tickets/tontines_view_model.dart';
-// import '../users/evants_repositories/events_api.dart';
-// import '../users/view_model_events/events_view_model.dart';
+// import '../users/view_model_events/users_view_model.dart';
 
 // class HomeViewAgent extends StatefulWidget {
 //   HomeViewAgent({super.key});

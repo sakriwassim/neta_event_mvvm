@@ -2,13 +2,12 @@
 // import 'package:flutter/services.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
-// import 'package:neta_event_mvvm/features/home/home_view_agent.dart';
+
 // import 'package:neta_event_mvvm/features/home/widget/bottom_btn_widget.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import '../../core/colors.dart';
 // import '../../core/size_config.dart';
 // import '../../core/string.dart';
-// import '../events/evants_repositories/events_api.dart';
 // import '../events/view_model_events/events_view_model.dart';
 
 // class MyHomePageAgent extends StatefulWidget {

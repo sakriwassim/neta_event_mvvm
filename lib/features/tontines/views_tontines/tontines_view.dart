@@ -30,6 +30,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
   @override
   Widget build(BuildContext context) {
     var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var providertontine = Provider.of<TontinesViewModel>(context, listen: true);
     var listtontine =
         Provider.of<TontinesViewModel>(context, listen: true).tontines;
 
@@ -51,7 +52,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 color: Colors.black,
               ),
             ),
-            provideruser.userConnected!.roleId == "0"
+            provideruser.userConnected?.roleId == "0"
                 ? Container()
                 : InkWell(
                     onTap: () {
@@ -85,9 +86,11 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 return Future.delayed(const Duration(seconds: 2));
               },
               child: Center(
-                child: ListTontineWidget(
-                  tontines: listtontine,
-                ),
+                child: providertontine.loading == false
+                    ? ListTontineWidget(
+                        tontines: listtontine,
+                      )
+                    : CircularProgressIndicator(),
               ),
             );
           } else {

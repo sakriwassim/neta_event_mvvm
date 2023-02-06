@@ -22,10 +22,6 @@ class EventsApi {
       String link = '$baseUrl/Events/$id';
       var url = Uri.parse(link);
 
-      //var responsebody = jsonDecode(response.body);
-
-      // print(eventData);
-
       http.Response response = await http.get(url, headers: headersa);
       EventModel.fromJson(json.decode(response.body));
       var eventDate = EventModel.fromJson(json.decode(response.body));
@@ -47,7 +43,6 @@ class EventsApi {
 
       Map<String, dynamic> payload = Jwt.parseJwt(token);
 
-      print("*************Token Decode **********${payload}");
       DateTime? expiryDate = Jwt.getExpiryDate(token);
 
       var headersa = {'Authorization': 'Bearer $token'};
@@ -127,8 +122,7 @@ class EventsApi {
       http.Response response = await http.put(url,
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
+     
     } catch (e) {
       print(e);
     }

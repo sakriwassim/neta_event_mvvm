@@ -1,27 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/home/widget/bottom_btn_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
-
-import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
 import '../../core/widgets/coming_soon.dart';
-import '../authentification/authentification_repositories/authentification_api.dart';
-import '../authentification/view_model_authentification/authentification_view_model.dart';
-import '../events/evants_repositories/events_api.dart';
-import '../events/view_model_events/events_view_model.dart';
 import '../events/views_events/events_view.dart';
 import '../tickets/views_tickets/tickets_view.dart';
 import '../tontines/views_tontines/tontines_view.dart';
-import '../users/users_repositories/users_api.dart';
 import '../users/view_model_events/users_view_model.dart';
-import '../users/view_profil/one_user_view.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -33,19 +23,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
-
+  String userconnecedrole = "";
   List Screen = [
     HomeView(),
     const GetAllEventView(),
-     GetAllTicketView(),
+    const GetAllTicketView(),
     const GetAllTontineView(),
     const ComingSoon()
+  ];
+  List Screenagent = [
+    HomeView(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeView();
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
+    });
+  }
 
   openDrawer() {
     _scaffoldState.currentState!.openDrawer();
@@ -54,37 +55,61 @@ class _MyHomePageState extends State<MyHomePage> {
   navtohome() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", false);
-    prefs.remove("token");
-    prefs.remove("token");
     prefs.remove("userconnectedid");
-
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => AuthView()));
   }
 
-  Widget bottomwidget(String iconoff, String iconon, String text, int Index) {
+  Widget bottomwidget(
+      String role, String iconoff, String iconon, String text, int Index) {
     return Expanded(
-      child: MaterialButton(
-        minWidth: getProportionateScreenWidth(40),
-        onPressed: () {
-          setState(() {
-            currentScreen = Screen[Index];
-            _currentIndex = Index;
-          });
-        },
-        child: bottomBtnwidget(
-          Index: Index,
-          currentIndex: _currentIndex,
-          iconoff: iconoff,
-          iconon: iconon,
-          text: text,
-        ),
-      ),
+      child: role == "4"
+          ? MaterialButton(
+              minWidth: getProportionateScreenWidth(40),
+              onPressed: () {
+                setState(() {
+                  if (Index == 0) {
+                    currentScreen = Screenagent[Index];
+                    _currentIndex = Index;
+                  } else if (Index == 1) {
+                    navtohome();
+                  }
+                });
+              },
+              child: bottomBtnwidget(
+                Index: Index,
+                currentIndex: _currentIndex,
+                iconoff: iconoff,
+                iconon: iconon,
+                text: text,
+              ),
+            )
+          : MaterialButton(
+              minWidth: getProportionateScreenWidth(40),
+              onPressed: () {
+                setState(() {
+                  currentScreen = Screen[Index];
+                  _currentIndex = Index;
+                });
+              },
+              child: bottomBtnwidget(
+                Index: Index,
+                currentIndex: _currentIndex,
+                iconoff: iconoff,
+                iconon: iconon,
+                text: text,
+              ),
+            ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    if (provideruser != null) {
+      userconnecedrole = provideruser.userConnected?.roleId ?? "";
+    }
+
     SizeConfig().init(context);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -108,13 +133,25 @@ class _MyHomePageState extends State<MyHomePage> {
           height: getProportionateScreenHeight(70),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              bottomwidget(CompassOff, Compass, 'Découvrir', 0),
-              bottomwidget(Calendaroff, Calendar, 'Events', 1),
-              bottomwidget(Locationoff, Location, 'Tickets', 2),
-              bottomwidget(tontineoff, tontine, 'Tontine', 3),
-              bottomwidget(Tontinoff, Tontin, 'Donation', 4),
-            ],
+            children: userconnecedrole == "4"
+                ? [
+                    bottomwidget(
+                        userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
+                    bottomwidget(userconnecedrole, Deconnect, Deconnect,
+                        'Deconnection', 1),
+                  ]
+                : [
+                    bottomwidget(
+                        userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
+                    bottomwidget(
+                        userconnecedrole, Calendaroff, Calendar, 'Events', 1),
+                    bottomwidget(
+                        userconnecedrole, Locationoff, Location, 'Tickets', 2),
+                    bottomwidget(
+                        userconnecedrole, tontineoff, tontine, 'Tontine', 3),
+                    bottomwidget(
+                        userconnecedrole, Tontinoff, Tontin, 'Donation', 4),
+                  ],
           ),
         ),
       ),

@@ -15,19 +15,23 @@ class ListTontineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: tontines.length,
-        itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => OnTontineView(
-                            tontine: tontines[index],
-                          )));
-            },
-            child: TontineCardWidgetH(
-              tontine: tontines[index],
-            )));
+    return tontines.isEmpty
+        ? Center(
+            child: Text("no tontines"),
+          )
+        : ListView.builder(
+            itemCount: tontines.length,
+            itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OnTontineView(
+                                tontine: tontines[index],
+                              )));
+                },
+                child: TontineCardWidgetH(
+                  tontine: tontines[index],
+                )));
   }
 }

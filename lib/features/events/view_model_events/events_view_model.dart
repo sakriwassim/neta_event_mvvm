@@ -18,8 +18,11 @@ class EventsViewModel extends ChangeNotifier {
   }
 
   Future<void> FetchAllEvents(String query) async {
+    loading = true;
     List<EventModel> list = await EventsApi().getAllEvents(query);
     allEvents = list;
+    notifyListeners();
+    loading = false;
     notifyListeners();
   }
 

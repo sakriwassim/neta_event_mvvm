@@ -11,9 +11,13 @@ class TicketsViewModel extends ChangeNotifier {
   List<TicketModel>? _listAllTickets = [];
   List<TicketModel>? getTicketsUserConnected = [];
   TicketModel? getTicketsByUser;
+  bool loading = false;
 
   Future<void> FetchAllTickets() async {
+    loading = true;
     _listAllTickets = await TicketsApi().getAllTickets();
+    notifyListeners();
+    loading = false;
     notifyListeners();
   }
 
@@ -54,5 +58,5 @@ class TicketsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<TicketModel>? get listAllTickets => _listAllTickets;
+  List<TicketModel> get listAllTickets => _listAllTickets ?? [];
 }

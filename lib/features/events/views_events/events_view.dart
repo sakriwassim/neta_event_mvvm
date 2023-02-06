@@ -33,8 +33,8 @@ class _GetAllEventViewState extends State<GetAllEventView> {
 
   @override
   Widget build(BuildContext context) {
-    var providerevent = Provider.of<EventsViewModel>(context, listen: false);
-    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var providerevent = Provider.of<EventsViewModel>(context, listen: true);
+    var provideruser = Provider.of<UsersViewModel>(context, listen: true);
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -54,16 +54,6 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                   color: Colors.black,
                 ),
               ),
-              // FutureBuilder(
-              //     future: datauser.GetUserConnected(),
-              //     builder: (context, snapshot) {
-              //       if (!snapshot.hasData) {
-              //         return Container();
-              //       } else {
-              //         //var body = snapshot.data;
-              //         var role = snapshot.data!.role_id.toString();
-              //         return
-
               provideruser.userConnected?.roleId == "0"
                   ? Container()
                   : InkWell(
@@ -82,9 +72,6 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                         fontWeight: FontWeight.normal,
                         textcolor: Colors.white,
                       )),
-
-              //   }
-              // }),
             ],
           ),
         ),
@@ -137,44 +124,26 @@ class _GetAllEventViewState extends State<GetAllEventView> {
             ),
             Expanded(
               child: OfflineBuilder(
-                connectivityBuilder: (
-                  BuildContext context,
-                  ConnectivityResult connectivity,
-                  Widget child,
-                ) {
-                  final bool connected =
-                      connectivity != ConnectivityResult.none;
-                  if (connected) {
-                    return RefreshIndicator(
-                        onRefresh: () async {
-                          // setState(() {
-                          //   data.FetchAllEvents(
-                          //       "${searchcontroler.text.trim()}");
-                          // });
-
-                          return Future.delayed(const Duration(seconds: 2));
-                        },
-                        child: EventsWidget(
-                          events: providerevent.allEvents,
-                        ));
-                  } else {
-                    return const Center(
-                      child: Text("no connection"),
-                    );
-                  }
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text(
-                      'There are no bottons to push :)',
-                    ),
-                    Text(
-                      'Just turn off your internet.',
-                    ),
-                  ],
-                ),
-              ),
+                  connectivityBuilder: (
+                    BuildContext context,
+                    ConnectivityResult connectivity,
+                    Widget child,
+                  ) {
+                    final bool connected =
+                        connectivity != ConnectivityResult.none;
+                    if (connected) {
+                      return providerevent.loading
+                          ? Center(child: CircularProgressIndicator())
+                          : EventsWidget(
+                              events: providerevent.allEvents,
+                            );
+                    } else {
+                      return const Center(
+                        child: Text("no connection"),
+                      );
+                    }
+                  },
+                  child: Container()),
             ),
           ],
         ));

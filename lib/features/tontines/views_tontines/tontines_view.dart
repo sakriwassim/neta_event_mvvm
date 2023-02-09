@@ -4,11 +4,10 @@ import 'package:neta_event_mvvm/features/tontines/views_tontines/widget/list_ton
 import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/widgets/small_button_style.dart';
-import '../../events/views_events/add_event_view.dart';
+import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../users/view_model_events/users_view_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
-import 'one_tontine_view.dart';
-import 'widget/tontine_card_H_widget.dart';
+import 'add_tontine_view.dart';
 
 class GetAllTontineView extends StatefulWidget {
   const GetAllTontineView({super.key});
@@ -22,6 +21,8 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<CategoriesViewModel>(context, listen: false)
+          .FetchAllCategories();
       Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
       Provider.of<TontinesViewModel>(context, listen: false).FetchAllTontines();
     });
@@ -46,9 +47,9 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "tontine détaille",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black,
               ),
             ),
@@ -59,7 +60,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddEventView()));
+                              builder: (context) => const AddTontineView()));
                     },
                     child: Button(
                       text: "Ajouter",

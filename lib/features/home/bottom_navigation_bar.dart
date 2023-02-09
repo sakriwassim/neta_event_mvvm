@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/features/home/widget/bottom_btn_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neta_event_mvvm/features/authentification/views_authentification/authentification_view.dart';
+import '../../core/colors.dart';
 import '../../core/sidebar_widget/sidebar_menu_widget.dart';
 import '../../core/size_config.dart';
 import '../../core/string.dart';
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget bottomwidget(
       String role, String iconoff, String iconon, String text, int Index) {
     return Expanded(
-      child: role == "4"
+      child: role == "3"
           ? MaterialButton(
               minWidth: getProportionateScreenWidth(40),
               onPressed: () {
@@ -103,9 +105,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget Buttombarwidget(String userconnecedrole) {
+    if (userconnecedrole == "3") {
+      return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        bottomwidget(userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
+        bottomwidget(userconnecedrole, Deconnect, Deconnect, 'Deconnection', 1),
+      ]);
+    } else if (userconnecedrole == "1" ||
+        userconnecedrole == "2" ||
+        userconnecedrole == "0") {
+      return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        bottomwidget(userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
+        bottomwidget(userconnecedrole, Calendaroff, Calendar, 'Events', 1),
+        bottomwidget(userconnecedrole, Locationoff, Location, 'Tickets', 2),
+        bottomwidget(userconnecedrole, tontineoff, tontine, 'Tontine', 3),
+        bottomwidget(userconnecedrole, Tontinoff, Tontin, 'Donation', 4),
+      ]);
+    } else {
+      return Center(child: CircularProgressIndicator());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var provideruser = Provider.of<UsersViewModel>(context, listen: true);
     if (provideruser != null) {
       userconnecedrole = provideruser.userConnected?.roleId ?? "";
     }
@@ -125,34 +148,37 @@ class _MyHomePageState extends State<MyHomePage> {
         bucket: bucket,
         child: currentScreen,
       ),
+      floatingActionButton: Visibility(
+        visible: userconnecedrole == "3" ? true : false,
+        child: FloatingActionButton(
+            backgroundColor:
+                const Color.fromARGB(116, 216, 4, 202).withOpacity(0.5),
+            mini: false,
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => OneUserView()),
+              // );
+            },
+            child: Container(
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, gradient: gradientbackground),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SvgPicture.asset(
+                  "assets/icons/home/scan.svg",
+                  width: 28,
+                ),
+              ),
+            )),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: SizedBox(
           height: getProportionateScreenHeight(70),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: userconnecedrole == "4"
-                ? [
-                    bottomwidget(
-                        userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
-                    bottomwidget(userconnecedrole, Deconnect, Deconnect,
-                        'Deconnection', 1),
-                  ]
-                : [
-                    bottomwidget(
-                        userconnecedrole, CompassOff, Compass, 'Découvrir', 0),
-                    bottomwidget(
-                        userconnecedrole, Calendaroff, Calendar, 'Events', 1),
-                    bottomwidget(
-                        userconnecedrole, Locationoff, Location, 'Tickets', 2),
-                    bottomwidget(
-                        userconnecedrole, tontineoff, tontine, 'Tontine', 3),
-                    bottomwidget(
-                        userconnecedrole, Tontinoff, Tontin, 'Donation', 4),
-                  ],
-          ),
+          child: Buttombarwidget(userconnecedrole),
         ),
       ),
     );

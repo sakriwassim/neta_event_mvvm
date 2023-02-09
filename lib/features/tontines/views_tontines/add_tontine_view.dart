@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
@@ -9,8 +10,10 @@ import '../../../core/widgets/dropdown_button_example.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../../main.dart';
+import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
+import '../../home/widget/categories_widget.dart';
 import '../models_tontines/tontine_model.dart';
 
 class AddTontineView extends StatefulWidget {
@@ -34,9 +37,19 @@ class _AddTontineViewState extends State<AddTontineView>
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<CategoriesViewModel>(context, listen: false)
+          .FetchAllCategories();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var categories =
+        Provider.of<CategoriesViewModel>(context, listen: true).categories;
     SizeConfig().init(context);
     TabController _tabController = TabController(length: 2, vsync: this);
     return Scaffold(
@@ -162,36 +175,23 @@ class _AddTontineViewState extends State<AddTontineView>
                           ),
                           SizedBox(
                             height: getProportionateScreenHeight(200),
-                            child: FutureBuilder<List<OneCategorieViewModel>>(
-                              //  future: datacategorie.FetchAllCategories(),
-                              builder: ((context, snapshot) {
-                                if (!snapshot.hasData) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                } else {
-                                  categories = snapshot.data;
-                                  return ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: categories?.length,
-                                      itemBuilder: (context, index) => InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                selectedIndex = index;
-                                              });
-                                            },
-                                            child: CategorieIconWidget(
-                                              libelle:
-                                                  categories![index].libelle,
-                                              backgroundColor:
-                                                  selectedIndex == index
-                                                      ? const Color(0xffD2286A)
-                                                      : Colors.grey,
-                                            ),
-                                          ));
-                                }
-                              }),
-                            ),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: categories.length,
+                                itemBuilder: (context, index) => InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedIndex = index;
+                                        });
+                                      },
+                                      child: CategorieIconWidget(
+                                        libelle: categories[index].libelle,
+                                        backgroundColor: selectedIndex == index
+                                            ? const Color(0xffD2286A)
+                                            : Colors.grey,
+                                      ),
+                                    )),
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 5, bottom: 5),

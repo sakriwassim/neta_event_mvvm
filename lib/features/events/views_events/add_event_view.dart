@@ -7,6 +7,7 @@ import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
@@ -28,19 +29,29 @@ class AddEventView extends StatefulWidget {
 class _AddEventViewState extends State<AddEventView> {
   int selectedIndex = -1;
   final formkey = GlobalKey<FormState>();
-  late String libellefield;
-  late int prixfield;
-  late String descriptionfield;
-  late String _yourVariable;
+  // String libellefield = "";
+  int prixfield = -1;
+
+  String _yourVariable = "";
   List<DateTime?> _dataTime = [];
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
   String? imagepath;
   int currentStep = 0;
 
-  var datacategorie = CategoriesViewModel();
+  final name = TextEditingController();
+  final descriptionfield = TextEditingController();
+  final descriptionfield2 = TextEditingController();
 
-  var data = EventsViewModel();
+  @override
+  void initState() {
+    Provider.of<CategoriesViewModel>(context, listen: false)
+        .FetchAllCategories();
+    Provider.of<EventsViewModel>(context, listen: false);
+
+    super.initState();
+  }
+
   var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
 
   final ImagePicker _picker = ImagePicker();
@@ -53,34 +64,6 @@ class _AddEventViewState extends State<AddEventView> {
         : setState(() {
             currentStep -= 1;
           });
-  }
-
-  _onStepContinue() {
-    final isLastStep = currentStep == getSteps().length - 1;
-    if (isLastStep) {
-      //  if (formkey.currentState!.validate()) {
-      var event = {
-        "category_id": categories![selectedIndex].id,
-        // "category_id": 1,
-        "observation_id": 21,
-        "libelle": libellefield,
-        "description": descriptionfield,
-        "prix": _currentSliderValue.toInt(),
-        "date_heure": _dataTime.toString(),
-        "adresse": "Stade du 26 Mars",
-        "nbre_tichet": 1000,
-        "status": "statut",
-        "image": "imagepath"
-      };
-      AddEventModel eventformJson = AddEventModel.fromJson(event);
-      //  print(eventformJson);
-      setState(() {
-        data.AddEvent(eventformJson);
-      });
-      // }
-    } else {
-      setState(() => currentStep += 1);
-    }
   }
 
   Future<void> _onImageButtonPressed(ImageSource source,
@@ -100,6 +83,41 @@ class _AddEventViewState extends State<AddEventView> {
 
   @override
   Widget build(BuildContext context) {
+    categories =
+        Provider.of<CategoriesViewModel>(context, listen: true).categories;
+    var provider = Provider.of<EventsViewModel>(context, listen: true);
+
+    _onStepContinue() async {
+      String namestring = name.text.trim();
+      String description = descriptionfield.text.trim();
+      final isLastStep = currentStep == getSteps().length - 1;
+      if (isLastStep) {
+        var event = {
+          "category_id": 1,
+          "observation_id": 21,
+          "libelle": namestring,
+          "description": description,
+          "prix": _currentSliderValue.toInt(),
+          "date_heure": _dataTime.toString(),
+          "adresse": "Stade du 26 Mars",
+          "nbre_tichet": 1000,
+          "status": "statut",
+          "image": "imagepath"
+        };
+        AddEventModel eventformJson = AddEventModel.fromJson(event);
+        setState(() {
+          provider.AddEvent(eventformJson);
+        });
+
+        if (provider.back) {
+          print("Eventadded ");
+          Navigator.of(context).pop();
+        }
+      } else {
+        setState(() => currentStep += 1);
+      }
+    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -185,6 +203,7 @@ class _AddEventViewState extends State<AddEventView> {
                 width: widthbigbutton,
                 height: heightbigbutton,
                 child: TextFormField(
+                  controller: name,
                   decoration: textFieldDecoration(
                     "Nom de levenment",
                     "entre le nom de levenment",
@@ -192,12 +211,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Nom de levenment";
-                    } else {
-                      return null;
-                    }
-                  },
-                  onChanged: (text) {
-                    libellefield = text;
+                    } 
                   },
                 ),
               ),
@@ -246,9 +260,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "le localisation";
-                    } else {
-                      return null;
-                    }
+                    } 
                   },
                   onChanged: (text) {
                     prixfield = 7;
@@ -274,33 +286,23 @@ class _AddEventViewState extends State<AddEventView> {
               ),
               SizedBox(
                 height: 120,
-                child: FutureBuilder<List<OneCategorieViewModel>>(
-                 // future: datacategorie.FetchAllCategories(),
-                  builder: ((context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else {
-                      categories = snapshot.data;
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categories?.length,
-                          itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    selectedIndex = index;
-                                  });
-                                },
-                                child: CategorieIconWidget(
-                                  libelle: categories![index].libelle,
-                                  backgroundColor: selectedIndex == index
-                                      ? const Color(0xffD2286A)
-                                      : Colors.grey,
-                                ),
-                              ));
-                    }
-                  }),
-                ),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories?.length,
+                    itemBuilder: (context, index) => InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: CategorieIconWidget(
+                            libelle: categories?[index].libelle,
+                            backgroundColor: selectedIndex == index
+                                ? const Color(0xffD2286A)
+                                : Colors.grey,
+                          ),
+                        )),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -350,6 +352,7 @@ class _AddEventViewState extends State<AddEventView> {
                 width: widthbigbutton,
                 height: heightbigbutton,
                 child: TextFormField(
+                  controller: descriptionfield,
                   decoration: textFieldDecoration(
                     "publicite",
                     "entre le publicite",
@@ -357,12 +360,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "entre publicite";
-                    } else {
-                      return null;
                     }
-                  },
-                  onChanged: (text) {
-                    descriptionfield = text;
                   },
                 ),
               ),
@@ -381,6 +379,7 @@ class _AddEventViewState extends State<AddEventView> {
                 width: widthbigbutton,
                 height: heightbigbutton,
                 child: TextFormField(
+                  controller: descriptionfield2,
                   keyboardType: TextInputType.multiline,
                   maxLines: 4,
                   decoration: textFieldDecoration(
@@ -390,12 +389,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "entre publicite";
-                    } else {
-                      return null;
                     }
-                  },
-                  onChanged: (text) {
-                    descriptionfield = text;
                   },
                 ),
               ),
@@ -455,7 +449,6 @@ class _AddEventViewState extends State<AddEventView> {
                   ),
                 ],
               ),
-              // InkWell(onTap: () {}, child: MediumButton(text: "APPLIQUER")),
             ],
           ),
         )

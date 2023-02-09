@@ -78,7 +78,7 @@ class TontinesApi {
   }
 
   @override
-  Future<bool> addTontine(TontineModel tontineModel) async {
+  Future<http.Response?> addTontine(TontineModel tontineModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
@@ -97,13 +97,13 @@ class TontinesApi {
 
       http.Response response =
           await http.post(url, headers: headers, body: body);
-      var responsebody = jsonEncode(response.body);
+      // var responsebody = jsonEncode(response.body);
       // print(eventModelJson);
       //  print(responsebody);
+      return response;
     } catch (e) {
       print(e);
     }
-    return true;
   }
 
   @override

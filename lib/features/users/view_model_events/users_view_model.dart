@@ -62,7 +62,8 @@ class UsersViewModel extends ChangeNotifier {
     tokenModel = TokenModel.fromJson(payload);
     if (tokenModel != null) {
       userConnected = await UsersApi().getUserByID(tokenModel!.userId);
+
+      notifyListeners();
     }
-    notifyListeners();
   }
 }

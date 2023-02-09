@@ -10,6 +10,7 @@ class EventsViewModel extends ChangeNotifier {
   List<EventModel> eventsbyCategorie = [];
   EventModel? eventsbyID;
   bool loading = false;
+  bool back = false;
 
   Future<void> GetEventByCategorie(int id) async {
     List<EventModel> list = await EventsApi().getEventByCategorie(id);
@@ -34,18 +35,31 @@ class EventsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> UpdateEventByID(EventModel eventModel) async {
+  Future<void> UpdateEventByID(EventModel eventModel) async {
     var event = await EventsApi().updateEventByID(eventModel);
-    return true;
   }
 
-  Future<bool> AddEvent(AddEventModel addEventModel) async {
+  Future<void> AddEvent(AddEventModel addEventModel) async {
+    loading = true;
     var event = await EventsApi().addEvent(addEventModel);
-    return true;
+    print(event);
+    if (event?.statusCode == 201) {
+      back = true;
+      notifyListeners();
+    }
+    loading = false;
+    notifyListeners();
   }
 
-  Future<bool> DeleteEventByID(int id) async {
-    var eventModel = await EventsApi().deleteEventByID(id);
-    return true;
+  Future<void> DeleteEventByID(int id) async {
+    loading = true;
+    var response = await EventsApi().deleteEventByID(id);
+    notifyListeners();
+    if (response?.statusCode == 200) {
+      back = true;
+      notifyListeners();
+    }
+    loading = false;
+    notifyListeners();
   }
 }

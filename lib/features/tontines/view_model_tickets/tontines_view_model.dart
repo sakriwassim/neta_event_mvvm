@@ -22,14 +22,16 @@ class TontinesViewModel extends ChangeNotifier {
     tontineById = TontineModel();
   }
 
-  Future<bool> UpdateTontineByID(TontineModel addTontineModel) async {
-    var ticket = await TontinesApi().updateTontineByID(addTontineModel);
-    return true;
+  Future<void> UpdateTontineByID(TontineModel addTontineModel) async {
+    var responce = await TontinesApi().updateTontineByID(addTontineModel);
   }
 
-  Future<bool> AddTontine(TontineModel addTontineModel) async {
+  Future<void> AddTontine(TontineModel addTontineModel) async {
+    loading = true;
     var event = await TontinesApi().addTontine(addTontineModel);
-    return true;
+    notifyListeners();
+    loading = false;
+    notifyListeners();
   }
 
   Future<bool> DeleteTontineByID(int id) async {

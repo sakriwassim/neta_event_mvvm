@@ -5,7 +5,6 @@ class TontineModel {
   String? periode;
   String? nbr_participant;
   String? montant_regulier;
-
   String? status;
   String? image;
   String? created_at;

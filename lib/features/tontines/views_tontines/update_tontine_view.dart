@@ -20,12 +20,9 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
   final formkey = GlobalKey<FormState>();
   var data = TontinesViewModel();
 
-
   final libellefield = TextEditingController();
   final prixfield = TextEditingController();
   final descriptionfield = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +56,8 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } 
+                  }
                 },
-                
               ),
             ),
             Padding(
@@ -74,9 +70,8 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } 
+                  }
                 },
-                
               ),
             ),
             Padding(
@@ -89,9 +84,8 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "entre le date de mesure";
-                  } 
+                  }
                 },
-              
               ),
             ),
             InkWell(
@@ -112,14 +106,14 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
 
                   TontineModel ticketformJson = TontineModel.fromJson(ticket);
 
-                  var update = await data.UpdateTontineByID(ticketformJson);
+                  // var update = await data.UpdateTontineByID(ticketformJson);
 
-                  if (update == true) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const GetAllTontineView()));
-                  }
+                  // if (update == true) {
+                  //   Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => const GetAllTontineView()));
+                  // }
                 }
               },
               child: Button(

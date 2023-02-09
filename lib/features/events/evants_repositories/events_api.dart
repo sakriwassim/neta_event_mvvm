@@ -97,7 +97,7 @@ class EventsApi {
   }
 
   @override
-  Future<EventModel> updateEventByID(EventModel eventModel) async {
+  Future<http.Response?> updateEventByID(EventModel eventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       //var token = prefs.getString("token");
@@ -119,19 +119,15 @@ class EventsApi {
 
       var url = Uri.parse(link);
 
-      http.Response response = await http.put(url,
+      return await http.put(url,
           headers: headers, body: json.encode(eventModelJson));
-      var responsebody = jsonDecode(response.body);
-     
     } catch (e) {
       print(e);
     }
-
-    return eventModel;
   }
 
   @override
-  Future<bool> addEvent(AddEventModel addEventModel) async {
+  Future<http.Response?> addEvent(AddEventModel addEventModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       // var token = prefs.getString("token");
@@ -152,16 +148,16 @@ class EventsApi {
 
       http.Response response =
           await http.post(url, headers: headers, body: body);
-      var responsebody = jsonEncode(response.body);
+
+      return response;
+      // var responsebody = jsonEncode(response.body);
     } catch (e) {
       print(e);
     }
-
-    return true;
   }
 
   @override
-  Future<bool> deleteEventByID(int id) async {
+  Future<http.Response?> deleteEventByID(int id) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       // var token = prefs.getString("token");
@@ -176,11 +172,9 @@ class EventsApi {
       String link = '$baseUrl/Events/$id';
       var url = Uri.parse(link);
 
-      http.Response response = await http.delete(url, headers: headers);
-
-      return true;
+      return await http.delete(url, headers: headers);
     } catch (e) {
-      return false;
+      print(e);
     }
   }
 }

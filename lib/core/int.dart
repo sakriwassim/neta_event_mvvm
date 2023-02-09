@@ -18,7 +18,7 @@ const widthminibutton = 60.00;
 const fontSizeminibutton = 10.00;
 
 //size mediumbutton
-const heightmediumbutton = 40.00;
+const heightmediumbutton = 50.00;
 const widthmediumbutton = 80.00;
 const fontSizemediumbutton = 12.00;
 

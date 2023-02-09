@@ -36,8 +36,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // int indexCategories = -1;
-
   @override
   void initState() {
     super.initState();
@@ -232,27 +230,29 @@ class _HomeViewState extends State<HomeView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 2,
-                                color: Color.fromARGB(255, 255, 255, 255),
+                      provideruser.userConnected?.roleId == "3"
+                          ? Container()
+                          : InkWell(
+                              onTap: () {
+                                Scaffold.of(context).openDrawer();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                    ),
+                                    shape: BoxShape.circle,
+                                    gradient: gradientbackground),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: SvgPicture.asset(
+                                    ProfileBnt,
+                                    width: 15,
+                                  ),
+                                ),
                               ),
-                              shape: BoxShape.circle,
-                              gradient: gradientbackground),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: SvgPicture.asset(
-                              ProfileBnt,
-                              width: 15,
                             ),
-                          ),
-                        ),
-                      ),
                       Column(
                         children: [
                           const Text(
@@ -277,27 +277,31 @@ class _HomeViewState extends State<HomeView> {
                               : Container(),
                         ],
                       ),
-                      Row(
-                        children: [
-                          IconButton(
-                              icon: const Icon(
-                                Icons.favorite_border_sharp,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                comingsoon();
-                              }),
-                          IconButton(
-                              icon: SvgPicture.asset(Notif),
-                              onPressed: () {
-                                navGetAllNotificationView();
-                              }),
-                        ],
-                      ),
+                      provideruser.userConnected?.roleId == "3"
+                          ? Container()
+                          : Row(
+                              children: [
+                                IconButton(
+                                    icon: const Icon(
+                                      Icons.favorite_border_sharp,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      comingsoon();
+                                    }),
+                                IconButton(
+                                    icon: SvgPicture.asset(Notif),
+                                    onPressed: () {
+                                      navGetAllNotificationView();
+                                    }),
+                              ],
+                            ),
                     ],
                   ),
                 ),
-                SearchWidget()
+                provideruser.userConnected?.roleId == "3"
+                    ? Container()
+                    : SearchWidget()
               ],
             ),
           ),
@@ -330,13 +334,19 @@ class _HomeViewState extends State<HomeView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //****************** Exclusives*/
-                              VoirTout(
-                                text: 'Exclusives',
-                                callbackfonction: navGetAllEventView,
-                              ),
-                              EventsExclusivesWidget(
-                                eventsexclusives: providerevent.allEvents,
-                              ),
+
+                              provideruser.userConnected?.roleId == "3"
+                                  ? Container()
+                                  : VoirTout(
+                                      text: 'Exclusives',
+                                      callbackfonction: navGetAllEventView,
+                                    ),
+
+                              provideruser.userConnected?.roleId == "3"
+                                  ? Container()
+                                  : EventsExclusivesWidget(
+                                      eventsexclusives: providerevent.allEvents,
+                                    ),
                               SizedBox(
                                 height: getProportionateScreenHeight(10),
                               ),
@@ -368,7 +378,8 @@ class _HomeViewState extends State<HomeView> {
                                     providerevent.eventsbyCategorie,
                               ),
 
-                              provideruser.userConnected?.roleId == "1"
+                              provideruser.userConnected?.roleId == "1" ||
+                                      provideruser.userConnected?.roleId == "3"
                                   ? Container()
                                   : Column(
                                       children: [
@@ -380,13 +391,19 @@ class _HomeViewState extends State<HomeView> {
                                             packs: providerpack.packs),
                                       ],
                                     ),
-                              VoirTout(
-                                text: 'Tontine',
-                                callbackfonction: navGetAllTontineView,
-                              ),
-                              TontinesWidgetHome(
-                                tontines: providertontine.tontines,
-                              ),
+
+                              provideruser.userConnected?.roleId == "3"
+                                  ? Container()
+                                  : VoirTout(
+                                      text: 'Tontine',
+                                      callbackfonction: navGetAllTontineView,
+                                    ),
+
+                              provideruser.userConnected?.roleId == "3"
+                                  ? Container()
+                                  : TontinesWidgetHome(
+                                      tontines: providertontine.tontines,
+                                    ),
                             ],
                           ),
                         ),

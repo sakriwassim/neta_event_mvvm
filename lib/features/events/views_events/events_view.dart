@@ -54,7 +54,8 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                   color: Colors.black,
                 ),
               ),
-              provideruser.userConnected?.roleId == "0"
+              provideruser.userConnected?.roleId == "0" ||
+                      provideruser.userConnected?.roleId == "4"
                   ? Container()
                   : InkWell(
                       onTap: () {

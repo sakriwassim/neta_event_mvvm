@@ -37,6 +37,12 @@ class EventsViewModel extends ChangeNotifier {
 
   Future<void> UpdateEventByID(EventModel eventModel) async {
     var event = await EventsApi().updateEventByID(eventModel);
+    if (event?.statusCode == 200) {
+      back = true;
+      notifyListeners();
+    }
+    loading = false;
+    notifyListeners();
   }
 
   Future<void> AddEvent(AddEventModel addEventModel) async {

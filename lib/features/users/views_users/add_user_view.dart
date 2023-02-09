@@ -2,14 +2,13 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
+import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
-import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../models_users/add_event_model.dart';
-import '../users_repositories/users_api.dart';
 import '../view_model_events/users_view_model.dart';
 
 class AddUserView extends StatefulWidget {
@@ -32,12 +31,9 @@ class _AddUserViewState extends State<AddUserView> {
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
 
-  var datacategorie = CategoriesViewModel();
-
-  var data = UsersViewModel();
-
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<UsersViewModel>(context, listen: true);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -244,7 +240,6 @@ class _AddUserViewState extends State<AddUserView> {
                     };
 
                     AddUserModel eventformJson = AddUserModel.fromJson(event);
-                    //  print(eventformJson);
 
                     setState(() {
                       data.AddUser(eventformJson);

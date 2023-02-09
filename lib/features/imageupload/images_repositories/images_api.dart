@@ -2,9 +2,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:neta_event_mvvm/core/string.dart';
 
-import 'image_repository.dart';
 
-class ImagesApi extends ImagesRepository {
+class ImagesApi  {
   @override
   Future<String> addImage(XFile? pickedFile) async {
     String filepath = pickedFile!.path;

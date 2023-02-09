@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:provider/provider.dart';
 import '../../../core/colors.dart';
@@ -16,6 +15,7 @@ import '../../../core/widgets/text_widget_text1.dart';
 import '../../users/view_model_events/users_view_model.dart';
 import '../models_events/event_model.dart';
 import '../view_model_events/events_view_model.dart';
+import 'add_event_view.dart';
 
 class OneEventView extends StatefulWidget {
   EventModel? eventModel;
@@ -42,19 +42,22 @@ class _OneEventViewState extends State<OneEventView> {
     var provider = Provider.of<EventsViewModel>(context, listen: true);
 
     modifierevent() {
-      var provider = Provider.of<EventsViewModel>(context, listen: false);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AddEventView(
+                    isupdate: true,
+                    eventModel: widget.eventModel,
+                  )));
+
       provider.UpdateEventByID(widget.eventModel!);
     }
 
     supprimeevent() {
-      print("sup ");
-
-      provider.DeleteEventByID(13);
-      if (provider.loading == false) {
-        if (provider.back) {
-          print("event deleted");
-          Navigator.pop(context);
-        }
+      provider.DeleteEventByID(widget.eventModel!.id!);
+      if (provider.back) {
+        print("event deleted");
+        Navigator.pop(context);
       }
     }
 

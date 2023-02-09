@@ -6,19 +6,24 @@ import 'package:neta_event_mvvm/core/colors.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/core/widgets/small_button_style.dart';
+import 'package:neta_event_mvvm/features/events/models_events/event_model.dart';
 import 'package:neta_event_mvvm/features/events/views_events/widgets/categorie_icon_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
-import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../models_events/add_event_model.dart';
 import '../view_model_events/events_view_model.dart';
 
 class AddEventView extends StatefulWidget {
+  bool? isupdate;
+  EventModel? eventModel;
+
   AddEventView({
+    this.isupdate,
+    this.eventModel,
     super.key,
   });
 
@@ -31,14 +36,12 @@ class _AddEventViewState extends State<AddEventView> {
   final formkey = GlobalKey<FormState>();
   // String libellefield = "";
   int prixfield = -1;
-
   String _yourVariable = "";
   List<DateTime?> _dataTime = [];
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
   String? imagepath;
   int currentStep = 0;
-
   final name = TextEditingController();
   final descriptionfield = TextEditingController();
   final descriptionfield2 = TextEditingController();
@@ -52,8 +55,6 @@ class _AddEventViewState extends State<AddEventView> {
     super.initState();
   }
 
-  var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
-
   final ImagePicker _picker = ImagePicker();
   List<XFile>? _imageFileList;
   dynamic _pickImageError;
@@ -64,21 +65,6 @@ class _AddEventViewState extends State<AddEventView> {
         : setState(() {
             currentStep -= 1;
           });
-  }
-
-  Future<void> _onImageButtonPressed(ImageSource source,
-      {BuildContext? context}) async {
-    try {
-      final XFile? pickedFile = await _picker.pickImage(
-        source: source,
-      );
-
-      imagepath = await dataimage.addImage(pickedFile);
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-    }
   }
 
   @override
@@ -92,7 +78,22 @@ class _AddEventViewState extends State<AddEventView> {
       String description = descriptionfield.text.trim();
       final isLastStep = currentStep == getSteps().length - 1;
       if (isLastStep) {
-        var event = {
+        var update = {
+          "id": widget.eventModel?.id,
+          "category_id": widget.eventModel!.categoryId,
+          "observation_id": widget.eventModel!.observationId,
+          "libelle": namestring,
+          "description": description,
+          "prix": _currentSliderValue.toString(),
+          "date_heure": "2020-01-27 17:50:45",
+          "adresse": "Stade du 26 Mars",
+          "nbre_tichet": "1000",
+          "status": "statut",
+          "image": "image",
+          "created_at": "2023-02-07T21:19:08.000000Z",
+          "updated_at": "2023-02-07T21:19:08.000000Z"
+        };
+        var add = {
           "category_id": 1,
           "observation_id": 21,
           "libelle": namestring,
@@ -103,8 +104,26 @@ class _AddEventViewState extends State<AddEventView> {
           "nbre_tichet": 1000,
           "status": "statut",
           "image": "imagepath"
+
+          // "category_id": 1,
+          // "observation_id": 21,
+          // "libelle": namestring,
+          // "description": description,
+          // "prix": _currentSliderValue.toInt(),
+          // "date_heure": _dataTime.toString() ??"",
+          // "adresse": "Stade du 26 Mars",
+          // "nbre_tichet": 1000,
+          // "status": "statut",
+          // "image": "imagepath"
         };
-        AddEventModel eventformJson = AddEventModel.fromJson(event);
+        // if (widget.isupdate == true) {
+        //   EventModel eventformJson = EventModel.fromJson(update);
+        //   setState(() {
+        //     provider.UpdateEventByID(eventformJson);
+        //   });
+        // }
+
+        AddEventModel eventformJson = AddEventModel.fromJson(add);
         setState(() {
           provider.AddEvent(eventformJson);
         });
@@ -127,8 +146,8 @@ class _AddEventViewState extends State<AddEventView> {
             shadowColor: Colors.white,
             elevation: 0.0,
             backgroundColor: Colors.white,
-            title: const Text(
-              "Add event",
+            title: Text(
+              widget.isupdate == true ? "update event" : "Add event",
               style: TextStyle(
                 color: Colors.black,
               ),
@@ -211,7 +230,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Nom de levenment";
-                    } 
+                    }
                   },
                 ),
               ),
@@ -245,7 +264,7 @@ class _AddEventViewState extends State<AddEventView> {
               const SizedBox(
                 height: 10,
               ),
-              Text('$_dataTime'),
+              // Text('$_dataTime'),
               const SizedBox(
                 height: 10,
               ),
@@ -260,7 +279,7 @@ class _AddEventViewState extends State<AddEventView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "le localisation";
-                    } 
+                    }
                   },
                   onChanged: (text) {
                     prixfield = 7;
@@ -420,7 +439,10 @@ class _AddEventViewState extends State<AddEventView> {
                         top: 20, bottom: 20, right: 10, left: 10),
                     child: InkWell(
                       onTap: () async {
-                        await _onImageButtonPressed(ImageSource.camera,
+                        var provider = Provider.of<ImagesViewModel>(context,
+                            listen: false);
+
+                        provider.onImageButtonPressed(ImageSource.camera,
                             context: context);
                       },
                       child: Card(
@@ -436,7 +458,9 @@ class _AddEventViewState extends State<AddEventView> {
                         top: 20, bottom: 20, right: 10, left: 10),
                     child: InkWell(
                       onTap: () async {
-                        await _onImageButtonPressed(ImageSource.gallery,
+                        var provider = Provider.of<ImagesViewModel>(context,
+                            listen: false);
+                        provider.onImageButtonPressed(ImageSource.gallery,
                             context: context);
                       },
                       child: Card(

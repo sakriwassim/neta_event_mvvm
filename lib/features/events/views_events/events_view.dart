@@ -62,7 +62,9 @@ class _GetAllEventViewState extends State<GetAllEventView> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AddEventView()));
+                                builder: (context) => AddEventView(
+                                      isupdate: false,
+                                    )));
                       },
                       child: Button(
                         text: "ADD EVENT",

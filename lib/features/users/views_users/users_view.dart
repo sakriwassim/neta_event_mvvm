@@ -5,7 +5,7 @@ import 'package:neta_event_mvvm/features/users/views_users/widgets/event_card_wi
 import '../../../core/size_config.dart';
 import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
-import 'one_event_view.dart';
+import 'one_user_view.dart';
 
 class GetAllUserView extends StatefulWidget {
   const GetAllUserView({super.key});

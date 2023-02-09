@@ -6,8 +6,8 @@ import 'package:neta_event_mvvm/features/users/views_users/widgets/event_card_wi
 import '../../../core/colors.dart';
 import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
-import 'add_event_view.dart';
-import 'one_event_view.dart';
+import 'add_user_view.dart';
+import 'one_user_view.dart';
 
 class GetExcusivesUserView extends StatefulWidget {
   const GetExcusivesUserView({super.key});

@@ -10,7 +10,6 @@ import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
-import '../../imageupload/images_repositories/images_api.dart';
 import '../../imageupload/view_model_images/images_view_model.dart';
 import '../models_users/add_event_model.dart';
 import '../view_model_events/users_view_model.dart';
@@ -34,10 +33,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
   late String nouveaupasswordfield;
   late String confirmerpasswordfield;
   bool _obscureText = false;
-
   String? imagepath;
-
-  var dataimage = ImagesViewModel(imagesRepository: ImagesApi());
 
   @override
   void initState() {
@@ -45,23 +41,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
     Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
   }
 
-//***********************************/
-  final ImagePicker _picker = ImagePicker();
-  List<XFile>? _imageFileList;
-  dynamic _pickImageError;
-  Future<void> _onImageButtonPressed(ImageSource source,
-      {BuildContext? context}) async {
-    try {
-      final XFile? pickedFile = await _picker.pickImage(
-        source: source,
-      );
-      imagepath = await dataimage.addImage(pickedFile);
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +49,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
     var provider = Provider.of<UsersViewModel>(context, listen: false);
     var provideruser =
         Provider.of<UsersViewModel>(context, listen: false).userConnected;
+    var providerimage = Provider.of<ImagesViewModel>(context, listen: true);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -250,7 +231,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   top: 20, bottom: 20, right: 10, left: 10),
                               child: InkWell(
                                 onTap: () async {
-                                  await _onImageButtonPressed(
+                                   providerimage.onImageButtonPressed(
                                       ImageSource.camera,
                                       context: context);
                                   if (formkey.currentState!.validate()) {
@@ -293,7 +274,7 @@ class _UserViewState extends State<UserView> with TickerProviderStateMixin {
                                   top: 20, bottom: 20, right: 10, left: 10),
                               child: InkWell(
                                 onTap: () async {
-                                  await _onImageButtonPressed(
+                                   providerimage.onImageButtonPressed(
                                       ImageSource.gallery,
                                       context: context);
 

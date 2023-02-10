@@ -34,7 +34,7 @@ class AddEventView extends StatefulWidget {
 class _AddEventViewState extends State<AddEventView> {
   int selectedIndex = -1;
   final formkey = GlobalKey<FormState>();
-  // String libellefield = "";
+
   int prixfield = -1;
   String _yourVariable = "";
   List<DateTime?> _dataTime = [];
@@ -80,8 +80,8 @@ class _AddEventViewState extends State<AddEventView> {
       if (isLastStep) {
         var update = {
           "id": widget.eventModel?.id,
-          "category_id": widget.eventModel!.categoryId,
-          "observation_id": widget.eventModel!.observationId,
+          "category_id": widget.eventModel?.categoryId,
+          "observation_id": widget.eventModel?.observationId,
           "libelle": namestring,
           "description": description,
           "prix": _currentSliderValue.toString(),
@@ -94,7 +94,7 @@ class _AddEventViewState extends State<AddEventView> {
           "updated_at": "2023-02-07T21:19:08.000000Z"
         };
         var add = {
-          "category_id": 1,
+          "category_id": categories?[selectedIndex].id,
           "observation_id": 21,
           "libelle": namestring,
           "description": description,
@@ -104,30 +104,14 @@ class _AddEventViewState extends State<AddEventView> {
           "nbre_tichet": 1000,
           "status": "statut",
           "image": "imagepath"
-
-          // "category_id": 1,
-          // "observation_id": 21,
-          // "libelle": namestring,
-          // "description": description,
-          // "prix": _currentSliderValue.toInt(),
-          // "date_heure": _dataTime.toString() ??"",
-          // "adresse": "Stade du 26 Mars",
-          // "nbre_tichet": 1000,
-          // "status": "statut",
-          // "image": "imagepath"
         };
-        // if (widget.isupdate == true) {
-        //   EventModel eventformJson = EventModel.fromJson(update);
-        //   setState(() {
-        //     provider.UpdateEventByID(eventformJson);
-        //   });
-        // }
+        if (widget.isupdate == true) {
+          EventModel eventformJson = EventModel.fromJson(update);
+          provider.UpdateEventByID(eventformJson);
+        }
 
         AddEventModel eventformJson = AddEventModel.fromJson(add);
-        setState(() {
-          provider.AddEvent(eventformJson);
-        });
-
+        provider.AddEvent(eventformJson);
         if (provider.back) {
           print("Eventadded ");
           Navigator.of(context).pop();

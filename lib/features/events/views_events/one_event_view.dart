@@ -69,322 +69,326 @@ class _OneEventViewState extends State<OneEventView> {
         child: PreferredSize(
             preferredSize: const Size.fromHeight(150.0),
             child: AppBarDetails(
-              image: widget.eventModel!.image!,
+              image: widget.eventModel?.image!,
               title: "Event détaille",
             )),
       ),
-      body: OfflineBuilder(
-        connectivityBuilder: (
-          BuildContext context,
-          ConnectivityResult connectivity,
-          Widget child,
-        ) {
-          final bool connected = connectivity != ConnectivityResult.none;
-          if (connected) {
-            return Center(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(60),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
-                          ),
-                        ],
+      body: SingleChildScrollView(
+        child: OfflineBuilder(
+          connectivityBuilder: (
+            BuildContext context,
+            ConnectivityResult connectivity,
+            Widget child,
+          ) {
+            final bool connected = connectivity != ConnectivityResult.none;
+            if (connected) {
+              return Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(60),
                       ),
-                      height: getProportionateScreenHeight(60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GradientTextWidget(
-                            fontWeight: FontWeight.w500,
-                            size: 12, text: widget.eventModel!.libelle!,
-                            // text: snapshot.data!.libelle,
-                          ),
-                          Button(
-                              gradientbackground: gradientbackground,
-                              text: "Favoris",
-                              textcolor: Colors.white,
-                              height: heightminibutton,
-                              width: widthminibutton,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400)
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(20),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(100),
-                    child: TextAirbnbCereal(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      size: 35,
-                      title: widget.eventModel!.libelle!,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(50),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(Datecala),
-                        SizedBox(
-                          width: getProportionateScreenWidth(10),
-                        ),
-                        SizedBox(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: getProportionateScreenWidth(5),
-                                ),
-                                TextAirbnbCereal(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  size: 16,
-                                  title: widget.eventModel!.dateHeure!,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(50),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(locationcolor),
-                        SizedBox(
-                          width: getProportionateScreenWidth(10),
-                        ),
-                        SizedBox(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: getProportionateScreenWidth(5),
-                                ),
-                                TextAirbnbCereal(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  size: 16,
-                                  title: widget.eventModel!.adresse!,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(50),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            color: Colors.redAccent,
-                          ),
-                          height: getProportionateScreenHeight(50),
-                          width: getProportionateScreenWidth(50),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: ImageCachedInternet(
-                              height: getProportionateScreenHeight(50),
-                              imageUrl: widget.eventModel!.image!,
-                              width: getProportionateScreenWidth(50),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
                             ),
-                          ),
+                          ],
                         ),
-                        SizedBox(
-                          width: getProportionateScreenWidth(10),
-                        ),
-                        SizedBox(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: getProportionateScreenWidth(5),
-                                ),
-                                Column(
-                                  children: [
-                                    TextAirbnbCereal(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      size: 16,
-                                      title: widget.eventModel!.libelle!,
-                                    ),
-                                    TextAirbnbCereal(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w400,
-                                      size: 16,
-                                      title: widget.eventModel!.status!,
-                                    ),
-                                  ],
-                                ),
-                              ]),
-                        ),
-                        const Spacer(),
-                        Container(
-                            height: getProportionateScreenHeight(
-                                heightmediumbutton),
-                            width:
-                                getProportionateScreenWidth(widthmediumbutton),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(31, 255, 83, 249),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
+                        height: getProportionateScreenHeight(60),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GradientTextWidget(
+                              fontWeight: FontWeight.w500,
+                              size: 12, text: widget.eventModel!.libelle!,
+                              // text: snapshot.data!.libelle,
                             ),
-                            child: Center(
-                              child: GradientTextWidget(
-                                fontWeight: FontWeight.w400,
-                                size: fontSizemediumbutton,
-                                text: 'Découvrir',
-                              ),
-                            ))
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50),
-                        ),
-                        child: TextAirbnbCereal(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w500,
-                          size: 25,
-                          title: 'A propos',
-                        ),
-                      ),
-                      const Spacer()
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: getProportionateScreenWidth(50),
-                        ),
-                        child: TextAirbnbCereal(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w400,
-                          size: 25,
-                          title: widget.eventModel!.description!,
-                        ),
-                      ),
-                      const Spacer()
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  userconnected?.roleId == "3"
-                      ? Container()
-                      : userconnected?.roleId == "0"
-                          ? InkWell(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PaymentScreen()));
-                              },
-                              child: Button(
-                                text: "PASSER LA COMMANDE",
-                                fontSize: 20,
+                            Button(
                                 gradientbackground: gradientbackground,
-                                height: heightbigbutton,
-                                width: widthbigbutton,
-                                fontWeight: FontWeight.normal,
+                                text: "Favoris",
                                 textcolor: Colors.white,
-                              ),
-                            )
-                          : Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 5, left: 10),
-                                    child: InkWell(
-                                      onTap: supprimeevent,
-                                      child: Button(
-                                        text: "SUPPRIMER",
-                                        fontSize: 20,
-                                        gradientbackground: gradientbackground,
-                                        height: heightmediumbutton,
-                                        width: widthmediumbutton,
-                                        fontWeight: FontWeight.normal,
-                                        textcolor: Colors.white,
-                                      ),
-                                    ),
+                                height: heightminibutton,
+                                width: widthminibutton,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400)
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(100),
+                      child: TextAirbnbCereal(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        size: 35,
+                        title: widget.eventModel!.libelle!,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(Datecala),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 10, left: 5),
-                                    child: InkWell(
-                                      onTap: modifierevent,
-                                      child: Button(
-                                        text: "MODIFIER",
-                                        fontSize: 20,
-                                        gradientbackground: gradientbackground,
-                                        height: heightmediumbutton,
-                                        width: widthmediumbutton,
-                                        fontWeight: FontWeight.normal,
-                                        textcolor: Colors.white,
-                                      ),
-                                    ),
+                                  TextAirbnbCereal(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    size: 16,
+                                    title: widget.eventModel!.dateHeure!,
                                   ),
-                                ),
-                              ],
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(locationcolor),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
+                                  ),
+                                  TextAirbnbCereal(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    size: 16,
+                                    title: widget.eventModel!.adresse!,
+                                  ),
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              color: Colors.redAccent,
                             ),
-                ],
-              ),
-            );
-          } else {
-            return const Center(
-              child: Text("no connection"),
-            );
-          }
-        },
-        child: const CircularProgressIndicator(),
+                            height: getProportionateScreenHeight(50),
+                            width: getProportionateScreenWidth(50),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: ImageCachedInternet(
+                                height: getProportionateScreenHeight(50),
+                                imageUrl: widget.eventModel!.image!,
+                                width: getProportionateScreenWidth(50),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(10),
+                          ),
+                          SizedBox(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(5),
+                                  ),
+                                  Column(
+                                    children: [
+                                      TextAirbnbCereal(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        size: 16,
+                                        title: widget.eventModel!.libelle!,
+                                      ),
+                                      TextAirbnbCereal(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w400,
+                                        size: 16,
+                                        title: widget.eventModel!.status!,
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                          ),
+                          const Spacer(),
+                          Container(
+                              height: getProportionateScreenHeight(
+                                  heightmediumbutton),
+                              width: getProportionateScreenWidth(
+                                  widthmediumbutton),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(31, 255, 83, 249),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              child: Center(
+                                child: GradientTextWidget(
+                                  fontWeight: FontWeight.w400,
+                                  size: fontSizemediumbutton,
+                                  text: 'Découvrir',
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(50),
+                          ),
+                          child: TextAirbnbCereal(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w500,
+                            size: 25,
+                            title: 'A propos',
+                          ),
+                        ),
+                        const Spacer()
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(50),
+                          ),
+                          child: TextAirbnbCereal(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w400,
+                            size: 25,
+                            title: widget.eventModel!.description!,
+                          ),
+                        ),
+                        const Spacer()
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    userconnected?.roleId == "3"
+                        ? Container()
+                        : userconnected?.roleId == "0"
+                            ? InkWell(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const PaymentScreen()));
+                                },
+                                child: Button(
+                                  text: "PASSER LA COMMANDE",
+                                  fontSize: 20,
+                                  gradientbackground: gradientbackground,
+                                  height: heightbigbutton,
+                                  width: widthbigbutton,
+                                  fontWeight: FontWeight.normal,
+                                  textcolor: Colors.white,
+                                ),
+                              )
+                            : Row(
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 5, left: 10),
+                                      child: InkWell(
+                                        onTap: supprimeevent,
+                                        child: Button(
+                                          text: "SUPPRIMER",
+                                          fontSize: 20,
+                                          gradientbackground:
+                                              gradientbackground,
+                                          height: heightmediumbutton,
+                                          width: widthmediumbutton,
+                                          fontWeight: FontWeight.normal,
+                                          textcolor: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 10, left: 5),
+                                      child: InkWell(
+                                        onTap: modifierevent,
+                                        child: Button(
+                                          text: "MODIFIER",
+                                          fontSize: 20,
+                                          gradientbackground:
+                                              gradientbackground,
+                                          height: heightmediumbutton,
+                                          width: widthmediumbutton,
+                                          fontWeight: FontWeight.normal,
+                                          textcolor: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                  ],
+                ),
+              );
+            } else {
+              return const Center(
+                child: Text("no connection"),
+              );
+            }
+          },
+          child: const CircularProgressIndicator(),
+        ),
       ),
     );
   }

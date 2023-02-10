@@ -140,16 +140,13 @@ class EventsApi {
         'authorization': 'Basic +$token'
       };
 
-      final body = jsonEncode(eventModelJson);
-
       String link = '$baseUrl/Events';
 
       var url = Uri.parse(link);
 
-      http.Response response =
-          await http.post(url, headers: headers, body: body);
+      return await http.post(url,
+          headers: headers, body: json.encode(eventModelJson));
 
-      return response;
       // var responsebody = jsonEncode(response.body);
     } catch (e) {
       print(e);

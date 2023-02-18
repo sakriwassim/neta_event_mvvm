@@ -120,5 +120,7 @@ class EventCardWidget extends StatelessWidget {
         ),
       ),
     );
+
+
   }
 }

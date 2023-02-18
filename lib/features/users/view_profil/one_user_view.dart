@@ -62,7 +62,7 @@ class _OneUserViewState extends State<OneUserView> {
                   child: ClipOval(
                     child: ImageCachedInternet(
                       height: MediaQuery.of(context).size.height,
-                      imageUrl: '${data!.image}',
+                      imageUrl: '${data?.image}',
                       width: MediaQuery.of(context).size.width,
                     ),
                   ),
@@ -72,7 +72,7 @@ class _OneUserViewState extends State<OneUserView> {
                 height: getProportionateScreenHeight(20),
               ),
               Text(
-                data.nomComplet!,
+                "${data?.nomComplet}",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -90,7 +90,9 @@ class _OneUserViewState extends State<OneUserView> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const UserView(),
+                          builder: (context) => UserView(
+                            userModel: data,
+                          ),
                         ));
                   },
                   child: Button(
@@ -115,7 +117,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      data.nomComplet!,
+                      "${data?.nomComplet}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -134,7 +136,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      data.email!,
+                      "${data?.email}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -153,7 +155,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      data.adresse!,
+                      "${data?.adresse}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -172,7 +174,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      data.telephone!,
+                      "${data?.telephone}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],

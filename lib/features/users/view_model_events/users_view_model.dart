@@ -33,7 +33,7 @@ class UsersViewModel extends ChangeNotifier {
       AddUserModel eventModel, String userconnectedId) async {
     loading = true;
     var response = await UsersApi().updateUserByID(eventModel, userconnectedId);
-
+    print(response?.body);
     if (response?.statusCode == 200) {
       isBack = true;
     }
@@ -60,9 +60,7 @@ class UsersViewModel extends ChangeNotifier {
     var token = prefs.getString("token");
     Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
     tokenModel = TokenModel.fromJson(payload);
-    if (tokenModel != null) {
-      userConnected = await UsersApi().getUserByID(tokenModel!.userId);
-      notifyListeners();
-    }
+    userConnected = await UsersApi().getUserByID(tokenModel?.userId);
+    notifyListeners();
   }
 }

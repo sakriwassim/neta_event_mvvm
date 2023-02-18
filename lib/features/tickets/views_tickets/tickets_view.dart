@@ -6,6 +6,7 @@ import '../../../core/size_config.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../users/view_model_events/users_view_model.dart';
+import '../view_model_tickets/tickets_view_model.dart';
 import 'ticket_card_widget/get_ticket_widget.dart';
 
 class GetAllTicketView extends StatefulWidget {
@@ -23,6 +24,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       Provider.of<UsersViewModel>(context, listen: false).GetUserConnected();
+      Provider.of<TicketsViewModel>(context, listen: false).FetchAllTickets();
     });
   }
 
@@ -32,6 +34,8 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
         .userConnected!
         .roleId
         .toString();
+    var tickets =
+        Provider.of<TicketsViewModel>(context, listen: true).listAllTickets;
     SizeConfig().init(context);
 
     TabController _tabController = TabController(length: 2, vsync: this);
@@ -117,9 +121,13 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
-                      GetAllTicketWidget(),
-                      GetAllTicketWidget(),
+                    children: [
+                      GetAllTicketWidget(
+                        tickets: tickets,
+                      ),
+                      GetAllTicketWidget(
+                        tickets: tickets,
+                      ),
                     ],
                   ),
                 ),

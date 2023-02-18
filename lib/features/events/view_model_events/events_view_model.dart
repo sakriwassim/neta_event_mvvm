@@ -53,8 +53,6 @@ class EventsViewModel extends ChangeNotifier {
       back = true;
       notifyListeners();
     }
-    // loading = false;
-    // notifyListeners();
   }
 
   Future<void> DeleteEventByID(int id) async {

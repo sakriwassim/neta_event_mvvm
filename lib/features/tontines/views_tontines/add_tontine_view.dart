@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
-import 'package:provider/provider.dart';
-import '../../../core/Screen/payment_screen.dart';
+import 'package:neta_event_mvvm/features/tontines/views_tontines/payment_screen_tontine.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/size_config.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
-import '../../../main.dart';
-import '../../Categories/view_model_categories/categories_view_model.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
+import '../../users/models_users/event_model.dart';
 import '../models_tontines/add_tontine_model.dart';
-import '../models_tontines/tontine_model.dart';
 
 class AddTontineView extends StatefulWidget {
-  const AddTontineView({
+  UserModel? userConnected;
+  List<OneCategorieViewModel> allCategories;
+  AddTontineView({
+    required this.userConnected,
+    required this.allCategories,
     super.key,
   });
 
@@ -35,20 +36,10 @@ class _AddTontineViewState extends State<AddTontineView>
 
   List<OneCategorieViewModel>? categories = [];
   double _currentSliderValue = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Provider.of<CategoriesViewModel>(context, listen: false)
-          .FetchAllCategories();
-    });
-  }
+  double _currentSliderValuemontant = 0;
 
   @override
   Widget build(BuildContext context) {
-    var categories =
-        Provider.of<CategoriesViewModel>(context, listen: true).categories;
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -166,7 +157,7 @@ class _AddTontineViewState extends State<AddTontineView>
                       child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemCount: categories.length,
+                          itemCount: widget.allCategories.length,
                           itemBuilder: (context, index) => InkWell(
                                 onTap: () {
                                   setState(() {
@@ -174,14 +165,13 @@ class _AddTontineViewState extends State<AddTontineView>
                                   });
                                 },
                                 child: CategorieIconWidget(
-                                  libelle: categories[index].libelle,
+                                  libelle: widget.allCategories[index].libelle,
                                   backgroundColor: selectedIndex == index
                                       ? const Color(0xffD2286A)
                                       : Colors.grey,
                                 ),
                               )),
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -210,10 +200,43 @@ class _AddTontineViewState extends State<AddTontineView>
                       value: _currentSliderValue,
                       max: 100,
                       divisions: 100,
-                      label: _currentSliderValue.round().toString(),
                       onChanged: (double value) {
                         setState(() {
                           _currentSliderValue = value;
+                        });
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextAirbnbCereal(
+                          title: 'montant regulier',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                          size: 18,
+                        ),
+                        SizedBox(
+                          height: getProportionateScreenHeight(10),
+                        ),
+                        Text("${_currentSliderValuemontant.toInt()}",
+                            style: const TextStyle(
+                              fontFamily: 'AirbnbCereal',
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(10),
+                    ),
+                    Slider(
+                      value: _currentSliderValuemontant,
+                      max: 1000,
+                      divisions: 1000,
+                      onChanged: (double value) {
+                        setState(() {
+                          _currentSliderValuemontant = value;
                         });
                       },
                     ),
@@ -322,59 +345,23 @@ class _AddTontineViewState extends State<AddTontineView>
                         ],
                       ),
                     ),
-                    // Container(
-                    //   margin: const EdgeInsets.only(top: 5, bottom: 5),
-                    //   child: Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Padding(
-                    //         padding:
-                    //             const EdgeInsets.only(bottom: 10, top: 10),
-                    //         child: TextAirbnbCereal(
-                    //           title: 'Publicite',
-                    //           fontWeight: FontWeight.normal,
-                    //           color: Colors.black,
-                    //           size: 18,
-                    //         ),
-                    //       ),
-                    //       const Padding(
-                    //         padding: EdgeInsets.only(bottom: 10, top: 10),
-                    //         child: DropdownButtonExample(),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
                     SizedBox(
                       height: 10,
                     ),
                     InkWell(
                         onTap: () {
                           if (formkey.currentState!.validate()) {
-                            // showDialog(
-                            //     context: context,
-                            //     builder: (context) {
-                            //       return const Center(
-                            //           child: CircularProgressIndicator());
-                            //     });
                             var tonine = {
-                              "user_id": 1,
-                              "categorie_tontine_id": 18,
-                              "libelle": "Libelle",
-                              "periode": "periode",
-                              "nbr_participant": 15000,
-                              "montant_regulier": 1000,
-                              "status": "statut",
-                              "image": "htpps://LienDeLimage"
-
-                              // "user_id": "1",
-                              // "categorie_tontine_id": "18",
-                              // "libelle": libellefield,
-                              // "periode": "periode",
-                              // "nbr_participant": prixfield,
-                              // "montant_regulier": "1000",
-                              // "status": "statut",
-                              // "image": "htpps://LienDeLimage",
+                              "user_id": widget.userConnected?.id, //int
+                              "categorie_tontine_id": 18, //int
+                              "libelle": libellefield, //string
+                              "periode": periode, //string
+                              "nbr_participant":
+                                  _currentSliderValue.toInt(), //int
+                              "montant_regulier":
+                                  _currentSliderValuemontant.toInt(), //int
+                              "status": "statut", //string
+                              "image": "htpps://LienDeLimage" //string
                             };
 
                             AddTontineModel tontineformJson =
@@ -383,13 +370,10 @@ class _AddTontineViewState extends State<AddTontineView>
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PaymentScreen(
+                                    builder: (context) => PaymentScreenTontine(
                                           addTontineModel: tontineformJson,
                                         )));
                           }
-
-                          // navigatorKey.currentState!
-                          //     .popUntil((route) => route.isFirst);
                         },
                         child: Button(
                           text: "APPLIQUER",
@@ -400,7 +384,6 @@ class _AddTontineViewState extends State<AddTontineView>
                           fontWeight: FontWeight.normal,
                           textcolor: Colors.white,
                         )),
-
                     SizedBox(
                       height: getProportionateScreenHeight(20),
                     ),

@@ -5,7 +5,6 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../models_events/event_model.dart';
-import '../evants_repositories/events_api.dart';
 import '../view_model_events/events_view_model.dart';
 
 class UpdateEventView extends StatefulWidget {

@@ -71,12 +71,11 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: themedata(),
-        home: AddTontineView()
-        // skipinto
-        //     ? isLoggedIn
-        //         ? MyHomePage()
-        //         : AuthView()
-        //     : const IntoScreen()
-        );
+        home: //AddTontineView()
+            skipinto
+                ? isLoggedIn
+                    ? MyHomePage()
+                    : AuthView()
+                : const IntoScreen());
   }
 }

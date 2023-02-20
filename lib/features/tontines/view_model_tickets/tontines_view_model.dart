@@ -48,7 +48,7 @@ class TontinesViewModel extends ChangeNotifier {
 
     if (response.isLeft()) {
       print(response.fold((l) => messege = l, (r) => null));
-      response.fold((l) => messege = l, (r) => null);
+      // response.fold((l) => messege = l, (r) => null);
       notifyListeners();
       loading = false;
       notifyListeners();

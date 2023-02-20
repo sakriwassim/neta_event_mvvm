@@ -30,7 +30,10 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
 
   @override
   Widget build(BuildContext context) {
-    var provideruser = Provider.of<UsersViewModel>(context, listen: false);
+    var allCategories =
+        Provider.of<CategoriesViewModel>(context, listen: true).categories;
+    var userConnected =
+        Provider.of<UsersViewModel>(context, listen: true).userConnected;
     var providertontine = Provider.of<TontinesViewModel>(context, listen: true);
     var listtontine =
         Provider.of<TontinesViewModel>(context, listen: true).tontines;
@@ -53,14 +56,17 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 color: Colors.black,
               ),
             ),
-            provideruser.userConnected?.roleId == "0"
+            userConnected?.roleId == "0"
                 ? Container()
                 : InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AddTontineView()));
+                              builder: (context) => AddTontineView(
+                                    userConnected: userConnected,
+                                    allCategories: allCategories,
+                                  )));
                     },
                     child: Button(
                       text: "Ajouter",

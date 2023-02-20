@@ -5,7 +5,6 @@ import '../../../core/colors.dart';
 import '../../../core/int.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../models_tickets/add_ticket_model.dart';
-import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
 class AddTicketView extends StatefulWidget {
@@ -118,7 +117,6 @@ class _AddTicketViewState extends State<AddTicketView> {
 
                     AddTicketModel ticketformJson =
                         AddTicketModel.fromJson(ticket);
-                    //print(ticketformJson);
 
                     setState(() {
                       data.AddTicket(ticketformJson);

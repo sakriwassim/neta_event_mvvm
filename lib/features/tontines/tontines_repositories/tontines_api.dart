@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/string.dart';
+import '../models_tontines/add_tontine_model.dart';
 import '../models_tontines/tontine_model.dart';
 
 class TontinesApi {
-  @override
   Future<TontineModel> getTontineByID(int id) async {
     try {
       var TOKEN =
@@ -29,7 +32,6 @@ class TontinesApi {
     }
   }
 
-  @override
   Future<List<TontineModel>> getAllTontines() async {
     try {
       List<TontineModel> ticketsList = [];
@@ -56,7 +58,6 @@ class TontinesApi {
     }
   }
 
-  @override
   Future<bool> deleteTontineByID(int id) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -77,36 +78,34 @@ class TontinesApi {
     }
   }
 
-  @override
-  Future<http.Response?> addTontine(TontineModel tontineModel) async {
+  Future<Either<String?, Unit?>> addTontine(
+      AddTontineModel? tontineModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      final eventModelJson = tontineModel.toJSON();
-
+      final eventModelJson = tontineModel?.toJson();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-
       final body = jsonEncode(eventModelJson);
-
-      String link = 'https://admin.saitech-group.com/api/v1/Tontine';
-
+      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine';
       var url = Uri.parse(link);
-
       http.Response response =
           await http.post(url, headers: headers, body: body);
-      // var responsebody = jsonEncode(response.body);
-      // print(eventModelJson);
-      //  print(responsebody);
-      return response;
-    } catch (e) {
-      print(e);
+      if (response.statusCode == 201) {
+        return Right(unit);
+      }
+      return Left("server error" + response.statusCode.toString());
+    } on SocketException {
+      return Left('No Internet connection 😑');
+    } on HttpException {
+      return Left("Couldn't find the post 😱");
+    } on FormatException {
+      return Left("Bad response format 👎");
     }
   }
 
-  @override
   Future<TontineModel> updateTontineByID(TontineModel addTontineModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();

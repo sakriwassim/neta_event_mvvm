@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:provider/provider.dart';
-import '../../../core/colors.dart';
 import '../../../core/size_config.dart';
-import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../users/view_model_events/users_view_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
@@ -59,24 +57,23 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
               title: 'Ticket Page',
             ),
 
-            userConnectedrole == "0"
-                ? Container()
-                : InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => AddEventView()));
-                    },
-                    child: Button(
-                      text: "ADD EVENT",
-                      height: 40,
-                      width: 100,
-                      fontSize: 15,
-                      gradientbackground: gradientbackground,
-                      fontWeight: FontWeight.normal,
-                      textcolor: Colors.white,
-                    )),
+            userConnectedrole == "0" ? Container() : Container(),
+            // InkWell(
+            //     onTap: () {
+            //       // Navigator.push(
+            //       //     context,
+            //       //     MaterialPageRoute(
+            //       //         builder: (context) => AddEventView()));
+            //     },
+            //     child: Button(
+            //       text: "ADD TICKET",
+            //       height: 40,
+            //       width: 100,
+            //       fontSize: 15,
+            //       gradientbackground: gradientbackground,
+            //       fontWeight: FontWeight.normal,
+            //       textcolor: Colors.white,
+            //     )),
           ],
         ),
       ),

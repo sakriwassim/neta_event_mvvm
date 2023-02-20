@@ -37,7 +37,7 @@ class _AddNotificationViewState extends State<AddNotificationView>
   double _currentSliderValue = 0;
   var datacategorie = CategoriesViewModel();
 
-  var data = TontinesViewModel( );
+  var data = TontinesViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -409,7 +409,7 @@ class _AddNotificationViewState extends State<AddNotificationView>
                                   // print(ticketformJson);
 
                                   setState(() {
-                                    data.AddTontine(ticketformJson);
+                                   // data.AddTontine(ticketformJson);
                                   });
                                 }
 

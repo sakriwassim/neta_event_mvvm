@@ -191,8 +191,9 @@ class TontineCardWidget extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PaymentScreen()));
+                                          builder: (context) => PaymentScreen(addTontineModel: null,
+                                           
+                                              )));
                                 },
                                 child: Button(
                                   fontWeight: FontWeight.normal,

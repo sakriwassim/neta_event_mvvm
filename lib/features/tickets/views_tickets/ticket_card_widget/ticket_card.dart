@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
 import '../../../../core/widgets/circle_image.dart';
 import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
+import '../../../events/view_model_events/events_view_model.dart';
 import '../../models_tickets/ticket_model.dart';
 
 class TicketCardWidget extends StatelessWidget {
@@ -39,11 +41,27 @@ class TicketCardWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleImage(
-                height: 100,
-                image: "${ticketModel?.prix}",
-                width: 100,
-              ),
+              // FutureBuilder(
+              //     future: Provider.of<EventsViewModel>(context, listen: false)
+              //         .GetEventByID(
+              //             int.parse(ticketModel!.event_id.toString())),
+              //     builder: (context, snapshot) {
+              //       var image =
+              //           Provider.of<EventsViewModel>(context, listen: true)
+              //               .eventsbyID
+              //               ?.image;
+              //       return CircleImage(
+              //         height: 100,
+              //         image: image.toString(),
+              //         width: 100,
+              //       );
+              //     }),
+
+              // FutureCircleImage(
+              //   ticketModel: ticketModel,
+              //   height: 100,
+              //   width: 100,
+              // ),
 
               SizedBox(
                 child: Padding(
@@ -68,8 +86,6 @@ class TicketCardWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: getProportionateScreenHeight(60),
-                    // height: double.infinity,
-                    //color: Colors.blue,
                     child: RectangleImage(
                       height: 60,
                       width: 20,

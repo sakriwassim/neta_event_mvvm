@@ -214,7 +214,9 @@ class _OnTontineViewState extends State<OnTontineView> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PaymentScreen()));
+                                  builder: (context) => PaymentScreen(
+                                        addTontineModel: null,
+                                      )));
                         },
                         child: Button(
                           fontWeight: FontWeight.w500,

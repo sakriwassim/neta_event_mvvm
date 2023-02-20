@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neta_event_mvvm/features/tontines/views_tontines/tontines_view.dart';
-
 import '../../../core/colors.dart';
 import '../../../core/decoration.dart';
 import '../../../core/int.dart';

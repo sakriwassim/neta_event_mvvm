@@ -11,6 +11,7 @@ import 'features/into_screen/view/intro_page.dart';
 import 'features/packs/view_model_packs/packs_view_model.dart';
 import 'features/tickets/view_model_tickets/tickets_view_model.dart';
 import 'features/tontines/view_model_tickets/tontines_view_model.dart';
+import 'features/tontines/views_tontines/add_tontine_view.dart';
 import 'features/users/view_model_events/users_view_model.dart';
 
 void main() async {
@@ -70,12 +71,12 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: themedata(),
-        home: // AddEventView()
-
-            skipinto
-                ? isLoggedIn
-                    ? MyHomePage()
-                    : AuthView()
-                : const IntoScreen());
+        home: AddTontineView()
+        // skipinto
+        //     ? isLoggedIn
+        //         ? MyHomePage()
+        //         : AuthView()
+        //     : const IntoScreen()
+        );
   }
 }

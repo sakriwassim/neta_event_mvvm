@@ -323,8 +323,9 @@ class _OneEventViewState extends State<OneEventView> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PaymentScreen()));
+                                          builder: (context) => PaymentScreen(
+                                                addTontineModel: null,
+                                              )));
                                 },
                                 child: Button(
                                   text: "PASSER LA COMMANDE",

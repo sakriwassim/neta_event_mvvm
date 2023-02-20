@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/widget/tontine_card_H_widget.dart';
 
 import '../../models_tontines/tontine_model.dart';
-import '../../view_model_tickets/tontines_view_model.dart';
 import '../one_tontine_view.dart';
 
 class ListTontineWidget extends StatelessWidget {
@@ -16,8 +15,8 @@ class ListTontineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return tontines.isEmpty
-        ? Center(
-            child: Text("no tontines"),
+        ? const Center(
+            child: Text("No tontines"),
           )
         : ListView.builder(
             itemCount: tontines.length,

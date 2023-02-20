@@ -74,8 +74,8 @@ class AuthentificationViewModel extends ChangeNotifier {
         prefs.setString("token", token);
         prefs.setString("role", userrole.roleId!);
 
-        /********************************* */
         isBack = true;
+        notifyListeners();
       }
       message = authentificationResponseModel.message!;
       notifyListeners();
@@ -96,18 +96,20 @@ class AuthentificationViewModel extends ChangeNotifier {
     Response? response = await AuthentificationApi()
         .register(role_id, nom_complet, email, password);
     print(response);
+    if (response != null) {
+      var responsebodydecode = jsonDecode(response.body);
 
-    var responsebodydecode = jsonDecode(response!.body);
-
-    if (response.statusCode == 200) {
-      var authentificationResponseModel =
-          LoginResponseModel.fromJson(responsebodydecode);
-      if (authentificationResponseModel.code == 200) {
-        isBack = true;
+      if (response.statusCode == 200) {
+        var authentificationResponseModel =
+            LoginResponseModel.fromJson(responsebodydecode);
+        if (authentificationResponseModel.code == 200) {
+          isBack = true;
+          notifyListeners();
+        }
+        message = authentificationResponseModel.message!;
+        notifyListeners();
+        print(message);
       }
-      message = authentificationResponseModel.message!;
-      notifyListeners();
-      print(message);
     } else {
       message = "pannes de serveur";
       notifyListeners();

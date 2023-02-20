@@ -7,7 +7,6 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../models_tickets/add_ticket_model.dart';
 import '../models_tickets/ticket_model.dart';
-import '../tickets_repositories/tickets_api.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
 class UpdateTicketView extends StatefulWidget {

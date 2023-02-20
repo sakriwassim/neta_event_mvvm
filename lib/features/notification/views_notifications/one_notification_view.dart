@@ -251,7 +251,7 @@ class _OnNotificationViewState extends State<OnNotificationView> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const PaymentScreen()));
+                                                     PaymentScreen(addTontineModel: null,)));
                                       },
                                       child: Button(
                                         fontWeight: FontWeight.w500,

@@ -89,8 +89,7 @@ class _EditCompteState extends State<EditCompte> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
-                    //controller: TextEditingController(text: widget.eventObj.prix),
-                    decoration: textFieldDecorationWithicon(
+                     decoration: textFieldDecorationWithicon(
                       "entre le email",
                       "Adresse e-mail",
                       Colors.grey,

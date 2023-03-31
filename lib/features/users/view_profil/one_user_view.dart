@@ -10,6 +10,14 @@ import '../../../core/widgets/image_cached_internet.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../view_model_events/users_view_model.dart';
 
+import 'dart:io';
+
+import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'imageprofile/screens/select_photo_options_screen.dart';
+
 class OneUserView extends StatefulWidget {
   const OneUserView({super.key});
 
@@ -22,6 +30,56 @@ class _OneUserViewState extends State<OneUserView> {
   late String nomcompletfield;
   late String emailfield;
   late String passwordfield;
+
+  File? _image;
+
+  Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      setState(() {
+        _image = img;
+        Navigator.of(context).pop();
+      });
+    } on PlatformException catch (e) {
+      print(e);
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
+  }
+
+  void _showSelectPhotoOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+          initialChildSize: 0.28,
+          maxChildSize: 0.4,
+          minChildSize: 0.28,
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: SelectPhotoOptionsScreen(
+                onTap: _pickImage,
+              ),
+            );
+          }),
+    );
+  }
 
   @override
   void initState() {
@@ -55,19 +113,65 @@ class _OneUserViewState extends State<OneUserView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: getProportionateScreenHeight(150),
-                width: getProportionateScreenWidth(150),
-                child: CircleAvatar(
-                  child: ClipOval(
-                    child: ImageCachedInternet(
-                      height: MediaQuery.of(context).size.height,
-                      imageUrl: '${data?.image}',
-                      width: MediaQuery.of(context).size.width,
-                    ),
+              InkWell(
+                onTap: () => _showSelectPhotoOptions(context),
+                child: SizedBox(
+                  height: 120,
+                  width: 120,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    fit: StackFit.expand,
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.shade200,
+                          ),
+                          child: Center(
+                            child: _image == null
+                                ? const Text(
+                                    "aucune image sélectionnée",
+                                    style: TextStyle(fontSize: 15),
+                                  )
+                                : CircleAvatar(
+                                    radius: 200.0,
+                                    backgroundImage: FileImage(_image!)),
+                          )),
+                      Positioned(
+                          bottom: 0,
+                          right: -25,
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              _showSelectPhotoOptions(context);
+                            },
+                            elevation: 2.0,
+                            fillColor: Color(0xFFF5F6F9),
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              color: Colors.blue,
+                            ),
+                            padding: EdgeInsets.all(8.0),
+                            shape: CircleBorder(),
+                          )),
+                    ],
                   ),
                 ),
               ),
+
+              // SizedBox(
+              //   height: getProportionateScreenHeight(150),
+              //   width: getProportionateScreenWidth(150),
+              //   child: CircleAvatar(
+              //     child: ClipOval(
+              //       child: ImageCachedInternet(
+              //         height: MediaQuery.of(context).size.height,
+              //         imageUrl: '${data?.image}',
+              //         width: MediaQuery.of(context).size.width,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/widget/card_widget_edit_profile.dart';
 import '../models_users/event_model.dart';
 import 'editprofilcompte_view.dart';
@@ -46,6 +47,8 @@ class UserView extends StatelessWidget {
                     size: 30.0,
                   ),
                   text: 'Paramètres du compte',
+                  height: heightbigbutton,
+                  width: widthbigbutton,
                 ),
               ),
               InkWell(
@@ -65,6 +68,8 @@ class UserView extends StatelessWidget {
                     size: 30.0,
                   ),
                   text: 'Sécurité et connexion',
+                  height: heightbigbutton,
+                  width: widthbigbutton,
                 ),
               ),
             ],

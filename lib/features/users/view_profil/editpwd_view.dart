@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/colors.dart';
-import '../../../core/decoration.dart';
 import '../../../core/int.dart';
 import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';

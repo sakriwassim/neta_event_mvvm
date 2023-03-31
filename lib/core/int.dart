@@ -3,7 +3,7 @@ const heightgoogle = 80.00;
 const widthgoogle = 350.00;
 
 //size bigbutton
-const heightbigbutton = 60.00;
+const heightbigbutton = 70.00;
 const widthbigbutton = 350.00;
 const fontSizebigbutton = 20.00;
 

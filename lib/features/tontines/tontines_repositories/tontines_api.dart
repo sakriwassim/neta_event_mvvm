@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models_tontines/add_tontine_model.dart';
 import '../models_tontines/tontine_model.dart';
 
 class TontinesApi {
@@ -70,11 +69,11 @@ class TontinesApi {
   }
 
   Future<Either<String?, Unit?>> addTontine(
-      AddTontineModel? tontineModel) async {
+      TontineModel? tontineModel) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      final eventModelJson = tontineModel?.toJson();
+      final eventModelJson = tontineModel?.toJSON();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'

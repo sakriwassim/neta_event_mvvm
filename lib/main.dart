@@ -75,8 +75,7 @@ class MyApp extends StatelessWidget {
         home: //AddTontineView()
             skipinto
                 ? isLoggedIn
-                    ? //SetPhotoScreen()
-                    MyHomePage()
+                    ? MyHomePage()
                     : AuthView()
                 : const IntoScreen());
   }

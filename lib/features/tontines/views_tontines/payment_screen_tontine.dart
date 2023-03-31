@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neta_event_mvvm/features/tontines/models_tontines/tontine_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/colors.dart';
@@ -9,19 +10,18 @@ import '../../../core/string.dart';
 import '../../../core/widgets/card_google_widget.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../home/bottom_navigation_bar.dart';
-import '../models_tontines/add_tontine_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 
 
 class PaymentScreenTontine extends StatelessWidget {
-  AddTontineModel? addTontineModel;
+  TontineModel? addTontineModel;
   PaymentScreenTontine({required this.addTontineModel, super.key});
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<TontinesViewModel>(context, listen: true);
 
     addtontine() async {
-      print("ti5dem");
+     
       if (provider.loading == false) {
         await provider.AddTontine(addTontineModel);
         if (provider.isBack) {
@@ -208,7 +208,7 @@ class PaymentScreenTontine extends StatelessWidget {
               TextAirbnbCereal(
                 title: "${provider.messege ?? ""} ${provider.statusCode ?? ""}",
                 fontWeight: FontWeight.normal,
-                color: Color.fromARGB(255, 255, 0, 0),
+                color: const Color.fromARGB(255, 255, 0, 0),
                 size: 18,
               ),
             ],

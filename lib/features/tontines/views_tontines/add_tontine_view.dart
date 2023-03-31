@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neta_event_mvvm/core/decoration.dart';
+import 'package:neta_event_mvvm/features/tontines/models_tontines/tontine_model.dart';
 import 'package:neta_event_mvvm/features/tontines/views_tontines/payment_screen_tontine.dart';
 import '../../../core/colors.dart';
 import '../../../core/int.dart';
@@ -10,7 +11,6 @@ import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
 import '../../users/models_users/event_model.dart';
-import '../models_tontines/add_tontine_model.dart';
 
 class AddTontineView extends StatefulWidget {
   UserModel? userConnected;
@@ -345,27 +345,43 @@ class _AddTontineViewState extends State<AddTontineView>
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     InkWell(
                         onTap: () {
                           if (formkey.currentState!.validate()) {
+                            // var tonine = {
+                            //   "user_id": widget.userConnected?.id, //int
+                            //   "categorie_tontine_id": 18, //int
+                            //   "libelle": libellefield, //string
+                            //   "periode": periode, //string
+                            //   "nbr_participant":
+                            //       _currentSliderValue.toInt(), //int
+                            //   "montant_regulier":
+                            //       _currentSliderValuemontant.toInt(), //int
+                            //   "status": "statut", //string
+                            //   "image": "htpps://LienDeLimage", //string
+                            //   // "created_at": null,
+                            //   // "updated_at": null
+                            // };
+
                             var tonine = {
-                              "user_id": widget.userConnected?.id, //int
-                              "categorie_tontine_id": 18, //int
-                              "libelle": libellefield, //string
-                              "periode": periode, //string
-                              "nbr_participant":
-                                  _currentSliderValue.toInt(), //int
-                              "montant_regulier":
-                                  _currentSliderValuemontant.toInt(), //int
-                              "status": "statut", //string
-                              "image": "htpps://LienDeLimage" //string
+                              "user_id": "1",
+                              "categorie_tontine_id": "1",
+                              "libelle": "Fete",
+                              "periode": "12 mois",
+                              "nbr_participant": "60",
+                              "montant_regulier": "15000",
+                              "status": "Active",
+                              "image":
+                                  "https://admin.saitech-group.com/api_event/public/Images/1671797177.png",
+                              "updated_at": "2023-03-31T14:29:42.000000Z",
+                              "created_at": "2023-03-31T14:29:42.000000Z"
                             };
 
-                            AddTontineModel tontineformJson =
-                                AddTontineModel.fromJson(tonine);
+                            TontineModel tontineformJson =
+                                TontineModel.fromJson(tonine);
 
                             Navigator.pushReplacement(
                                 context,

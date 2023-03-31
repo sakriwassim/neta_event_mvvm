@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/failure.dart';
-import '../models_tontines/add_tontine_model.dart';
 import '../models_tontines/tontine_model.dart';
 import '../tontines_repositories/tontines_api.dart';
 
@@ -35,7 +34,7 @@ class TontinesViewModel extends ChangeNotifier {
     var responce = await TontinesApi().updateTontineByID(addTontineModel);
   }
 
-  Future<void> AddTontine(AddTontineModel? addTontineModel) async {
+  Future<void> AddTontine(TontineModel? addTontineModel) async {
     loading = true;
     var response = await TontinesApi().addTontine(addTontineModel);
 

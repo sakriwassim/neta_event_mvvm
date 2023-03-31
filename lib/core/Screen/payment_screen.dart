@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/home/bottom_navigation_bar.dart';
-import '../../features/tontines/models_tontines/add_tontine_model.dart';
 import '../../features/tontines/models_tontines/tontine_model.dart';
 import '../../features/tontines/view_model_tickets/tontines_view_model.dart';
 import '../colors.dart';
@@ -14,7 +13,7 @@ import '../widgets/card_google_widget.dart';
 import '../widgets/text_widget_text1.dart';
 
 class PaymentScreen extends StatelessWidget {
-  AddTontineModel? addTontineModel;
+  TontineModel? addTontineModel;
   PaymentScreen({required this.addTontineModel, super.key});
   @override
   Widget build(BuildContext context) {

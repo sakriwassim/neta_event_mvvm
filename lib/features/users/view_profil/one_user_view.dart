@@ -91,7 +91,10 @@ class _OneUserViewState extends State<OneUserView> {
   Widget build(BuildContext context) {
     var data =
         Provider.of<UsersViewModel>(context, listen: false).userConnected;
+    // var imageinternet =
+    //     "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/app-2.png";
 
+    var imageinternet = data!.image;
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -114,7 +117,7 @@ class _OneUserViewState extends State<OneUserView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () => _showSelectPhotoOptions(context),
+                //onTap: () => _showSelectPhotoOptions(context),
                 child: SizedBox(
                   height: 120,
                   width: 120,
@@ -128,15 +131,22 @@ class _OneUserViewState extends State<OneUserView> {
                             color: Colors.grey.shade200,
                           ),
                           child: Center(
-                            child: _image == null
-                                ? const Text(
-                                    "aucune image sélectionnée",
-                                    style: TextStyle(fontSize: 15),
-                                  )
-                                : CircleAvatar(
-                                    radius: 200.0,
-                                    backgroundImage: FileImage(_image!)),
-                          )),
+                              child: imageinternet != null &&
+                                      imageinternet != ""
+                                  ? ImageCachedInternet(
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      imageUrl: "$imageinternet",
+                                      width: MediaQuery.of(context).size.width,
+                                    )
+                                  : _image != null
+                                      ? CircleAvatar(
+                                          radius: 200.0,
+                                          backgroundImage: FileImage(_image!))
+                                      : const CircleAvatar(
+                                          radius: 200.0,
+                                          backgroundImage: AssetImage(
+                                              "assets/image/no_profile_picture.png")))),
                       Positioned(
                           bottom: 0,
                           right: -25,
@@ -147,9 +157,10 @@ class _OneUserViewState extends State<OneUserView> {
                             elevation: 2.0,
                             fillColor: Color(0xFFF5F6F9),
                             child: Icon(
-                              Icons.camera_alt_outlined,
-                              color: Colors.blue,
-                            ),
+                                _image == null
+                                    ? Icons.camera_alt_outlined
+                                    : Icons.edit,
+                                color: coloricon),
                             padding: EdgeInsets.all(8.0),
                             shape: CircleBorder(),
                           )),

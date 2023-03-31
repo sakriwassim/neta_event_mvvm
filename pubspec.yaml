@@ -87,6 +87,7 @@ flutter:
     - assets/icons/user/        
     - assets/icons/payment/ 
     - assets/icons/notification/ 
+    - assets/image/
 
   fonts:
     - family: AirbnbCereal

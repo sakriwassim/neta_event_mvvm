@@ -128,8 +128,7 @@ class CategoriesApi {
       http.Response response = await http.put(url,
           headers: headers, body: json.encode(eventModelJson));
       var responsebody = jsonDecode(response.body);
-      // print(eventModelJson);
-      // print(responsebody);
+    
     } catch (e) {
       //print(e);
     }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const coloricon = Color.fromRGBO(210, 40, 106, 1);
+
 const gradientbackground = LinearGradient(
   colors: [Color.fromRGBO(131, 1, 188, 1), Color(0xFFD2286A)],
 );
@@ -14,5 +16,3 @@ final Shader linearGradient = const LinearGradient(
     Color.fromRGBO(210, 40, 106, 1)
   ],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
-
-

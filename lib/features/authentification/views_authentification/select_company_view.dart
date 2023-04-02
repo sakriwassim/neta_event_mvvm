@@ -156,26 +156,6 @@ class SelectCompany extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       register();
-                      // showDialog(
-                      //     context: context,
-                      //     builder: (context) {
-                      //       return const Center(
-                      //           child: CircularProgressIndicator());
-                      //     });
-
-                      // RegisterResponseModel verif = await data.Register(
-                      //     selectIndex,
-                      //     widget.nomcompletfield,
-                      //     widget.emailfield,
-                      //     widget.passwordfield);
-
-                      // if (verif.code == 200) {
-                      //   //Navigator.pop(context);
-                      //   navtoRegisterView();
-                      // }
-
-                      // navigatorKey.currentState!
-                      //     .popUntil((route) => route.isFirst);
                     },
                     child: Button(
                       text: "VALIDER",

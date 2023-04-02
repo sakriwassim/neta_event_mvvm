@@ -43,8 +43,8 @@ class AuthentificationApi {
         "nom_complet": nom_complet,
         "email": email,
         "telephone": 70213645,
-        "adresse": "Faladiè",
-        "image": "https://cheminverslimage",
+        "adresse": "",
+        "image": "",
         "password": password
       };
 
@@ -60,5 +60,4 @@ class AuthentificationApi {
       log(e.toString());
     }
   }
-
 }

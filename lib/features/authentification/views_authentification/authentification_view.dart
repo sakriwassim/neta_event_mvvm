@@ -244,8 +244,7 @@ class _AuthViewState extends State<AuthView> {
                     ),
                     Container(
                       height: 150,
-                      child:  Image.asset(
-                        "assets/gif/coming_soon.gif",
+                      child:  Image.asset(coming_soon
                       ),
                       decoration: BoxDecoration(
                           color: Colors.white,

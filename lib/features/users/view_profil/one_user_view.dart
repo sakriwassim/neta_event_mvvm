@@ -145,8 +145,8 @@ class _OneUserViewState extends State<OneUserView> {
                                           backgroundImage: FileImage(_image!))
                                       : const CircleAvatar(
                                           radius: 200.0,
-                                          backgroundImage: AssetImage(
-                                              "assets/image/no_profile_picture.png")))),
+                                          backgroundImage:
+                                              AssetImage(nouserimage)))),
                       Positioned(
                           bottom: 0,
                           right: -25,
@@ -187,7 +187,7 @@ class _OneUserViewState extends State<OneUserView> {
                 height: getProportionateScreenHeight(20),
               ),
               Text(
-                "${data?.nomComplet}",
+                "${data.nomComplet}",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -232,7 +232,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      "${data?.nomComplet}",
+                      "${data.nomComplet}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -251,7 +251,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      "${data?.email}",
+                      "${data.email}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -270,7 +270,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      "${data?.adresse}",
+                      "${data.adresse}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],
@@ -289,7 +289,7 @@ class _OneUserViewState extends State<OneUserView> {
                       width: getProportionateScreenWidth(20),
                     ),
                     Text(
-                      "${data?.telephone}",
+                      "${data.telephone}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],

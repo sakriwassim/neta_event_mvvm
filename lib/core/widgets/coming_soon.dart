@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
+import '../string.dart';
 import 'text_widget_text1.dart';
 
 class ComingSoon extends StatelessWidget {
@@ -15,8 +16,7 @@ class ComingSoon extends StatelessWidget {
           Container(
             height: 240,
             child: SizedBox.expand(
-                child: Image.asset(
-              "assets/gif/coming_soon.gif",
+                child: Image.asset(coming_soon
             )),
             margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(

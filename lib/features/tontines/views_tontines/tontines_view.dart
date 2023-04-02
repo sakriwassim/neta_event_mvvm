@@ -56,7 +56,7 @@ class _GetAllTontineViewState extends State<GetAllTontineView> {
                 color: Colors.black,
               ),
             ),
-            userConnected?.roleId == "1"
+            userConnected?.roleId == "0"
                 ? Container()
                 : InkWell(
                     onTap: () {

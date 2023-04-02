@@ -49,7 +49,7 @@ class _GetAllTicketViewState extends State<GetAllTicketView>
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //TicketPage
+            
             TextAirbnbCereal(
               color: Colors.black,
               fontWeight: FontWeight.w500,

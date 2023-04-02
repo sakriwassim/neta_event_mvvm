@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/size_config.dart';
+import '../../../../core/string.dart';
 import '../../../../core/widgets/circle_image.dart';
 import '../../../../core/widgets/rectangle_image.dart';
 import '../../../../core/widgets/text_widget_text1.dart';
@@ -28,7 +29,7 @@ class TicketCardWidget extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -41,28 +42,6 @@ class TicketCardWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // FutureBuilder(
-              //     future: Provider.of<EventsViewModel>(context, listen: false)
-              //         .GetEventByID(
-              //             int.parse(ticketModel!.event_id.toString())),
-              //     builder: (context, snapshot) {
-              //       var image =
-              //           Provider.of<EventsViewModel>(context, listen: true)
-              //               .eventsbyID
-              //               ?.image;
-              //       return CircleImage(
-              //         height: 100,
-              //         image: image.toString(),
-              //         width: 100,
-              //       );
-              //     }),
-
-              // FutureCircleImage(
-              //   ticketModel: ticketModel,
-              //   height: 100,
-              //   width: 100,
-              // ),
-
               SizedBox(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -86,11 +65,14 @@ class TicketCardWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: getProportionateScreenHeight(60),
-                    child: RectangleImage(
-                      height: 60,
-                      width: 20,
-                      image: "${ticketModel?.Qr_code}",
-                    ),
+                    child: ticketModel?.Qr_code == null &&
+                            ticketModel?.Qr_code == ""
+                        ? RectangleImage(
+                            height: 60,
+                            width: 20,
+                            image: "${ticketModel?.Qr_code}",
+                          )
+                        : Image.asset(nocodeqr),
                   ),
                   SizedBox(
                     height: getProportionateScreenHeight(10),

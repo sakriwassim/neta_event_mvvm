@@ -47,13 +47,36 @@ class SelectCompany extends StatelessWidget {
           provider.selectIndex, nomcompletfield, emailfield, passwordfield);
 
       if (provider.isBack) {
-        // ignore: use_build_context_synchronously
         provider.isLogin;
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => AuthView(),
+              builder: (context) => const AuthView(),
             ));
+      } else {
+        // ignore: use_build_context_synchronously
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Alert Dialog"),
+              content: Text(provider.message),
+              actions: [
+                TextButton(
+                  child: const Text("Close"),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AuthView(),
+                        ));
+                  },
+                )
+              ],
+            );
+          },
+        );
       }
     }
 

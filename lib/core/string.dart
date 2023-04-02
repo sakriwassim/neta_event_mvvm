@@ -38,6 +38,8 @@ const tringle = "assets/icons/tontine/tringle.svg";
 
 //Hiddencolor
 /// ******************************HOME******************** */
+const nocodeqr = "assets/image/qr-code.png" ;
+/// 
 const CompassOff = "assets/icons/home/compassof.svg";
 const Compass = "assets/icons/home/compass.svg";
 const ProfileBnt = "assets/icons/home/Profile.svg";

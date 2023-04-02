@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:neta_event_mvvm/features/tickets/views_tickets/ticket_card_widget/ticket_card.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/size_config.dart';
+import '../../../../core/string.dart';
+import '../../../../core/widgets/rectangle_image.dart';
 import '../../models_tickets/ticket_model.dart';
 import '../../view_model_tickets/tickets_view_model.dart';
 
@@ -24,8 +27,31 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
             child: ListView.builder(
                 itemCount: widget.tickets.length,
                 itemBuilder: (context, index) {
-                  return TicketCardWidget(
-                    ticketModel: widget.tickets[index],
+                  return InkWell(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.transparent,
+                              content: widget.tickets[index].Qr_code == null &&
+                                      widget.tickets[index].Qr_code == ""
+                                  ? RectangleImage(
+                                      height: 150,
+                                      width: 150,
+                                      image: "${widget.tickets[index].Qr_code}",
+                                    )
+                                  : Container(
+                                      height: 150,
+                                      width: 150,
+                                      child: Image.asset(nocodeqr),
+                                    ),
+                            );
+                          });
+                    },
+                    child: TicketCardWidget(
+                      ticketModel: widget.tickets[index],
+                    ),
                   );
                 })));
   }

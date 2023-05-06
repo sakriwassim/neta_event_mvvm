@@ -35,7 +35,7 @@ class EventsWidget extends StatelessWidget {
                 date_heure: events![index].dateHeure,
                 libelle: events![index].libelle,
                 adresse: events![index].adresse,
-                prix: events![index].prix,
+                prix: events![index].prix.toString(),
                 image: events![index].image,
               ))),
     );

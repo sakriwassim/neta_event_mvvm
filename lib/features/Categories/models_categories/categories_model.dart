@@ -1,48 +1,46 @@
 class CategorieModel {
+  
   int? id;
-  String? type_pack_id;
   String? libelle;
-  String? montant;
-  String? nbre_events;
-  String? nbre_jr_pubs;
-  String? created_at;
-  String? updated_at;
+  String? description;
+  int? nbreEvents;
+  int? montantTotal;
   String? image;
+  String? createdAt;
+  String? updatedAt;
+  
 
-  CategorieModel(
-      {this.id,
-      this.type_pack_id,
-      this.libelle,
-      this.montant,
-      this.nbre_events,
-      this.nbre_jr_pubs,
-      this.created_at,
-      this.updated_at,
-      this.image});
-
-  CategorieModel.fromJson(Map<String, dynamic> json) {
+  CategorieModel({
+     this.id,
+     this.libelle,
+     this.description,
+     this.nbreEvents,
+     this.montantTotal,
+     this.image,
+     this.createdAt,
+     this.updatedAt,
+  });
+  CategorieModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    type_pack_id = json['type_pack_id'];
     libelle = json['libelle'];
-    montant = json['montant'];
-    nbre_events = json['nbre_events'];
-    nbre_jr_pubs = json['nbre_jr_pubs'];
-    created_at = json['created_at'];
-    updated_at = json['updated_at'];
+    description = json['description'];
+    nbreEvents = json['nbre_events'];
+    montantTotal = json['montant_total'];
     image = json['image'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
-  Map<String, dynamic> toJSON() {
-    return {
-      "id": id,
-      "type_pack_id": type_pack_id,
-      "libelle": libelle,
-      "montant": montant,
-      "nbre_events": nbre_events,
-      "nbre_jr_pubs": nbre_jr_pubs,
-      "created_at": created_at,
-      "updated_at": updated_at,
-      "image": image
-    };
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['libelle'] = libelle;
+    _data['description'] = description;
+    _data['nbre_events'] = nbreEvents;
+    _data['montant_total'] = montantTotal;
+    _data['image'] = image;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    return _data;
   }
 }

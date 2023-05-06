@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:neta_event_mvvm/core/string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models_tontines/tontine_model.dart';
 
@@ -11,7 +12,7 @@ class TontinesApi {
       var TOKEN =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mcm96ZW4tcmVmdWdlLTgwOTY1Lmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL0xvZ2luIiwiaWF0IjoxNjY0NTUwNTIzLCJleHAiOjE2NjQ1NTQxMjMsIm5iZiI6MTY2NDU1MDUyMywianRpIjoiSTV2RENLb3NnUVVhWHo2bCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVzZXJfaWQiOjMsImVtYWlsIjoid2Fzc2ltbEBlbWFpbC5jb20ifQ.JrZwVjPqWU_TZ4YrylOtcyMzQg-XoGYcV7hE9fHLGc";
       var headersa = {'Authorization': 'Bearer $TOKEN'};
-      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$id';
+      String link = '$baseUrl/Tontine/$id';
       var url = Uri.parse(link);
       http.Response response = await http.get(url, headers: headersa);
       TontineModel.fromJson(json.decode(response.body));
@@ -30,7 +31,7 @@ class TontinesApi {
 
       var headersa = {'Authorization': 'Bearer ${token!}'};
 
-      String link = 'https://admin.saitech-group.com/api/v1/Tontine';
+      String link = '$baseUrl/Tontine';
 
       var url = Uri.parse(link);
 
@@ -57,7 +58,7 @@ class TontinesApi {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
-      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$id';
+      String link = '$baseUrl/Tontine/$id';
       var url = Uri.parse(link);
 
       http.Response response = await http.delete(url, headers: headers);
@@ -73,13 +74,13 @@ class TontinesApi {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      final eventModelJson = tontineModel?.toJSON();
+      final eventModelJson = tontineModel?.toJson();
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
         'authorization': 'Basic +$token'
       };
       final body = jsonEncode(eventModelJson);
-      String link = 'https://frozen-refuge-80965.herokuapp.com/api/v1/Tontine';
+      String link = '$baseUrl/Tontine';
       var url = Uri.parse(link);
       http.Response response =
           await http.post(url, headers: headers, body: body);
@@ -101,7 +102,7 @@ class TontinesApi {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
       final eventId = addTontineModel.id;
-      final eventModelJson = addTontineModel.toJSON();
+      final eventModelJson = addTontineModel.toJson();
 
       var headers = {
         'Content-type': 'application/json',
@@ -111,7 +112,7 @@ class TontinesApi {
 
       final body = eventModelJson;
 
-      String link = 'https://admin.saitech-group.com/api/v1/Tontine/$eventId';
+      String link = '$baseUrl/Tontine/$eventId';
 
       var url = Uri.parse(link);
 

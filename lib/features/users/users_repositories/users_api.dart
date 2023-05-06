@@ -4,11 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/string.dart';
 import '../models_users/add_event_model.dart';
+import '../models_users/event_by_id_model.dart';
 import '../models_users/event_model.dart';
 
 class UsersApi {
   @override
-  Future<UserModel> getUserByID(int? id) async {
+  Future<UserModelById> getUserByID(int? id) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
@@ -19,8 +20,8 @@ class UsersApi {
 
       http.Response response = await http.get(url, headers: headersa);
 
-      UserModel.fromJson(json.decode(response.body));
-      var eventDate = UserModel.fromJson(json.decode(response.body));
+      UserModelById.fromJson(json.decode(response.body));
+      var eventDate = UserModelById.fromJson(json.decode(response.body));
 
       return eventDate;
     } catch (e) {

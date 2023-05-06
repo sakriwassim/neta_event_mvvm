@@ -32,16 +32,14 @@ class TontinesWidgetHome extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => OnTontineView(
                               tontine: tontines![index],
-                              // id: tontines![index].id!,
-                              // image: '${tontines![index].image!}',
                             )),
                   );
                 },
                 child: TontineCardWidget(
                   image: tontines![index].image,
                   libelle: tontines![index].libelle,
-                  montant_regulier: tontines![index].montant_regulier,
-                  nbr_participant: tontines![index].nbr_participant,
+                  montant_regulier: tontines![index].montantRegulier.toString(),
+                  nbr_participant: tontines![index].nbrParticipant.toString(),
                 ),
               )),
       //     }

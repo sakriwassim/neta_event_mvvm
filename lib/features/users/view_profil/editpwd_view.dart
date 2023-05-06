@@ -8,11 +8,12 @@ import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../models_users/add_event_model.dart';
+import '../models_users/event_by_id_model.dart';
 import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
 
 class EditPwd extends StatefulWidget {
-  UserModel? userModel;
+  UserModelById? userModel;
   EditPwd({required this.userModel, super.key});
 
   @override
@@ -270,7 +271,7 @@ class _EditPwdState extends State<EditPwd> {
                         var event = {
                           "role_id":
                               int.parse('${widget.userModel?.roleId}'), //1,
-                          "packs_id": int.parse('${widget.userModel?.packsId}'),
+                          "packs_id": 1,//int.parse('${widget.userModel?.packsId}'),
                           "nom_complet":
                               widget.userModel?.nomComplet.toString(),
                           "email": widget.userModel?.email.toString(),

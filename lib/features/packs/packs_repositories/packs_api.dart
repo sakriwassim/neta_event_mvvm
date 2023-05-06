@@ -63,7 +63,7 @@ class PacksApi  {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
       final eventId = packModel.id;
-      final eventModelJson = packModel.toJSON();
+      final eventModelJson = packModel.toJson();
 
       var headers = {
         'Content-type': 'application/json',
@@ -96,7 +96,7 @@ class PacksApi  {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
-      final eventModelJson = packModel.toJSON();
+      final eventModelJson = packModel.toJson();
 
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',

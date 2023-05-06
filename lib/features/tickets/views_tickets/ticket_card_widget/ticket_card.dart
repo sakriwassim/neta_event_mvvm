@@ -71,7 +71,7 @@ class TicketCardWidget extends StatelessWidget {
                         color: const Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.w500,
                         size: 20,
-                        title: "${ticketModel?.date}"),
+                        title: "${ticketModel?.dateExpire}"),
                     TextAirbnbCereal(
                         color: const Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.w500,
@@ -89,12 +89,12 @@ class TicketCardWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: getProportionateScreenHeight(60),
-                    child: ticketModel?.Qr_code == null &&
-                            ticketModel?.Qr_code == ""
+                    child: ticketModel?.QRCode == null &&
+                            ticketModel?.QRCode == ""
                         ? RectangleImage(
                             height: 60,
                             width: 20,
-                            image: "${ticketModel?.Qr_code}",
+                            image: "${ticketModel?.QRCode}",
                           )
                         : Image.asset(nocodeqr),
                   ),

@@ -10,10 +10,11 @@ import '../../../core/widgets/small_button_style.dart';
 import '../../../core/widgets/text_widget_text1.dart';
 import '../../Categories/view_model_categories/one_categorie_view_model.dart';
 import '../../events/views_events/widgets/categorie_icon_widget.dart';
+import '../../users/models_users/event_by_id_model.dart';
 import '../../users/models_users/event_model.dart';
 
 class AddTontineView extends StatefulWidget {
-  UserModel? userConnected;
+  UserModelById? userConnected;
   List<OneCategorieViewModel> allCategories;
   AddTontineView({
     required this.userConnected,

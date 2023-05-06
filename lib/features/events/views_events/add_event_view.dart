@@ -80,7 +80,7 @@ class _AddEventViewState extends State<AddEventView> {
       if (isLastStep) {
         var update = {
           "id": widget.eventModel?.id,
-          "category_id": widget.eventModel?.categoryId,
+          "category_id": widget.eventModel?.categorieId,
           "observation_id": widget.eventModel?.observationId,
           "libelle": namestring,
           "description": description,

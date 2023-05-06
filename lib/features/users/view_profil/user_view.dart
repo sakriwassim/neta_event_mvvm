@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neta_event_mvvm/core/int.dart';
 import 'package:neta_event_mvvm/features/users/view_profil/widget/card_widget_edit_profile.dart';
+import '../models_users/event_by_id_model.dart';
 import '../models_users/event_model.dart';
 import 'editprofilcompte_view.dart';
 import 'editpwd_view.dart';
 
 class UserView extends StatelessWidget {
-  UserModel? userModel;
+  UserModelById? userModel;
   UserView({required this.userModel, super.key});
 
   @override

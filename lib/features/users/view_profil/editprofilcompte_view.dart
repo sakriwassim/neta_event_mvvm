@@ -7,11 +7,12 @@ import '../../../core/string.dart';
 import '../../../core/widgets/small_button_style.dart';
 import '../../../main.dart';
 import '../models_users/add_event_model.dart';
+import '../models_users/event_by_id_model.dart';
 import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
 
 class EditCompte extends StatefulWidget {
-  UserModel? userModel;
+  UserModelById? userModel;
   EditCompte({required this.userModel, super.key});
 
   @override
@@ -145,9 +146,8 @@ class _EditCompteState extends State<EditCompte> {
                                   child: CircularProgressIndicator());
                             });
                         var event = {
-                          "role_id":
-                              int.parse('${widget.userModel?.roleId}'), //1,
-                          "packs_id": int.parse('${widget.userModel?.packsId}'),
+                          "role_id": widget.userModel?.roleId,//1
+                          "packs_id": 1,
                           "nom_complet": "nomcompletfield",
                           "email": widget.userModel?.email,
                           "telephone": int.parse(phonefield),

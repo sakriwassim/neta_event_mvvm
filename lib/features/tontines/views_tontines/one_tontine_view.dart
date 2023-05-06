@@ -30,7 +30,7 @@ class _OnTontineViewState extends State<OnTontineView> {
   void initState() {
     super.initState();
     Provider.of<UsersViewModel>(context, listen: false)
-        .GetUserByID(int.parse(widget.tontine!.user_id!));
+        .GetUserByID(widget.tontine!.userId);
   }
 
   @override
@@ -114,7 +114,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                           fontWeight: FontWeight.w500,
                           size: 10,
                           title:
-                              "${widget.tontine!.nbr_participant} participants"),
+                              "${widget.tontine!.nbrParticipant} participants"),
                     ],
                   ),
                 ),
@@ -138,7 +138,7 @@ class _OnTontineViewState extends State<OnTontineView> {
                           color: const Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.w500,
                           size: 10,
-                          title: "${widget.tontine!.montant_regulier} fcfa"),
+                          title: "${widget.tontine!.montantRegulier} fcfa"),
                     ],
                   ),
                 ),

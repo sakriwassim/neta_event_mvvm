@@ -34,12 +34,12 @@ class _GetAllTicketWidgetState extends State<GetAllTicketWidget> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               backgroundColor: Colors.transparent,
-                              content: widget.tickets[index].Qr_code == null &&
-                                      widget.tickets[index].Qr_code == ""
+                              content: widget.tickets[index].QRCode == null &&
+                                      widget.tickets[index].QRCode == ""
                                   ? RectangleImage(
                                       height: 150,
                                       width: 150,
-                                      image: "${widget.tickets[index].Qr_code}",
+                                      image: "${widget.tickets[index].QRCode}",
                                     )
                                   : Container(
                                       height: 150,

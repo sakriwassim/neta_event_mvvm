@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../authentification/models_authentification/token_model.dart';
+import '../models_users/event_by_id_model.dart';
 import '../users_repositories/users_api.dart';
 import '../models_users/add_event_model.dart';
 import '../models_users/event_model.dart';
@@ -11,8 +12,8 @@ class UsersViewModel extends ChangeNotifier {
   UserModel? eventModel;
   List<UserModel> usersByCategorie = [];
   List<UserModel> users = [];
-  UserModel? userById;
-  UserModel? userConnected;
+  UserModelById? userById;
+  UserModelById? userConnected;
   TokenModel? tokenModel;
   bool loading = false;
   bool isBack = false;

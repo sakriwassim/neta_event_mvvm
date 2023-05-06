@@ -1,36 +1,96 @@
+import '../../users/models_users/event_by_id_model.dart';
+
 class PackModel {
-  int? id;
-  String? type_pack_id;
-  String? libelle;
-  String? montant;
-  String? nbre_events;
-  String? nbre_jr_pubs;
-  String? created_at;
-  String? updated_at;
 
-  PackModel({this.id, this.libelle, this.created_at, this.updated_at});
+   int? id;
+   String? dateExpire;
+   String? libelle;
+   String? montant;
+   int? nbreEvents;
+   int? nbreJrPubs;
+   int? typePackId;
+   int? userId;
+   String? createdAt;
+   String? updatedAt;
+   UserModelById? user;
+   TypePack? typePack;
 
-  PackModel.fromJson(Map<String, dynamic> json) {
+    PackModel({
+     this.id,
+     this.dateExpire,
+     this.libelle,
+     this.montant,
+     this.nbreEvents,
+     this.nbreJrPubs,
+     this.typePackId,
+     this.userId,
+     this.createdAt,
+     this.updatedAt,
+     this.user,
+     this.typePack,
+  });
+  
+  PackModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    type_pack_id = json['type_pack_id'];
+    dateExpire = json['date_expire'];
     libelle = json['libelle'];
     montant = json['montant'];
-    nbre_events = json['nbre_events'];
-    nbre_jr_pubs = json['nbre_jr_pubs'];
-    created_at = json['created_at'];
-    updated_at = json['updated_at'];
+    nbreEvents = json['nbre_events'];
+    nbreJrPubs = json['nbre_jr_pubs'];
+    typePackId = json['type_pack_id'];
+    userId = json['user_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    user = UserModelById.fromJson(json['user']);
+    typePack = TypePack.fromJson(json['type_pack']);
   }
 
-  Map<String, dynamic> toJSON() {
-    return {
-      "id": id,
-      "type_pack_id": type_pack_id,
-      "libelle": libelle,
-      "montant": montant,
-      "nbre_events": nbre_events,
-      "nbre_jr_pubs": nbre_jr_pubs,
-      "created_at": created_at,
-      "updated_at": updated_at
-    };
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['date_expire'] = dateExpire;
+    _data['libelle'] = libelle;
+    _data['montant'] = montant;
+    _data['nbre_events'] = nbreEvents;
+    _data['nbre_jr_pubs'] = nbreJrPubs;
+    _data['type_pack_id'] = typePackId;
+    _data['user_id'] = userId;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    _data['user'] = user?.toJson();
+    _data['type_pack'] = typePack?.toJson();
+    return _data;
+  }
+}
+
+
+class TypePack {
+  
+   int? id;
+   String? libelle;
+   String? createdAt;
+   String? updatedAt;
+
+   TypePack({
+     this.id,
+     this.libelle,
+     this.createdAt,
+     this.updatedAt,
+  });
+  
+  TypePack.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+    libelle = json['libelle'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['libelle'] = libelle;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    return _data;
   }
 }

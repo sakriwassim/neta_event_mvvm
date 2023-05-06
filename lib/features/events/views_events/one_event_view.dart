@@ -247,7 +247,7 @@ class _OneEventViewState extends State<OneEventView> {
                                         color: Colors.grey,
                                         fontWeight: FontWeight.w400,
                                         size: 16,
-                                        title: widget.eventModel!.status!,
+                                        title: widget.eventModel!.statut!,
                                       ),
                                     ],
                                   ),

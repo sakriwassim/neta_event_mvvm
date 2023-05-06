@@ -307,6 +307,23 @@ class _AuthViewState extends State<AuthView> {
               MaterialPageRoute(
                 builder: (context) => MyHomePage(),
               ));
+        }else{
+          // ignore: use_build_context_synchronously
+          showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Alert Dialog"),
+              content: Text(provider.message),
+              actions: [
+                TextButton(
+                  child: const Text("Close"),
+                  onPressed: () => Navigator.pop(context, false),
+                )
+              ],
+            );
+          },
+        );
         }
       }
     }

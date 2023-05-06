@@ -111,7 +111,7 @@ class CategoriesApi {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("token");
       final eventId = addCategorieModel.id;
-      final eventModelJson = addCategorieModel.toJSON();
+      final eventModelJson = addCategorieModel.toJson();
 
       var headers = {
         'Content-type': 'application/json',

@@ -1,56 +1,63 @@
 class TicketModel {
+ 
   int? id;
-  String? event_id;
   String? libelle;
   String? description;
-  String? prix;
-  String? Qr_code;
-  String? date;
-  String? date_expire;
+  int? prix;
+  String? QRCode;
+  String? dateDebut;
+  String? dateExpire;
   String? statut;
-  String? created_at;
-  String? updated_at;
+  int? userId;
+  int? eventsId;
+  String? createdAt;
+  String? updatedAt;
+  
 
-  TicketModel(
-      {this.id,
-      this.event_id,
-      this.libelle,
-      this.description,
-      this.prix,
-      this.Qr_code,
-      this.date,
-      this.date_expire,
-      this.statut,
-      this.created_at,
-      this.updated_at});
+ TicketModel({
+     this.id,
+     this.libelle,
+     this.description,
+     this.prix,
+     this.QRCode,
+     this.dateDebut,
+     this.dateExpire,
+     this.statut,
+     this.userId,
+     this.eventsId,
+     this.createdAt,
+     this.updatedAt,
+  });
 
-  TicketModel.fromJson(Map<String, dynamic> json) {
+  TicketModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    event_id = json['event_id'];
     libelle = json['libelle'];
     description = json['description'];
     prix = json['prix'];
-    Qr_code = json['qr_code'];
-    date = json['date'];
-    date_expire = json['date_expire'];
+    QRCode = json['QR_code'];
+    dateDebut = json['date_debut'];
+    dateExpire = json['date_expire'];
     statut = json['statut'];
-    created_at = json['created_at'];
-    updated_at = json['updated_at'];
+    userId = json['user_id'];
+    eventsId = json['events_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
-  Map<String, dynamic> toJSON() {
-    return {
-      "id": id,
-      "event_id": event_id,
-      "libelle": libelle,
-      "description": description,
-      "prix": prix,
-      "Qr_code": Qr_code,
-      "date": date,
-      "date_expire": date_expire,
-      "statut": statut,
-      "created_at": created_at,
-      "updated_at": updated_at
-    };
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['libelle'] = libelle;
+    _data['description'] = description;
+    _data['prix'] = prix;
+    _data['QR_code'] = QRCode;
+    _data['date_debut'] = dateDebut;
+    _data['date_expire'] = dateExpire;
+    _data['statut'] = statut;
+    _data['user_id'] = userId;
+    _data['events_id'] = eventsId;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    return _data;
   }
 }

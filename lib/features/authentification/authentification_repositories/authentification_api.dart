@@ -9,7 +9,7 @@ class AuthentificationApi {
   Future<Response?> login(String mail, String password) async {
     http.Response? response;
     try {
-      var userJson = {"email": mail, "password": password};
+      var userJson = {"email": mail.trim(), "password": password.trim()};
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -36,17 +36,27 @@ class AuthentificationApi {
       Map<String, String> headers = {
         'Content-Type': 'application/json; charset=UTF-8',
       };
+    var userjdon =  {
+  "role_id": 1,
+  "packs_id": 1,
+  "nom_complet": nom_complet.trim(),
+  "email": email.trim(),
+  "telephone": 70213645,
+  "adresse": "Faladiè",
+  "image": "https://cheminverslimage",
+  "password": password.trim()
+};
 
-      var userjdon = {
-        "role_id": role_id,
-        "packs_id": 1,
-        "nom_complet": nom_complet,
-        "email": email,
-        "telephone": 70213645,
-        "adresse": "",
-        "image": "",
-        "password": password
-      };
+      // var userjdon = {
+      //   "role_id": 1,
+      //   "packs_id": 1,
+      //   "nom_complet": nom_complet.trim(),
+      //   "email": email.trim(),
+      //   "telephone": 70213645,
+      //   "adresse": "".trim(),
+      //   "image": "".trim(),
+      //   "password": password.trim()
+      // };
 
       final body = jsonEncode(userjdon);
 

@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var provideruser = Provider.of<UsersViewModel>(context, listen: true);
     if (provideruser != null) {
-      userconnecedrole = provideruser.userConnected?.roleId ?? "";
+      userconnecedrole = provideruser.userConnected?.roleId.toString() ?? "";
     }
 
     SizeConfig().init(context);

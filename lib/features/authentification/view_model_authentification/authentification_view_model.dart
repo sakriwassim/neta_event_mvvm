@@ -72,7 +72,7 @@ class AuthentificationViewModel extends ChangeNotifier {
         var userrole = await UsersApi().getUserByID(tokenModel.userId);
 
         prefs.setString("token", token);
-        prefs.setString("role", userrole.roleId!);
+        prefs.setString("role", userrole.roleId.toString());
 
         isBack = true;
         notifyListeners();

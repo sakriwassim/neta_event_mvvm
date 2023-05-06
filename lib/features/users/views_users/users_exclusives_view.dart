@@ -98,7 +98,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                                 events: events,
                                 date_heure: events[index].adresse,
                                 libelle: events[index].nomComplet,
-                                prix: events[index].telephone,
+                                prix: events[index].telephone.toString(),
                                 adresse: events[index].adresse,
                               )));
                     }

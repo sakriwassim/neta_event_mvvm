@@ -67,7 +67,7 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(226, 133, 65, 1),
                           fontWeight: FontWeight.w500,
                           size: 8,
-                          title: "${tontine?.status}",
+                          title: "${tontine?.statut}",
                         ),
                         TextAirbnbCereal(
                           color: Color.fromARGB(255, 0, 0, 0),
@@ -85,7 +85,7 @@ class TontineCardWidgetH extends StatelessWidget {
                           color: Color.fromRGBO(79, 79, 79, 1),
                           fontWeight: FontWeight.w500,
                           size: 15,
-                          title: "${tontine?.nbr_participant} participants",
+                          title: "${tontine?.nbrParticipant} participants",
                         ),
                       ],
                     ),
@@ -110,7 +110,7 @@ class TontineCardWidgetH extends StatelessWidget {
 
                     child: Center(
                       child: Text(
-                        '${tontine?.montant_regulier}',
+                        '${tontine?.montantRegulier}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,

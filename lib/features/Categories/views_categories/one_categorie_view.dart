@@ -4,7 +4,7 @@ import '../view_model_categories/one_categorie_view_model.dart';
 import '../view_model_categories/categories_view_model.dart';
 
 class OnCategorieView extends StatefulWidget {
-  const OnCategorieView({super.key});
+  const OnCategorieView ({Key? key}) : super(key: key);
 
   @override
   State<OnCategorieView> createState() => _OnCategorieViewState();

@@ -7,8 +7,8 @@ import '../models_tontines/tontine_model.dart';
 import '../view_model_tickets/tontines_view_model.dart';
 
 class UpdateTontineView extends StatefulWidget {
-  final TontineModel ticketObj;
-  const UpdateTontineView({super.key, required this.ticketObj});
+  final TontineModel? ticketObj;
+  const UpdateTontineView ({Key? key, this.ticketObj}) : super(key: key);
 
   @override
   State<UpdateTontineView> createState() => _UpdateTontineViewState();
@@ -90,7 +90,7 @@ class _UpdateTontineViewState extends State<UpdateTontineView> {
               onTap: () async {
                 if (formkey.currentState!.validate()) {
                   var ticket = {
-                    "id": widget.ticketObj.id,
+                    "id": widget.ticketObj!.id,
                     "user_id": "1",
                     "libelle": libellefield,
                     "periode": descriptionfield,

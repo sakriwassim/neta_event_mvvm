@@ -14,7 +14,8 @@ import '../view_model_events/users_view_model.dart';
 
 class EditPwd extends StatefulWidget {
   UserModelById? userModel;
-  EditPwd({required this.userModel, super.key});
+
+  EditPwd ({Key? key,required this.userModel}) : super(key: key);
 
   @override
   State<EditPwd> createState() => _EditPwdState();

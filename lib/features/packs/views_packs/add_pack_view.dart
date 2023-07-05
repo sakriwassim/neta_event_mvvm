@@ -8,9 +8,8 @@ import '../models_packs/pack_model.dart';
 import '../view_model_packs/packs_view_model.dart';
 
 class AddPackView extends StatefulWidget {
-  AddPackView({
-    super.key,
-  });
+
+  const AddPackView ({Key? key}) : super(key: key);
 
   @override
   State<AddPackView> createState() => _AddPackViewState();

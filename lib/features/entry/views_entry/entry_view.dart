@@ -11,7 +11,7 @@ import '../entry_repositories/events_local.dart';
 import '../view_model_entry/events_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen ({Key? key}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

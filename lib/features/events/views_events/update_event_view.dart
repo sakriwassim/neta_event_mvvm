@@ -9,7 +9,7 @@ import '../view_model_events/events_view_model.dart';
 
 class UpdateEventView extends StatefulWidget {
   final EventModel eventObj;
-  UpdateEventView({super.key, required this.eventObj});
+  UpdateEventView ({Key? key, required this.eventObj}) : super(key: key);
 
   @override
   State<UpdateEventView> createState() => _UpdateEventViewState();

@@ -20,12 +20,7 @@ import '../view_model_events/events_view_model.dart';
 class AddEventView extends StatefulWidget {
   bool? isupdate;
   EventModel? eventModel;
-
-  AddEventView({
-    this.isupdate,
-    this.eventModel,
-    super.key,
-  });
+  AddEventView ({Key? key,this.eventModel ,this.isupdate}) : super(key: key);
 
   @override
   State<AddEventView> createState() => _AddEventViewState();

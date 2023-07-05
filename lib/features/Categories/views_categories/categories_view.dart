@@ -10,7 +10,7 @@ import 'add_categorie_view.dart';
 import 'update_categorie_view.dart';
 
 class GetAllCategorieView extends StatefulWidget {
-  const GetAllCategorieView({super.key});
+  const GetAllCategorieView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllCategorieView> createState() => _GetAllCategorieViewState();

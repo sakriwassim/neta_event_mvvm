@@ -8,7 +8,7 @@ import 'editpwd_view.dart';
 
 class UserView extends StatelessWidget {
   UserModelById? userModel;
-  UserView({required this.userModel, super.key});
+   UserView ({Key? key, this.userModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

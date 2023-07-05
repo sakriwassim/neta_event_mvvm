@@ -17,7 +17,8 @@ import '../users/view_model_events/users_view_model.dart';
 import 'home_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+
+  const MyHomePage ({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();

@@ -8,9 +8,8 @@ import '../models_tickets/add_ticket_model.dart';
 import '../view_model_tickets/tickets_view_model.dart';
 
 class AddTicketView extends StatefulWidget {
-  const AddTicketView({
-    super.key,
-  });
+
+  const AddTicketView ({Key? key}) : super(key: key);
 
   @override
   State<AddTicketView> createState() => _AddTicketViewState();

@@ -372,8 +372,7 @@ class _HomeViewState extends State<HomeView> {
                                 callbackfonction: navGetAllEventView,
                               ),
                               GetEventByCategorisWidget(
-                                eventsbyCategorie:
-                                    providerevent.eventsbyCategorie,
+                                eventsbyCategorie: providerevent.allEvents,
                               ),
 
                               provideruser.userConnected?.roleId == "1" ||

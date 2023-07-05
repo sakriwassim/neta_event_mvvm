@@ -16,9 +16,8 @@ import '../../tontines/models_tontines/tontine_model.dart';
 import '../../tontines/view_model_tickets/tontines_view_model.dart';
 
 class AddNotificationView extends StatefulWidget {
-  const AddNotificationView({
-    super.key,
-  });
+
+  const AddNotificationView ({Key? key}) : super(key: key);
 
   @override
   State<AddNotificationView> createState() => _AddNotificationViewState();

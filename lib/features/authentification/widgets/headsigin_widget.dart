@@ -6,7 +6,7 @@ import '../../../core/size_config.dart';
 import '../../../core/string.dart';
 
 class Headsigin extends StatelessWidget {
-  const Headsigin({super.key});
+  const Headsigin ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

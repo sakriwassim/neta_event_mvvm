@@ -12,7 +12,7 @@ import '../../models_tickets/ticket_model.dart';
 class TicketCardWidget extends StatelessWidget {
   TicketModel? ticketModel;
 
-  TicketCardWidget({super.key, required this.ticketModel});
+  TicketCardWidget ({Key? key,required this.ticketModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

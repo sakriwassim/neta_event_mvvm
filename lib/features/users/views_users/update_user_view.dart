@@ -12,8 +12,8 @@ import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
 
 class UpdateUserView extends StatefulWidget {
-  final UserModel eventObj;
-  const UpdateUserView({super.key, required this.eventObj});
+  final UserModel? eventObj;
+  const UpdateUserView ({Key? key, this.eventObj}) : super(key: key);
 
   @override
   State<UpdateUserView> createState() => _UpdateUserViewState();

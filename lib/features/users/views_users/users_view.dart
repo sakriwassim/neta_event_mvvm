@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:neta_event_mvvm/features/users/views_users/widgets/event_card_widget.dart';
-
 import '../../../core/size_config.dart';
 import '../models_users/event_model.dart';
 import '../view_model_events/users_view_model.dart';
 import 'one_user_view.dart';
 
 class GetAllUserView extends StatefulWidget {
-  const GetAllUserView({super.key});
+  const GetAllUserView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllUserView> createState() => _GetAllUserViewState();
@@ -59,8 +58,8 @@ class _GetAllUserViewState extends State<GetAllUserView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => OnUserView(
-                                              id: events[index].id!,
-                                            )),
+                                          id: events![index].id!,)
+                                    ),
                                   );
                                 },
                                 child: UserCardWidget(
@@ -70,7 +69,9 @@ class _GetAllUserViewState extends State<GetAllUserView> {
                                   libelle: events[index].nomComplet,
                                   prix: events[index].email,
                                   adresse: events[index].adresse,
-                                )));
+                                )
+                            )
+                        );
                       }
                     }),
                   ),

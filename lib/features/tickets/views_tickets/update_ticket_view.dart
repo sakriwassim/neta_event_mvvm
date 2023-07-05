@@ -11,7 +11,7 @@ import '../view_model_tickets/tickets_view_model.dart';
 
 class UpdateTicketView extends StatefulWidget {
   final TicketModel ticketObj;
-  const UpdateTicketView({super.key, required this.ticketObj});
+  const UpdateTicketView ({Key? key, required this.ticketObj}) : super(key: key);
 
   @override
   State<UpdateTicketView> createState() => _UpdateTicketViewState();

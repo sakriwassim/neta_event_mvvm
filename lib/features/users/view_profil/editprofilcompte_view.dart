@@ -13,7 +13,8 @@ import '../view_model_events/users_view_model.dart';
 
 class EditCompte extends StatefulWidget {
   UserModelById? userModel;
-  EditCompte({required this.userModel, super.key});
+
+   EditCompte ({Key? key, required this.userModel,}) : super(key: key);
 
   @override
   State<EditCompte> createState() => _EditCompteState();

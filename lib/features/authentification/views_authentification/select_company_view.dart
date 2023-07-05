@@ -18,11 +18,12 @@ class SelectCompany extends StatelessWidget {
   late String passwordfield;
   final formkey = GlobalKey<FormState>();
 
-  SelectCompany(
-      {super.key,
-      required this.nomcompletfield,
-      required this.emailfield,
-      required this.passwordfield});
+   SelectCompany ({Key? key ,
+     required this.nomcompletfield,
+     required this.emailfield,
+     required this.passwordfield
+   }) : super(key: key);
+
 
   late int valueselected = 1;
   bool buttonselected = false;

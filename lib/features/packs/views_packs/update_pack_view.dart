@@ -10,7 +10,8 @@ import '../view_model_packs/one_pack_view_model.dart';
 
 class UpdatePackView extends StatefulWidget {
   final OnePackViewModel eventObj;
-  UpdatePackView({super.key, required this.eventObj});
+
+  const UpdatePackView ({Key? key,required this.eventObj}) : super(key: key);
 
   @override
   State<UpdatePackView> createState() => _UpdatePackViewState();

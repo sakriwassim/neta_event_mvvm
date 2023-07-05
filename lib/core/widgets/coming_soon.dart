@@ -5,7 +5,7 @@ import '../string.dart';
 import 'text_widget_text1.dart';
 
 class ComingSoon extends StatelessWidget {
-  const ComingSoon({super.key});
+  const ComingSoon ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

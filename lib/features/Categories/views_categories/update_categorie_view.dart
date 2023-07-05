@@ -11,7 +11,8 @@ import '../view_model_categories/categories_view_model.dart';
 
 class UpdateCategorieView extends StatefulWidget {
   final OneCategorieViewModel ticketObj;
-  const UpdateCategorieView({super.key, required this.ticketObj});
+
+  const UpdateCategorieView ({Key? key , required this.ticketObj}) : super(key: key);
 
   @override
   State<UpdateCategorieView> createState() => _UpdateCategorieViewState();

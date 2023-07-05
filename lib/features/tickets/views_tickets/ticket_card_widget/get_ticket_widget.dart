@@ -11,7 +11,7 @@ import '../../view_model_tickets/tickets_view_model.dart';
 class GetAllTicketWidget extends StatefulWidget {
   List<TicketModel> tickets;
 
-  GetAllTicketWidget({required this.tickets, super.key});
+  GetAllTicketWidget ({Key? key,required this.tickets}) : super(key: key);
 
   @override
   State<GetAllTicketWidget> createState() => _GetAllTicketWidgetState();

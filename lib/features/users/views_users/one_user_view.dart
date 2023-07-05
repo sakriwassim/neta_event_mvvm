@@ -8,8 +8,8 @@ import '../view_model_events/users_view_model.dart';
 import 'users_view.dart';
 
 class OnUserView extends StatefulWidget {
-  final int id;
-  const OnUserView({super.key, required this.id});
+  final int? id;
+  const OnUserView ({Key? key, this.id}) : super(key: key);
 
   @override
   State<OnUserView> createState() => _OnUserViewState();

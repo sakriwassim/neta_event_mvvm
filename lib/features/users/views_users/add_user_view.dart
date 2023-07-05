@@ -12,9 +12,8 @@ import '../models_users/add_event_model.dart';
 import '../view_model_events/users_view_model.dart';
 
 class AddUserView extends StatefulWidget {
-  const AddUserView({
-    super.key,
-  });
+
+  const AddUserView ({Key? key}) : super(key: key);
 
   @override
   State<AddUserView> createState() => _AddUserViewState();

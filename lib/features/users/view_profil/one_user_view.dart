@@ -19,7 +19,7 @@ import 'package:image_picker/image_picker.dart';
 import 'imageprofile/screens/select_photo_options_screen.dart';
 
 class OneUserView extends StatefulWidget {
-  const OneUserView({super.key});
+  const OneUserView ({Key? key}) : super(key: key);
 
   @override
   State<OneUserView> createState() => _OneUserViewState();

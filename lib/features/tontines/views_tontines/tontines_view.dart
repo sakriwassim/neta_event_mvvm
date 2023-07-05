@@ -10,7 +10,7 @@ import '../view_model_tickets/tontines_view_model.dart';
 import 'add_tontine_view.dart';
 
 class GetAllTontineView extends StatefulWidget {
-  const GetAllTontineView({super.key});
+  const GetAllTontineView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllTontineView> createState() => _GetAllTontineViewState();

@@ -13,7 +13,7 @@ import '../../users/view_model_events/users_view_model.dart';
 import 'widgets/events_widget.dart';
 
 class GetAllEventView extends StatefulWidget {
-  const GetAllEventView({super.key});
+  const GetAllEventView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllEventView> createState() => _GetAllEventViewState();

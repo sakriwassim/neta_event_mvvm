@@ -10,7 +10,7 @@ import 'add_user_view.dart';
 import 'one_user_view.dart';
 
 class GetExcusivesUserView extends StatefulWidget {
-  const GetExcusivesUserView({super.key});
+  const GetExcusivesUserView ({Key? key}) : super(key: key);
 
   @override
   State<GetExcusivesUserView> createState() => _GetExcusivesUserViewState();
@@ -89,7 +89,7 @@ class _GetExcusivesUserViewState extends State<GetExcusivesUserView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => OnUserView(
-                                            id: events[index].id!,
+                                            id: events![index].id!,
                                           )),
                                 );
                               },

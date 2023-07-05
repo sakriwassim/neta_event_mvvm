@@ -19,8 +19,7 @@ import 'add_event_view.dart';
 
 class OneEventView extends StatefulWidget {
   EventModel? eventModel;
-
-  OneEventView({super.key, required this.eventModel});
+   OneEventView ({Key? key, this.eventModel}) : super(key: key);
 
   @override
   State<OneEventView> createState() => _OneEventViewState();

@@ -7,9 +7,10 @@ import '../../../core/widgets/text_widget_text1.dart';
 import '../view_model_authentification/authentification_view_model.dart';
 
 class TitleWidget extends StatelessWidget {
-  bool isLogin;
-  TitleWidget({required this.isLogin, super.key});
 
+  bool isLogin;
+
+   TitleWidget ({Key? key, required this.isLogin}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(

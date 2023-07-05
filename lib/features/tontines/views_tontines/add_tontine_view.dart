@@ -16,11 +16,9 @@ import '../../users/models_users/event_model.dart';
 class AddTontineView extends StatefulWidget {
   UserModelById? userConnected;
   List<OneCategorieViewModel> allCategories;
-  AddTontineView({
-    required this.userConnected,
-    required this.allCategories,
-    super.key,
-  });
+
+   AddTontineView ({Key? key, required this.userConnected,
+    required this.allCategories,}) : super(key: key);
 
   @override
   State<AddTontineView> createState() => _AddTontineViewState();

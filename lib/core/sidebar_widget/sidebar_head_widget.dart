@@ -6,7 +6,7 @@ import '../size_config.dart';
 import '../widgets/text_widget_text1.dart';
 
 class SideHeader extends StatefulWidget {
-  const SideHeader({super.key});
+  const SideHeader({Key? key}) : super(key: key);
 
   @override
   State<SideHeader> createState() => _SideHeaderState();

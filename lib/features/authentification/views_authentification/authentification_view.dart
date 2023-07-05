@@ -19,7 +19,7 @@ import '../widgets/headsigin_widget.dart';
 import '../widgets/title_widget.dart';
 
 class AuthView extends StatefulWidget {
-  const AuthView({super.key});
+  const AuthView ({Key? key}) : super(key: key);
 
   @override
   State<AuthView> createState() => _AuthViewState();

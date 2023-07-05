@@ -12,7 +12,7 @@ import 'widget/notification_card_widget.dart';
 import 'widget/notifications_widget.dart';
 
 class GetAllNotificationView extends StatefulWidget {
-  const GetAllNotificationView({super.key});
+  const GetAllNotificationView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllNotificationView> createState() => _GetAllNotificationViewState();

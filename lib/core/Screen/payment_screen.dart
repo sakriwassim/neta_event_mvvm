@@ -14,7 +14,8 @@ import '../widgets/text_widget_text1.dart';
 
 class PaymentScreen extends StatelessWidget {
   TontineModel? addTontineModel;
-  PaymentScreen({required this.addTontineModel, super.key});
+  PaymentScreen({Key? key , this.addTontineModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<TontinesViewModel>(context, listen: true);

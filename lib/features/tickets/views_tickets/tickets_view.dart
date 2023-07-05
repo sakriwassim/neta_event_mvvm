@@ -8,7 +8,8 @@ import '../view_model_tickets/tickets_view_model.dart';
 import 'ticket_card_widget/get_ticket_widget.dart';
 
 class GetAllTicketView extends StatefulWidget {
-  const GetAllTicketView({super.key});
+
+  const GetAllTicketView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllTicketView> createState() => _GetAllTicketViewState();

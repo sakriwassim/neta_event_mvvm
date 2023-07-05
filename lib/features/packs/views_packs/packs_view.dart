@@ -7,7 +7,8 @@ import '../view_model_packs/packs_view_model.dart';
 import 'get_all_pack_view_body.dart';
 
 class GetAllPackView extends StatefulWidget {
-  const GetAllPackView({super.key});
+
+  const GetAllPackView ({Key? key}) : super(key: key);
 
   @override
   State<GetAllPackView> createState() => _GetAllPackViewState();

@@ -7,9 +7,8 @@ import '../../../core/widgets/small_button_style.dart';
 import '../models_categories/add_categories_model.dart';
 
 class AddCategorieView extends StatefulWidget {
-  const AddCategorieView({
-    super.key,
-  });
+
+  const AddCategorieView ({Key? key}) : super(key: key);
 
   @override
   State<AddCategorieView> createState() => _AddCategorieViewState();
